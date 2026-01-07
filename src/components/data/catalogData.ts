@@ -158,7 +158,7 @@ export const categories = [
 export const products = [
   {
     id: 1,
-    name: 'Балансир ДКб-1',
+    name: 'Арт. 0130\nБалансир "Металл"',
     category: 'playground',
     subcategory: 'Балансиры',
     price: '31 500',
@@ -167,7 +167,7 @@ export const products = [
   },
   {
     id: 2,
-    name: 'Балансир ДКб-2',
+    name: 'Арт. 0131\nБалансир "Классик"',
     category: 'playground',
     subcategory: 'Балансиры',
     price: '29 900',
@@ -175,26 +175,8 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/2.png'
   },
   {
-    id: 3,
-    name: 'Балансир ДКб-5',
-    category: 'playground',
-    subcategory: 'Балансиры',
-    price: '67 500',
-    description: '2700х350х850',
-    image: 'https://cdn.poehali.dev/files/66.png'
-  },
-  {
-    id: 4,
-    name: 'Балансир "Дельфин"',
-    category: 'playground',
-    subcategory: 'Балансиры',
-    price: '42 000',
-    description: '2215х390х790',
-    image: 'https://cdn.poehali.dev/files/дельфинн.png'
-  },
-  {
     id: 5,
-    name: 'Балансир "Карета"',
+    name: 'Арт. 0132\nБалансир "Карета"',
     category: 'playground',
     subcategory: 'Балансиры',
     price: '53 300',
@@ -202,17 +184,8 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/карета.png'
   },
   {
-    id: 6,
-    name: 'Балансир "Медведь"',
-    category: 'playground',
-    subcategory: 'Балансиры',
-    price: '54 400',
-    description: '2215х315х885',
-    image: 'https://cdn.poehali.dev/files/медведбб.png'
-  },
-  {
     id: 7,
-    name: 'Балансир "Мишка"',
+    name: 'Арт. 0133\nБалансир "Мишка"',
     category: 'playground',
     subcategory: 'Балансиры',
     price: '39 700',
@@ -221,7 +194,7 @@ export const products = [
   },
   {
     id: 8,
-    name: 'Балансир "Мячик"',
+    name: 'Арт. 0134\nБалансир "Мячик"',
     category: 'playground',
     subcategory: 'Балансиры',
     price: '42 200',
@@ -230,7 +203,7 @@ export const products = [
   },
   {
     id: 9,
-    name: 'Балансир "Собачка"',
+    name: 'Арт. 0135\nБалансир "Собачка"',
     category: 'playground',
     subcategory: 'Балансиры',
     price: '33 700',
@@ -239,7 +212,7 @@ export const products = [
   },
   {
     id: 10,
-    name: 'Балансир "Утята"',
+    name: 'Арт. 0136\nБалансир "Утята"',
     category: 'playground',
     subcategory: 'Балансиры',
     price: '34 600',
@@ -247,17 +220,8 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/утята.png'
   },
   {
-    id: 11,
-    name: 'Балансир "Черепаха"',
-    category: 'playground',
-    subcategory: 'Балансиры',
-    price: '46 500',
-    description: '2215х410х790',
-    image: 'https://cdn.poehali.dev/files/черепахаа.png'
-  },
-  {
     id: 12,
-    name: 'Балансир "Якорь"',
+    name: 'Арт. 0137\nБалансир "Якорь"',
     category: 'playground',
     subcategory: 'Балансиры',
     price: '42 000',
@@ -266,7 +230,7 @@ export const products = [
   },
   {
     id: 13,
-    name: 'Балансир-вертушка "Буран"',
+    name: 'Арт. 0138\nБалансир-вертушка "Буран"',
     category: 'playground',
     subcategory: 'Балансиры',
     price: '58 500',
@@ -275,7 +239,7 @@ export const products = [
   },
   {
     id: 14,
-    name: 'Балансир-вертушка "Вихрь"',
+    name: 'Арт. 0139\nБалансир-вертушка "Вихрь"',
     category: 'playground',
     subcategory: 'Балансиры',
     price: '56 800',
