@@ -115,7 +115,7 @@ export const categories = [
     icon: 'Flower2',
     color: 'from-primary/20 to-primary/5',
     image: '',
-    bgImage: 'https://cdn.poehali.dev/files/1620818445_proekt.jpg',
+    bgImage: 'https://cdn.poehali.dev/files/2e81e8bf3eec157fde5c7d20e45eef3aff45a532 (1).jpg',
     subcategories: [
       { name: 'Клумбы', image: '🌷' },
       { name: 'Газоны', image: '🌿' },
