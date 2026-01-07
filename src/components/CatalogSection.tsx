@@ -311,7 +311,7 @@ export function CatalogSection({
           </Dialog>
 
           {(selectedCategory || selectedSubcategory || selectedSubSubcategory) && (
-            <div className="mb-8 space-y-4">
+            <div id="products" className="mb-8 space-y-4">
               <div className="flex items-center justify-between">
                 <Breadcrumb>
                   <BreadcrumbList>

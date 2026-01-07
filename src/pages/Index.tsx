@@ -53,11 +53,11 @@ export default function Index() {
         setSelectedSubSubcategory(null);
         setIsCategoryDialogOpen(false);
         setTimeout(() => {
-          const catalogSection = document.getElementById('catalog');
-          if (catalogSection) {
-            catalogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const productsSection = document.getElementById('products');
+          if (productsSection) {
+            productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
-        }, 100);
+        }, 300);
       }
     }
   };
@@ -69,11 +69,11 @@ export default function Index() {
       setSelectedSubSubcategory(subSubName);
       setIsSubSubcategoryDialogOpen(false);
       setTimeout(() => {
-        const catalogSection = document.getElementById('catalog');
-        if (catalogSection) {
-          catalogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const productsSection = document.getElementById('products');
+        if (productsSection) {
+          productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-      }, 100);
+      }, 300);
     }
   };
 
