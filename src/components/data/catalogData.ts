@@ -544,7 +544,7 @@ export const products = [
     image: '🪑'
   },
   {
-    id: 7,
+    id: 200,
     name: 'Резиновое покрытие',
     category: 'coating',
     subcategory: 'Резиновое покрытие',
@@ -553,7 +553,7 @@ export const products = [
     image: '🟦'
   },
   {
-    id: 8,
+    id: 201,
     name: 'Забор декоративный',
     category: 'fencing',
     subcategory: 'Заборы',
