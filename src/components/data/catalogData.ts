@@ -283,7 +283,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/вихрь.png'
   },
   {
-    id: 15,
+    id: 100,
     name: 'Горка 0100',
     category: 'playground',
     subcategory: 'Горки',
@@ -292,7 +292,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 16,
+    id: 101,
     name: 'Горка 0100/1',
     category: 'playground',
     subcategory: 'Горки',
@@ -301,7 +301,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 17,
+    id: 102,
     name: 'Горка 0101',
     category: 'playground',
     subcategory: 'Горки',
@@ -310,7 +310,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 18,
+    id: 103,
     name: 'Горка 0101/1',
     category: 'playground',
     subcategory: 'Горки',
@@ -319,7 +319,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 19,
+    id: 104,
     name: 'Горка 0101/2',
     category: 'playground',
     subcategory: 'Горки',
@@ -328,7 +328,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 20,
+    id: 105,
     name: 'Горка 0102',
     category: 'playground',
     subcategory: 'Горки',
@@ -337,7 +337,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 21,
+    id: 106,
     name: 'Горка 0102/1',
     category: 'playground',
     subcategory: 'Горки',
@@ -346,7 +346,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 22,
+    id: 107,
     name: 'Горка 0102/2',
     category: 'playground',
     subcategory: 'Горки',
@@ -355,7 +355,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 23,
+    id: 108,
     name: 'Горка 0103',
     category: 'playground',
     subcategory: 'Горки',
@@ -364,7 +364,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 24,
+    id: 109,
     name: 'Горка 0104',
     category: 'playground',
     subcategory: 'Горки',
@@ -373,7 +373,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 25,
+    id: 110,
     name: 'Горка 0105',
     category: 'playground',
     subcategory: 'Горки',
@@ -382,7 +382,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 26,
+    id: 111,
     name: 'Горка 0106',
     category: 'playground',
     subcategory: 'Горки',
@@ -391,7 +391,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 27,
+    id: 112,
     name: 'Горка 0107',
     category: 'playground',
     subcategory: 'Горки',
@@ -400,7 +400,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 28,
+    id: 113,
     name: 'Горка 0108',
     category: 'playground',
     subcategory: 'Горки',
@@ -409,7 +409,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 29,
+    id: 114,
     name: 'Горка 0109',
     category: 'playground',
     subcategory: 'Горки',
@@ -418,7 +418,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 30,
+    id: 115,
     name: 'Горка 0110',
     category: 'playground',
     subcategory: 'Горки',
@@ -427,7 +427,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 31,
+    id: 116,
     name: 'Горка 0111',
     category: 'playground',
     subcategory: 'Горки',
@@ -436,7 +436,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 32,
+    id: 117,
     name: 'Горка 0112',
     category: 'playground',
     subcategory: 'Горки',
@@ -445,7 +445,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 33,
+    id: 118,
     name: 'Горка 0113',
     category: 'playground',
     subcategory: 'Горки',
@@ -454,7 +454,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 34,
+    id: 119,
     name: 'Горка 0114',
     category: 'playground',
     subcategory: 'Горки',
@@ -463,7 +463,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 35,
+    id: 120,
     name: 'Горка 0115',
     category: 'playground',
     subcategory: 'Горки',
@@ -472,7 +472,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 36,
+    id: 121,
     name: 'Горка 0116',
     category: 'playground',
     subcategory: 'Горки',
@@ -481,7 +481,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 37,
+    id: 122,
     name: 'Горка 0117',
     category: 'playground',
     subcategory: 'Горки',
@@ -490,7 +490,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 38,
+    id: 123,
     name: 'Горка 0118',
     category: 'playground',
     subcategory: 'Горки',
@@ -499,7 +499,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 39,
+    id: 124,
     name: 'Горка 0119',
     category: 'playground',
     subcategory: 'Горки',
@@ -508,7 +508,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 40,
+    id: 125,
     name: 'Горка 0120',
     category: 'playground',
     subcategory: 'Горки',
@@ -517,7 +517,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 41,
+    id: 126,
     name: 'Горка 0121',
     category: 'playground',
     subcategory: 'Горки',
@@ -526,7 +526,7 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/121212.png'
   },
   {
-    id: 42,
+    id: 127,
     name: 'Горка 0122',
     category: 'playground',
     subcategory: 'Горки',
