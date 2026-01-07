@@ -39,11 +39,11 @@ export function Header({
             />
           </div>
           <nav className="hidden md:flex gap-6">
-            <a href="#catalog" className="text-foreground hover:text-primary transition-colors font-medium">Каталог</a>
-            <a href="#services" className="text-foreground hover:text-primary transition-colors font-medium">Услуги</a>
-            <a href="#about" className="text-foreground hover:text-primary transition-colors font-medium">О компании</a>
-            <a href="#certificates" className="text-foreground hover:text-primary transition-colors font-medium">Сертификаты</a>
-            <a href="#contacts" className="text-foreground hover:text-primary transition-colors font-medium">Контакты</a>
+            <a href="#catalog" className="text-foreground hover:text-primary transition-colors font-medium text-lg">Каталог</a>
+            <a href="#services" className="text-foreground hover:text-primary transition-colors font-medium text-lg">Услуги</a>
+            <a href="#about" className="text-foreground hover:text-primary transition-colors font-medium text-lg">О компании</a>
+            <a href="#certificates" className="text-foreground hover:text-primary transition-colors font-medium text-lg">Сертификаты</a>
+            <a href="#contacts" className="text-foreground hover:text-primary transition-colors font-medium text-lg">Контакты</a>
           </nav>
           <div className="flex items-center gap-3">
             <Button 
