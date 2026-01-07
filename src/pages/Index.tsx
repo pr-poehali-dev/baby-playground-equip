@@ -17,6 +17,18 @@ interface CartItem {
   image: string;
 }
 
+interface SubSubcategory {
+  name: string;
+  image: string;
+}
+
+interface Subcategory {
+  name: string;
+  image: string;
+  hasChildren?: boolean;
+  children?: SubSubcategory[];
+}
+
 const categories = [
   {
     id: 'playground',
@@ -31,7 +43,26 @@ const categories = [
       { name: 'Горки', image: '🛝' },
       { name: 'Декор для клумбы', image: '🌸' },
       { name: 'Домики игровые', image: '🏠' },
-      { name: 'Игровые комплексы', image: '🎢', hasChildren: true },
+      { 
+        name: 'Игровые комплексы', 
+        image: '🎢', 
+        hasChildren: true,
+        children: [
+          { name: 'Комплексы для младшей возрастной группы', image: '👶' },
+          { name: 'Серия "Классика" (младшие)', image: '🏛️' },
+          { name: 'Серия "Джунгли" (младшие)', image: '🌴' },
+          { name: 'Серия "Замки" (младшие)', image: '🏰' },
+          { name: 'Комплексы различной тематики (младшие)', image: '🎨' },
+          { name: 'Комплексы для старшей возрастной группы', image: '👦' },
+          { name: 'Серия "Классика" (старшие)', image: '🏛️' },
+          { name: 'Серия "Замки" (старшие)', image: '🏰' },
+          { name: 'Серия "Космос и авиация"', image: '🚀' },
+          { name: 'Серия "Мир джунглей"', image: '🦁' },
+          { name: 'Серия "Морская"', image: '⚓' },
+          { name: 'Комплексы различной тематики (старшие)', image: '🎨' },
+          { name: 'Комплексы-лабиринты', image: '🌀' }
+        ]
+      },
       { name: 'Игровые элементы', image: '🎮' },
       { name: 'Карусели', image: '🎠' },
       { name: 'Качалки на пружине', image: '🌀' },
@@ -58,11 +89,31 @@ const categories = [
       { name: 'Workout', image: '💪' },
       { name: 'Ворота, стойки, щиты', image: '🥅' },
       { name: 'Полоса препятствий ГТО', image: '🏅' },
-      { name: 'Спортивные комплексы', image: '⛹️', hasChildren: true },
+      { 
+        name: 'Спортивные комплексы', 
+        image: '⛹️', 
+        hasChildren: true,
+        children: [
+          { name: 'Комплексы для младшей возрастной группы', image: '👶' },
+          { name: 'Комплексы для старшей возрастной группы', image: '👦' },
+          { name: 'Комплексы на металлических стойках', image: '🔩' },
+          { name: 'Комплексы-лабиринты', image: '🌀' },
+          { name: 'Комплексы-скалодромы', image: '🧗' }
+        ]
+      },
       { name: 'Скамьи гимнастические', image: '🪑' },
       { name: 'Оборудование для скейт-парков', image: '🛹' },
       { name: 'Спортивные снаряды', image: '🏋️' },
-      { name: 'Тренажеры уличные', image: '🚴', hasChildren: true },
+      { 
+        name: 'Тренажеры уличные', 
+        image: '🚴', 
+        hasChildren: true,
+        children: [
+          { name: 'Одиночные', image: '1️⃣' },
+          { name: 'Комбинированные', image: '🔢' },
+          { name: 'Детские, силовые, для маломобильной группы', image: '♿' }
+        ]
+      },
       { name: 'Трибуны сборно-разборные', image: '🏟️' },
       { name: 'Спортивные сетки', image: '🥅' }
     ]
@@ -202,8 +253,11 @@ const products = [
 export default function Index() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
+  const [selectedSubSubcategory, setSelectedSubSubcategory] = useState<string | null>(null);
   const [isCategoryDialogOpen, setIsCategoryDialogOpen] = useState(false);
+  const [isSubSubcategoryDialogOpen, setIsSubSubcategoryDialogOpen] = useState(false);
   const [currentCategory, setCurrentCategory] = useState<typeof categories[0] | null>(null);
+  const [currentSubcategory, setCurrentSubcategory] = useState<Subcategory | null>(null);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [orderForm, setOrderForm] = useState({
@@ -217,7 +271,9 @@ export default function Index() {
   });
   const [deliveryCost, setDeliveryCost] = useState(0);
 
-  const filteredProducts = selectedCategory && selectedSubcategory
+  const filteredProducts = selectedCategory && selectedSubSubcategory
+    ? products.filter(p => p.category === selectedCategory && p.subcategory === selectedSubSubcategory)
+    : selectedCategory && selectedSubcategory
     ? products.filter(p => p.category === selectedCategory && p.subcategory === selectedSubcategory)
     : selectedCategory
     ? products.filter(p => p.category === selectedCategory)
@@ -228,11 +284,27 @@ export default function Index() {
     setIsCategoryDialogOpen(true);
   };
 
-  const handleSubcategorySelect = (subcategoryName: string) => {
+  const handleSubcategorySelect = (sub: Subcategory) => {
+    if (sub.hasChildren && sub.children) {
+      setCurrentSubcategory(sub);
+      setIsSubSubcategoryDialogOpen(true);
+      setIsCategoryDialogOpen(false);
+    } else {
+      if (currentCategory) {
+        setSelectedCategory(currentCategory.id);
+        setSelectedSubcategory(sub.name);
+        setSelectedSubSubcategory(null);
+        setIsCategoryDialogOpen(false);
+      }
+    }
+  };
+
+  const handleSubSubcategorySelect = (subSubName: string) => {
     if (currentCategory) {
       setSelectedCategory(currentCategory.id);
-      setSelectedSubcategory(subcategoryName);
-      setIsCategoryDialogOpen(false);
+      setSelectedSubcategory(currentSubcategory?.name || null);
+      setSelectedSubSubcategory(subSubName);
+      setIsSubSubcategoryDialogOpen(false);
     }
   };
 
@@ -519,26 +591,31 @@ export default function Index() {
           </div>
 
           <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
-            <DialogContent className="sm:max-w-2xl">
+            <DialogContent className="sm:max-w-4xl max-h-[80vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle className="text-3xl font-heading text-center mb-2">
                   {currentCategory?.name}
                 </DialogTitle>
               </DialogHeader>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
                 {currentCategory?.subcategories.map((sub) => (
                   <Card
                     key={sub.name}
-                    className={`cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 overflow-hidden ${
+                    className={`cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 overflow-hidden relative ${
                       selectedSubcategory === sub.name ? 'ring-2 ring-primary' : ''
                     }`}
-                    onClick={() => handleSubcategorySelect(sub.name)}
+                    onClick={() => handleSubcategorySelect(sub)}
                   >
+                    {sub.hasChildren && (
+                      <Badge className="absolute top-2 right-2 z-10" variant="secondary">
+                        <Icon name="ChevronRight" size={12} />
+                      </Badge>
+                    )}
                     <div className={`aspect-square bg-gradient-to-br ${currentCategory.color} flex items-center justify-center`}>
-                      <div className="text-7xl">{sub.image}</div>
+                      <div className="text-6xl">{sub.image}</div>
                     </div>
-                    <CardHeader className="text-center py-4">
-                      <CardTitle className="text-base font-medium leading-tight">{sub.name}</CardTitle>
+                    <CardHeader className="text-center py-3">
+                      <CardTitle className="text-sm font-medium leading-tight">{sub.name}</CardTitle>
                     </CardHeader>
                   </Card>
                 ))}
@@ -546,11 +623,53 @@ export default function Index() {
             </DialogContent>
           </Dialog>
 
-          {selectedCategory && selectedSubcategory && (
+          <Dialog open={isSubSubcategoryDialogOpen} onOpenChange={setIsSubSubcategoryDialogOpen}>
+            <DialogContent className="sm:max-w-4xl max-h-[80vh] overflow-y-auto">
+              <DialogHeader>
+                <div className="flex items-center gap-2 mb-2">
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={() => {
+                      setIsSubSubcategoryDialogOpen(false);
+                      setIsCategoryDialogOpen(true);
+                    }}
+                  >
+                    <Icon name="ArrowLeft" size={16} />
+                  </Button>
+                  <DialogTitle className="text-3xl font-heading text-center flex-1">
+                    {currentSubcategory?.name}
+                  </DialogTitle>
+                </div>
+              </DialogHeader>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+                {currentSubcategory?.children?.map((subSub) => (
+                  <Card
+                    key={subSub.name}
+                    className={`cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 overflow-hidden ${
+                      selectedSubSubcategory === subSub.name ? 'ring-2 ring-primary' : ''
+                    }`}
+                    onClick={() => handleSubSubcategorySelect(subSub.name)}
+                  >
+                    <div className={`aspect-square bg-gradient-to-br ${currentCategory?.color} flex items-center justify-center`}>
+                      <div className="text-6xl">{subSub.image}</div>
+                    </div>
+                    <CardHeader className="text-center py-3">
+                      <CardTitle className="text-sm font-medium leading-tight">{subSub.name}</CardTitle>
+                    </CardHeader>
+                  </Card>
+                ))}
+              </div>
+            </DialogContent>
+          </Dialog>
+
+          {selectedCategory && (selectedSubcategory || selectedSubSubcategory) && (
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-2xl font-heading font-bold">{selectedSubcategory}</h3>
+                  <h3 className="text-2xl font-heading font-bold">
+                    {selectedSubSubcategory || selectedSubcategory}
+                  </h3>
                   <p className="text-muted-foreground">Найдено товаров: {filteredProducts.length}</p>
                 </div>
                 <Button
@@ -558,6 +677,7 @@ export default function Index() {
                   onClick={() => {
                     setSelectedCategory(null);
                     setSelectedSubcategory(null);
+                    setSelectedSubSubcategory(null);
                   }}
                 >
                   <Icon name="X" size={16} className="mr-2" />
