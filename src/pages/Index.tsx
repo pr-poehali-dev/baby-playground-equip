@@ -88,7 +88,7 @@ const categories = [
     icon: 'Dumbbell',
     color: 'from-secondary/20 to-secondary/5',
     image: '',
-    bgImage: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/files/14979063-bea3-434e-a4a2-6ed1433e2c10.jpg',
+    bgImage: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/files/3c7c605d-a8e0-428a-accf-d4f1e332dfd4.jpg',
     subcategories: [
       { name: 'Workout', image: '💪' },
       { name: 'Ворота, стойки, щиты', image: '🥅' },
@@ -775,7 +775,7 @@ export default function Index() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <div className={`p-5 bg-gradient-to-br ${cat.color} relative`}>
+                <div className={`p-5 bg-gradient-to-br ${cat.color} relative min-h-[80px] flex items-center justify-center`}>
                   <h3 className="text-xl font-heading font-bold text-center text-foreground">{cat.name}</h3>
                 </div>
               </Card>
