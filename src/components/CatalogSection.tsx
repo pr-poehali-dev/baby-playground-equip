@@ -96,6 +96,34 @@ export function CatalogSection({
 }: CatalogSectionProps) {
   return (
     <>
+      <section className="relative py-20 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: 'url(https://cdn.poehali.dev/files/_____.jpg)' }}
+        >
+          <div className="absolute inset-0 bg-black/20"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl animate-fade-in">
+            <h2 className="text-4xl md:text-6xl font-heading font-bold mb-6 text-white">
+              Создаём пространство для игры и спорта
+            </h2>
+            <p className="text-xl text-white/90 mb-8">
+              Производим качественное детское игровое, спортивное и парковое оборудование. 
+              Безопасность, долговечность и яркий дизайн — наши главные приоритеты.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Button size="lg" className="text-lg px-8" onClick={() => setIsSideMenuOpen(true)}>
+                <Icon name="ShoppingCart" size={20} className="mr-2" />
+                Смотреть каталог
+              </Button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
       <Sheet open={isSideMenuOpen} onOpenChange={setIsSideMenuOpen}>
         <SheetContent side="left" className="w-80 overflow-y-auto">
           <SheetHeader>
