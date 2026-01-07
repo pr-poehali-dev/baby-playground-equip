@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
 
 const categories = [
@@ -128,7 +129,10 @@ const products = [
 ];
 
 export default function Index() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
+  const [isCategoryDialogOpen, setIsCategoryDialogOpen] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState<typeof categories[0] | null>(null);
   const [orderForm, setOrderForm] = useState({
     name: '',
     phone: '',
@@ -140,9 +144,24 @@ export default function Index() {
   });
   const [deliveryCost, setDeliveryCost] = useState(0);
 
-  const filteredProducts = selectedCategory === 'all' 
-    ? products 
-    : products.filter(p => p.category === selectedCategory);
+  const filteredProducts = selectedCategory && selectedSubcategory
+    ? products.filter(p => p.category === selectedCategory && p.subcategory === selectedSubcategory)
+    : selectedCategory
+    ? products.filter(p => p.category === selectedCategory)
+    : products;
+
+  const handleCategoryClick = (cat: typeof categories[0]) => {
+    setCurrentCategory(cat);
+    setIsCategoryDialogOpen(true);
+  };
+
+  const handleSubcategorySelect = (subcategory: string) => {
+    if (currentCategory) {
+      setSelectedCategory(currentCategory.id);
+      setSelectedSubcategory(subcategory);
+      setIsCategoryDialogOpen(false);
+    }
+  };
 
   const calculateDelivery = (distance: string) => {
     const dist = parseInt(distance) || 0;
@@ -221,26 +240,40 @@ export default function Index() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
-            <Button
-              variant={selectedCategory === 'all' ? 'default' : 'outline'}
-              className="h-auto py-4 flex flex-col gap-2"
-              onClick={() => setSelectedCategory('all')}
-            >
-              <Icon name="LayoutGrid" size={24} />
-              <span className="text-sm font-medium">Все</span>
-            </Button>
             {categories.map((cat) => (
               <Button
                 key={cat.id}
                 variant={selectedCategory === cat.id ? 'default' : 'outline'}
                 className={`h-auto py-4 flex flex-col gap-2 transition-all hover:scale-105`}
-                onClick={() => setSelectedCategory(cat.id)}
+                onClick={() => handleCategoryClick(cat)}
               >
                 <Icon name={cat.icon as any} size={24} />
                 <span className="text-sm font-medium text-center leading-tight">{cat.name}</span>
               </Button>
             ))}
           </div>
+
+          <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle className="text-2xl font-heading">
+                  {currentCategory?.name}
+                </DialogTitle>
+              </DialogHeader>
+              <div className="grid grid-cols-2 gap-3 mt-4">
+                {currentCategory?.subcategories.map((sub) => (
+                  <Button
+                    key={sub}
+                    variant={selectedSubcategory === sub ? 'default' : 'outline'}
+                    className="h-auto py-6 text-base font-medium"
+                    onClick={() => handleSubcategorySelect(sub)}
+                  >
+                    {sub}
+                  </Button>
+                ))}
+              </div>
+            </DialogContent>
+          </Dialog>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredProducts.map((product, idx) => (
