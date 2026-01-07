@@ -613,7 +613,7 @@ export default function Index() {
               <span className="text-primary">Urban</span>{' '}
               <span className="text-secondary">Play</span>
             </h1>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold mb-6 text-primary">
+            <h2 className="text-xl md:text-2xl font-heading font-bold mb-6 text-primary">
               Создаём пространство <span className="text-secondary">для игры и спорта</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
