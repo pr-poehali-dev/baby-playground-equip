@@ -27,7 +27,7 @@ export const categories = [
     image: '',
     bgImage: 'https://cdn.poehali.dev/files/_____.jpg',
     subcategories: [
-      { name: 'Игровые комплексы', image: '🎢' },
+      { name: 'Игровые комплексы', image: 'https://cdn.poehali.dev/files/237.png' },
       { name: 'Балансиры', image: 'https://cdn.poehali.dev/files/мишкаа.png' },
       { name: 'Горки', image: 'https://cdn.poehali.dev/files/0100.png' },
       { name: 'Домики', image: '🏠' },
@@ -677,7 +677,7 @@ export const products = [
     subcategory: 'Игровые комплексы',
     price: '607 600',
     description: '6795х4085х3030',
-    image: '🎢'
+    image: 'https://cdn.poehali.dev/files/237.png'
   },
   {
     id: 238,
