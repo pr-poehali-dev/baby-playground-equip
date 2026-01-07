@@ -143,7 +143,7 @@ const categories = [
     icon: 'Flower2',
     color: 'from-primary/20 to-primary/5',
     image: '',
-    bgImage: 'https://cdn.poehali.dev/files/3-15.jpg',
+    bgImage: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/files/98fa23f0-e44e-4b54-86b3-8b43cf022492.jpg',
     subcategories: [
       { name: 'Клумбы', image: '🌷' },
       { name: 'Газоны', image: '🌿' },
