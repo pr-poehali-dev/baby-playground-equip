@@ -40,7 +40,7 @@ const categories = [
     image: '',
     bgImage: 'https://cdn.poehali.dev/files/_____.jpg',
     subcategories: [
-      { name: 'Качалки-балансиры', image: '⚖️' },
+      { name: 'Качалки-балансиры', image: 'https://cdn.poehali.dev/files/image.png' },
       { name: 'Веранды (теневые навесы)', image: '⛱️' },
       { name: 'Веревочные парки', image: '🪢' },
       { name: 'Горки', image: '🛝' },
