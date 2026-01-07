@@ -623,7 +623,7 @@ export default function Index() {
               Безопасность, долговечность и яркий дизайн — наши главные приоритеты.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="text-lg px-8">
+              <Button size="lg" className="text-lg px-8" onClick={() => setIsSideMenuOpen(true)}>
                 <Icon name="ShoppingCart" size={20} className="mr-2" />
                 Смотреть каталог
               </Button>
@@ -744,17 +744,6 @@ export default function Index() {
       <section id="catalog" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-slide-up">
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => setIsSideMenuOpen(true)}
-                className="hidden md:flex"
-              >
-                <Icon name="Menu" size={20} className="mr-2" />
-                Открыть меню категорий
-              </Button>
-            </div>
             <h2 className="text-4xl font-heading font-bold mb-4">Каталог продукции</h2>
             <p className="text-lg text-muted-foreground">Широкий ассортимент оборудования для детских площадок и парков</p>
           </div>
