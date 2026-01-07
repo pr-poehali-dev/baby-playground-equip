@@ -484,9 +484,9 @@ export default function Index() {
               />
             </div>
             <nav className="hidden md:flex gap-6">
+              <a href="#services" className="text-foreground hover:text-primary transition-colors font-medium">Услуги</a>
               <a href="#catalog" className="text-foreground hover:text-primary transition-colors font-medium">Каталог</a>
               <a href="#about" className="text-foreground hover:text-primary transition-colors font-medium">О компании</a>
-              <a href="#services" className="text-foreground hover:text-primary transition-colors font-medium">Услуги</a>
               <a href="#certificates" className="text-foreground hover:text-primary transition-colors font-medium">Сертификаты</a>
               <a href="#contacts" className="text-foreground hover:text-primary transition-colors font-medium">Контакты</a>
             </nav>
