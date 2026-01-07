@@ -172,7 +172,7 @@ const categories = [
     icon: 'Grid3x3',
     color: 'from-accent/20 to-accent/5',
     image: '',
-    bgImage: 'https://cdn.poehali.dev/files/1c96c1-1024x1024.jpg',
+    bgImage: 'https://cdn.poehali.dev/files/124_original.jpg',
     subcategories: [
       { name: 'Заборы', image: '🔲' },
       { name: 'Ворота', image: '🚪' },
