@@ -148,7 +148,7 @@ export function CatalogSection({
                       />
                     </Button>
                     <button
-                      className={`flex-1 text-left px-3 py-2 rounded-lg hover:bg-muted transition-colors flex items-center gap-2 ${
+                      className={`flex-1 text-left px-3 py-2 rounded-lg hover:bg-muted transition-colors flex items-center gap-2 bg-white ${
                         selectedCategory === cat.id && !selectedSubcategory ? 'bg-primary/10 text-primary font-semibold' : ''
                       }`}
                       onClick={() => handleTreeCategorySelect(cat.id, cat)}
@@ -182,7 +182,7 @@ export function CatalogSection({
                                 </Button>
                               )}
                               <button
-                                className={`flex-1 text-left px-2 py-1.5 rounded text-sm hover:bg-muted transition-colors flex items-center gap-2 ${
+                                className={`flex-1 text-left px-2 py-1.5 rounded text-sm hover:bg-muted transition-colors flex items-center gap-2 bg-white ${
                                   !sub.hasChildren ? 'ml-6' : ''
                                 } ${
                                   selectedCategory === cat.id && selectedSubcategory === sub.name && !selectedSubSubcategory 
@@ -205,7 +205,7 @@ export function CatalogSection({
                                 {sub.children.map((subSub) => (
                                   <button
                                     key={subSub.name}
-                                    className={`w-full text-left px-2 py-1.5 rounded text-xs hover:bg-muted transition-colors flex items-center gap-2 ${
+                                    className={`w-full text-left px-2 py-1.5 rounded text-xs hover:bg-muted transition-colors flex items-center gap-2 bg-white ${
                                       selectedCategory === cat.id && 
                                       selectedSubcategory === sub.name && 
                                       selectedSubSubcategory === subSub.name
