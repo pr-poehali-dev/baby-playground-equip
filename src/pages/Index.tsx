@@ -6,7 +6,16 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import Icon from '@/components/ui/icon';
+
+interface CartItem {
+  id: number;
+  name: string;
+  price: string;
+  quantity: number;
+  image: string;
+}
 
 const categories = [
   {
@@ -133,6 +142,8 @@ export default function Index() {
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
   const [isCategoryDialogOpen, setIsCategoryDialogOpen] = useState(false);
   const [currentCategory, setCurrentCategory] = useState<typeof categories[0] | null>(null);
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [orderForm, setOrderForm] = useState({
     name: '',
     phone: '',
@@ -161,6 +172,94 @@ export default function Index() {
       setSelectedSubcategory(subcategory);
       setIsCategoryDialogOpen(false);
     }
+  };
+
+  const addToCart = (product: typeof products[0]) => {
+    const existingItem = cart.find(item => item.id === product.id);
+    if (existingItem) {
+      setCart(cart.map(item => 
+        item.id === product.id 
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      ));
+    } else {
+      setCart([...cart, { 
+        id: product.id, 
+        name: product.name, 
+        price: product.price, 
+        quantity: 1,
+        image: product.image
+      }]);
+    }
+  };
+
+  const removeFromCart = (id: number) => {
+    setCart(cart.filter(item => item.id !== id));
+  };
+
+  const updateQuantity = (id: number, quantity: number) => {
+    if (quantity <= 0) {
+      removeFromCart(id);
+    } else {
+      setCart(cart.map(item => 
+        item.id === id ? { ...item, quantity } : item
+      ));
+    }
+  };
+
+  const calculateTotal = () => {
+    return cart.reduce((sum, item) => {
+      const price = parseInt(item.price.replace(/\s/g, '').split('/')[0]);
+      return sum + (price * item.quantity);
+    }, 0);
+  };
+
+  const generateKP = () => {
+    const total = calculateTotal();
+    const date = new Date().toLocaleDateString('ru-RU');
+    
+    let kpText = `КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ\n`;
+    kpText += `Дата: ${date}\n`;
+    kpText += `От: ДетскиеПлощадки.рф\n\n`;
+    kpText += `Товары:\n`;
+    kpText += `${'='.repeat(50)}\n`;
+    
+    cart.forEach((item, idx) => {
+      const price = parseInt(item.price.replace(/\s/g, '').split('/')[0]);
+      const itemTotal = price * item.quantity;
+      kpText += `${idx + 1}. ${item.name}\n`;
+      kpText += `   Цена: ${item.price} ₽\n`;
+      kpText += `   Количество: ${item.quantity} шт.\n`;
+      kpText += `   Сумма: ${itemTotal.toLocaleString('ru-RU')} ₽\n\n`;
+    });
+    
+    kpText += `${'='.repeat(50)}\n`;
+    kpText += `ИТОГО: ${total.toLocaleString('ru-RU')} ₽\n\n`;
+    
+    if (deliveryCost > 0) {
+      kpText += `Доставка: ${deliveryCost.toLocaleString('ru-RU')} ₽\n`;
+      kpText += `ВСЕГО К ОПЛАТЕ: ${(total + deliveryCost).toLocaleString('ru-RU')} ₽\n\n`;
+    }
+    
+    kpText += `Условия оплаты:\n`;
+    kpText += `- Предоплата 50% после согласования заказа\n`;
+    kpText += `- Оплата оставшихся 50% после доставки\n`;
+    kpText += `- Принимаем наличные, безналичный расчёт, карты\n`;
+    kpText += `- Гарантия 2 года на всё оборудование\n\n`;
+    kpText += `Контакты:\n`;
+    kpText += `Телефон: 8 (800) 123-45-67\n`;
+    kpText += `Email: info@detploshad.ru\n`;
+    kpText += `Адрес: г. Москва, ул. Примерная, д. 1\n`;
+    
+    const blob = new Blob([kpText], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `КП_${date.replace(/\./g, '-')}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   const calculateDelivery = (distance: string) => {
@@ -196,10 +295,108 @@ export default function Index() {
               <a href="#certificates" className="text-foreground hover:text-primary transition-colors font-medium">Сертификаты</a>
               <a href="#contacts" className="text-foreground hover:text-primary transition-colors font-medium">Контакты</a>
             </nav>
-            <Button className="hidden md:block">
-              <Icon name="Phone" size={16} className="mr-2" />
-              8 (800) 123-45-67
-            </Button>
+            <div className="flex items-center gap-3">
+              <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="outline" className="relative">
+                    <Icon name="ShoppingCart" size={20} />
+                    {cart.length > 0 && (
+                      <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold">
+                        {cart.length}
+                      </span>
+                    )}
+                  </Button>
+                </SheetTrigger>
+                <SheetContent className="w-full sm:max-w-lg overflow-y-auto">
+                  <SheetHeader>
+                    <SheetTitle className="text-2xl font-heading">Корзина</SheetTitle>
+                  </SheetHeader>
+                  
+                  {cart.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center py-12 text-center">
+                      <Icon name="ShoppingCart" size={64} className="text-muted-foreground mb-4" />
+                      <p className="text-lg text-muted-foreground">Корзина пуста</p>
+                    </div>
+                  ) : (
+                    <div className="mt-6 space-y-6">
+                      <div className="space-y-4">
+                        {cart.map((item) => (
+                          <Card key={item.id}>
+                            <CardContent className="p-4">
+                              <div className="flex gap-4">
+                                <div className="w-20 h-20 bg-muted rounded-lg flex items-center justify-center text-4xl shrink-0">
+                                  {item.image}
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <h3 className="font-semibold mb-1 truncate">{item.name}</h3>
+                                  <p className="text-sm text-muted-foreground mb-2">{item.price} ₽</p>
+                                  <div className="flex items-center gap-2">
+                                    <Button 
+                                      size="sm" 
+                                      variant="outline"
+                                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                    >
+                                      <Icon name="Minus" size={14} />
+                                    </Button>
+                                    <span className="w-8 text-center font-medium">{item.quantity}</span>
+                                    <Button 
+                                      size="sm" 
+                                      variant="outline"
+                                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                    >
+                                      <Icon name="Plus" size={14} />
+                                    </Button>
+                                    <Button 
+                                      size="sm" 
+                                      variant="destructive"
+                                      className="ml-auto"
+                                      onClick={() => removeFromCart(item.id)}
+                                    >
+                                      <Icon name="Trash2" size={14} />
+                                    </Button>
+                                  </div>
+                                </div>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+                      
+                      <div className="border-t pt-4 space-y-3">
+                        <div className="flex justify-between text-lg font-semibold">
+                          <span>Итого:</span>
+                          <span className="text-primary">{calculateTotal().toLocaleString('ru-RU')} ₽</span>
+                        </div>
+                        
+                        {deliveryCost > 0 && (
+                          <div className="flex justify-between text-sm text-muted-foreground">
+                            <span>Доставка:</span>
+                            <span>{deliveryCost.toLocaleString('ru-RU')} ₽</span>
+                          </div>
+                        )}
+                        
+                        <Button 
+                          className="w-full" 
+                          size="lg"
+                          onClick={() => {
+                            generateKP();
+                            setIsCartOpen(false);
+                          }}
+                        >
+                          <Icon name="FileText" size={20} className="mr-2" />
+                          Скачать коммерческое предложение
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                </SheetContent>
+              </Sheet>
+              
+              <Button className="hidden md:block">
+                <Icon name="Phone" size={16} className="mr-2" />
+                8 (800) 123-45-67
+              </Button>
+            </div>
           </div>
         </div>
       </header>
@@ -291,9 +488,9 @@ export default function Index() {
                 <CardContent>
                   <div className="flex items-center justify-between">
                     <div className="text-2xl font-bold text-primary">{product.price} ₽</div>
-                    <Button size="sm">
+                    <Button size="sm" onClick={() => addToCart(product)}>
                       <Icon name="Plus" size={16} className="mr-1" />
-                      В заказ
+                      В корзину
                     </Button>
                   </div>
                 </CardContent>
