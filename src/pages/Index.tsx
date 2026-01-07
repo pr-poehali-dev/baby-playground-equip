@@ -478,7 +478,7 @@ export default function Index() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <img 
-                src="https://cdn.poehali.dev/files/88686.png" 
+                src="https://cdn.poehali.dev/files/photo_2026-01-05_09-32-44.png" 
                 alt="Urban Play"
                 className="h-24 w-auto"
               />
@@ -737,34 +737,7 @@ export default function Index() {
         </SheetContent>
       </Sheet>
 
-      <section id="services" className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-heading font-bold mb-4">Наши услуги</h2>
-            <p className="text-lg text-muted-foreground">Полный цикл работ от проектирования до установки</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: 'Ruler', title: 'Проектирование', desc: 'Разработка индивидуальных проектов детских площадок' },
-              { icon: 'Factory', title: 'Производство', desc: 'Собственное производство из качественных материалов' },
-              { icon: 'Truck', title: 'Доставка', desc: 'Доставка по всей России в удобное время' },
-              { icon: 'Wrench', title: 'Монтаж', desc: 'Профессиональная установка и гарантия качества' }
-            ].map((service, idx) => (
-              <Card key={idx} className="text-center hover:shadow-lg transition-shadow animate-scale-in" style={{ animationDelay: `${idx * 0.15}s` }}>
-                <CardHeader>
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon name={service.icon as any} size={32} className="text-primary" />
-                  </div>
-                  <CardTitle>{service.title}</CardTitle>
-                  <CardDescription className="text-base">{service.desc}</CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="catalog" className="py-16 bg-muted/30">
+      <section id="catalog" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-slide-up">
             <h2 className="text-4xl font-heading font-bold mb-4">Каталог продукции</h2>
@@ -973,7 +946,34 @@ export default function Index() {
         </div>
       </section>
 
-      <section id="about" className="py-16 bg-white">
+      <section id="services" className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-heading font-bold mb-4">Наши услуги</h2>
+            <p className="text-lg text-muted-foreground">Полный цикл работ от проектирования до установки</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: 'Ruler', title: 'Проектирование', desc: 'Разработка индивидуальных проектов детских площадок' },
+              { icon: 'Factory', title: 'Производство', desc: 'Собственное производство из качественных материалов' },
+              { icon: 'Truck', title: 'Доставка', desc: 'Доставка по всей России в удобное время' },
+              { icon: 'Wrench', title: 'Монтаж', desc: 'Профессиональная установка и гарантия качества' }
+            ].map((service, idx) => (
+              <Card key={idx} className="text-center hover:shadow-lg transition-shadow animate-scale-in" style={{ animationDelay: `${idx * 0.15}s` }}>
+                <CardHeader>
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name={service.icon as any} size={32} className="text-primary" />
+                  </div>
+                  <CardTitle>{service.title}</CardTitle>
+                  <CardDescription className="text-base">{service.desc}</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
@@ -1220,7 +1220,7 @@ export default function Index() {
             <div>
               <div className="mb-4">
                 <img 
-                  src="https://cdn.poehali.dev/files/88686.png" 
+                  src="https://cdn.poehali.dev/files/photo_2026-01-05_09-32-44.png" 
                   alt="Urban Play"
                   className="h-12 w-auto"
                 />
