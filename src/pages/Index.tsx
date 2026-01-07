@@ -79,10 +79,10 @@ export default function Index() {
 
   const handleTreeSubcategorySelect = (categoryId: string, categoryData: typeof categories[0], subName: string, sub: Subcategory) => {
     if (sub.hasChildren) {
-      const key = `${categoryId}-${subName}`;
-      setExpandedSubcategories(prev => 
-        prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]
-      );
+      setCurrentCategory(categoryData);
+      setCurrentSubcategory(sub);
+      setIsSubSubcategoryDialogOpen(true);
+      setIsSideMenuOpen(false);
     } else {
       setSelectedCategory(categoryId);
       setSelectedSubcategory(subName);
@@ -103,6 +103,7 @@ export default function Index() {
     setCurrentCategory(categoryData);
     setCurrentSubcategory(categoryData.subcategories.find(s => s.name === subName) || null);
     setIsSideMenuOpen(false);
+    setIsSubSubcategoryDialogOpen(false);
     const catalogSection = document.getElementById('catalog');
     if (catalogSection) {
       catalogSection.scrollIntoView({ behavior: 'smooth' });
