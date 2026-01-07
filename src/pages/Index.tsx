@@ -158,7 +158,7 @@ const categories = [
     icon: 'Shield',
     color: 'from-secondary/20 to-secondary/5',
     image: '',
-    bgImage: 'https://cdn.poehali.dev/files/figura-iz-rezinovoy-kroshki-sfera-038-foto-38e7.jpg',
+    bgImage: 'https://cdn.poehali.dev/files/i (1).png',
     subcategories: [
       { name: 'Резиновое покрытие', image: '🟦' },
       { name: 'Наливное покрытие', image: '🟩' },
