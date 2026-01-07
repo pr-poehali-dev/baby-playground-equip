@@ -31,13 +31,6 @@ export function Header({
     <header className="bg-white shadow-sm sticky top-0 z-50 border-b">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img 
-              src="https://cdn.poehali.dev/files/photo_2026-01-05_09-32-44.png" 
-              alt="Urban Play"
-              className="h-24 w-auto"
-            />
-          </div>
           <nav className="hidden md:flex gap-6">
             <a href="#catalog" className="text-foreground hover:text-primary transition-colors font-medium">Каталог</a>
             <a href="#services" className="text-foreground hover:text-primary transition-colors font-medium">Услуги</a>
