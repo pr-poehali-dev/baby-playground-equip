@@ -606,7 +606,12 @@ export default function Index() {
       </header>
 
       <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url(https://cdn.poehali.dev/files/_____.jpg)' }}
+        >
+          <div className="absolute inset-0 bg-white/70"></div>
+        </div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl animate-fade-in">
