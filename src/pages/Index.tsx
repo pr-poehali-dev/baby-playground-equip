@@ -477,11 +477,11 @@ export default function Index() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="text-4xl">🏙️</div>
-              <div>
-                <h1 className="text-2xl font-heading font-bold text-primary">Urban Play</h1>
-                <p className="text-sm text-muted-foreground">Производство игрового оборудования</p>
-              </div>
+              <img 
+                src="https://cdn.poehali.dev/files/photo_2026-01-05_09-32-44.png" 
+                alt="Urban Play"
+                className="h-16 w-auto"
+              />
             </div>
             <nav className="hidden md:flex gap-6">
               <a href="#catalog" className="text-foreground hover:text-primary transition-colors font-medium">Каталог</a>
@@ -1228,9 +1228,12 @@ export default function Index() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="text-3xl">🏙️</div>
-                <h3 className="font-heading font-bold text-xl">Urban Play</h3>
+              <div className="mb-4">
+                <img 
+                  src="https://cdn.poehali.dev/files/photo_2026-01-05_09-32-44.png" 
+                  alt="Urban Play"
+                  className="h-12 w-auto brightness-0 invert"
+                />
               </div>
               <p className="text-sm text-background/70">
                 Производство детского игрового и спортивного оборудования с 2009 года
