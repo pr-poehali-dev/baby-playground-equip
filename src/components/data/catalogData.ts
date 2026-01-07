@@ -361,7 +361,7 @@ export const products = [
     subcategory: 'Горки',
     price: '125 550',
     description: '3300х680х1790, h-1.0',
-    image: 'https://cdn.poehali.dev/files/121212.png'
+    image: 'https://cdn.poehali.dev/files/0103.png'
   },
   {
     id: 109,
@@ -370,16 +370,16 @@ export const products = [
     subcategory: 'Горки',
     price: '210 800',
     description: '2980х2925х1930, h-1.0',
-    image: 'https://cdn.poehali.dev/files/121212.png'
+    image: 'https://cdn.poehali.dev/files/0104.png'
   },
   {
     id: 110,
     name: 'Горка 0105',
     category: 'playground',
     subcategory: 'Горки',
-    price: '158 100',
-    description: '3295х680х2130, h-1.0',
-    image: 'https://cdn.poehali.dev/files/121212.png'
+    price: '137 950',
+    description: '3215х680х1875, h-1.0',
+    image: 'https://cdn.poehali.dev/files/105.png'
   },
   {
     id: 111,
