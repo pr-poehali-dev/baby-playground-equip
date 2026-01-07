@@ -609,7 +609,7 @@ export default function Index() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10"></div>
         <div 
           className="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-full bg-contain bg-right bg-no-repeat opacity-20"
-          style={{ backgroundImage: 'url(https://cdn.poehali.dev/files/Без%20имени.png?v=2)' }}
+          style={{ backgroundImage: 'url(https://cdn.poehali.dev/files/878789.png)' }}
         ></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl animate-fade-in">
