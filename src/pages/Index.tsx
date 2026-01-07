@@ -37,7 +37,7 @@ const categories = [
     name: 'Игровое оборудование',
     icon: 'Smile',
     color: 'from-primary/20 to-primary/5',
-    image: '',
+    image: '🎪',
     bgImage: 'https://cdn.poehali.dev/files/_____.jpg',
     subcategories: [
       { name: 'Качалки-балансиры', image: '⚖️' },
@@ -87,7 +87,7 @@ const categories = [
     name: 'Спортивное оборудование',
     icon: 'Dumbbell',
     color: 'from-secondary/20 to-secondary/5',
-    image: '',
+    image: '💪',
     bgImage: 'https://cdn.poehali.dev/files/48.jpg',
     subcategories: [
       { name: 'Workout', image: '💪' },
@@ -127,7 +127,7 @@ const categories = [
     name: 'Парковое оборудование',
     icon: 'Trees',
     color: 'from-accent/20 to-accent/5',
-    image: '',
+    image: '🌳',
     bgImage: 'https://cdn.poehali.dev/files/29934.0x340.jpg',
     subcategories: [
       { name: 'Скамейки', image: '🪑' },
@@ -142,7 +142,7 @@ const categories = [
     name: 'Благоустройство',
     icon: 'Flower2',
     color: 'from-primary/20 to-primary/5',
-    image: '',
+    image: '🌺',
     bgImage: 'https://cdn.poehali.dev/files/1620818445_proekt.jpg',
     subcategories: [
       { name: 'Клумбы', image: '🌷' },
@@ -157,7 +157,7 @@ const categories = [
     name: 'Травмобезопасное покрытие',
     icon: 'Shield',
     color: 'from-secondary/20 to-secondary/5',
-    image: '',
+    image: '🛡️',
     bgImage: 'https://cdn.poehali.dev/files/figura-iz-rezinovoy-kroshki-sfera-038-foto-38e7.jpg',
     subcategories: [
       { name: 'Резиновое покрытие', image: '🟦' },
@@ -171,7 +171,7 @@ const categories = [
     name: 'Ограждения',
     icon: 'Grid3x3',
     color: 'from-accent/20 to-accent/5',
-    image: '',
+    image: '🔲',
     bgImage: 'https://cdn.poehali.dev/files/1c96c1-1024x1024.jpg',
     subcategories: [
       { name: 'Заборы', image: '🔲' },
