@@ -38,7 +38,7 @@ const categories = [
     icon: 'Smile',
     color: 'from-primary/20 to-primary/5',
     image: '🎪',
-    bgImage: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/files/126e7e21-1954-4508-89ff-082fee771a69.jpg',
+    bgImage: 'https://cdn.poehali.dev/files/b8edd7e5-6b8e-473a-b75b-c0e7698ef5d5.jpg',
     subcategories: [
       { name: 'Качалки-балансиры', image: '⚖️' },
       { name: 'Веранды (теневые навесы)', image: '⛱️' },
