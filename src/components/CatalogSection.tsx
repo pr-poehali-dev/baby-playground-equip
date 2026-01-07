@@ -57,11 +57,11 @@ interface CatalogSectionProps {
   setIsCategoryDialogOpen: (open: boolean) => void;
   currentCategory: Category | null;
   handleCategoryClick: (cat: Category) => void;
-  handleSubcategoryClick: (cat: Category, sub: Subcategory) => void;
+  handleSubcategoryClick: (sub: Subcategory) => void;
   isSubSubcategoryDialogOpen: boolean;
   setIsSubSubcategoryDialogOpen: (open: boolean) => void;
   currentSubcategory: Subcategory | null;
-  handleSubSubcategoryClick: (cat: Category, sub: Subcategory, subSub: SubSubcategory) => void;
+  handleSubSubcategoryClick: (subSubName: string) => void;
   filteredProducts: Product[];
   handleAddToCart: (product: Product) => void;
   handleResetFilters: () => void;
@@ -270,7 +270,7 @@ export function CatalogSection({
                   <Card
                     key={sub.name}
                     className="cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 overflow-hidden group border-2 border-transparent hover:border-primary"
-                    onClick={() => handleSubcategoryClick(currentCategory, sub)}
+                    onClick={() => handleSubcategoryClick(sub)}
                   >
                     <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
                       <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{sub.image}</span>
@@ -296,7 +296,7 @@ export function CatalogSection({
                   <Card
                     key={subSub.name}
                     className="cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 overflow-hidden group border-2 border-transparent hover:border-primary"
-                    onClick={() => handleSubSubcategoryClick(currentCategory!, currentSubcategory, subSub)}
+                    onClick={() => handleSubSubcategoryClick(subSub.name)}
                   >
                     <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
                       <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{subSub.image}</span>
