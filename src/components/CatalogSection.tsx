@@ -385,32 +385,31 @@ export function CatalogSection({
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product) => (
                 <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all group">
-                  <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                  <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
                     {product.image.startsWith('http') ? (
                       <img 
                         src={product.image} 
                         alt={product.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
-                      <span className="text-8xl">{product.image}</span>
+                      <span className="text-5xl">{product.image}</span>
                     )}
                   </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-heading font-bold mb-2">{product.name}</h3>
+                  <CardContent className="p-3 space-y-2">
+                    <h3 className="text-sm font-heading font-bold line-clamp-2">{product.name}</h3>
                     {product.description && (
-                      <p className="text-sm text-muted-foreground mb-2">{product.description}</p>
+                      <p className="text-xs text-muted-foreground line-clamp-1">{product.description}</p>
                     )}
-                    <div className="flex items-center justify-between">
-                      <p className="text-2xl font-bold text-primary">{product.price} ₽</p>
-                      <Button 
-                        size="sm"
-                        onClick={() => handleAddToCart(product)}
-                      >
-                        <Icon name="ShoppingCart" size={16} className="mr-2" />
-                        В корзину
-                      </Button>
-                    </div>
+                    <p className="text-lg font-bold text-primary">{product.price} ₽</p>
+                    <Button 
+                      size="sm"
+                      className="w-full"
+                      onClick={() => handleAddToCart(product)}
+                    >
+                      <Icon name="ShoppingCart" size={14} className="mr-1" />
+                      В корзину
+                    </Button>
                   </CardContent>
                 </Card>
               ))
