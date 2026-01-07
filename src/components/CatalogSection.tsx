@@ -390,7 +390,7 @@ export function CatalogSection({
                       <img 
                         src={product.image} 
                         alt={product.name}
-                        className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
                       <span className="text-5xl">{product.image}</span>
