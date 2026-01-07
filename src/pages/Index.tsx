@@ -22,43 +22,84 @@ const categories = [
     id: 'playground',
     name: 'Детское игровое оборудование',
     icon: 'Smile',
-    color: 'bg-primary',
-    subcategories: ['Качели', 'Карусели', 'Горки', 'Песочницы', 'Игровые комплексы']
+    color: 'from-primary/20 to-primary/5',
+    image: '🎪',
+    subcategories: [
+      { name: 'Качели', image: '🎪' },
+      { name: 'Карусели', image: '🎠' },
+      { name: 'Горки', image: '🛝' },
+      { name: 'Песочницы', image: '🏖️' },
+      { name: 'Игровые комплексы', image: '🎢' }
+    ]
   },
   {
     id: 'sports',
     name: 'Спортивное оборудование',
     icon: 'Dumbbell',
-    color: 'bg-secondary',
-    subcategories: ['Турники', 'Брусья', 'Воркаут', 'Спортивные комплексы', 'Тренажеры']
+    color: 'from-secondary/20 to-secondary/5',
+    image: '🏋️',
+    subcategories: [
+      { name: 'Турники', image: '🏋️' },
+      { name: 'Брусья', image: '💪' },
+      { name: 'Воркаут', image: '🤸' },
+      { name: 'Спортивные комплексы', image: '⛹️' },
+      { name: 'Тренажеры', image: '🚴' }
+    ]
   },
   {
     id: 'park',
     name: 'Парковое оборудование',
     icon: 'Trees',
-    color: 'bg-accent',
-    subcategories: ['Скамейки', 'Урны', 'Беседки', 'Навесы', 'МАФ']
+    color: 'from-accent/20 to-accent/5',
+    image: '🌳',
+    subcategories: [
+      { name: 'Скамейки', image: '🪑' },
+      { name: 'Урны', image: '🗑️' },
+      { name: 'Беседки', image: '🏡' },
+      { name: 'Навесы', image: '⛱️' },
+      { name: 'МАФ', image: '🎨' }
+    ]
   },
   {
     id: 'landscaping',
     name: 'Благоустройство',
     icon: 'Flower2',
-    color: 'bg-primary',
-    subcategories: ['Клумбы', 'Газоны', 'Дорожки', 'Освещение', 'Озеленение']
+    color: 'from-primary/20 to-primary/5',
+    image: '🌺',
+    subcategories: [
+      { name: 'Клумбы', image: '🌷' },
+      { name: 'Газоны', image: '🌿' },
+      { name: 'Дорожки', image: '🛤️' },
+      { name: 'Освещение', image: '💡' },
+      { name: 'Озеленение', image: '🌱' }
+    ]
   },
   {
     id: 'coating',
     name: 'Травмобезопасное покрытие',
     icon: 'Shield',
-    color: 'bg-secondary',
-    subcategories: ['Резиновое покрытие', 'Наливное покрытие', 'Модульная плитка', 'Искусственная трава']
+    color: 'from-secondary/20 to-secondary/5',
+    image: '🟦',
+    subcategories: [
+      { name: 'Резиновое покрытие', image: '🟦' },
+      { name: 'Наливное покрытие', image: '🟩' },
+      { name: 'Модульная плитка', image: '🟨' },
+      { name: 'Искусственная трава', image: '🟢' }
+    ]
   },
   {
     id: 'fencing',
     name: 'Ограждения',
     icon: 'Grid3x3',
-    color: 'bg-accent',
-    subcategories: ['Заборы', 'Ворота', 'Калитки', 'Сетки', 'Столбики']
+    color: 'from-accent/20 to-accent/5',
+    image: '🔲',
+    subcategories: [
+      { name: 'Заборы', image: '🔲' },
+      { name: 'Ворота', image: '🚪' },
+      { name: 'Калитки', image: '🚧' },
+      { name: 'Сетки', image: '🕸️' },
+      { name: 'Столбики', image: '⬜' }
+    ]
   }
 ];
 
@@ -166,10 +207,10 @@ export default function Index() {
     setIsCategoryDialogOpen(true);
   };
 
-  const handleSubcategorySelect = (subcategory: string) => {
+  const handleSubcategorySelect = (subcategoryName: string) => {
     if (currentCategory) {
       setSelectedCategory(currentCategory.id);
-      setSelectedSubcategory(subcategory);
+      setSelectedSubcategory(subcategoryName);
       setIsCategoryDialogOpen(false);
     }
   };
@@ -436,67 +477,100 @@ export default function Index() {
             <p className="text-lg text-muted-foreground">Широкий ассортимент оборудования для детских площадок и парков</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {categories.map((cat) => (
-              <Button
+              <Card
                 key={cat.id}
-                variant={selectedCategory === cat.id ? 'default' : 'outline'}
-                className={`h-auto py-4 flex flex-col gap-2 transition-all hover:scale-105`}
+                className={`cursor-pointer transition-all hover:shadow-2xl hover:-translate-y-2 overflow-hidden group ${
+                  selectedCategory === cat.id ? 'ring-2 ring-primary' : ''
+                }`}
                 onClick={() => handleCategoryClick(cat)}
               >
-                <Icon name={cat.icon as any} size={24} />
-                <span className="text-sm font-medium text-center leading-tight">{cat.name}</span>
-              </Button>
+                <div className={`aspect-[16/9] bg-gradient-to-br ${cat.color} flex items-center justify-center relative overflow-hidden`}>
+                  <div className="text-9xl group-hover:scale-110 transition-transform duration-300">{cat.image}</div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
+                </div>
+                <CardHeader className="text-center pb-6">
+                  <CardTitle className="text-xl font-heading leading-tight">{cat.name}</CardTitle>
+                </CardHeader>
+              </Card>
             ))}
           </div>
 
           <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
-            <DialogContent className="sm:max-w-md">
+            <DialogContent className="sm:max-w-2xl">
               <DialogHeader>
-                <DialogTitle className="text-2xl font-heading">
+                <DialogTitle className="text-3xl font-heading text-center mb-2">
                   {currentCategory?.name}
                 </DialogTitle>
               </DialogHeader>
-              <div className="grid grid-cols-2 gap-3 mt-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
                 {currentCategory?.subcategories.map((sub) => (
-                  <Button
-                    key={sub}
-                    variant={selectedSubcategory === sub ? 'default' : 'outline'}
-                    className="h-auto py-6 text-base font-medium"
-                    onClick={() => handleSubcategorySelect(sub)}
+                  <Card
+                    key={sub.name}
+                    className={`cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 overflow-hidden ${
+                      selectedSubcategory === sub.name ? 'ring-2 ring-primary' : ''
+                    }`}
+                    onClick={() => handleSubcategorySelect(sub.name)}
                   >
-                    {sub}
-                  </Button>
+                    <div className={`aspect-square bg-gradient-to-br ${currentCategory.color} flex items-center justify-center`}>
+                      <div className="text-7xl">{sub.image}</div>
+                    </div>
+                    <CardHeader className="text-center py-4">
+                      <CardTitle className="text-base font-medium leading-tight">{sub.name}</CardTitle>
+                    </CardHeader>
+                  </Card>
                 ))}
               </div>
             </DialogContent>
           </Dialog>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {filteredProducts.map((product, idx) => (
-              <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-scale-in" style={{ animationDelay: `${idx * 0.1}s` }}>
-                <div className="aspect-square bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center text-8xl">
-                  {product.image}
+          {selectedCategory && selectedSubcategory && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-2xl font-heading font-bold">{selectedSubcategory}</h3>
+                  <p className="text-muted-foreground">Найдено товаров: {filteredProducts.length}</p>
                 </div>
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-2 mb-2">
-                    <CardTitle className="text-lg">{product.name}</CardTitle>
-                    <Badge variant="secondary" className="shrink-0">{product.subcategory}</Badge>
-                  </div>
-                  <CardDescription>{product.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between">
-                    <div className="text-2xl font-bold text-primary">{product.price} ₽</div>
-                    <Button size="sm" onClick={() => addToCart(product)}>
-                      <Icon name="Plus" size={16} className="mr-1" />
-                      В корзину
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setSelectedCategory(null);
+                    setSelectedSubcategory(null);
+                  }}
+                >
+                  <Icon name="X" size={16} className="mr-2" />
+                  Сбросить фильтр
+                </Button>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {filteredProducts.map((product, idx) => (
+                  <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-scale-in" style={{ animationDelay: `${idx * 0.1}s` }}>
+                    <div className="aspect-square bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center text-8xl">
+                      {product.image}
+                    </div>
+                    <CardHeader>
+                      <div className="flex items-start justify-between gap-2 mb-2">
+                        <CardTitle className="text-lg">{product.name}</CardTitle>
+                        <Badge variant="secondary" className="shrink-0">{product.subcategory}</Badge>
+                      </div>
+                      <CardDescription>{product.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-center justify-between">
+                        <div className="text-2xl font-bold text-primary">{product.price} ₽</div>
+                        <Button size="sm" onClick={() => addToCart(product)}>
+                          <Icon name="Plus" size={16} className="mr-1" />
+                          В корзину
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
