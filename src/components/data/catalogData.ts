@@ -32,8 +32,7 @@ export const categories = [
         image: '🎢', 
         hasChildren: true,
         children: [
-          { name: 'Серия "URBAN"', image: '🏛️' },
-          { name: 'Серия "ECO"', image: '🌿' }
+          { name: 'Серия "URBAN"', image: '🏛️' }
         ]
       },
       { name: 'Балансиры', image: 'https://cdn.poehali.dev/files/мишкаа.png' },
