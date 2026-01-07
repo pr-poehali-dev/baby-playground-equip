@@ -190,7 +190,7 @@ export const products = [
     subcategory: 'Балансиры',
     price: '42 000',
     description: '2215х390х790',
-    image: '🐬'
+    image: 'https://cdn.poehali.dev/files/дельфин.png'
   },
   {
     id: 5,
@@ -199,7 +199,7 @@ export const products = [
     subcategory: 'Балансиры',
     price: '53 300',
     description: '2215х430х770',
-    image: '🎠'
+    image: 'https://cdn.poehali.dev/files/карета.png'
   },
   {
     id: 6,
@@ -208,7 +208,7 @@ export const products = [
     subcategory: 'Балансиры',
     price: '54 400',
     description: '2215х315х885',
-    image: '🐻'
+    image: 'https://cdn.poehali.dev/files/медведь.png'
   },
   {
     id: 7,
@@ -217,7 +217,7 @@ export const products = [
     subcategory: 'Балансиры',
     price: '39 700',
     description: '2215х385х790',
-    image: '🧸'
+    image: 'https://cdn.poehali.dev/files/мишка.png'
   },
   {
     id: 8,
@@ -280,7 +280,7 @@ export const products = [
     subcategory: 'Балансиры',
     price: '56 800',
     description: '2530х170х2460',
-    image: '🌀'
+    image: 'https://cdn.poehali.dev/files/вихрь.png'
   },
   {
     id: 15,
