@@ -233,7 +233,7 @@ export default function Index() {
 
       <CatalogSection
         categories={categories}
-        products={filteredProducts}
+        products={products}
         isSideMenuOpen={isSideMenuOpen}
         setIsSideMenuOpen={setIsSideMenuOpen}
         expandedCategories={expandedCategories}
@@ -248,16 +248,19 @@ export default function Index() {
         currentCategory={currentCategory}
         currentSubcategory={currentSubcategory}
         handleCategoryClick={handleCategoryClick}
-        handleSubcategorySelect={handleSubcategorySelect}
-        handleSubSubcategorySelect={handleSubSubcategorySelect}
+        handleSubcategoryClick={handleSubcategorySelect}
+        handleSubSubcategoryClick={handleSubSubcategorySelect}
         handleTreeCategorySelect={handleTreeCategorySelect}
         handleTreeSubcategorySelect={handleTreeSubcategorySelect}
         handleTreeSubSubcategorySelect={handleTreeSubSubcategorySelect}
         expandedSubcategories={expandedSubcategories}
-        setSelectedCategory={setSelectedCategory}
-        setSelectedSubcategory={setSelectedSubcategory}
-        setSelectedSubSubcategory={setSelectedSubSubcategory}
-        addToCart={addToCart}
+        filteredProducts={filteredProducts}
+        handleAddToCart={addToCart}
+        handleResetFilters={() => {
+          setSelectedCategory(null);
+          setSelectedSubcategory(null);
+          setSelectedSubSubcategory(null);
+        }}
       />
 
       <ContentSections

@@ -67,7 +67,7 @@ interface CatalogSectionProps {
   handleResetFilters: () => void;
 }
 
-export default function CatalogSection({
+export function CatalogSection({
   categories,
   products,
   isSideMenuOpen,
