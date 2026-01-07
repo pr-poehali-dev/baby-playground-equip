@@ -610,7 +610,7 @@ export default function Index() {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: 'url(https://cdn.poehali.dev/files/_____.jpg)' }}
         >
-          <div className="absolute inset-0 bg-white/70"></div>
+          <div className="absolute inset-0 bg-black/20"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
