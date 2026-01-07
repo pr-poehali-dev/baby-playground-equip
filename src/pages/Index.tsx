@@ -609,7 +609,7 @@ export default function Index() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl animate-fade-in">
-            <h1 className="text-7xl md:text-8xl font-heading font-black mb-6 leading-tight" style={{ textShadow: '2px 2px 0 white, -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white' }}>
+            <h1 className="text-7xl md:text-8xl font-heading font-black mb-6 leading-tight" style={{ textShadow: '2px 2px 0 black, -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black' }}>
               <span className="text-primary">Urban</span>{' '}
               <span className="text-secondary">Play</span>
             </h1>
