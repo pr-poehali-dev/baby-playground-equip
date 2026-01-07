@@ -34,7 +34,7 @@ interface Subcategory {
 const categories = [
   {
     id: 'playground',
-    name: 'Детское игровое оборудование',
+    name: 'Игровое оборудование',
     icon: 'Smile',
     color: 'from-primary/20 to-primary/5',
     image: '',
