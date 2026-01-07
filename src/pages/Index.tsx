@@ -979,8 +979,8 @@ export default function Index() {
             <div className="animate-fade-in">
               <h2 className="text-4xl font-heading font-bold mb-6">О компании</h2>
               <p className="text-lg text-muted-foreground mb-4">
-                Мы специализируемся на производстве детского игрового и спортивного оборудования уже более 15 лет. 
-                За это время мы оснастили более 5000 детских площадок по всей России.
+                Мы специализируемся на производстве детского игрового и спортивного оборудования на протяжении 5 лет. 
+                За это время мы оснастили более 1000 детских площадок по всей России.
               </p>
               <p className="text-lg text-muted-foreground mb-6">
                 Наша продукция соответствует всем стандартам безопасности и имеет необходимые сертификаты. 
@@ -988,11 +988,11 @@ export default function Index() {
               </p>
               <div className="grid grid-cols-3 gap-6">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">15+</div>
+                  <div className="text-4xl font-bold text-primary mb-2">5+</div>
                   <div className="text-sm text-muted-foreground">лет на рынке</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-secondary mb-2">5000+</div>
+                  <div className="text-4xl font-bold text-secondary mb-2">1000+</div>
                   <div className="text-sm text-muted-foreground">площадок</div>
                 </div>
                 <div className="text-center">
