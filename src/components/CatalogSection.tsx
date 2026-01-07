@@ -191,7 +191,11 @@ export function CatalogSection({
                                 }`}
                                 onClick={() => handleTreeSubcategorySelect(cat.id, cat, sub.name, sub)}
                               >
-                                <span className="text-lg">{sub.image}</span>
+                                {sub.image.startsWith('http') ? (
+                                  <img src={sub.image} alt={sub.name} className="w-5 h-5 object-contain" />
+                                ) : (
+                                  <span className="text-lg">{sub.image}</span>
+                                )}
                                 <span className="flex-1">{sub.name}</span>
                               </button>
                             </div>
@@ -273,7 +277,11 @@ export function CatalogSection({
                     onClick={() => handleSubcategoryClick(sub)}
                   >
                     <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
-                      <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{sub.image}</span>
+                      {sub.image.startsWith('http') ? (
+                        <img src={sub.image} alt={sub.name} className="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-300" />
+                      ) : (
+                        <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{sub.image}</span>
+                      )}
                     </div>
                     <div className="py-2 px-3 bg-white">
                       <h4 className="text-sm font-semibold text-center">{sub.name}</h4>
