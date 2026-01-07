@@ -218,7 +218,7 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-b from-white to-muted/20">
       <Header
         cart={cart}
         isCartOpen={isCartOpen}
