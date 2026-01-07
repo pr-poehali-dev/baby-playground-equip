@@ -397,7 +397,16 @@ export function CatalogSection({
                     )}
                   </div>
                   <CardContent className="p-3 space-y-2">
-                    <h3 className="text-sm font-heading font-bold line-clamp-2">{product.name}</h3>
+                    <div className="min-h-[3rem]">
+                      {product.name.includes('\n') ? (
+                        <div>
+                          <p className="text-xs text-muted-foreground">{product.name.split('\n')[0]}</p>
+                          <h3 className="text-sm font-heading font-bold line-clamp-2">{product.name.split('\n')[1]}</h3>
+                        </div>
+                      ) : (
+                        <h3 className="text-sm font-heading font-bold line-clamp-2">{product.name}</h3>
+                      )}
+                    </div>
                     {product.description && (
                       <p className="text-xs text-muted-foreground line-clamp-1">{product.description}</p>
                     )}
