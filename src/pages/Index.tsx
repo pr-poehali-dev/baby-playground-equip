@@ -38,6 +38,7 @@ const categories = [
     icon: 'Smile',
     color: 'from-primary/20 to-primary/5',
     image: '🎪',
+    bgImage: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/files/126e7e21-1954-4508-89ff-082fee771a69.jpg',
     subcategories: [
       { name: 'Качалки-балансиры', image: '⚖️' },
       { name: 'Веранды (теневые навесы)', image: '⛱️' },
@@ -87,6 +88,7 @@ const categories = [
     icon: 'Dumbbell',
     color: 'from-secondary/20 to-secondary/5',
     image: '🏋️',
+    bgImage: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/files/48d85616-7da7-418d-9222-640460ebf994.jpg',
     subcategories: [
       { name: 'Workout', image: '💪' },
       { name: 'Ворота, стойки, щиты', image: '🥅' },
@@ -126,6 +128,7 @@ const categories = [
     icon: 'Trees',
     color: 'from-accent/20 to-accent/5',
     image: '🌳',
+    bgImage: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/files/6d5f6307-82d6-4d09-b985-5e08466f558b.jpg',
     subcategories: [
       { name: 'Скамейки', image: '🪑' },
       { name: 'Урны', image: '🗑️' },
@@ -140,6 +143,7 @@ const categories = [
     icon: 'Flower2',
     color: 'from-primary/20 to-primary/5',
     image: '🌺',
+    bgImage: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/files/84d4baf1-45b9-4866-b418-d3e8f789f081.jpg',
     subcategories: [
       { name: 'Клумбы', image: '🌷' },
       { name: 'Газоны', image: '🌿' },
@@ -154,6 +158,7 @@ const categories = [
     icon: 'Shield',
     color: 'from-secondary/20 to-secondary/5',
     image: '🟦',
+    bgImage: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/files/5f0df881-7be2-437d-984d-ec0485cf7fa6.jpg',
     subcategories: [
       { name: 'Резиновое покрытие', image: '🟦' },
       { name: 'Наливное покрытие', image: '🟩' },
@@ -167,6 +172,7 @@ const categories = [
     icon: 'Grid3x3',
     color: 'from-accent/20 to-accent/5',
     image: '🔲',
+    bgImage: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/files/d7b1babd-5e02-4e78-bba2-dc495c0ae01d.jpg',
     subcategories: [
       { name: 'Заборы', image: '🔲' },
       { name: 'Ворота', image: '🚪' },
@@ -409,7 +415,7 @@ export default function Index() {
     
     let kpText = `КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ\n`;
     kpText += `Дата: ${date}\n`;
-    kpText += `От: ДетскиеПлощадки.рф\n\n`;
+    kpText += `От: Urban Play\n\n`;
     kpText += `Товары:\n`;
     kpText += `${'='.repeat(50)}\n`;
     
@@ -437,7 +443,7 @@ export default function Index() {
     kpText += `- Гарантия 2 года на всё оборудование\n\n`;
     kpText += `Контакты:\n`;
     kpText += `Телефон: 8 (800) 123-45-67\n`;
-    kpText += `Email: info@detploshad.ru\n`;
+    kpText += `Email: info@urbanplay.ru\n`;
     kpText += `Адрес: г. Москва, ул. Примерная, д. 1\n`;
     
     const blob = new Blob([kpText], { type: 'text/plain;charset=utf-8' });
@@ -471,9 +477,9 @@ export default function Index() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="text-4xl">🎪</div>
+              <div className="text-4xl">🏙️</div>
               <div>
-                <h1 className="text-2xl font-heading font-bold text-primary">ДетскиеПлощадки.рф</h1>
+                <h1 className="text-2xl font-heading font-bold text-primary">Urban Play</h1>
                 <p className="text-sm text-muted-foreground">Производство игрового оборудования</p>
               </div>
             </div>
@@ -604,7 +610,7 @@ export default function Index() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl animate-fade-in">
             <h2 className="text-5xl md:text-6xl font-heading font-bold mb-6 text-foreground">
-              Создаём радость <span className="text-primary">для детей</span>
+              Создаём пространство <span className="text-primary">для игры и спорта</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
               Производим качественное детское игровое, спортивное и парковое оборудование. 
@@ -758,8 +764,13 @@ export default function Index() {
                 onClick={() => handleCategoryClick(cat)}
               >
                 <div className={`aspect-[16/9] bg-gradient-to-br ${cat.color} flex items-center justify-center relative overflow-hidden`}>
-                  <div className="text-9xl group-hover:scale-110 transition-transform duration-300">{cat.image}</div>
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
+                  <img 
+                    src={cat.bgImage} 
+                    alt={cat.name}
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <div className="relative z-10 text-7xl drop-shadow-lg">{cat.image}</div>
                 </div>
                 <CardHeader className="text-center pb-6">
                   <CardTitle className="text-xl font-heading leading-tight">{cat.name}</CardTitle>
@@ -1191,7 +1202,7 @@ export default function Index() {
                   </div>
                   <CardTitle>Email</CardTitle>
                   <CardDescription className="text-base">
-                    <a href="mailto:info@detploshad.ru" className="hover:text-secondary transition-colors">info@detploshad.ru</a>
+                    <a href="mailto:info@urbanplay.ru" className="hover:text-secondary transition-colors">info@urbanplay.ru</a>
                     <br />
                     <span className="text-sm">Ответим в течение часа</span>
                   </CardDescription>
@@ -1220,8 +1231,8 @@ export default function Index() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="text-3xl">🎪</div>
-                <h3 className="font-heading font-bold text-xl">ДетскиеПлощадки.рф</h3>
+                <div className="text-3xl">🏙️</div>
+                <h3 className="font-heading font-bold text-xl">Urban Play</h3>
               </div>
               <p className="text-sm text-background/70">
                 Производство детского игрового и спортивного оборудования с 2009 года
@@ -1249,13 +1260,13 @@ export default function Index() {
               <h4 className="font-heading font-bold mb-4">Контакты</h4>
               <ul className="space-y-2 text-sm text-background/70">
                 <li>8 (800) 123-45-67</li>
-                <li>info@detploshad.ru</li>
+                <li>info@urbanplay.ru</li>
                 <li>г. Москва, ул. Примерная, 1</li>
               </ul>
             </div>
           </div>
           <div className="border-t border-background/20 pt-8 text-center text-sm text-background/70">
-            <p>© 2024 ДетскиеПлощадки.рф — Все права защищены</p>
+            <p>© 2024 Urban Play — Все права защищены</p>
           </div>
         </div>
       </footer>
