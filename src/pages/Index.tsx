@@ -1,8 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { CatalogSection } from '@/components/CatalogSection';
 import { ContentSections } from '@/components/ContentSections';
-import { categories, products, CartItem, Subcategory } from '@/components/data/catalogData';
+import { categories, CartItem, Subcategory } from '@/components/data/catalogData';
+
+interface Product {
+  id: number;
+  article: string;
+  name: string;
+  category: string;
+  subcategory?: string;
+  subsubcategory?: string;
+  price: string;
+  image: string;
+  description?: string;
+  dimensions?: string;
+}
 
 export default function Index() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -19,6 +32,34 @@ export default function Index() {
   const [expandedSubcategories, setExpandedSubcategories] = useState<string[]>([]);
   const [deliveryCost, setDeliveryCost] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(true);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const response = await fetch('https://functions.poehali.dev/6f221f1d-5b1c-4e9c-afc2-b4a2876203a1');
+        const data = await response.json();
+        if (data.success) {
+          setProducts(data.products.map((p: any) => ({
+            id: p.id,
+            article: p.article,
+            name: `Арт. ${p.article}\n${p.name}`,
+            category: p.category,
+            price: p.price?.toString() || '0',
+            image: p.image,
+            description: p.description,
+            dimensions: p.dimensions
+          })));
+        }
+      } catch (error) {
+        console.error('Failed to load products:', error);
+      } finally {
+        setIsLoadingProducts(false);
+      }
+    };
+    loadProducts();
+  }, []);
 
   const filteredProducts = (() => {
     let filtered = selectedCategory && selectedSubSubcategory
