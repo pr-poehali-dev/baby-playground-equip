@@ -55,7 +55,7 @@ export function ContentSections() {
                   <div className="text-sm text-muted-foreground">лет на рынке</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-secondary mb-2">1000+</div>
+                  <div className="text-4xl font-bold text-secondary mb-2">700+</div>
                   <div className="text-sm text-muted-foreground">площадок</div>
                 </div>
                 <div className="text-center">
@@ -135,7 +135,7 @@ export function ContentSections() {
                   <Icon name="MapPin" size={32} className="text-accent" />
                 </div>
                 <h3 className="font-bold mb-2">Адрес</h3>
-                <p className="text-muted-foreground">г. Краснодар, ул. Кореновская, д. 57 оф. 7</p>
+                <p className="text-muted-foreground">г. Краснодар,      ул. Кореновская, д. 57 оф. 7</p>
               </CardContent>
             </Card>
           </div>
