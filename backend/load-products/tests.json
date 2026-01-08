@@ -1,18 +1,14 @@
 {
   "tests": [
     {
-      "name": "Load products",
+      "name": "Upload images to product",
       "method": "POST",
       "path": "/",
       "body": {
-        "products": [
-          {
-            "article": "TEST-01",
-            "name": "Test Product",
-            "category": "Test",
-            "dimensions": "100x100x100",
-            "price": "1000"
-          }
+        "action": "upload_images",
+        "article": "0110",
+        "images": [
+          "https://example.com/test.jpg"
         ]
       },
       "expectedStatus": 200,

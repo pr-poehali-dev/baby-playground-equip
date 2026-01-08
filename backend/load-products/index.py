@@ -3,8 +3,93 @@ import os
 import psycopg2
 
 
+def upload_images_handler(body: dict) -> dict:
+    '''Привязка изображений к товару'''
+    images = body.get('images', [])
+    article = body.get('article')
+    
+    if not images or not article:
+        return {
+            'statusCode': 400,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps({'error': 'Missing images or article'}),
+            'isBase64Encoded': False
+        }
+    
+    dsn = os.environ.get('DATABASE_URL')
+    conn = psycopg2.connect(dsn)
+    cursor = conn.cursor()
+    
+    # Находим товар по артикулу
+    cursor.execute(
+        "SELECT id, name FROM t_p92226548_baby_playground_equi.products WHERE article = %s LIMIT 1",
+        (article,)
+    )
+    result = cursor.fetchone()
+    
+    if not result:
+        cursor.close()
+        conn.close()
+        return {
+            'statusCode': 404,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps({'error': f'Product with article {article} not found'}),
+            'isBase64Encoded': False
+        }
+    
+    product_id = result[0]
+    
+    # Создаем таблицу для изображений если не существует
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS t_p92226548_baby_playground_equi.product_images (
+            id SERIAL PRIMARY KEY,
+            product_id INTEGER NOT NULL REFERENCES t_p92226548_baby_playground_equi.products(id) ON DELETE CASCADE,
+            image_url TEXT NOT NULL,
+            sort_order INTEGER DEFAULT 0,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    """)
+    
+    # Удаляем старые изображения для этого товара
+    cursor.execute(
+        "DELETE FROM t_p92226548_baby_playground_equi.product_images WHERE product_id = %s",
+        (product_id,)
+    )
+    
+    # Добавляем новые изображения
+    for idx, img_url in enumerate(images):
+        cursor.execute(
+            "INSERT INTO t_p92226548_baby_playground_equi.product_images (product_id, image_url, sort_order) VALUES (%s, %s, %s)",
+            (product_id, img_url, idx)
+        )
+    
+    conn.commit()
+    cursor.close()
+    conn.close()
+    
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+        'body': json.dumps({
+            'success': True,
+            'product_id': product_id,
+            'images_count': len(images)
+        }),
+        'isBase64Encoded': False
+    }
+
+
 def handler(event: dict, context) -> dict:
-    '''Загрузка товаров из parse-excel в базу данных'''
+    '''Загрузка товаров из parse-excel в базу данных и управление изображениями'''
     
     method = event.get('httpMethod', 'POST')
     
@@ -32,8 +117,15 @@ def handler(event: dict, context) -> dict:
         }
     
     try:
-        # Получаем данные из тела запроса
         body = json.loads(event.get('body', '{}'))
+        
+        # Проверяем тип действия
+        action = body.get('action', 'load_products')
+        
+        if action == 'upload_images':
+            return upload_images_handler(body)
+        
+        # Стандартная загрузка товаров
         products = body.get('products', [])
         
         if not products:

@@ -3,12 +3,12 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 
-const swingImages = [
-  'https://cdn.poehali.dev/files/111.png',
-  'https://cdn.poehali.dev/files/112.png',
-  'https://cdn.poehali.dev/files/113.png',
-  'https://cdn.poehali.dev/files/114.png',
-  'https://cdn.poehali.dev/files/115.png',
+const swingProducts = [
+  { article: '0110', name: 'Качели (одинарные, вариант 1)', images: ['https://cdn.poehali.dev/files/111.png'] },
+  { article: '0111', name: 'Качели (одинарные, вариант 2)', images: ['https://cdn.poehali.dev/files/115.png'] },
+  { article: '0112', name: 'Качели двойные (вариант 1)', images: ['https://cdn.poehali.dev/files/112.png'] },
+  { article: '0113', name: 'Качели двойные (вариант 2)', images: ['https://cdn.poehali.dev/files/113.png'] },
+  { article: '0114', name: 'Качели двойные (вариант 3)', images: ['https://cdn.poehali.dev/files/114.png'] },
 ];
 
 export default function AdminPage() {
@@ -21,27 +21,31 @@ export default function AdminPage() {
     setResult(null);
 
     try {
-      const response = await fetch('https://functions.poehali.dev/e02bd312-25b6-4983-990b-110af1ed4e52', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          action: 'upload_images',
-          images: swingImages,
-          product_code: 'КСО-212',
-        }),
-      });
+      let successCount = 0;
+      
+      for (const product of swingProducts) {
+        const response = await fetch('https://functions.poehali.dev/e02bd312-25b6-4983-990b-110af1ed4e52', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            action: 'upload_images',
+            images: product.images,
+            article: product.article,
+          }),
+        });
 
-      const data = await response.json();
+        const data = await response.json();
 
-      if (!data.success) {
-        throw new Error('Ошибка загрузки изображений: ' + data.error);
+        if (data.success) {
+          successCount++;
+        }
       }
 
       setResult({
         success: true,
-        message: `Загружено ${swingImages.length} изображений для качелей`,
+        message: `Загружено изображений для ${successCount} из ${swingProducts.length} товаров`,
       });
     } catch (error) {
       setResult({
@@ -105,18 +109,20 @@ export default function AdminPage() {
           <Card className="p-6">
             <div className="space-y-4">
               <div>
-                <h2 className="text-xl font-semibold mb-2">Загрузка изображений</h2>
+                <h2 className="text-xl font-semibold mb-2">Загрузка изображений качелей</h2>
                 <p className="text-muted-foreground mb-4">
-                  Добавить фотографии качелей в товар КСО-212
+                  Привязать фотографии к 5 товарам качелей
                 </p>
                 <div className="grid grid-cols-5 gap-2 mb-4">
-                  {swingImages.map((img, idx) => (
-                    <img
-                      key={idx}
-                      src={img}
-                      alt={`Качели ${idx + 1}`}
-                      className="w-full aspect-square object-cover rounded border"
-                    />
+                  {swingProducts.map((product, idx) => (
+                    <div key={idx} className="space-y-1">
+                      <img
+                        src={product.images[0]}
+                        alt={product.name}
+                        className="w-full aspect-square object-cover rounded border"
+                      />
+                      <p className="text-xs text-muted-foreground text-center">{product.article}</p>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -135,7 +141,7 @@ export default function AdminPage() {
                 ) : (
                   <>
                     <Icon name="Image" className="mr-2 h-4 w-4" />
-                    Загрузить 5 фото качелей
+                    Привязать изображения к товарам
                   </>
                 )}
               </Button>
