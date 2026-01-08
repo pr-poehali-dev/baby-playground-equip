@@ -74,10 +74,12 @@ export default function Index() {
     setSelectedSubSubcategory(null);
     setCurrentCategory(categoryData);
     setIsSideMenuOpen(false);
-    const catalogSection = document.getElementById('catalog');
-    if (catalogSection) {
-      catalogSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    setTimeout(() => {
+      const productsSection = document.getElementById('products');
+      if (productsSection) {
+        productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 300);
   };
 
   const handleTreeSubcategorySelect = (categoryId: string, categoryData: typeof categories[0], subName: string, sub: Subcategory) => {
@@ -92,10 +94,12 @@ export default function Index() {
       setSelectedSubSubcategory(null);
       setCurrentCategory(categoryData);
       setIsSideMenuOpen(false);
-      const catalogSection = document.getElementById('catalog');
-      if (catalogSection) {
-        catalogSection.scrollIntoView({ behavior: 'smooth' });
-      }
+      setTimeout(() => {
+        const productsSection = document.getElementById('products');
+        if (productsSection) {
+          productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 300);
     }
   };
 
@@ -106,10 +110,12 @@ export default function Index() {
     setCurrentCategory(categoryData);
     setCurrentSubcategory(categoryData.subcategories.find(s => s.name === subName) || null);
     setIsSideMenuOpen(false);
-    const catalogSection = document.getElementById('catalog');
-    if (catalogSection) {
-      catalogSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    setTimeout(() => {
+      const productsSection = document.getElementById('products');
+      if (productsSection) {
+        productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 300);
   };
 
   const toggleCategory = (categoryId: string) => {
