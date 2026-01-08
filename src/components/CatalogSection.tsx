@@ -325,6 +325,7 @@ export function CatalogSection({
             </DialogContent>
           </Dialog>
 
+          {(selectedCategory || selectedSubcategory || selectedSubSubcategory) && (
           <div id="products" className="flex gap-6">
             <aside className="w-72 flex-shrink-0 bg-white rounded-lg shadow-sm sticky top-[120px] self-start h-[calc(100vh-140px)] flex flex-col">
               <h3 className="text-lg font-heading font-bold p-4 pb-2">Категории</h3>
@@ -570,6 +571,7 @@ export function CatalogSection({
               </div>
             </div>
           </div>
+          )}
 
         </div>
       </section>
