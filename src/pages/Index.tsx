@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { CatalogSection } from '@/components/CatalogSection';
 import { ContentSections } from '@/components/ContentSections';
-import { categories, products, CartItem, Subcategory } from '@/components/data/catalogData';
+import { categories, products as staticProducts, CartItem, Subcategory } from '@/components/data/catalogData';
+import { useProducts } from '@/hooks/useProducts';
 
 export default function Index() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -19,20 +20,40 @@ export default function Index() {
   const [expandedSubcategories, setExpandedSubcategories] = useState<string[]>([]);
   const [deliveryCost, setDeliveryCost] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
+  const { data: dbProducts, isLoading } = useProducts(selectedSubcategory || undefined);
+  const [allProducts, setAllProducts] = useState(staticProducts);
+
+  useEffect(() => {
+    if (dbProducts && dbProducts.length > 0) {
+      const merged = dbProducts.map(p => ({
+        id: p.id,
+        name: p.name,
+        category: 'playground',
+        subcategory: p.category,
+        price: p.price.toLocaleString('ru-RU'),
+        image: p.image_url || 'https://cdn.poehali.dev/files/качели.png',
+        description: `Арт. ${p.article} | ${p.dimensions || ''}`
+      }));
+      setAllProducts([...staticProducts, ...merged]);
+    } else {
+      setAllProducts(staticProducts);
+    }
+  }, [dbProducts]);
 
   const filteredProducts = (() => {
     let filtered = selectedCategory && selectedSubSubcategory
-      ? products.filter(p => p.category === selectedCategory && p.subsubcategory === selectedSubSubcategory)
+      ? allProducts.filter(p => p.category === selectedCategory && p.subsubcategory === selectedSubSubcategory)
       : selectedCategory && selectedSubcategory
-      ? products.filter(p => p.category === selectedCategory && p.subcategory === selectedSubcategory)
+      ? allProducts.filter(p => p.category === selectedCategory && p.subcategory === selectedSubcategory)
       : selectedCategory
-      ? products.filter(p => p.category === selectedCategory)
-      : products;
+      ? allProducts.filter(p => p.category === selectedCategory)
+      : allProducts;
     
     if (searchQuery.trim()) {
       filtered = filtered.filter(p => 
         p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.id.toString().includes(searchQuery)
+        p.id.toString().includes(searchQuery) ||
+        (p.description && p.description.toLowerCase().includes(searchQuery.toLowerCase()))
       );
     }
     
@@ -136,7 +157,7 @@ export default function Index() {
     );
   };
 
-  const addToCart = (product: typeof products[0]) => {
+  const addToCart = (product: typeof staticProducts[0]) => {
     const existingItem = cart.find(item => item.id === product.id);
     if (existingItem) {
       setCart(cart.map(item => 
@@ -240,7 +261,7 @@ export default function Index() {
 
       <CatalogSection
         categories={categories}
-        products={products}
+        products={allProducts}
         isSideMenuOpen={isSideMenuOpen}
         setIsSideMenuOpen={setIsSideMenuOpen}
         expandedCategories={expandedCategories}
