@@ -91,7 +91,7 @@ export function Header({
                         <Card key={item.id}>
                           <CardContent className="p-4">
                             <div className="flex gap-4">
-                              <div className="w-20 h-20 bg-muted rounded-lg flex items-center justify-center text-4xl shrink-0">
+                              <div className="w-20 h-20 bg-white rounded-lg flex items-center justify-center text-4xl shrink-0 border">
                                 {item.image.startsWith('http') ? (
                                   <img src={item.image} alt={item.name} className="w-full h-full object-contain p-1" />
                                 ) : (
