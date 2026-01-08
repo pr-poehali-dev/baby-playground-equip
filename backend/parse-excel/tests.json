@@ -1,0 +1,11 @@
+[
+  {
+    "name": "Parse Excel File",
+    "request": {
+      "method": "GET"
+    },
+    "expected": {
+      "statusCode": 200
+    }
+  }
+]
