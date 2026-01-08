@@ -83,6 +83,8 @@ export default function Index() {
       ? products.filter(p => p.category === selectedCategory)
       : products;
     
+    filtered = filtered.filter(p => parseInt(p.price) > 0);
+    
     if (searchQuery.trim()) {
       filtered = filtered.filter(p => 
         p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
