@@ -267,7 +267,16 @@ export const products = [
   },
   {
     id: 123,
-    name: 'Арт. 0123\nСиденье качели',
+    name: 'Арт. 0123\nСиденье качели "Гнездо" антивандальное',
+    category: 'playground',
+    subcategory: 'Качели',
+    price: '98 700',
+    description: '1000х1000х100',
+    image: 'https://cdn.poehali.dev/files/гнездо.png'
+  },
+  {
+    id: 124,
+    name: 'Арт. 0124\nСиденье качели',
     category: 'playground',
     subcategory: 'Качели',
     price: '10 250',
@@ -275,8 +284,8 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/image.png'
   },
   {
-    id: 124,
-    name: 'Арт. 0124\nСиденье гибкое без спинки',
+    id: 125,
+    name: 'Арт. 0125\nСиденье гибкое без спинки',
     category: 'playground',
     subcategory: 'Качели',
     price: '8 400',
@@ -284,8 +293,8 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/image.png'
   },
   {
-    id: 125,
-    name: 'Арт. 0125\nСиденье прорезиненное',
+    id: 126,
+    name: 'Арт. 0126\nСиденье прорезиненное',
     category: 'playground',
     subcategory: 'Качели',
     price: '8 700',
@@ -293,8 +302,8 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/image.png'
   },
   {
-    id: 126,
-    name: 'Арт. 0126\nСиденье пластиковое "Люлька"',
+    id: 127,
+    name: 'Арт. 0127\nСиденье пластиковое "Люлька"',
     category: 'playground',
     subcategory: 'Качели',
     price: '22 500',
@@ -302,8 +311,8 @@ export const products = [
     image: 'https://cdn.poehali.dev/files/image.png'
   },
   {
-    id: 127,
-    name: 'Арт. 0127\nСиденье прорезиненное "Люлька"',
+    id: 128,
+    name: 'Арт. 0128\nСиденье прорезиненное "Люлька"',
     category: 'playground',
     subcategory: 'Качели',
     price: '28 900',
