@@ -281,7 +281,7 @@ export const products = [
     subcategory: 'Качели',
     price: '10 250',
     description: '380х400х310',
-    image: 'https://cdn.poehali.dev/files/image.png'
+    image: 'https://cdn.poehali.dev/files/124 (2).png'
   },
   {
     id: 125,
@@ -290,7 +290,7 @@ export const products = [
     subcategory: 'Качели',
     price: '8 400',
     description: '670х140х8',
-    image: 'https://cdn.poehali.dev/files/image.png'
+    image: 'https://cdn.poehali.dev/files/125 (2).png'
   },
   {
     id: 126,
@@ -299,7 +299,7 @@ export const products = [
     subcategory: 'Качели',
     price: '8 700',
     description: '450х180х27',
-    image: 'https://cdn.poehali.dev/files/image.png'
+    image: 'https://cdn.poehali.dev/files/126 (2).png'
   },
   {
     id: 127,
@@ -308,7 +308,7 @@ export const products = [
     subcategory: 'Качели',
     price: '22 500',
     description: '320х260х190',
-    image: 'https://cdn.poehali.dev/files/image.png'
+    image: 'https://cdn.poehali.dev/files/127 (2).png'
   },
   {
     id: 128,
@@ -317,7 +317,7 @@ export const products = [
     subcategory: 'Качели',
     price: '28 900',
     description: '440х290х230',
-    image: 'https://cdn.poehali.dev/files/image.png'
+    image: 'https://cdn.poehali.dev/files/128.png'
   },
   {
     id: 1,
