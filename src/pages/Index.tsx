@@ -42,8 +42,8 @@ export default function Index() {
         const data = await response.json();
         if (data.success) {
           const categoryMap: Record<string, string> = {
-            'playground': 'playground-urban',
-            'Workout': 'sports-urban',
+            'playground': 'playground',
+            'Workout': 'sport',
             'park': 'park',
             'coating': 'coating'
           };

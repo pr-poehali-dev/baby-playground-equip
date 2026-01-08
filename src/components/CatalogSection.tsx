@@ -320,22 +320,22 @@ export function CatalogSection({
                   {currentCategory?.name}
                 </DialogTitle>
               </DialogHeader>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                 {currentCategory?.subcategories.map((sub) => (
                   <Card
                     key={sub.name}
                     className="cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 overflow-hidden group border-2 border-transparent hover:border-primary"
                     onClick={() => handleSubcategoryClick(sub)}
                   >
-                    <div className="aspect-square relative overflow-hidden bg-white flex items-center justify-center">
+                    <div className="aspect-[3/2] relative overflow-hidden bg-white flex items-center justify-center">
                       {sub.image.startsWith('http') ? (
-                        <img src={sub.image} alt={sub.name} className="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-300" />
+                        <img src={sub.image} alt={sub.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                       ) : (
                         <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{sub.image}</span>
                       )}
                     </div>
-                    <div className="py-2 px-3 bg-white">
-                      <h4 className="text-sm font-semibold text-center">{sub.name}</h4>
+                    <div className="py-4 px-4 bg-white">
+                      <h4 className="text-xl font-semibold text-center">{sub.name}</h4>
                     </div>
                   </Card>
                 ))}
@@ -358,7 +358,11 @@ export function CatalogSection({
                     onClick={() => handleSubSubcategoryClick(subSub.name)}
                   >
                     <div className="aspect-square relative overflow-hidden bg-white flex items-center justify-center">
-                      <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{subSub.image}</span>
+                      {subSub.image.startsWith('http') ? (
+                        <img src={subSub.image} alt={subSub.name} className="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-300" />
+                      ) : (
+                        <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{subSub.image}</span>
+                      )}
                     </div>
                     <div className="py-2 px-3 bg-white">
                       <h4 className="text-sm font-semibold text-center">{subSub.name}</h4>
