@@ -20,8 +20,8 @@ export interface Subcategory {
 
 export const categories = [
   {
-    id: 'playground',
-    name: 'Игровое оборудование',
+    id: 'playground-urban',
+    name: 'Игровое оборудование "Urban"',
     icon: 'Smile',
     color: 'from-primary/20 to-primary/5',
     image: '',
@@ -47,8 +47,8 @@ export const categories = [
     ]
   },
   {
-    id: 'sports',
-    name: 'Спортивное оборудование',
+    id: 'sports-urban',
+    name: 'Спортивное оборудование "Urban"',
     icon: 'Dumbbell',
     color: 'from-secondary/20 to-secondary/5',
     image: '',
@@ -102,12 +102,58 @@ export const categories = [
     ]
   },
   {
+    id: 'playground-eco',
+    name: 'Игровое оборудование "Eco"',
+    icon: 'TreePine',
+    color: 'from-green-500/20 to-green-500/5',
+    image: '',
+    bgImage: 'https://cdn.poehali.dev/files/экоигра12.png',
+    subcategories: [
+      { name: 'Игровые комплексы', image: '🌳' },
+      { name: 'Балансиры', image: '🪵' },
+      { name: 'Горки', image: '🛝' },
+      { name: 'Качели', image: '🌲' },
+      { name: 'Карусели', image: '🌿' },
+      { name: 'Лазы', image: '🪜' }
+    ]
+  },
+  {
+    id: 'sports-eco',
+    name: 'Спортивное оборудование "Eco"',
+    icon: 'Leaf',
+    color: 'from-emerald-500/20 to-emerald-500/5',
+    image: '',
+    bgImage: 'https://cdn.poehali.dev/files/экоспорт2.png',
+    subcategories: [
+      { name: 'Workout', image: '🌳' },
+      { name: 'Спортивные комплексы', image: '🪵' },
+      { name: 'Тренажеры уличные', image: '🌲' },
+      { name: 'Брусья и перекладины', image: '🪜' }
+    ]
+  },
+  {
+    id: 'thematic',
+    name: 'Тематическое оборудование',
+    icon: 'Castle',
+    color: 'from-purple-500/20 to-purple-500/5',
+    image: '',
+    bgImage: 'https://cdn.poehali.dev/files/урбанигра.png',
+    subcategories: [
+      { name: 'Замки и крепости', image: '🏰' },
+      { name: 'Корабли и пираты', image: '🚢' },
+      { name: 'Космос', image: '🚀' },
+      { name: 'Динозавры', image: '🦕' },
+      { name: 'Сказки', image: '📖' },
+      { name: 'Транспорт', image: '🚂' }
+    ]
+  },
+  {
     id: 'landscaping',
     name: 'Благоустройство',
     icon: 'Flower2',
     color: 'from-primary/20 to-primary/5',
     image: '',
-    bgImage: 'https://cdn.poehali.dev/files/Sun002_002_C_Shading_Light_Mix0000_221b44e633.jpg',
+    bgImage: 'https://cdn.poehali.dev/files/благоустройство.png',
     subcategories: [
       { name: 'Клумбы', image: '🌷' },
       { name: 'Газоны', image: '🌿' },
@@ -136,7 +182,7 @@ export const categories = [
     icon: 'Grid3x3',
     color: 'from-accent/20 to-accent/5',
     image: '',
-    bgImage: 'https://cdn.poehali.dev/files/1c96c1-1024x1024.jpg',
+    bgImage: 'https://cdn.poehali.dev/files/ограждение .png',
     subcategories: [
       { name: 'Заборы', image: '🔲' },
       { name: 'Ворота', image: '🚪' },
