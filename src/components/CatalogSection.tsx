@@ -523,7 +523,7 @@ export function CatalogSection({
                           <img 
                             src={product.image} 
                             alt={product.name}
-                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 p-4"
+                            className={`w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 ${product.id === 110 ? 'p-0' : 'p-4'}`}
                             loading="lazy"
                           />
                         ) : (
@@ -586,7 +586,7 @@ export function CatalogSection({
                     <img 
                       src={selectedProduct.image} 
                       alt={selectedProduct.name}
-                      className="w-full h-full object-contain p-8"
+                      className={`w-full h-full object-contain ${selectedProduct.id === 110 ? 'p-2' : 'p-8'}`}
                       style={{ imageRendering: 'high-quality' }}
                     />
                   ) : (
