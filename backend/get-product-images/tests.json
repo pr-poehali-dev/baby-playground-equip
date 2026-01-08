@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "Get product images",
+      "method": "GET",
+      "path": "/?article=0110",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

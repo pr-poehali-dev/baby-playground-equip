@@ -40,6 +40,7 @@ interface Product {
   price: string;
   image: string;
   description?: string;
+  article?: string;
 }
 
 interface CatalogSectionProps {
@@ -104,10 +105,27 @@ export function CatalogSection({
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isProductDialogOpen, setIsProductDialogOpen] = useState(false);
   const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
+  const [productImages, setProductImages] = useState<string[]>([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const handleProductClick = (product: Product) => {
+  const handleProductClick = async (product: Product) => {
     setSelectedProduct(product);
     setIsProductDialogOpen(true);
+    setCurrentImageIndex(0);
+    setProductImages([]);
+    
+    const article = product.name.split('\n')[0]?.replace('Арт. ', '');
+    if (article) {
+      try {
+        const response = await fetch(`https://functions.poehali.dev/686e9704-6a8f-429d-a2d2-88f49ab86fd8?article=${article}`);
+        const data = await response.json();
+        if (data.success && data.images.length > 0) {
+          setProductImages(data.images);
+        }
+      } catch (error) {
+        console.error('Failed to load product images:', error);
+      }
+    }
   };
   return (
     <>
@@ -582,7 +600,14 @@ export function CatalogSection({
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-4">
                 <div className="aspect-square relative overflow-hidden bg-white rounded-lg border flex items-center justify-center">
-                  {selectedProduct.image.startsWith('http') ? (
+                  {productImages.length > 0 ? (
+                    <img 
+                      src={productImages[currentImageIndex]} 
+                      alt={selectedProduct.name}
+                      className="w-full h-full object-contain p-8"
+                      style={{ imageRendering: 'high-quality' }}
+                    />
+                  ) : selectedProduct.image.startsWith('http') ? (
                     <img 
                       src={selectedProduct.image} 
                       alt={selectedProduct.name}
@@ -593,6 +618,25 @@ export function CatalogSection({
                     <span className="text-9xl">{selectedProduct.image}</span>
                   )}
                 </div>
+                {productImages.length > 1 && (
+                  <div className="flex gap-2 overflow-x-auto pb-2">
+                    {productImages.map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setCurrentImageIndex(idx)}
+                        className={`flex-shrink-0 w-20 h-20 rounded border-2 overflow-hidden ${
+                          idx === currentImageIndex ? 'border-primary' : 'border-gray-200'
+                        }`}
+                      >
+                        <img 
+                          src={img} 
+                          alt={`${selectedProduct.name} ${idx + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className="space-y-6">

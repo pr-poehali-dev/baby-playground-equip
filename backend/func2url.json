@@ -1,4 +1,5 @@
 {
+  "get-product-images": "https://functions.poehali.dev/686e9704-6a8f-429d-a2d2-88f49ab86fd8",
   "load-products": "https://functions.poehali.dev/e02bd312-25b6-4983-990b-110af1ed4e52",
   "test-download": "https://functions.poehali.dev/d986b6be-108d-49ce-971c-668211b150fd",
   "parse-excel": "https://functions.poehali.dev/996892ec-cd18-4c4d-9dfb-c83d04015e2e"
