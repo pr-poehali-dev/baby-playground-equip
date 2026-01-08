@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import { ContactDialog } from './ContactDialog';
 
 export function ContentSections() {
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
+
   return (
     <>
       <section id="services" className="pt-4 pb-16 bg-white">
@@ -104,7 +109,15 @@ export function ContentSections() {
                   <Icon name="Phone" size={32} className="text-primary" />
                 </div>
                 <h3 className="font-bold mb-2">Телефон</h3>
-                <a href="tel:+79181151551" className="text-primary hover:underline">+7 (918) 115-15-51</a>
+                <a href="tel:+79181151551" className="text-primary hover:underline block mb-3">+7 (918) 115-15-51</a>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="w-full"
+                  onClick={() => setIsContactDialogOpen(true)}
+                >
+                  Перезвоните мне
+                </Button>
               </CardContent>
             </Card>
             <Card className="text-center hover:shadow-lg transition-shadow">
@@ -134,6 +147,11 @@ export function ContentSections() {
           <p>&copy; 2024 Urban Play. Все права защищены.</p>
         </div>
       </footer>
+
+      <ContactDialog 
+        open={isContactDialogOpen} 
+        onOpenChange={setIsContactDialogOpen}
+      />
     </>
   );
 }

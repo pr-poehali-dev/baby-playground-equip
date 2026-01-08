@@ -7,6 +7,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sh
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
+import { ContactDialog } from './ContactDialog';
 
 interface SubSubcategory {
   name: string;
@@ -102,6 +103,7 @@ export function CatalogSection({
 }: CatalogSectionProps) {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isProductDialogOpen, setIsProductDialogOpen] = useState(false);
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
@@ -518,7 +520,8 @@ export function CatalogSection({
                           <img 
                             src={product.image} 
                             alt={product.name}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 p-4"
+                            loading="lazy"
                           />
                         ) : (
                           <span className="text-5xl">{product.image}</span>
@@ -579,7 +582,8 @@ export function CatalogSection({
                     <img 
                       src={selectedProduct.image} 
                       alt={selectedProduct.name}
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain p-8"
+                      style={{ imageRendering: 'high-quality' }}
                     />
                   ) : (
                     <span className="text-9xl">{selectedProduct.image}</span>
@@ -644,11 +648,17 @@ export function CatalogSection({
                   <p className="text-muted-foreground mb-4">
                     Если появились вопросы, вы можете получить консультацию руководителя проекта:
                   </p>
-                  <Button variant="outline" size="lg" className="w-full" asChild>
-                    <a href="tel:+79181151551">
-                      <Icon name="Phone" size={20} className="mr-2" />
-                      Перезвоните мне
-                    </a>
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="w-full"
+                    onClick={() => {
+                      setIsProductDialogOpen(false);
+                      setIsContactDialogOpen(true);
+                    }}
+                  >
+                    <Icon name="Phone" size={20} className="mr-2" />
+                    Перезвоните мне
                   </Button>
                 </div>
               </div>
@@ -656,6 +666,11 @@ export function CatalogSection({
           )}
         </DialogContent>
       </Dialog>
+
+      <ContactDialog 
+        open={isContactDialogOpen} 
+        onOpenChange={setIsContactDialogOpen}
+      />
     </>
   );
 }
