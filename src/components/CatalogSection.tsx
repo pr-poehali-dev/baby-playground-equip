@@ -586,7 +586,7 @@ export function CatalogSection({
                     <img 
                       src={selectedProduct.image} 
                       alt={selectedProduct.name}
-                      className={`w-full h-full object-contain ${selectedProduct.id === 110 ? 'p-2' : 'p-8'}`}
+                      className={`w-full h-full object-contain ${selectedProduct.id === 110 ? 'p-0' : 'p-8'}`}
                       style={{ imageRendering: 'high-quality' }}
                     />
                   ) : (
