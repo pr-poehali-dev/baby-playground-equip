@@ -1,11 +1,15 @@
-[
-  {
-    "name": "Parse Excel File",
-    "request": {
-      "method": "GET"
-    },
-    "expected": {
-      "statusCode": 200
+{
+  "tests": [
+    {
+      "name": "Parse Excel File",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "total": "number"
+      },
+      "bodyMatcher": "partial"
     }
-  }
-]
+  ]
+}

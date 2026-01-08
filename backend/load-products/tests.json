@@ -1,0 +1,25 @@
+{
+  "tests": [
+    {
+      "name": "Load products",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "products": [
+          {
+            "article": "TEST-01",
+            "name": "Test Product",
+            "category": "Test",
+            "dimensions": "100x100x100",
+            "price": "1000"
+          }
+        ]
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
