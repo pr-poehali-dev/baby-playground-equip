@@ -122,7 +122,7 @@ export function ContentSections() {
                   <Icon name="MapPin" size={32} className="text-accent" />
                 </div>
                 <h3 className="font-bold mb-2">Адрес</h3>
-                <p className="text-muted-foreground">г. Краснодар, ул. Кореновская д. 57 оф 7</p>
+                <p className="text-muted-foreground">г. Краснодар, ул. Кореновская, д. 57 оф. 7</p>
               </CardContent>
             </Card>
           </div>

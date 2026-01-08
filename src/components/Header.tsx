@@ -45,7 +45,15 @@ export function Header({
             <a href="#certificates" className="text-foreground hover:text-primary transition-colors font-medium text-lg">Сертификаты</a>
             <a href="#contacts" className="text-foreground hover:text-primary transition-colors font-medium text-lg">Контакты</a>
           </nav>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
+            <a 
+              href="tel:+79181151551" 
+              className="hidden lg:flex items-center gap-2 text-foreground hover:text-primary transition-colors font-semibold text-lg"
+            >
+              <Icon name="Phone" size={20} className="text-primary" />
+              +7 (918) 115-15-51
+            </a>
+            <div className="flex items-center gap-3">
             <Button 
               variant="outline" 
               size="icon"
@@ -156,9 +164,9 @@ export function Header({
                         size="lg"
                         asChild
                       >
-                        <a href="tel:88001234567">
+                        <a href="tel:+79181151551">
                           <Icon name="Phone" size={16} className="mr-2" />
-                          8 (800) 123-45-67
+                          +7 (918) 115-15-51
                         </a>
                       </Button>
                     </div>
@@ -166,13 +174,7 @@ export function Header({
                 )}
               </SheetContent>
             </Sheet>
-            
-            <Button variant="outline" className="hidden md:flex items-center gap-2" asChild>
-              <a href="tel:88001234567">
-                <Icon name="Phone" size={16} className="mr-2" />
-                8 (800) 123-45-67
-              </a>
-            </Button>
+            </div>
           </div>
         </div>
       </div>
