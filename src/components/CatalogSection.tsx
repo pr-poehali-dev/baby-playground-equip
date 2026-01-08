@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -99,6 +100,13 @@ export function CatalogSection({
   setSearchQuery,
   handleResetFilters,
 }: CatalogSectionProps) {
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isProductDialogOpen, setIsProductDialogOpen] = useState(false);
+
+  const handleProductClick = (product: Product) => {
+    setSelectedProduct(product);
+    setIsProductDialogOpen(true);
+  };
   return (
     <>
       <section className="relative py-20 overflow-hidden">
@@ -501,8 +509,11 @@ export function CatalogSection({
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
                 {filteredProducts.length > 0 ? (
                   filteredProducts.map((product) => (
-                    <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all group">
-                      <div className="aspect-[4/3] relative overflow-hidden bg-white flex items-center justify-center">
+                    <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all group cursor-pointer">
+                      <div 
+                        className="aspect-[4/3] relative overflow-hidden bg-white flex items-center justify-center"
+                        onClick={() => handleProductClick(product)}
+                      >
                         {product.image.startsWith('http') ? (
                           <img 
                             src={product.image} 
@@ -514,7 +525,7 @@ export function CatalogSection({
                         )}
                       </div>
                       <CardContent className="p-3">
-                        <div className="leading-tight space-y-0">
+                        <div className="leading-tight space-y-0" onClick={() => handleProductClick(product)}>
                           {product.name.includes('\n') ? (
                             <>
                               <p className="text-xs text-muted-foreground leading-tight">{product.name.split('\n')[0]}</p>
@@ -531,7 +542,10 @@ export function CatalogSection({
                         <Button 
                           size="sm"
                           className="w-full"
-                          onClick={() => handleAddToCart(product)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleAddToCart(product);
+                          }}
                         >
                           <Icon name="ShoppingCart" size={14} className="mr-1" />
                           В корзину
@@ -554,6 +568,94 @@ export function CatalogSection({
 
         </div>
       </section>
+
+      <Dialog open={isProductDialogOpen} onOpenChange={setIsProductDialogOpen}>
+        <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
+          {selectedProduct && (
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <div className="aspect-square relative overflow-hidden bg-white rounded-lg border flex items-center justify-center">
+                  {selectedProduct.image.startsWith('http') ? (
+                    <img 
+                      src={selectedProduct.image} 
+                      alt={selectedProduct.name}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <span className="text-9xl">{selectedProduct.image}</span>
+                  )}
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <div>
+                  {selectedProduct.name.includes('\n') ? (
+                    <>
+                      <p className="text-sm text-muted-foreground mb-1">{selectedProduct.name.split('\n')[0]}</p>
+                      <h2 className="text-3xl font-heading font-bold">{selectedProduct.name.split('\n')[1]}</h2>
+                    </>
+                  ) : (
+                    <h2 className="text-3xl font-heading font-bold">{selectedProduct.name}</h2>
+                  )}
+                </div>
+
+                <div className="flex items-baseline gap-2">
+                  <span className="text-4xl font-bold text-primary">{selectedProduct.price} ₽</span>
+                </div>
+
+                <div className="flex gap-3">
+                  <Button 
+                    size="lg"
+                    className="flex-1"
+                    onClick={() => {
+                      handleAddToCart(selectedProduct);
+                      setIsProductDialogOpen(false);
+                    }}
+                  >
+                    <Icon name="ShoppingCart" size={20} className="mr-2" />
+                    Добавить в заявку
+                  </Button>
+                  <Button 
+                    size="lg"
+                    variant="outline"
+                    onClick={() => setIsProductDialogOpen(false)}
+                  >
+                    <Icon name="Heart" size={20} />
+                  </Button>
+                </div>
+
+                <div className="border-t pt-6">
+                  <h3 className="text-xl font-heading font-bold mb-4">Техническая информация</h3>
+                  {selectedProduct.description && (
+                    <div className="grid grid-cols-3 gap-4 mb-4">
+                      {selectedProduct.description.split('х').map((dim, idx) => (
+                        <div key={idx} className="bg-muted/30 p-3 rounded-lg">
+                          <p className="text-xs text-muted-foreground mb-1">
+                            {idx === 0 ? 'Ширина' : idx === 1 ? 'Длина' : 'Высота'}
+                          </p>
+                          <p className="text-lg font-bold">{dim.trim()}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div className="border-t pt-6">
+                  <p className="text-muted-foreground mb-4">
+                    Если появились вопросы, вы можете получить консультацию руководителя проекта:
+                  </p>
+                  <Button variant="outline" size="lg" className="w-full" asChild>
+                    <a href="tel:+79181151551">
+                      <Icon name="Phone" size={20} className="mr-2" />
+                      Перезвоните мне
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
