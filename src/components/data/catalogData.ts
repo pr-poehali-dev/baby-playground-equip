@@ -21,7 +21,7 @@ export interface Subcategory {
 export const categories = [
   {
     id: 'playground-urban',
-    name: 'Игровое оборудование "Urban"',
+    name: 'Игровое оборудование "Classic"',
     icon: 'Smile',
     color: 'from-primary/20 to-primary/5',
     image: '',
@@ -49,7 +49,7 @@ export const categories = [
   },
   {
     id: 'sports-urban',
-    name: 'Спортивное оборудование "Urban"',
+    name: 'Спортивное оборудование "Classic"',
     icon: 'Dumbbell',
     color: 'from-secondary/20 to-secondary/5',
     image: '',
