@@ -414,7 +414,7 @@ export function CatalogSection({
             </aside>
 
             <div className="flex-1">
-              <div className="sticky top-[120px] bg-white z-10 pb-4 mb-2">
+              <div className="sticky top-[120px] bg-white z-10 pb-4 mb-2 pt-4">
                 <div className="flex items-center gap-4">
                   <div className="flex-1 relative">
                     <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
