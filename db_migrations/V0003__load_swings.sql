@@ -1,0 +1,21 @@
+-- Вставка товаров каталога: Качели
+INSERT INTO products (article, name, category, dimensions, price, image_url) VALUES
+('0110', 'Качели', 'playground', '1885х1100х1990', 52100, 'https://cdn.poehali.dev/files/кач.png'),
+('0111', 'Качели', 'playground', '1540х1240х2010', 52100, 'https://cdn.poehali.dev/files/image.png'),
+('0112', 'Качели двойные', 'playground', '2640х1100х1990', 71150, 'https://cdn.poehali.dev/files/image.png'),
+('0113', 'Качели двойные', 'playground', '2645х1240х2010', 71150, 'https://cdn.poehali.dev/files/image.png'),
+('0114', 'Качели двойные', 'playground', '3015х1100х1985', 89600, 'https://cdn.poehali.dev/files/image.png'),
+('0115', 'Качели "Гнездо"', 'playground', '1885х1100х1990', 144500, 'https://cdn.poehali.dev/files/image.png'),
+('0116', 'Качели на брусе', 'playground', '1645х1300х2110', 84300, 'https://cdn.poehali.dev/files/image.png'),
+('0117', 'Качели на брусе двойные', 'playground', '2745х1300х2110', 103850, 'https://cdn.poehali.dev/files/image.png'),
+('0118', 'Качели на брусе двойные', 'playground', '4250х1300х2110', 226400, 'https://cdn.poehali.dev/files/image.png'),
+('0119', 'Качели "Штурвал"', 'playground', '2740х1300х2110', 109750, 'https://cdn.poehali.dev/files/image.png'),
+('0120', 'Качели "Гнездо"', 'playground', '2740х1300х2110', 172300, 'https://cdn.poehali.dev/files/image.png'),
+('0121', 'Качели на брусе', 'playground', '1645х1300х2110', 73900, 'https://cdn.poehali.dev/files/image.png'),
+('0122', 'Качели на брусе двойные', 'playground', '2745х1300х2110', 83400, 'https://cdn.poehali.dev/files/image.png'),
+('0123', 'Сиденье качели "Гнездо" антивандальное', 'playground', '1000х1000х100', 98700, 'https://cdn.poehali.dev/files/гнездо.png'),
+('0124', 'Сиденье качели', 'playground', '380х400х310', 10250, 'https://cdn.poehali.dev/files/124 (2).png'),
+('0125', 'Сиденье прорезиненное "Люлька"', 'playground', '440х290х230', 28900, 'https://cdn.poehali.dev/files/128.png'),
+('0126', 'Сиденье прорезиненное', 'playground', '450х180х27', 8700, 'https://cdn.poehali.dev/files/126 (2).png'),
+('0127', 'Сиденье пластиковое "Люлька"', 'playground', '320х260х190', 22500, 'https://cdn.poehali.dev/files/127 (2).png'),
+('0128', 'Сиденье гибкое без спинки', 'playground', '670х140х8', 8400, 'https://cdn.poehali.dev/files/125 (2).png');
