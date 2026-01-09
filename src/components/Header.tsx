@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
@@ -35,6 +36,8 @@ export function Header({
   generateKP,
   favoritesCount = 0
 }: HeaderProps) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50 border-b">
       <div className="container mx-auto px-4 py-4">
@@ -62,14 +65,68 @@ export function Header({
               +7 (918) 115-15-51
             </a>
             <div className="flex items-center gap-3">
-            <Button 
-              variant="outline" 
-              size="icon"
-              onClick={() => setIsSideMenuOpen(true)}
-              className="md:hidden"
-            >
-              <Icon name="Menu" size={20} />
-            </Button>
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button 
+                  variant="outline" 
+                  size="icon"
+                  className="md:hidden"
+                >
+                  <Icon name="Menu" size={20} />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-80">
+                <SheetHeader>
+                  <SheetTitle className="text-2xl font-heading">Меню</SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col gap-4 mt-6">
+                  <a 
+                    href="#catalog" 
+                    className="text-lg font-medium hover:text-primary transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Каталог
+                  </a>
+                  <a 
+                    href="#services" 
+                    className="text-lg font-medium hover:text-primary transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Услуги
+                  </a>
+                  <a 
+                    href="#about" 
+                    className="text-lg font-medium hover:text-primary transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    О компании
+                  </a>
+                  <a 
+                    href="#certificates" 
+                    className="text-lg font-medium hover:text-primary transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Сертификаты
+                  </a>
+                  <a 
+                    href="#contacts" 
+                    className="text-lg font-medium hover:text-primary transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Контакты
+                  </a>
+                  <div className="border-t pt-4 mt-2">
+                    <a 
+                      href="tel:+79181151551" 
+                      className="flex items-center gap-2 text-lg font-semibold hover:text-primary transition-colors"
+                    >
+                      <Icon name="Phone" size={20} className="text-primary" />
+                      +7 (918) 115-15-51
+                    </a>
+                  </div>
+                </nav>
+              </SheetContent>
+            </Sheet>
 
             <Link to="/favorites">
               <Button variant="outline" className="relative">
