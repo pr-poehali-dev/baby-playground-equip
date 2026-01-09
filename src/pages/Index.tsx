@@ -270,12 +270,12 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     
     worksheet.columns = [
       { width: 4 },
-      { width: 28 },
+      { width: 24 },
       { width: imageColumnWidth },
       { width: 7 },
       { width: 7 },
-      { width: 13 },
-      { width: 13 }
+      { width: 15 },
+      { width: 15 }
     ];
     
     worksheet.pageSetup = {
