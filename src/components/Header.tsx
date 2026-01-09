@@ -212,7 +212,7 @@ export function Header({
                     <div className="border-t pt-4 space-y-3">
                       <div className="flex justify-between text-lg font-semibold">
                         <span>Итого:</span>
-                        <span style={{ color: '#45aa04' }}>{calculateTotal().toLocaleString('ru-RU')} ₽</span>
+                        <span className="text-primary">{calculateTotal().toLocaleString('ru-RU')} ₽</span>
                       </div>
                       
                       {deliveryCost > 0 && (

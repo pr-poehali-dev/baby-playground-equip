@@ -96,7 +96,7 @@ export default function FavoritesPage({ favorites, removeFromFavorites, addToCar
                       <p className="text-xs text-muted-foreground line-clamp-1 leading-tight">{product.description}</p>
                     )}
                   </div>
-                  <p className="text-lg font-bold mt-2" style={{ color: '#45aa04' }}>{formatPrice(product.price)} ₽</p>
+                  <p className="text-lg font-bold text-primary mt-2">{formatPrice(product.price)} ₽</p>
                   <div className="flex gap-2 mt-2">
                     <Button 
                       size="sm"
