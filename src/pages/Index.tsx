@@ -100,6 +100,10 @@ export default function Index() {
   const availableCategories = (() => {
     let filtered = products;
     
+    if (selectedCategory) {
+      filtered = filtered.filter(p => p.category === selectedCategory);
+    }
+    
     if (selectedSeries) {
       filtered = filtered.filter(p => p.subcategory === selectedSeries);
     }
