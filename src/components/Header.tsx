@@ -46,7 +46,7 @@ export function Header({
             <img 
               src="https://cdn.poehali.dev/files/photo_643632026-01-05_09-32-44.png" 
               alt="Urban Play"
-              className="h-24 w-auto"
+              className="h-16 w-auto"
             />
           </div>
           <nav className="hidden md:flex gap-6">
