@@ -164,55 +164,8 @@ export function Header({
                   </div>
                 ) : (
                   <div className="mt-6 space-y-6">
-                    <div className="space-y-4">
-                      {cart.map((item) => (
-                        <Card key={item.id}>
-                          <CardContent className="p-4">
-                            <div className="flex gap-4">
-                              <div className="w-20 h-20 bg-white rounded-lg flex items-center justify-center text-4xl shrink-0 border">
-                                {item.image.startsWith('http') ? (
-                                  <img src={item.image} alt={item.name} className="w-full h-full object-contain p-1" />
-                                ) : (
-                                  <span>{item.image}</span>
-                                )}
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <h3 className="font-semibold mb-1 truncate">{item.name}</h3>
-                                <p className="text-sm text-muted-foreground mb-2">{formatPrice(item.price)} ₽</p>
-                                <div className="flex items-center gap-2">
-                                  <Button 
-                                    size="sm" 
-                                    variant="outline"
-                                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                  >
-                                    <Icon name="Minus" size={14} />
-                                  </Button>
-                                  <span className="w-8 text-center font-medium">{item.quantity}</span>
-                                  <Button 
-                                    size="sm" 
-                                    variant="outline"
-                                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                  >
-                                    <Icon name="Plus" size={14} />
-                                  </Button>
-                                  <Button 
-                                    size="sm" 
-                                    variant="destructive"
-                                    className="ml-auto"
-                                    onClick={() => removeFromCart(item.id)}
-                                  >
-                                    <Icon name="Trash2" size={14} />
-                                  </Button>
-                                </div>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                    
                     {showOrderForm ? (
-                      <div className="mt-4">
+                      <div>
                         <OrderForm
                           total={calculateTotal()}
                           deliveryCost={deliveryCost}
@@ -223,53 +176,102 @@ export function Header({
                         />
                       </div>
                     ) : (
-                      <div className="border-t pt-4 space-y-3">
-                        <div className="flex justify-between text-lg font-semibold">
-                          <span>Итого:</span>
-                          <span className="text-primary">{calculateTotal().toLocaleString('ru-RU')} ₽</span>
+                      <>
+                        <div className="space-y-4">
+                          {cart.map((item) => (
+                            <Card key={item.id}>
+                              <CardContent className="p-4">
+                                <div className="flex gap-4">
+                                  <div className="w-20 h-20 bg-white rounded-lg flex items-center justify-center text-4xl shrink-0 border">
+                                    {item.image.startsWith('http') ? (
+                                      <img src={item.image} alt={item.name} className="w-full h-full object-contain p-1" />
+                                    ) : (
+                                      <span>{item.image}</span>
+                                    )}
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <h3 className="font-semibold mb-1 truncate">{item.name}</h3>
+                                    <p className="text-sm text-muted-foreground mb-2">{formatPrice(item.price)} ₽</p>
+                                    <div className="flex items-center gap-2">
+                                      <Button 
+                                        size="sm" 
+                                        variant="outline"
+                                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                      >
+                                        <Icon name="Minus" size={14} />
+                                      </Button>
+                                      <span className="w-8 text-center font-medium">{item.quantity}</span>
+                                      <Button 
+                                        size="sm" 
+                                        variant="outline"
+                                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                      >
+                                        <Icon name="Plus" size={14} />
+                                      </Button>
+                                      <Button 
+                                        size="sm" 
+                                        variant="destructive"
+                                        className="ml-auto"
+                                        onClick={() => removeFromCart(item.id)}
+                                      >
+                                        <Icon name="Trash2" size={14} />
+                                      </Button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                          ))}
                         </div>
                         
-                        {deliveryCost > 0 && (
-                          <div className="flex justify-between text-sm text-muted-foreground">
-                            <span>Доставка:</span>
-                            <span>{deliveryCost.toLocaleString('ru-RU')} ₽</span>
+                        <div className="border-t pt-4 space-y-3">
+                          <div className="flex justify-between text-lg font-semibold">
+                            <span>Итого:</span>
+                            <span className="text-primary">{calculateTotal().toLocaleString('ru-RU')} ₽</span>
                           </div>
-                        )}
+                          
+                          {deliveryCost > 0 && (
+                            <div className="flex justify-between text-sm text-muted-foreground">
+                              <span>Доставка:</span>
+                              <span>{deliveryCost.toLocaleString('ru-RU')} ₽</span>
+                            </div>
+                          )}
+                          
+                          <Button 
+                            className="w-full" 
+                            size="lg"
+                            onClick={() => setShowOrderForm(true)}
+                          >
+                            <Icon name="ShoppingBag" size={20} className="mr-2" />
+                            Оформить заказ
+                          </Button>
                         
-                        <Button 
-                          className="w-full" 
-                          size="lg"
-                          onClick={() => setShowOrderForm(true)}
-                        >
-                          <Icon name="ShoppingBag" size={20} className="mr-2" />
-                          Оформить заказ
-                        </Button>
-                        
-                        <Button 
-                          variant="outline"
-                          className="w-full" 
-                          size="lg"
-                          onClick={() => {
-                            generateKP();
-                            setIsCartOpen(false);
-                          }}
-                        >
-                          <Icon name="FileText" size={20} className="mr-2" />
-                          Скачать коммерческое предложение
-                        </Button>
-                        
-                        <Button 
-                          variant="outline" 
-                          className="w-full" 
-                          size="lg"
-                          asChild
-                        >
-                          <a href="tel:+79181151551">
-                            <Icon name="Phone" size={16} className="mr-2" />
-                            +7 (918) 115-15-51
-                          </a>
-                        </Button>
-                      </div>
+                          <Button 
+                            variant="outline"
+                            className="w-full" 
+                            size="lg"
+                            onClick={() => {
+                              generateKP();
+                              setIsCartOpen(false);
+                            }}
+                          >
+                            <Icon name="FileText" size={20} className="mr-2" />
+                            Скачать коммерческое предложение
+                          </Button>
+                          
+                          <Button 
+                            variant="outline" 
+                            className="w-full" 
+                            size="lg"
+                            asChild
+                          >
+                            <a href="tel:+79181151551">
+                              <Icon name="Phone" size={16} className="mr-2" />
+                              +7 (918) 115-15-51
+                            </a>
+                          </Button>
+                        </div>
+                      </>
                     )}
                   </div>
                 )}
