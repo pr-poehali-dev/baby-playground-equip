@@ -258,7 +258,11 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     const montageDelivery = Math.round(total * 0.2);
     const grandTotal = total + montageDelivery;
     const date = new Date().toLocaleDateString('ru-RU');
-    const kpNumber = `0001 от ${date}`;
+    
+    // Счетчик номера КП
+    const currentCount = parseInt(localStorage.getItem('kpCounter') || '0', 10) + 1;
+    localStorage.setItem('kpCounter', currentCount.toString());
+    const kpNumber = `${currentCount.toString().padStart(4, '0')} от ${date}`;
     
     const ExcelJS = (await import('exceljs')).default;
     const workbook = new ExcelJS.Workbook();
@@ -270,8 +274,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       { width: imageColumnWidth },
       { width: 7 },
       { width: 7 },
-      { width: 10 },
-      { width: 10 }
+      { width: 13 },
+      { width: 13 }
     ];
     
     worksheet.pageSetup = {
