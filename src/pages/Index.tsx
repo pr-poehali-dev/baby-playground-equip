@@ -44,7 +44,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const [selectedSeries, setSelectedSeries] = useState<string | null>(null);
   const [isExcelSettingsOpen, setIsExcelSettingsOpen] = useState(false);
-  const [imageColumnWidth, setImageColumnWidth] = useState(24);
+  const [imageColumnWidth, setImageColumnWidth] = useState(28);
   const [imageRowHeight, setImageRowHeight] = useState(145);
 
   useEffect(() => {
@@ -295,15 +295,15 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
           extension: 'png',
         });
         
-        worksheet.mergeCells('A1:B4');
+        worksheet.mergeCells('A1:C5');
         worksheet.addImage(logoImageId, {
-          tl: { col: 0, row: 0 },
-          ext: { width: 100, height: 70 }
+          tl: { col: 0.1, row: 0.1 },
+          ext: { width: 140, height: 90 }
         });
       }
     } catch (error) {
       console.error('Failed to load logo:', error);
-      worksheet.mergeCells('A1:B4');
+      worksheet.mergeCells('A1:C5');
       const logoCell = worksheet.getCell('A1');
       logoCell.value = 'Urban\nPlay';
       logoCell.font = { size: 18, bold: true, color: { argb: 'FF6B21A8' } };
@@ -462,8 +462,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
           });
           
           worksheet.addImage(imageId, {
-            tl: { col: 2.1, row: currentRow - 0.9 },
-            br: { col: 2.9, row: currentRow - 0.1 },
+            tl: { col: 2.15, row: currentRow - 0.85 },
+            br: { col: 2.85, row: currentRow - 0.15 },
             editAs: 'oneCell'
           });
         } catch (error) {
