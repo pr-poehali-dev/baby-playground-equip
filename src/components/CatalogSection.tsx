@@ -442,6 +442,14 @@ export function CatalogSection({
                     Качели
                   </Button>
                   <Button
+                    variant={selectedSubSubcategory === 'Карусели' ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => setSelectedSubSubcategory(selectedSubSubcategory === 'Карусели' ? null : 'Карусели')}
+                    className={selectedSubSubcategory === 'Карусели' ? 'bg-primary hover:bg-primary/90' : ''}
+                  >
+                    Карусели
+                  </Button>
+                  <Button
                     variant={selectedSubSubcategory === 'Балансиры' ? 'default' : 'outline'}
                     size="sm"
                     onClick={() => setSelectedSubSubcategory(selectedSubSubcategory === 'Балансиры' ? null : 'Балансиры')}
@@ -468,7 +476,7 @@ export function CatalogSection({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {filteredProducts.length > 0 ? (
                   filteredProducts.map((product) => (
                     <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all group cursor-pointer">

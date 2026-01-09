@@ -57,6 +57,9 @@ export default function Index() {
             if (p.name.includes('Сиденье') || p.name.includes('Качели')) {
               subcategory = 'Серия "Classic"';
               subsubcategory = 'Качели';
+            } else if (p.name.includes('Карусель')) {
+              subcategory = 'Серия "Classic"';
+              subsubcategory = 'Карусели';
             } else if (p.name.includes('Балансир')) {
               subcategory = 'Серия "Classic"';
               subsubcategory = 'Балансиры';
