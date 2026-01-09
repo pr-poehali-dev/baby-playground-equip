@@ -44,8 +44,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const [selectedSeries, setSelectedSeries] = useState<string | null>(null);
   const [isExcelSettingsOpen, setIsExcelSettingsOpen] = useState(false);
-  const [imageColumnWidth, setImageColumnWidth] = useState(35);
-  const [imageRowHeight, setImageRowHeight] = useState(130);
+  const [imageColumnWidth, setImageColumnWidth] = useState(26);
+  const [imageRowHeight, setImageRowHeight] = useState(99);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -463,7 +463,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
           
           worksheet.addImage(imageId, {
             tl: { col: 2.05, row: currentRow - 0.95 },
-            ext: { width: 180, height: 120 },
+            ext: { width: 140, height: 90 },
             editAs: 'oneCell'
           });
         } catch (error) {
