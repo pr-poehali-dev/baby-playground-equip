@@ -254,47 +254,77 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
   const generateKP = async () => {
     const total = calculateTotal();
     const date = new Date().toLocaleDateString('ru-RU');
+    const kpNumber = `0001 от ${date}`;
     
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet('Коммерческое предложение');
     
     worksheet.columns = [
       { width: 5 },
-      { width: 15 },
-      { width: 45 },
-      { width: 15 },
+      { width: 30 },
+      { width: 20 },
       { width: 12 },
+      { width: 10 },
+      { width: 15 },
       { width: 15 }
     ];
     
-    worksheet.getRow(1).height = 60;
-    worksheet.getCell('A1').value = 'URBAN PLAY';
-    worksheet.getCell('A1').font = { size: 20, bold: true, color: { argb: 'FF0066CC' } };
-    worksheet.getCell('A1').alignment = { vertical: 'middle', horizontal: 'left' };
+    // Логотип - заглушка текстом
+    worksheet.mergeCells('A1:B5');
+    const logoCell = worksheet.getCell('A1');
+    logoCell.value = 'Urban\nPlay';
+    logoCell.font = { size: 24, bold: true, color: { argb: 'FF6B21A8' } };
+    logoCell.alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
+    logoCell.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'FFF0E6FF' }
+    };
+    logoCell.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' }
+    };
     
-    worksheet.getCell('D2').value = 'ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ';
-    worksheet.getCell('D2').font = { bold: true, size: 11 };
-    worksheet.getCell('D3').value = 'ИНН 110209455200  ОГРНИП 32377460012482';
+    // Шапка справа
+    worksheet.getCell('D1').value = 'ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ';
+    worksheet.getCell('D1').font = { bold: true, size: 10 };
+    worksheet.getCell('D2').value = 'ИНН 110209455200 ОГРНИП 32377460012482';
+    worksheet.getCell('D2').font = { size: 9 };
+    worksheet.getCell('D3').value = '350005, г. Краснодар, ул. Кореновская, д. 57 оф.7';
     worksheet.getCell('D3').font = { size: 9 };
-    worksheet.getCell('D4').value = '350005, г. Краснодар, ул. Кореновская, д. 57 оф.7';
+    worksheet.getCell('D4').value = 'тел: +7 918 115 15 51 e-mail: info@urban-play.ru';
     worksheet.getCell('D4').font = { size: 9 };
-    worksheet.getCell('D5').value = 'тел: +7 918 115 15 51  e-mail: info@urban-play.ru';
-    worksheet.getCell('D5').font = { size: 9 };
-    worksheet.getCell('D6').value = 'www.urban-play.ru';
-    worksheet.getCell('D6').font = { size: 9, color: { argb: 'FF0000FF' }, underline: true };
+    worksheet.getCell('D5').value = 'www.urban-play.ru';
+    worksheet.getCell('D5').font = { size: 9, color: { argb: 'FF0000FF' }, underline: true };
     
-    worksheet.mergeCells('B8:F8');
-    const titleCell = worksheet.getCell('B8');
-    titleCell.value = 'КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ';
-    titleCell.font = { size: 16, bold: true };
+    // Линия-разделитель
+    worksheet.mergeCells('A6:G6');
+    worksheet.getCell('A6').fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'FF6B21A8' }
+    };
+    worksheet.getRow(6).height = 3;
+    
+    // Заголовок
+    worksheet.mergeCells('A8:G8');
+    const titleCell = worksheet.getCell('A8');
+    titleCell.value = `Коммерческое предложение № ${kpNumber}`;
+    titleCell.font = { size: 14, bold: true };
     titleCell.alignment = { horizontal: 'center', vertical: 'middle' };
     
-    worksheet.getCell('B10').value = `Дата: ${date}`;
+    // Адрес объекта
+    worksheet.mergeCells('A10:G10');
+    worksheet.getCell('A10').value = 'Адрес объекта: г. Краснодар, ул. Аверкиева, д.16';
+    worksheet.getCell('A10').font = { size: 10 };
     
+    // Заголовок таблицы
     const headerRow = worksheet.getRow(12);
-    headerRow.values = ['', 'Артикул', 'Наименование', 'Цена', 'Кол-во', 'Сумма'];
-    headerRow.font = { bold: true };
-    headerRow.height = 20;
+    headerRow.values = ['№', 'Наименование', 'Рисунок', 'Кол-во', 'Ед. изм', 'Цена, руб', 'Сумма, руб'];
+    headerRow.font = { bold: true, size: 10 };
+    headerRow.height = 25;
     headerRow.eachCell((cell) => {
       cell.fill = {
         type: 'pattern',
@@ -307,82 +337,138 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
         bottom: { style: 'thin' },
         right: { style: 'thin' }
       };
-      cell.alignment = { horizontal: 'center', vertical: 'middle' };
+      cell.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true };
     });
     
     let currentRow = 13;
     
-    for (const item of cart) {
+    // Товары с картинками
+    for (let i = 0; i < cart.length; i++) {
+      const item = cart[i];
       const price = parseInt(item.price.replace(/\s/g, '').split('/')[0]);
       const itemTotal = price * item.quantity;
       
       const row = worksheet.getRow(currentRow);
-      row.height = 30;
+      row.height = 80;
       
       const nameParts = item.name.split('\n');
-      const article = nameParts[0] ? nameParts[0].replace('Арт. ', '') : '';
       const productName = nameParts[1] || item.name;
+      const dimensions = productName.match(/\d+x\d+x\d+|\d+×\d+×\d+/)?.[0] || '';
       
-      row.getCell(2).value = article;
-      row.getCell(3).value = productName;
-      row.getCell(4).value = `${price.toLocaleString('ru-RU')} ₽`;
-      row.getCell(5).value = item.quantity;
-      row.getCell(6).value = `${itemTotal.toLocaleString('ru-RU')} ₽`;
+      row.getCell(1).value = i + 1;
+      row.getCell(2).value = productName;
+      row.getCell(3).value = ''; // Рисунок - будет добавлен
+      row.getCell(4).value = item.quantity;
+      row.getCell(5).value = 'шт';
+      row.getCell(6).value = price;
+      row.getCell(6).numFmt = '#,##0.00';
+      row.getCell(7).value = itemTotal;
+      row.getCell(7).numFmt = '#,##0.00';
       
-      row.eachCell((cell, colNumber) => {
-        if (colNumber > 1) {
-          cell.border = {
-            top: { style: 'thin' },
-            left: { style: 'thin' },
-            bottom: { style: 'thin' },
-            right: { style: 'thin' }
-          };
-          cell.alignment = { vertical: 'middle', horizontal: colNumber === 3 ? 'left' : 'center', wrapText: true };
-        }
+      row.eachCell((cell) => {
+        cell.border = {
+          top: { style: 'thin' },
+          left: { style: 'thin' },
+          bottom: { style: 'thin' },
+          right: { style: 'thin' }
+        };
+        cell.alignment = { 
+          vertical: 'middle', 
+          horizontal: cell.col === 2 ? 'left' : 'center',
+          wrapText: true 
+        };
       });
       
-      currentRow++;
-    }
-    
-    currentRow += 1;
-    const totalRow = worksheet.getRow(currentRow);
-    totalRow.getCell(5).value = 'ИТОГО:';
-    totalRow.getCell(6).value = `${total.toLocaleString('ru-RU')} ₽`;
-    totalRow.font = { bold: true, size: 12 };
-    totalRow.getCell(5).alignment = { horizontal: 'right' };
-    totalRow.getCell(6).alignment = { horizontal: 'center' };
-    
-    if (deliveryCost > 0) {
-      currentRow++;
-      const deliveryRow = worksheet.getRow(currentRow);
-      deliveryRow.getCell(5).value = 'Доставка:';
-      deliveryRow.getCell(6).value = `${deliveryCost.toLocaleString('ru-RU')} ₽`;
+      // Добавление картинки (если URL)
+      if (item.image.startsWith('http')) {
+        try {
+          const response = await fetch(item.image);
+          const blob = await response.blob();
+          const arrayBuffer = await blob.arrayBuffer();
+          const imageId = workbook.addImage({
+            buffer: arrayBuffer,
+            extension: 'png',
+          });
+          
+          worksheet.addImage(imageId, {
+            tl: { col: 2.1, row: currentRow - 0.9 },
+            br: { col: 2.9, row: currentRow - 0.1 },
+            editAs: 'oneCell'
+          });
+        } catch (error) {
+          console.log('Не удалось загрузить изображение:', error);
+        }
+      }
       
       currentRow++;
-      const grandTotalRow = worksheet.getRow(currentRow);
-      grandTotalRow.getCell(5).value = 'ВСЕГО:';
-      grandTotalRow.getCell(6).value = `${(total + deliveryCost).toLocaleString('ru-RU')} ₽`;
-      grandTotalRow.font = { bold: true, size: 14 };
     }
     
+    // Пустая строка для монтажа
+    const montageRow = worksheet.getRow(currentRow);
+    montageRow.values = [cart.length + 1, 'Монтаж - доставка', '', 1, 'усл', '', ''];
+    montageRow.height = 25;
+    montageRow.eachCell((cell) => {
+      cell.border = {
+        top: { style: 'thin' },
+        left: { style: 'thin' },
+        bottom: { style: 'thin' },
+        right: { style: 'thin' }
+      };
+      cell.alignment = { vertical: 'middle', horizontal: cell.col === 2 ? 'left' : 'center' };
+    });
+    currentRow++;
+    
+    // Итого
+    const totalRow = worksheet.getRow(currentRow);
+    totalRow.values = ['', '', '', '', '', 'Итого:', total];
+    totalRow.font = { bold: true, size: 11 };
+    totalRow.height = 25;
+    totalRow.getCell(6).border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' }
+    };
+    totalRow.getCell(7).border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' }
+    };
+    totalRow.getCell(6).alignment = { horizontal: 'right', vertical: 'middle' };
+    totalRow.getCell(7).alignment = { horizontal: 'center', vertical: 'middle' };
+    totalRow.getCell(7).numFmt = '#,##0.00';
+    totalRow.getCell(7).fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'FFFFEB3B' }
+    };
+    
     currentRow += 2;
-    worksheet.getCell(`B${currentRow}`).value = 'Условия оплаты:';
-    worksheet.getCell(`B${currentRow}`).font = { bold: true };
+    
+    // Нижний текст
+    worksheet.getCell(`A${currentRow}`).value = 'Оборудование имеет сертификат соответствия ТС ЕАЭС 042-2017';
+    worksheet.getCell(`A${currentRow}`).font = { size: 9 };
     currentRow++;
-    worksheet.getCell(`B${currentRow}`).value = '• Предоплата 70% после согласования заказа';
+    worksheet.getCell(`A${currentRow}`).value = 'Срок действия коммерческого предложения 15 дней';
+    worksheet.getCell(`A${currentRow}`).font = { size: 9 };
     currentRow++;
-    worksheet.getCell(`B${currentRow}`).value = '• Оплата оставшихся 30% перед отгрузкой оборудования';
-    currentRow++;
-    worksheet.getCell(`B${currentRow}`).value = '• Принимаем наличные, безналичный расчёт';
-    currentRow++;
-    worksheet.getCell(`B${currentRow}`).value = '• Гарантия 12 месяцев на всё оборудование';
+    worksheet.getCell(`A${currentRow}`).value = 'Срок изготовления оборудования 30 дней';
+    worksheet.getCell(`A${currentRow}`).font = { size: 9 };
+    
+    currentRow += 2;
+    
+    // Подписи
+    worksheet.getCell(`A${currentRow}`).value = 'Индивидуальный предприниматель';
+    worksheet.getCell(`E${currentRow}`).value = '/Пронин Р.О./';
+    worksheet.getCell(`E${currentRow}`).font = { italic: true };
     
     const buffer = await workbook.xlsx.writeBuffer();
     const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `КП_${date.replace(/\./g, '-')}.xlsx`;
+    link.download = `КП_${kpNumber.replace(/[\/\s]/g, '_')}.xlsx`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
