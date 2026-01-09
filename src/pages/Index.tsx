@@ -264,7 +264,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     worksheet.columns = [
       { width: 4 },
       { width: 22 },
-      { width: 27 },
+      { width: 24 },
       { width: 7 },
       { width: 7 },
       { width: 10 },
@@ -437,7 +437,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       const itemTotal = price * item.quantity;
       
       const row = worksheet.getRow(currentRow);
-      row.height = 150;
+      row.height = 145;
       
       const nameParts = item.name.split('\n');
       const article = nameParts[0] ? nameParts[0].replace('Арт. ', '') : '';
