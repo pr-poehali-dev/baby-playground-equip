@@ -378,7 +378,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     // Заголовок таблицы
     const headerRow = worksheet.getRow(11);
     headerRow.values = ['№', 'Наименование', 'Рисунок', 'Кол-во', 'Ед. изм', 'Цена, руб', 'Сумма, руб'];
-    headerRow.font = { bold: true, size: 10 };
+    headerRow.font = { name: 'Times New Roman', bold: true, size: 10 };
     headerRow.height = 25;
     headerRow.eachCell((cell) => {
       cell.fill = {
@@ -484,6 +484,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       row.getCell(7).numFmt = '#,##0.00';
       
       row.eachCell((cell) => {
+        cell.font = { name: 'Times New Roman', size: 12 };
         cell.border = {
           top: { style: 'thin' },
           left: { style: 'thin' },
@@ -505,6 +506,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     montageRow.values = [cart.length + 1, 'Монтаж + доставка', '', 1, 'усл', montageDelivery, montageDelivery];
     montageRow.height = 25;
     montageRow.eachCell((cell) => {
+      cell.font = { name: 'Times New Roman', size: 12 };
       cell.border = {
         top: { style: 'thin' },
         left: { style: 'thin' },
@@ -520,7 +522,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     // Итого
     const totalRow = worksheet.getRow(currentRow);
     totalRow.values = ['', '', '', '', '', 'Итого:', grandTotal];
-    totalRow.font = { bold: true, size: 11 };
+    totalRow.font = { name: 'Times New Roman', bold: true, size: 12 };
     totalRow.height = 25;
     totalRow.getCell(6).border = {
       top: { style: 'thin' },
@@ -542,20 +544,21 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     
     // Нижний текст
     worksheet.getCell(`A${currentRow}`).value = 'Оборудование имеет сертификат соответствия ТС ЕАЭС 042-2017';
-    worksheet.getCell(`A${currentRow}`).font = { size: 9 };
+    worksheet.getCell(`A${currentRow}`).font = { name: 'Times New Roman', size: 12 };
     currentRow++;
     worksheet.getCell(`A${currentRow}`).value = 'Срок действия коммерческого предложения 15 дней';
-    worksheet.getCell(`A${currentRow}`).font = { size: 9 };
+    worksheet.getCell(`A${currentRow}`).font = { name: 'Times New Roman', size: 12 };
     currentRow++;
     worksheet.getCell(`A${currentRow}`).value = 'Срок изготовления оборудования 30 дней';
-    worksheet.getCell(`A${currentRow}`).font = { size: 9 };
+    worksheet.getCell(`A${currentRow}`).font = { name: 'Times New Roman', size: 12 };
     
     currentRow += 2;
     
     // Подписи
     worksheet.getCell(`A${currentRow}`).value = 'Индивидуальный предприниматель';
+    worksheet.getCell(`A${currentRow}`).font = { name: 'Times New Roman', size: 12 };
     worksheet.getCell(`E${currentRow}`).value = '/Пронин Р.О./';
-    worksheet.getCell(`E${currentRow}`).font = { italic: true };
+    worksheet.getCell(`E${currentRow}`).font = { name: 'Times New Roman', size: 12, italic: true };
     
     const buffer = await workbook.xlsx.writeBuffer();
     const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
