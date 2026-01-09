@@ -462,8 +462,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
           });
           
           worksheet.addImage(imageId, {
-            tl: { col: 2.02, row: currentRow - 0.98 },
-            br: { col: 2.98, row: currentRow - 0.02 },
+            tl: { col: 2.05, row: currentRow - 0.95 },
+            ext: { width: 180, height: 120 },
             editAs: 'oneCell'
           });
         } catch (error) {
