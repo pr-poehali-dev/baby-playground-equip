@@ -399,7 +399,7 @@ export function CatalogSection({
                 <h2 className="text-3xl font-heading font-bold mb-4 mt-8">
                   {categories.find(c => c.id === selectedCategory)?.name}
                 </h2>
-                <div className="sticky top-0 bg-white z-10 pb-4 mb-2 pt-4 shadow-sm">
+                <div className="sticky top-[73px] bg-white z-40 pb-4 mb-2 pt-4 shadow-sm">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="flex-1 relative">
                     <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
