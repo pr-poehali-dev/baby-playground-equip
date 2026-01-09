@@ -34,6 +34,7 @@ export default function Index() {
   const [searchQuery, setSearchQuery] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
+  const [selectedSeries, setSelectedSeries] = useState<string | null>(null);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -101,6 +102,10 @@ export default function Index() {
       : selectedCategory
       ? products.filter(p => p.category === selectedCategory)
       : products;
+    
+    if (selectedSeries) {
+      filtered = filtered.filter(p => p.subcategory === selectedSeries);
+    }
     
     filtered = filtered.filter(p => parseInt(p.price) > 0);
     
@@ -344,8 +349,11 @@ export default function Index() {
           setSelectedCategory(null);
           setSelectedSubcategory(null);
           setSelectedSubSubcategory(null);
+          setSelectedSeries(null);
           setSearchQuery('');
         }}
+        selectedSeries={selectedSeries}
+        setSelectedSeries={setSelectedSeries}
       />
 
       <ContentSections />

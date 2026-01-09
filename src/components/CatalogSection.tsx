@@ -72,6 +72,8 @@ interface CatalogSectionProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   handleResetFilters: () => void;
+  selectedSeries: string | null;
+  setSelectedSeries: (series: string | null) => void;
 }
 
 export function CatalogSection({
@@ -102,6 +104,8 @@ export function CatalogSection({
   searchQuery,
   setSearchQuery,
   handleResetFilters,
+  selectedSeries,
+  setSelectedSeries,
 }: CatalogSectionProps) {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isProductDialogOpen, setIsProductDialogOpen] = useState(false);
@@ -474,6 +478,26 @@ export function CatalogSection({
 
             <div className="flex-1">
               <div className="sticky top-[120px] bg-white z-10 pb-4 mb-2 pt-4">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="flex gap-2">
+                    <Button
+                      variant={selectedSeries === 'Серия "Classic"' ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => setSelectedSeries(selectedSeries === 'Серия "Classic"' ? null : 'Серия "Classic"')}
+                      className={selectedSeries === 'Серия "Classic"' ? 'bg-secondary hover:bg-secondary/90' : ''}
+                    >
+                      Classic
+                    </Button>
+                    <Button
+                      variant={selectedSeries === 'Серия "Eco"' ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => setSelectedSeries(selectedSeries === 'Серия "Eco"' ? null : 'Серия "Eco"')}
+                      className={selectedSeries === 'Серия "Eco"' ? 'bg-accent hover:bg-accent/90' : ''}
+                    >
+                      Eco
+                    </Button>
+                  </div>
+                </div>
                 <div className="flex items-center gap-4">
                   <div className="flex-1 relative">
                     <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
@@ -485,7 +509,7 @@ export function CatalogSection({
                       className="pl-10"
                     />
                   </div>
-                  {(selectedCategory || selectedSubcategory || selectedSubSubcategory || searchQuery) && (
+                  {(selectedCategory || selectedSubcategory || selectedSubSubcategory || selectedSeries || searchQuery) && (
                     <Button 
                       variant="outline" 
                       size="sm"
@@ -567,17 +591,6 @@ export function CatalogSection({
                         className="aspect-[4/3] relative overflow-hidden bg-white flex items-center justify-center"
                         onClick={() => handleProductClick(product)}
                       >
-                        {product.subcategory && (
-                          <Badge 
-                            className={`absolute top-2 right-2 z-10 ${
-                              product.subcategory.includes('Classic') 
-                                ? 'bg-secondary text-white hover:bg-secondary/90' 
-                                : 'bg-accent text-foreground hover:bg-accent/90'
-                            }`}
-                          >
-                            {product.subcategory.replace('Серия "', '').replace('"', '')}
-                          </Badge>
-                        )}
                         {product.image.startsWith('http') ? (
                           <img 
                             src={product.image} 
