@@ -17,7 +17,16 @@ interface Product {
   dimensions?: string;
 }
 
-export default function Index() {
+interface IndexProps {
+  favorites: Product[];
+  toggleFavorite: (product: Product) => void;
+  cart: CartItem[];
+  addToCart: (product: Product) => void;
+  removeFromCart: (id: number) => void;
+  updateQuantity: (id: number, quantity: number) => void;
+}
+
+export default function Index({ favorites, toggleFavorite, cart, addToCart, removeFromCart, updateQuantity }: IndexProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
   const [selectedSubSubcategory, setSelectedSubSubcategory] = useState<string | null>(null);
@@ -25,7 +34,6 @@ export default function Index() {
   const [isSubSubcategoryDialogOpen, setIsSubSubcategoryDialogOpen] = useState(false);
   const [currentCategory, setCurrentCategory] = useState<typeof categories[0] | null>(null);
   const [currentSubcategory, setCurrentSubcategory] = useState<Subcategory | null>(null);
-  const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
@@ -35,34 +43,6 @@ export default function Index() {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const [selectedSeries, setSelectedSeries] = useState<string | null>(null);
-  const [favorites, setFavorites] = useState<Product[]>([]);
-
-  useEffect(() => {
-    const savedFavorites = localStorage.getItem('favorites');
-    if (savedFavorites) {
-      setFavorites(JSON.parse(savedFavorites));
-    }
-  }, []);
-
-  const addToFavorites = (product: Product) => {
-    const newFavorites = [...favorites, product];
-    setFavorites(newFavorites);
-    localStorage.setItem('favorites', JSON.stringify(newFavorites));
-  };
-
-  const removeFromFavorites = (id: number) => {
-    const newFavorites = favorites.filter(item => item.id !== id);
-    setFavorites(newFavorites);
-    localStorage.setItem('favorites', JSON.stringify(newFavorites));
-  };
-
-  const toggleFavorite = (product: Product) => {
-    if (favorites.some(item => item.id === product.id)) {
-      removeFromFavorites(product.id);
-    } else {
-      addToFavorites(product);
-    }
-  };
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -261,39 +241,6 @@ export default function Index() {
     setExpandedCategories(prev => 
       prev.includes(categoryId) ? prev.filter(id => id !== categoryId) : [...prev, categoryId]
     );
-  };
-
-  const addToCart = (product: typeof products[0]) => {
-    const existingItem = cart.find(item => item.id === product.id);
-    if (existingItem) {
-      setCart(cart.map(item => 
-        item.id === product.id 
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      ));
-    } else {
-      setCart([...cart, { 
-        id: product.id, 
-        name: product.name, 
-        price: product.price, 
-        quantity: 1,
-        image: product.image
-      }]);
-    }
-  };
-
-  const removeFromCart = (id: number) => {
-    setCart(cart.filter(item => item.id !== id));
-  };
-
-  const updateQuantity = (id: number, quantity: number) => {
-    if (quantity <= 0) {
-      removeFromCart(id);
-    } else {
-      setCart(cart.map(item => 
-        item.id === id ? { ...item, quantity } : item
-      ));
-    }
   };
 
   const calculateTotal = () => {
