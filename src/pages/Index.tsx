@@ -263,8 +263,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     
     worksheet.columns = [
       { width: 4 },
-      { width: 22 },
       { width: 20 },
+      { width: 24 },
       { width: 8 },
       { width: 8 },
       { width: 12 },
