@@ -81,6 +81,11 @@ interface CatalogSectionProps {
   toggleFavorite: (product: Product) => void;
 }
 
+const formatPrice = (price: string | number): string => {
+  const numPrice = typeof price === 'string' ? parseInt(price.replace(/\s/g, '')) : price;
+  return numPrice.toLocaleString('ru-RU');
+};
+
 export function CatalogSection({
   categories,
   products,
@@ -534,7 +539,7 @@ export function CatalogSection({
                             <p className="text-xs text-muted-foreground line-clamp-1 leading-tight">{product.dimensions}</p>
                           )}
                         </div>
-                        <p className="text-lg font-bold text-primary mt-2">{product.price} ₽</p>
+                        <p className="text-lg font-bold text-primary mt-2">{formatPrice(product.price)} ₽</p>
                         <Button 
                           size="sm"
                           className="w-full"
@@ -624,7 +629,7 @@ export function CatalogSection({
                 </div>
 
                 <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-bold text-primary">{selectedProduct.price} ₽</span>
+                  <span className="text-4xl font-bold text-primary">{formatPrice(selectedProduct.price)} ₽</span>
                 </div>
 
                 <div className="flex gap-3">

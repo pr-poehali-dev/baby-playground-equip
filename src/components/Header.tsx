@@ -5,6 +5,11 @@ import Icon from '@/components/ui/icon';
 import { CartItem } from './data/catalogData';
 import { Link } from 'react-router-dom';
 
+const formatPrice = (price: string | number): string => {
+  const numPrice = typeof price === 'string' ? parseInt(price.replace(/\s/g, '')) : price;
+  return numPrice.toLocaleString('ru-RU');
+};
+
 interface HeaderProps {
   cart: CartItem[];
   isCartOpen: boolean;
@@ -114,7 +119,7 @@ export function Header({
                               </div>
                               <div className="flex-1 min-w-0">
                                 <h3 className="font-semibold mb-1 truncate">{item.name}</h3>
-                                <p className="text-sm text-muted-foreground mb-2">{item.price} ₽</p>
+                                <p className="text-sm text-muted-foreground mb-2">{formatPrice(item.price)} ₽</p>
                                 <div className="flex items-center gap-2">
                                   <Button 
                                     size="sm" 

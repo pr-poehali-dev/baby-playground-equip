@@ -3,6 +3,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { Link } from 'react-router-dom';
 
+const formatPrice = (price: string | number): string => {
+  const numPrice = typeof price === 'string' ? parseInt(price.replace(/\s/g, '')) : price;
+  return numPrice.toLocaleString('ru-RU');
+};
+
 interface Product {
   id: number;
   name: string;
@@ -91,7 +96,7 @@ export default function FavoritesPage({ favorites, removeFromFavorites, addToCar
                       <p className="text-xs text-muted-foreground line-clamp-1 leading-tight">{product.description}</p>
                     )}
                   </div>
-                  <p className="text-lg font-bold text-primary mt-2">{product.price} ₽</p>
+                  <p className="text-lg font-bold text-primary mt-2">{formatPrice(product.price)} ₽</p>
                   <div className="flex gap-2 mt-2">
                     <Button 
                       size="sm"
