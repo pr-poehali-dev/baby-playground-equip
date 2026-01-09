@@ -567,6 +567,17 @@ export function CatalogSection({
                         className="aspect-[4/3] relative overflow-hidden bg-white flex items-center justify-center"
                         onClick={() => handleProductClick(product)}
                       >
+                        {product.subcategory && (
+                          <Badge 
+                            className={`absolute top-2 right-2 z-10 ${
+                              product.subcategory.includes('Classic') 
+                                ? 'bg-secondary text-white hover:bg-secondary/90' 
+                                : 'bg-accent text-foreground hover:bg-accent/90'
+                            }`}
+                          >
+                            {product.subcategory.replace('Серия "', '').replace('"', '')}
+                          </Badge>
+                        )}
                         {product.image.startsWith('http') ? (
                           <img 
                             src={product.image} 
