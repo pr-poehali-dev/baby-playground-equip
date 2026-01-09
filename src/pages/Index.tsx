@@ -360,8 +360,16 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     titleCell.font = { size: 14, bold: true };
     titleCell.alignment = { horizontal: 'center', vertical: 'middle' };
     
+    // Адрес объекта
+    worksheet.mergeCells('A9:G9');
+    const addressCell = worksheet.getCell('A9');
+    addressCell.value = 'Адрес объекта: _______________________________________________';
+    addressCell.font = { size: 10 };
+    addressCell.alignment = { horizontal: 'left', vertical: 'middle' };
+    worksheet.getRow(9).height = 20;
+    
     // Заголовок таблицы
-    const headerRow = worksheet.getRow(10);
+    const headerRow = worksheet.getRow(11);
     headerRow.values = ['№', 'Наименование', 'Рисунок', 'Кол-во', 'Ед. изм', 'Цена, руб', 'Сумма, руб'];
     headerRow.font = { bold: true, size: 10 };
     headerRow.height = 25;
@@ -380,7 +388,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       cell.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true };
     });
     
-    let currentRow = 11;
+    let currentRow = 12;
     
     // Функция загрузки изображения с повторными попытками
     const loadImageWithRetry = async (url: string, retries = 3): Promise<Uint8Array | null> => {
