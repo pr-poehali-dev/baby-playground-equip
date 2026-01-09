@@ -506,7 +506,7 @@ export function CatalogSection({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
                 {filteredProducts.length > 0 ? (
                   filteredProducts.map((product) => (
                     <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all group cursor-pointer">
