@@ -44,8 +44,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const [selectedSeries, setSelectedSeries] = useState<string | null>(null);
   const [isExcelSettingsOpen, setIsExcelSettingsOpen] = useState(false);
-  const [imageColumnWidth, setImageColumnWidth] = useState(28);
-  const [imageRowHeight, setImageRowHeight] = useState(145);
+  const [imageColumnWidth, setImageColumnWidth] = useState(27);
+  const [imageRowHeight, setImageRowHeight] = useState(198);
 
   useEffect(() => {
     const loadProducts = async () => {
