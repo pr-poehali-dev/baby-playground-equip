@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
@@ -196,6 +196,9 @@ export function Header({
                           <DialogContent>
                             <DialogHeader>
                               <DialogTitle>Настройки Excel</DialogTitle>
+                              <DialogDescription>
+                                Настройте размеры изображений в коммерческом предложении
+                              </DialogDescription>
                             </DialogHeader>
                             <div className="space-y-4 py-4">
                               <div className="space-y-2">
@@ -235,7 +238,7 @@ export function Header({
                                   variant="outline" 
                                   className="flex-1"
                                   onClick={() => {
-                                    setImageColumnWidth(24);
+                                    setImageColumnWidth(28);
                                     setImageRowHeight(145);
                                   }}
                                 >
