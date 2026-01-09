@@ -225,7 +225,7 @@ export function CatalogSection({
                                 className={`flex-1 text-left px-2 py-1.5 rounded text-base hover:bg-muted transition-colors flex items-center gap-2 bg-white ${
                                   !sub.hasChildren ? 'ml-6' : ''
                                 } ${
-                                  selectedCategory === cat.id && selectedSubcategory === sub.name && !selectedSubSubcategory 
+                                  selectedSeries === sub.name || (selectedCategory === cat.id && selectedSubcategory === sub.name && !selectedSubSubcategory)
                                     ? 'bg-primary/10 text-primary font-semibold' 
                                     : ''
                                 }`}
