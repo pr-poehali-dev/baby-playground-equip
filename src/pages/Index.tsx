@@ -408,6 +408,9 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
           const imgData = await imgResponse.json();
           if (imgData.success && imgData.data) {
             return Uint8Array.from(atob(imgData.data), c => c.charCodeAt(0));
+          } else if (!imgData.success) {
+            console.warn(`Image not found: ${url}`, imgData.error);
+            return null;
           }
         } catch (error) {
           console.error(`Attempt ${attempt + 1}/${retries} failed for ${url}:`, error);

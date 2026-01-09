@@ -51,9 +51,29 @@ def handler(event: dict, context) -> dict:
                 'contentType': response.headers.get('Content-Type', 'image/png')
             })
         }
+    except urllib.error.HTTPError as e:
+        return {
+            'statusCode': 200,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps({
+                'success': False,
+                'error': f'HTTP {e.code}: {e.reason}',
+                'url': url
+            })
+        }
     except Exception as e:
         return {
-            'statusCode': 500,
-            'headers': {'Access-Control-Allow-Origin': '*'},
-            'body': json.dumps({'error': str(e)})
+            'statusCode': 200,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps({
+                'success': False,
+                'error': str(e),
+                'url': url
+            })
         }
