@@ -271,31 +271,23 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       { width: 15 }
     ];
     
-    // Логотип настоящий
+    // Логотип текстом (CDN не поддерживает CORS для изображений)
     worksheet.mergeCells('A1:B5');
     const logoCell = worksheet.getCell('A1');
-    logoCell.value = '';
-    
-    try {
-      const logoResponse = await fetch('https://cdn.poehali.dev/files/photo_2026-01-05_09-32-44.png');
-      const logoBlob = await logoResponse.blob();
-      const logoBuffer = await logoBlob.arrayBuffer();
-      const logoImageId = workbook.addImage({
-        buffer: logoBuffer,
-        extension: 'png',
-      });
-      
-      worksheet.addImage(logoImageId, {
-        tl: { col: 0, row: 0 },
-        br: { col: 2, row: 5 },
-        editAs: 'oneCell'
-      });
-    } catch (error) {
-      console.log('Не удалось загрузить логотип:', error);
-      logoCell.value = 'Urban\nPlay';
-      logoCell.font = { size: 24, bold: true, color: { argb: 'FF6B21A8' } };
-      logoCell.alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
-    }
+    logoCell.value = 'Urban\nPlay';
+    logoCell.font = { size: 24, bold: true, color: { argb: 'FF6B21A8' } };
+    logoCell.alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
+    logoCell.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'FFF0E6FF' }
+    };
+    logoCell.border = {
+      top: { style: 'thin' },
+      left: { style: 'thin' },
+      bottom: { style: 'thin' },
+      right: { style: 'thin' }
+    };
     
     // Шапка справа
     worksheet.getCell('D1').value = 'ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ';
@@ -325,14 +317,9 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     titleCell.font = { size: 14, bold: true };
     titleCell.alignment = { horizontal: 'center', vertical: 'middle' };
     
-    // Адрес объекта
-    worksheet.mergeCells('A10:G10');
-    worksheet.getCell('A10').value = 'Адрес объекта: г. Краснодар, ул. Аверкиева, д.16';
-    worksheet.getCell('A10').font = { size: 10 };
-    
     // Заголовок таблицы
-    const headerRow = worksheet.getRow(12);
-    headerRow.values = ['№', 'Наименование', 'Рисунок', 'Кол-во', 'Ед. изм', 'Цена, руб', 'Сумма, руб'];
+    const headerRow = worksheet.getRow(10);
+    headerRow.values = ['№', 'Наименование', 'Артикул', 'Кол-во', 'Ед. изм', 'Цена, руб', 'Сумма, руб'];
     headerRow.font = { bold: true, size: 10 };
     headerRow.height = 25;
     headerRow.eachCell((cell) => {
@@ -350,24 +337,24 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       cell.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true };
     });
     
-    let currentRow = 13;
+    let currentRow = 11;
     
-    // Товары с картинками
+    // Товары
     for (let i = 0; i < cart.length; i++) {
       const item = cart[i];
       const price = parseInt(item.price.replace(/\s/g, '').split('/')[0]);
       const itemTotal = price * item.quantity;
       
       const row = worksheet.getRow(currentRow);
-      row.height = 80;
+      row.height = 30;
       
       const nameParts = item.name.split('\n');
+      const article = nameParts[0] ? nameParts[0].replace('Арт. ', '') : '';
       const productName = nameParts[1] || item.name;
-      const dimensions = productName.match(/\d+x\d+x\d+|\d+×\d+×\d+/)?.[0] || '';
       
       row.getCell(1).value = i + 1;
       row.getCell(2).value = productName;
-      row.getCell(3).value = ''; // Рисунок - будет добавлен
+      row.getCell(3).value = article;
       row.getCell(4).value = item.quantity;
       row.getCell(5).value = 'шт';
       row.getCell(6).value = price;
@@ -388,27 +375,6 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
           wrapText: true 
         };
       });
-      
-      // Добавление картинки (если URL)
-      if (item.image.startsWith('http')) {
-        try {
-          const response = await fetch(item.image);
-          const blob = await response.blob();
-          const arrayBuffer = await blob.arrayBuffer();
-          const imageId = workbook.addImage({
-            buffer: arrayBuffer,
-            extension: 'png',
-          });
-          
-          worksheet.addImage(imageId, {
-            tl: { col: 2.1, row: currentRow - 0.9 },
-            br: { col: 2.9, row: currentRow - 0.1 },
-            editAs: 'oneCell'
-          });
-        } catch (error) {
-          console.log('Не удалось загрузить изображение:', error);
-        }
-      }
       
       currentRow++;
     }
