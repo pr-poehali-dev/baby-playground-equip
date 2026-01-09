@@ -472,6 +472,12 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       }
       
       row.getCell(3).value = '';
+      row.getCell(3).border = {
+        top: { style: 'thin' },
+        left: { style: 'thin' },
+        bottom: { style: 'thin' },
+        right: { style: 'thin' }
+      };
       row.getCell(4).value = item.quantity;
       row.getCell(5).value = 'шт';
       row.getCell(6).value = price;
