@@ -271,23 +271,44 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       { width: 15 }
     ];
     
-    // Логотип текстом (CDN не поддерживает CORS для изображений)
-    worksheet.mergeCells('A1:B5');
-    const logoCell = worksheet.getCell('A1');
-    logoCell.value = 'Urban\nPlay';
-    logoCell.font = { size: 24, bold: true, color: { argb: 'FF6B21A8' } };
-    logoCell.alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
-    logoCell.fill = {
-      type: 'pattern',
-      pattern: 'solid',
-      fgColor: { argb: 'FFF0E6FF' }
-    };
-    logoCell.border = {
-      top: { style: 'thin' },
-      left: { style: 'thin' },
-      bottom: { style: 'thin' },
-      right: { style: 'thin' }
-    };
+    // Загрузка логотипа через прокси
+    try {
+      const logoUrl = 'https://cdn.poehali.dev/files/photo_2026-01-05_09-32-44.png';
+      const logoResponse = await fetch(`https://functions.poehali.dev/e983eae4-7e85-46ff-99ab-6e32aec1790e?url=${encodeURIComponent(logoUrl)}`);
+      const logoData = await logoResponse.json();
+      
+      if (logoData.success) {
+        const logoBuffer = Uint8Array.from(atob(logoData.data), c => c.charCodeAt(0));
+        const logoImageId = workbook.addImage({
+          buffer: logoBuffer,
+          extension: 'png',
+        });
+        
+        worksheet.mergeCells('A1:B5');
+        worksheet.addImage(logoImageId, {
+          tl: { col: 0, row: 0 },
+          ext: { width: 150, height: 120 }
+        });
+      }
+    } catch (error) {
+      console.error('Failed to load logo:', error);
+      worksheet.mergeCells('A1:B5');
+      const logoCell = worksheet.getCell('A1');
+      logoCell.value = 'Urban\nPlay';
+      logoCell.font = { size: 24, bold: true, color: { argb: 'FF6B21A8' } };
+      logoCell.alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
+      logoCell.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: 'FFF0E6FF' }
+      };
+      logoCell.border = {
+        top: { style: 'thin' },
+        left: { style: 'thin' },
+        bottom: { style: 'thin' },
+        right: { style: 'thin' }
+      };
+    }
     
     // Шапка справа
     worksheet.getCell('D1').value = 'ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ';
@@ -319,7 +340,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     
     // Заголовок таблицы
     const headerRow = worksheet.getRow(10);
-    headerRow.values = ['№', 'Наименование', 'Артикул', 'Кол-во', 'Ед. изм', 'Цена, руб', 'Сумма, руб'];
+    headerRow.values = ['№', 'Наименование', 'Рисунок', 'Кол-во', 'Ед. изм', 'Цена, руб', 'Сумма, руб'];
     headerRow.font = { bold: true, size: 10 };
     headerRow.height = 25;
     headerRow.eachCell((cell) => {
@@ -346,15 +367,38 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       const itemTotal = price * item.quantity;
       
       const row = worksheet.getRow(currentRow);
-      row.height = 30;
+      row.height = 80;
       
       const nameParts = item.name.split('\n');
       const article = nameParts[0] ? nameParts[0].replace('Арт. ', '') : '';
       const productName = nameParts[1] || item.name;
       
       row.getCell(1).value = i + 1;
-      row.getCell(2).value = productName;
-      row.getCell(3).value = article;
+      row.getCell(2).value = `${productName}\n${article}`;
+      
+      // Загрузка изображения товара
+      if (item.image.startsWith('http')) {
+        try {
+          const imgResponse = await fetch(`https://functions.poehali.dev/e983eae4-7e85-46ff-99ab-6e32aec1790e?url=${encodeURIComponent(item.image)}`);
+          const imgData = await imgResponse.json();
+          
+          if (imgData.success) {
+            const imgBuffer = Uint8Array.from(atob(imgData.data), c => c.charCodeAt(0));
+            const imageId = workbook.addImage({
+              buffer: imgBuffer,
+              extension: 'png',
+            });
+            
+            worksheet.addImage(imageId, {
+              tl: { col: 2, row: currentRow - 1 },
+              ext: { width: 100, height: 70 }
+            });
+          }
+        } catch (error) {
+          console.error('Failed to load product image:', error);
+        }
+      }
+      
       row.getCell(4).value = item.quantity;
       row.getCell(5).value = 'шт';
       row.getCell(6).value = price;

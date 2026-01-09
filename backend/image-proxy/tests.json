@@ -1,0 +1,16 @@
+{
+  "tests": [
+    {
+      "name": "Test image proxy with valid URL",
+      "method": "GET",
+      "path": "/?url=https://cdn.poehali.dev/files/photo_2026-01-05_09-32-44.png",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "data": "string",
+        "contentType": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

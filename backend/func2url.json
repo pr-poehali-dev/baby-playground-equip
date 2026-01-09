@@ -1,4 +1,5 @@
 {
+  "image-proxy": "https://functions.poehali.dev/e983eae4-7e85-46ff-99ab-6e32aec1790e",
   "get-products": "https://functions.poehali.dev/6f221f1d-5b1c-4e9c-afc2-b4a2876203a1",
   "get-product-images": "https://functions.poehali.dev/686e9704-6a8f-429d-a2d2-88f49ab86fd8",
   "load-products": "https://functions.poehali.dev/e02bd312-25b6-4983-990b-110af1ed4e52",
