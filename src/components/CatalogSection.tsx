@@ -41,6 +41,7 @@ interface Product {
   price: string;
   image: string;
   description?: string;
+  dimensions?: string;
   article?: string;
 }
 
@@ -529,8 +530,8 @@ export function CatalogSection({
                           ) : (
                             <h3 className="text-sm font-heading font-bold line-clamp-2">{product.name}</h3>
                           )}
-                          {product.description && (
-                            <p className="text-xs text-muted-foreground line-clamp-1 leading-tight">{product.description}</p>
+                          {product.dimensions && (
+                            <p className="text-xs text-muted-foreground line-clamp-1 leading-tight">{product.dimensions}</p>
                           )}
                         </div>
                         <p className="text-lg font-bold text-primary mt-2">{product.price} ₽</p>
@@ -649,9 +650,9 @@ export function CatalogSection({
 
                 <div className="border-t pt-6">
                   <h3 className="text-xl font-heading font-bold mb-4">Техническая информация</h3>
-                  {selectedProduct.description && (
+                  {selectedProduct.dimensions && (
                     <div className="grid grid-cols-3 gap-4 mb-4">
-                      {selectedProduct.description.split('х').map((dim, idx) => (
+                      {selectedProduct.dimensions.split('х').map((dim, idx) => (
                         <div key={idx} className="bg-muted/30 p-3 rounded-lg">
                           <p className="text-xs text-muted-foreground mb-1">
                             {idx === 0 ? 'Ширина' : idx === 1 ? 'Длина' : 'Высота'}
@@ -660,6 +661,9 @@ export function CatalogSection({
                         </div>
                       ))}
                     </div>
+                  )}
+                  {selectedProduct.description && (
+                    <p className="text-sm text-muted-foreground">{selectedProduct.description}</p>
                   )}
                 </div>
 
