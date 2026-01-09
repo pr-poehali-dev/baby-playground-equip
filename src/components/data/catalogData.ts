@@ -126,8 +126,8 @@ export const categories = [
     name: 'Благоустройство',
     icon: 'Hammer',
     color: 'from-blue-500/20 to-blue-500/5',
-    image: 'https://cdn.poehali.dev/files/%D0%B1%D0%BB%D0%B0%D0%B3%D0%BE%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%BE.png',
-    bgImage: 'https://cdn.poehali.dev/files/%D0%B1%D0%BB%D0%B0%D0%B3%D0%BE%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%BE.png',
+    image: 'https://cdn.poehali.dev/files/%D0%B1%D0%BB%D0%B0%D0%B3%D0%BE%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%BE5.png',
+    bgImage: 'https://cdn.poehali.dev/files/%D0%B1%D0%BB%D0%B0%D0%B3%D0%BE%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%BE5.png',
     order: 4,
     subcategories: []
   },
