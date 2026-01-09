@@ -110,8 +110,8 @@ export const categories = [
     name: 'Парк',
     icon: 'Trees',
     color: 'from-accent/20 to-accent/5',
-    image: 'https://cdn.poehali.dev/files/%D0%BF%D0%B0%D1%80%D0%BA.png',
-    bgImage: 'https://cdn.poehali.dev/files/%D0%BF%D0%B0%D1%80%D0%BA.png',
+    image: 'https://cdn.poehali.dev/files/1.png',
+    bgImage: 'https://cdn.poehali.dev/files/1.png',
     order: 3,
     subcategories: [
       { name: 'Скамейки', image: '🪑' },
