@@ -263,12 +263,12 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     
     worksheet.columns = [
       { width: 4 },
-      { width: 20 },
-      { width: 24 },
-      { width: 8 },
-      { width: 8 },
-      { width: 12 },
-      { width: 12 }
+      { width: 18 },
+      { width: 28 },
+      { width: 7 },
+      { width: 7 },
+      { width: 11 },
+      { width: 11 }
     ];
     
     worksheet.pageSetup = {
@@ -429,7 +429,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       const itemTotal = price * item.quantity;
       
       const row = worksheet.getRow(currentRow);
-      row.height = 100;
+      row.height = 110;
       
       const nameParts = item.name.split('\n');
       const article = nameParts[0] ? nameParts[0].replace('Арт. ', '') : '';
@@ -449,7 +449,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
           
           worksheet.addImage(imageId, {
             tl: { col: 2, row: currentRow - 1 },
-            br: { col: 3, row: currentRow }
+            br: { col: 3, row: currentRow },
+            editAs: 'oneCell'
           });
         } catch (error) {
           console.error('Failed to add image to worksheet:', error);
