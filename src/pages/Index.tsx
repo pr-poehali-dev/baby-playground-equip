@@ -66,7 +66,7 @@ export default function Index() {
               subcategory = 'Серия "Classic"';
               subsubcategory = 'Игровые комплексы';
             } else if (p.name.includes('Воркаут')) {
-              subcategory = 'Серия "Classic Sport"';
+              subcategory = 'Серия "Classic"';
               subsubcategory = 'Workout';
             }
             
