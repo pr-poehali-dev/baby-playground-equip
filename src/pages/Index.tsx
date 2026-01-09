@@ -463,7 +463,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
           
           worksheet.addImage(imageId, {
             tl: { col: 2.05, row: currentRow - 0.95 },
-            ext: { width: 140, height: 90 },
+            ext: { width: 180, height: 120 },
             editAs: 'oneCell'
           });
         } catch (error) {
