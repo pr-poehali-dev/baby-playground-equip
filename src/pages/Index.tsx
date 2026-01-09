@@ -263,8 +263,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     
     worksheet.columns = [
       { width: 4 },
-      { width: 28 },
-      { width: 15 },
+      { width: 22 },
+      { width: 20 },
       { width: 8 },
       { width: 8 },
       { width: 12 },
@@ -382,20 +382,38 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     
     let currentRow = 11;
     
+    // Функция загрузки изображения с повторными попытками
+    const loadImageWithRetry = async (url: string, retries = 3): Promise<Uint8Array | null> => {
+      for (let attempt = 0; attempt < retries; attempt++) {
+        try {
+          const imgResponse = await fetch(`https://functions.poehali.dev/e983eae4-7e85-46ff-99ab-6e32aec1790e?url=${encodeURIComponent(url)}`, {
+            signal: AbortSignal.timeout(10000)
+          });
+          
+          if (!imgResponse.ok) {
+            throw new Error(`HTTP ${imgResponse.status}`);
+          }
+          
+          const imgData = await imgResponse.json();
+          if (imgData.success && imgData.data) {
+            return Uint8Array.from(atob(imgData.data), c => c.charCodeAt(0));
+          }
+        } catch (error) {
+          console.error(`Attempt ${attempt + 1}/${retries} failed for ${url}:`, error);
+          if (attempt < retries - 1) {
+            await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)));
+          }
+        }
+      }
+      return null;
+    };
+    
     // Загрузка всех изображений параллельно
     const imagePromises = cart.map(async (item) => {
       if (item.image.startsWith('http')) {
-        try {
-          const imgResponse = await fetch(`https://functions.poehali.dev/e983eae4-7e85-46ff-99ab-6e32aec1790e?url=${encodeURIComponent(item.image)}`);
-          const imgData = await imgResponse.json();
-          if (imgData.success) {
-            return {
-              id: item.id,
-              buffer: Uint8Array.from(atob(imgData.data), c => c.charCodeAt(0))
-            };
-          }
-        } catch (error) {
-          console.error('Failed to load image for', item.id, error);
+        const buffer = await loadImageWithRetry(item.image);
+        if (buffer) {
+          return { id: item.id, buffer };
         }
       }
       return null;
