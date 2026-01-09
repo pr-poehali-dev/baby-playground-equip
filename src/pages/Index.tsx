@@ -382,6 +382,28 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     
     let currentRow = 11;
     
+    // Загрузка всех изображений параллельно
+    const imagePromises = cart.map(async (item) => {
+      if (item.image.startsWith('http')) {
+        try {
+          const imgResponse = await fetch(`https://functions.poehali.dev/e983eae4-7e85-46ff-99ab-6e32aec1790e?url=${encodeURIComponent(item.image)}`);
+          const imgData = await imgResponse.json();
+          if (imgData.success) {
+            return {
+              id: item.id,
+              buffer: Uint8Array.from(atob(imgData.data), c => c.charCodeAt(0))
+            };
+          }
+        } catch (error) {
+          console.error('Failed to load image for', item.id, error);
+        }
+      }
+      return null;
+    });
+    
+    const loadedImages = await Promise.all(imagePromises);
+    const imageMap = new Map(loadedImages.filter(img => img !== null).map(img => [img.id, img.buffer]));
+    
     // Товары
     for (let i = 0; i < cart.length; i++) {
       const item = cart[i];
@@ -398,27 +420,21 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       row.getCell(1).value = i + 1;
       row.getCell(2).value = `${productName}\n${article}`;
       
-      // Загрузка изображения товара
-      if (item.image.startsWith('http')) {
+      // Вставка изображения из загруженных
+      const imageBuffer = imageMap.get(item.id);
+      if (imageBuffer) {
         try {
-          const imgResponse = await fetch(`https://functions.poehali.dev/e983eae4-7e85-46ff-99ab-6e32aec1790e?url=${encodeURIComponent(item.image)}`);
-          const imgData = await imgResponse.json();
+          const imageId = workbook.addImage({
+            buffer: imageBuffer,
+            extension: 'png',
+          });
           
-          if (imgData.success) {
-            const imgBuffer = Uint8Array.from(atob(imgData.data), c => c.charCodeAt(0));
-            const imageId = workbook.addImage({
-              buffer: imgBuffer,
-              extension: 'png',
-            });
-            
-            worksheet.addImage(imageId, {
-              tl: { col: 2, row: currentRow - 1 },
-              ext: { width: 110, height: 90 },
-              editAs: 'oneCell'
-            });
-          }
+          worksheet.addImage(imageId, {
+            tl: { col: 2, row: currentRow - 1 },
+            br: { col: 3, row: currentRow }
+          });
         } catch (error) {
-          console.error('Failed to load product image:', error);
+          console.error('Failed to add image to worksheet:', error);
         }
       }
       
