@@ -1,9 +1,13 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 import { CartItem } from './data/catalogData';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 interface HeaderProps {
   cart: CartItem[];
@@ -16,6 +20,10 @@ interface HeaderProps {
   deliveryCost: number;
   generateKP: () => void;
   favoritesCount?: number;
+  imageColumnWidth: number;
+  setImageColumnWidth: (width: number) => void;
+  imageRowHeight: number;
+  setImageRowHeight: (height: number) => void;
 }
 
 export function Header({
@@ -28,8 +36,13 @@ export function Header({
   calculateTotal,
   deliveryCost,
   generateKP,
-  favoritesCount = 0
+  favoritesCount = 0,
+  imageColumnWidth,
+  setImageColumnWidth,
+  imageRowHeight,
+  setImageRowHeight
 }: HeaderProps) {
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50 border-b">
       <div className="container mx-auto px-4 py-4">
@@ -160,17 +173,85 @@ export function Header({
                         </div>
                       )}
                       
-                      <Button 
-                        className="w-full" 
-                        size="lg"
-                        onClick={() => {
-                          generateKP();
-                          setIsCartOpen(false);
-                        }}
-                      >
-                        <Icon name="FileText" size={20} className="mr-2" />
-                        Скачать коммерческое предложение
-                      </Button>
+                      <div className="space-y-2">
+                        <Button 
+                          className="w-full" 
+                          size="lg"
+                          onClick={() => {
+                            generateKP();
+                            setIsCartOpen(false);
+                          }}
+                        >
+                          <Icon name="FileText" size={20} className="mr-2" />
+                          Скачать коммерческое предложение
+                        </Button>
+                        
+                        <Dialog open={isSettingsOpen} onOpenChange={setIsSettingsOpen}>
+                          <DialogTrigger asChild>
+                            <Button variant="outline" size="sm" className="w-full">
+                              <Icon name="Settings" size={16} className="mr-2" />
+                              Настройки Excel
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent>
+                            <DialogHeader>
+                              <DialogTitle>Настройки Excel</DialogTitle>
+                            </DialogHeader>
+                            <div className="space-y-4 py-4">
+                              <div className="space-y-2">
+                                <Label htmlFor="columnWidth">Ширина колонки "Рисунок" (пикселей)</Label>
+                                <div className="flex items-center gap-2">
+                                  <Input
+                                    id="columnWidth"
+                                    type="number"
+                                    value={Math.round(imageColumnWidth * 7.5)}
+                                    onChange={(e) => setImageColumnWidth(Math.round(parseInt(e.target.value) / 7.5))}
+                                    min="100"
+                                    max="300"
+                                  />
+                                  <span className="text-sm text-muted-foreground">px</span>
+                                </div>
+                                <p className="text-xs text-muted-foreground">Текущее: {Math.round(imageColumnWidth * 7.5)} px</p>
+                              </div>
+                              
+                              <div className="space-y-2">
+                                <Label htmlFor="rowHeight">Высота строк с изображениями (пикселей)</Label>
+                                <div className="flex items-center gap-2">
+                                  <Input
+                                    id="rowHeight"
+                                    type="number"
+                                    value={imageRowHeight}
+                                    onChange={(e) => setImageRowHeight(parseInt(e.target.value))}
+                                    min="80"
+                                    max="200"
+                                  />
+                                  <span className="text-sm text-muted-foreground">px</span>
+                                </div>
+                                <p className="text-xs text-muted-foreground">Текущее: {imageRowHeight} px</p>
+                              </div>
+                              
+                              <div className="flex gap-2 pt-4">
+                                <Button 
+                                  variant="outline" 
+                                  className="flex-1"
+                                  onClick={() => {
+                                    setImageColumnWidth(24);
+                                    setImageRowHeight(145);
+                                  }}
+                                >
+                                  Сбросить
+                                </Button>
+                                <Button 
+                                  className="flex-1"
+                                  onClick={() => setIsSettingsOpen(false)}
+                                >
+                                  Готово
+                                </Button>
+                              </div>
+                            </div>
+                          </DialogContent>
+                        </Dialog>
+                      </div>
                       
                       <Button 
                         variant="outline" 

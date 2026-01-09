@@ -43,6 +43,9 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const [selectedSeries, setSelectedSeries] = useState<string | null>(null);
+  const [isExcelSettingsOpen, setIsExcelSettingsOpen] = useState(false);
+  const [imageColumnWidth, setImageColumnWidth] = useState(24);
+  const [imageRowHeight, setImageRowHeight] = useState(145);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -264,7 +267,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     worksheet.columns = [
       { width: 4 },
       { width: 22 },
-      { width: 24 },
+      { width: imageColumnWidth },
       { width: 7 },
       { width: 7 },
       { width: 10 },
@@ -437,7 +440,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       const itemTotal = price * item.quantity;
       
       const row = worksheet.getRow(currentRow);
-      row.height = 145;
+      row.height = imageRowHeight;
       
       const nameParts = item.name.split('\n');
       const article = nameParts[0] ? nameParts[0].replace('Арт. ', '') : '';
@@ -572,6 +575,10 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
         deliveryCost={deliveryCost}
         generateKP={generateKP}
         favoritesCount={favorites.length}
+        imageColumnWidth={imageColumnWidth}
+        setImageColumnWidth={setImageColumnWidth}
+        imageRowHeight={imageRowHeight}
+        setImageRowHeight={setImageRowHeight}
       />
 
       <CatalogSection
