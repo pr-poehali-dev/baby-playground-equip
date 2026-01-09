@@ -250,48 +250,149 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     }, 0);
   };
 
-  const generateKP = () => {
+  const generateKP = async () => {
+    const ExcelJS = (await import('exceljs')).default;
     const total = calculateTotal();
     const date = new Date().toLocaleDateString('ru-RU');
     
-    let kpText = `КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ\n`;
-    kpText += `Дата: ${date}\n`;
-    kpText += `От: Urban Play\n\n`;
-    kpText += `Товары:\n`;
-    kpText += `${'='.repeat(50)}\n`;
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Коммерческое предложение');
     
-    cart.forEach((item, idx) => {
-      const price = parseInt(item.price.replace(/\s/g, '').split('/')[0]);
-      const itemTotal = price * item.quantity;
-      kpText += `${idx + 1}. ${item.name}\n`;
-      kpText += `   Цена: ${item.price} ₽\n`;
-      kpText += `   Количество: ${item.quantity} шт.\n`;
-      kpText += `   Сумма: ${itemTotal.toLocaleString('ru-RU')} ₽\n\n`;
+    worksheet.columns = [
+      { width: 5 },
+      { width: 20 },
+      { width: 40 },
+      { width: 15 },
+      { width: 12 },
+      { width: 15 }
+    ];
+    
+    worksheet.mergeCells('B2:F2');
+    const titleCell = worksheet.getCell('B2');
+    titleCell.value = 'КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ';
+    titleCell.font = { size: 16, bold: true };
+    titleCell.alignment = { horizontal: 'center', vertical: 'middle' };
+    
+    worksheet.getCell('B4').value = `Дата: ${date}`;
+    worksheet.getCell('B5').value = 'От: Urban Play';
+    
+    const headerRow = worksheet.getRow(7);
+    headerRow.values = ['', 'Фото', 'Наименование', 'Цена', 'Кол-во', 'Сумма'];
+    headerRow.font = { bold: true };
+    headerRow.height = 20;
+    headerRow.eachCell((cell) => {
+      cell.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: 'FFE0E0E0' }
+      };
+      cell.border = {
+        top: { style: 'thin' },
+        left: { style: 'thin' },
+        bottom: { style: 'thin' },
+        right: { style: 'thin' }
+      };
+      cell.alignment = { horizontal: 'center', vertical: 'middle' };
     });
     
-    kpText += `${'='.repeat(50)}\n`;
-    kpText += `ИТОГО: ${total.toLocaleString('ru-RU')} ₽\n\n`;
+    let currentRow = 8;
     
-    if (deliveryCost > 0) {
-      kpText += `Доставка: ${deliveryCost.toLocaleString('ru-RU')} ₽\n`;
-      kpText += `ВСЕГО К ОПЛАТЕ: ${(total + deliveryCost).toLocaleString('ru-RU')} ₽\n\n`;
+    for (const item of cart) {
+      const price = parseInt(item.price.replace(/\s/g, '').split('/')[0]);
+      const itemTotal = price * item.quantity;
+      
+      const row = worksheet.getRow(currentRow);
+      row.height = 80;
+      
+      if (item.image.startsWith('http')) {
+        try {
+          const response = await fetch(item.image);
+          const blob = await response.blob();
+          const arrayBuffer = await blob.arrayBuffer();
+          
+          const imageId = workbook.addImage({
+            buffer: arrayBuffer,
+            extension: 'png',
+          });
+          
+          worksheet.addImage(imageId, {
+            tl: { col: 1.1, row: currentRow - 0.9 },
+            ext: { width: 100, height: 75 }
+          });
+        } catch (error) {
+          console.error('Failed to load image:', error);
+        }
+      }
+      
+      row.getCell(3).value = item.name.replace('Арт. ', '').replace('\n', ' - ');
+      row.getCell(4).value = `${price.toLocaleString('ru-RU')} ₽`;
+      row.getCell(5).value = item.quantity;
+      row.getCell(6).value = `${itemTotal.toLocaleString('ru-RU')} ₽`;
+      
+      row.eachCell((cell, colNumber) => {
+        if (colNumber > 1) {
+          cell.border = {
+            top: { style: 'thin' },
+            left: { style: 'thin' },
+            bottom: { style: 'thin' },
+            right: { style: 'thin' }
+          };
+          cell.alignment = { vertical: 'middle', horizontal: colNumber === 3 ? 'left' : 'center', wrapText: true };
+        }
+      });
+      
+      currentRow++;
     }
     
-    kpText += `Условия оплаты:\n`;
-    kpText += `- Предоплата 50% после согласования заказа\n`;
-    kpText += `- Оплата оставшихся 50% после доставки\n`;
-    kpText += `- Принимаем наличные, безналичный расчёт, карты\n`;
-    kpText += `- Гарантия 2 года на всё оборудование\n\n`;
-    kpText += `Контакты:\n`;
-    kpText += `Телефон: +7 (918) 115-15-51\n`;
-    kpText += `Email: info@urban-play.ru\n`;
-    kpText += `Адрес: г. Краснодар, ул. Кореновская, д. 57 оф. 7\n`;
+    currentRow += 1;
+    const totalRow = worksheet.getRow(currentRow);
+    totalRow.getCell(5).value = 'ИТОГО:';
+    totalRow.getCell(6).value = `${total.toLocaleString('ru-RU')} ₽`;
+    totalRow.font = { bold: true, size: 12 };
+    totalRow.getCell(5).alignment = { horizontal: 'right' };
+    totalRow.getCell(6).alignment = { horizontal: 'center' };
     
-    const blob = new Blob([kpText], { type: 'text/plain;charset=utf-8' });
+    if (deliveryCost > 0) {
+      currentRow++;
+      const deliveryRow = worksheet.getRow(currentRow);
+      deliveryRow.getCell(5).value = 'Доставка:';
+      deliveryRow.getCell(6).value = `${deliveryCost.toLocaleString('ru-RU')} ₽`;
+      
+      currentRow++;
+      const grandTotalRow = worksheet.getRow(currentRow);
+      grandTotalRow.getCell(5).value = 'ВСЕГО:';
+      grandTotalRow.getCell(6).value = `${(total + deliveryCost).toLocaleString('ru-RU')} ₽`;
+      grandTotalRow.font = { bold: true, size: 14 };
+    }
+    
+    currentRow += 2;
+    worksheet.getCell(`B${currentRow}`).value = 'Условия оплаты:';
+    worksheet.getCell(`B${currentRow}`).font = { bold: true };
+    currentRow++;
+    worksheet.getCell(`B${currentRow}`).value = '• Предоплата 50% после согласования заказа';
+    currentRow++;
+    worksheet.getCell(`B${currentRow}`).value = '• Оплата оставшихся 50% после доставки';
+    currentRow++;
+    worksheet.getCell(`B${currentRow}`).value = '• Принимаем наличные, безналичный расчёт, карты';
+    currentRow++;
+    worksheet.getCell(`B${currentRow}`).value = '• Гарантия 2 года на всё оборудование';
+    
+    currentRow += 2;
+    worksheet.getCell(`B${currentRow}`).value = 'Контакты:';
+    worksheet.getCell(`B${currentRow}`).font = { bold: true };
+    currentRow++;
+    worksheet.getCell(`B${currentRow}`).value = 'Телефон: +7 (918) 115-15-51';
+    currentRow++;
+    worksheet.getCell(`B${currentRow}`).value = 'Email: info@urban-play.ru';
+    currentRow++;
+    worksheet.getCell(`B${currentRow}`).value = 'Адрес: г. Краснодар, ул. Кореновская, д. 57 оф. 7';
+    
+    const buffer = await workbook.xlsx.writeBuffer();
+    const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `КП_${date.replace(/\./g, '-')}.txt`;
+    link.download = `КП_${date.replace(/\./g, '-')}.xlsx`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
