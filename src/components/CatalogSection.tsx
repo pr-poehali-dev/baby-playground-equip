@@ -415,14 +415,14 @@ export function CatalogSection({
                   <h2 className="text-4xl font-heading font-bold whitespace-nowrap">
                     {categories.find(c => c.id === selectedCategory)?.name}
                   </h2>
-                  <div className="flex-1 relative max-w-md">
+                  <div className="relative w-auto">
                     <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                     <Input 
                       type="text"
                       placeholder="Поиск по артикулу или названию..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10"
+                      className="pl-10 h-9"
                     />
                   </div>
                   {(selectedSubSubcategory || selectedSeries || searchQuery) && (
