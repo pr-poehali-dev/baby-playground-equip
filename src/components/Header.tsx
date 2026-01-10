@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 import { CartItem } from './data/catalogData';
 import { Link } from 'react-router-dom';
@@ -39,6 +40,8 @@ export function Header({
 }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showOrderForm, setShowOrderForm] = useState(false);
+  const [cartSearchQuery, setCartSearchQuery] = useState('');
+  const [cartSearchQuery, setCartSearchQuery] = useState('');
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50 border-b">
@@ -179,8 +182,23 @@ export function Header({
                       </div>
                     ) : (
                       <>
+                        <div className="mb-4">
+                          <div className="relative">
+                            <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                            <Input 
+                              type="text"
+                              placeholder="Поиск в корзине..."
+                              value={cartSearchQuery}
+                              onChange={(e) => setCartSearchQuery(e.target.value)}
+                              className="pl-10"
+                            />
+                          </div>
+                        </div>
                         <div className="space-y-4">
-                          {cart.map((item) => (
+                          {cart.filter(item => 
+                            cartSearchQuery === '' || 
+                            item.name.toLowerCase().includes(cartSearchQuery.toLowerCase())
+                          ).map((item) => (
                             <Card key={item.id}>
                               <CardContent className="p-4">
                                 <div className="flex gap-4">

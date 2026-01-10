@@ -399,7 +399,7 @@ export function CatalogSection({
                 <h2 className="text-3xl font-heading font-bold mb-4 mt-8">
                   {categories.find(c => c.id === selectedCategory)?.name}
                 </h2>
-                <div className="sticky top-[85px] bg-white z-40 pb-12 pt-4 shadow-md">
+                <div className="sticky top-[85px] bg-white z-40 pb-4 pt-4 -mx-4 px-4">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="flex-1 relative">
                     <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
@@ -506,7 +506,7 @@ export function CatalogSection({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {filteredProducts.length > 0 ? (
                   filteredProducts.map((product) => (
                     <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all group cursor-pointer">
