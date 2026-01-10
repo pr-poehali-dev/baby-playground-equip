@@ -188,7 +188,7 @@ export function CatalogSection({
   };
   return (
     <>
-      <section className="relative py-12 md:py-20 overflow-hidden">
+      <section className="relative py-16 md:py-28 overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center md:bg-fixed"
           style={{ backgroundImage: 'url(https://cdn.poehali.dev/files/%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%B0%D1%8F%20%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0.png)' }}
@@ -196,7 +196,7 @@ export function CatalogSection({
           <div className="absolute inset-0 bg-black/30"></div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-6 md:px-8 relative z-10">
           <div className="max-w-3xl animate-fade-in">
             <h2 className="text-3xl md:text-4xl lg:text-6xl font-heading font-bold mb-4 md:mb-6 text-white">
               Создаём пространство для игры и спорта
@@ -313,7 +313,7 @@ export function CatalogSection({
         </SheetContent>
       </Sheet>
 
-      <section id="catalog" className="pt-16 pb-4 bg-white">
+      <section id="catalog" className="pt-24 pb-4 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-slide-up">
             <h2 className="text-4xl font-heading font-bold mb-4">Каталог продукции</h2>
