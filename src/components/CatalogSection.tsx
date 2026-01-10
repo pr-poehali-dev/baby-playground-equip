@@ -433,7 +433,7 @@ export function CatalogSection({
           {selectedCategory && (
             <div id="products" className="container mx-auto px-4 pt-2">
               <div ref={filtersRef}>
-                <div className="sticky top-[84px] bg-white z-40 pb-3 pt-2 -mx-4 px-4">
+                <div className="sticky top-[84px] bg-white z-40 pb-3 pt-3 -mx-4 px-4">
                 <Breadcrumb className="mb-3">
                   <BreadcrumbList>
                     <BreadcrumbItem>
