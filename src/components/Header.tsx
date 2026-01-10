@@ -77,11 +77,11 @@ export function Header({
             />
           </div>
           <nav className="hidden md:flex gap-6">
-            <a href="#catalog" className="text-foreground hover:text-primary transition-colors font-medium text-lg">Каталог</a>
-            <a href="#services" className="text-foreground hover:text-primary transition-colors font-medium text-lg">Услуги</a>
-            <a href="#about" className="text-foreground hover:text-primary transition-colors font-medium text-lg">О компании</a>
-            <a href="#certificates" className="text-foreground hover:text-primary transition-colors font-medium text-lg">Сертификаты</a>
-            <a href="#contacts" className="text-foreground hover:text-primary transition-colors font-medium text-lg">Контакты</a>
+            <a href="#about" className="text-foreground hover:text-primary transition-colors text-base">О компании</a>
+            <a href="#catalog" className="text-foreground hover:text-primary transition-colors text-base">Каталог</a>
+            <a href="#services" className="text-foreground hover:text-primary transition-colors text-base">Услуги</a>
+            <a href="#certificates" className="text-foreground hover:text-primary transition-colors text-base">Сертификаты</a>
+            <a href="#contacts" className="text-foreground hover:text-primary transition-colors text-base">Контакты</a>
           </nav>
           <div className="flex items-center gap-4">
             <a 
@@ -108,36 +108,36 @@ export function Header({
                 </SheetHeader>
                 <nav className="flex flex-col gap-4 mt-6">
                   <a 
+                    href="#about" 
+                    className="text-base hover:text-primary transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    О компании
+                  </a>
+                  <a 
                     href="#catalog" 
-                    className="text-lg font-medium hover:text-primary transition-colors"
+                    className="text-base hover:text-primary transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Каталог
                   </a>
                   <a 
                     href="#services" 
-                    className="text-lg font-medium hover:text-primary transition-colors"
+                    className="text-base hover:text-primary transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Услуги
                   </a>
                   <a 
-                    href="#about" 
-                    className="text-lg font-medium hover:text-primary transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    О компании
-                  </a>
-                  <a 
                     href="#certificates" 
-                    className="text-lg font-medium hover:text-primary transition-colors"
+                    className="text-base hover:text-primary transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Сертификаты
                   </a>
                   <a 
                     href="#contacts" 
-                    className="text-lg font-medium hover:text-primary transition-colors"
+                    className="text-base hover:text-primary transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Контакты
