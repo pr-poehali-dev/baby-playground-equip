@@ -431,10 +431,10 @@ export function CatalogSection({
           </Dialog>
 
           {selectedCategory && (
-            <div id="products" className="container mx-auto px-4 pt-1">
+            <div id="products" className="container mx-auto px-4 pt-2">
               <div ref={filtersRef}>
-                <div className="sticky top-[84px] bg-white z-40 pb-4 pt-1 -mx-4 px-4">
-                <h2 className="text-4xl font-heading font-bold mb-3">
+                <div className="sticky top-[84px] bg-white z-40 pb-3 pt-0 -mx-4 px-4">
+                <h2 className="text-4xl font-heading font-bold mb-4">
                   {categories.find(c => c.id === selectedCategory)?.name}
                 </h2>
                 
@@ -543,7 +543,7 @@ export function CatalogSection({
                 </div>
               </div>
 
-              <div ref={productsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
+              <div ref={productsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-6">
                 {filteredProducts.length > 0 ? (
                   filteredProducts.map((product) => (
                     <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all group cursor-pointer">
