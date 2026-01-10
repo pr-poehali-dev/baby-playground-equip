@@ -412,7 +412,7 @@ export function CatalogSection({
               <div>
                 <div className="sticky top-24 bg-white z-40 pb-4 pt-2 -mx-4 px-4">
                 <div className="flex items-center gap-4 mb-4">
-                  <h2 className="text-3xl font-heading font-bold whitespace-nowrap">
+                  <h2 className="text-4xl font-heading font-bold whitespace-nowrap">
                     {categories.find(c => c.id === selectedCategory)?.name}
                   </h2>
                   <div className="flex-1 relative max-w-md">
@@ -450,7 +450,7 @@ export function CatalogSection({
                     variant={(selectedSeries?.includes('Eco')) ? 'default' : 'outline'}
                     size="sm"
                     onClick={() => setSelectedSeries(selectedSeries?.includes('Eco') ? null : 'Серия "Eco"')}
-                    className={selectedSeries?.includes('Eco') ? 'bg-[#7DD3FC] hover:bg-[#7DD3FC]/90 text-white' : ''}
+                    className={selectedSeries?.includes('Eco') ? 'bg-accent hover:bg-accent/90' : ''}
                   >
                     Eco
                   </Button>
