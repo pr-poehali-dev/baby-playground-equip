@@ -313,7 +313,7 @@ export function CatalogSection({
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                   </div>
                   <div className={`py-3 px-4 bg-gradient-to-br ${cat.color} relative flex items-center justify-center border-t-2 border-gray-200 group-hover:border-primary/30 transition-colors`}>
-                    <h3 className="text-base font-heading font-bold text-center text-foreground leading-tight group-hover:scale-105 transition-transform duration-300">{cat.name}</h3>
+                    <h3 className="font-heading font-bold text-center text-foreground leading-tight group-hover:scale-105 transition-transform duration-300 text-lg">{cat.name}</h3>
                   </div>
                 </Card>
               ))}
@@ -337,7 +337,7 @@ export function CatalogSection({
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                   </div>
                   <div className={`py-3 px-4 bg-gradient-to-br ${cat.color} relative flex items-center justify-center border-t-2 border-gray-200 group-hover:border-primary/30 transition-colors`}>
-                    <h3 className="text-base font-heading font-bold text-center text-foreground leading-tight group-hover:scale-105 transition-transform duration-300">{cat.name}</h3>
+                    <h3 className="font-heading font-bold text-center text-foreground leading-tight group-hover:scale-105 transition-transform duration-300 text-lg">{cat.name}</h3>
                   </div>
                 </Card>
               ))}
