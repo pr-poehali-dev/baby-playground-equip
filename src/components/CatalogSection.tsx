@@ -143,12 +143,11 @@ export function CatalogSection({
   }, [searchQuery]);
 
   useEffect(() => {
-    if (selectedCategory && filtersRef.current) {
+    if (selectedCategory) {
       setTimeout(() => {
-        const element = filtersRef.current;
-        if (element) {
-          const yOffset = -80;
-          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        const catalogSection = document.getElementById('products');
+        if (catalogSection) {
+          const y = catalogSection.getBoundingClientRect().top + window.pageYOffset - 80;
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
       }, 100);
@@ -432,9 +431,9 @@ export function CatalogSection({
           </Dialog>
 
           {selectedCategory && (
-            <div id="products" className="container mx-auto px-4 pt-4">
-              <div ref={filtersRef}>
-                <div className="sticky top-20 bg-white z-40 pb-4 pt-2 -mx-4 px-4">
+            <div id="products" className="container mx-auto px-4 pt-20">
+              <div>
+                <div className="sticky top-20 bg-white z-40 pb-4 -mx-4 px-4">
                 <h2 className="text-4xl font-heading font-bold mb-3">
                   {categories.find(c => c.id === selectedCategory)?.name}
                 </h2>
