@@ -433,7 +433,7 @@ export function CatalogSection({
           {selectedCategory && (
             <div id="products" className="container mx-auto px-4 -mt-8">
               <div>
-                <div className="sticky top-24 bg-white z-40 pb-4 pt-2 -mx-4 px-4">
+                <div className="sticky top-16 bg-white z-40 pb-4 pt-2 -mx-4 px-4">
                 <h2 className="text-4xl font-heading font-bold mb-3">
                   {categories.find(c => c.id === selectedCategory)?.name}
                 </h2>
