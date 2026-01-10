@@ -127,6 +127,7 @@ export function CatalogSection({
   const [productImages, setProductImages] = useState<string[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const productsRef = useRef<HTMLDivElement>(null);
+  const filtersRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (searchQuery && productsRef.current) {
@@ -142,11 +143,11 @@ export function CatalogSection({
   }, [searchQuery]);
 
   useEffect(() => {
-    if (selectedCategory && productsRef.current) {
+    if (selectedCategory && filtersRef.current) {
       setTimeout(() => {
-        const element = productsRef.current;
+        const element = filtersRef.current;
         if (element) {
-          const yOffset = -300;
+          const yOffset = -100;
           const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
@@ -432,7 +433,7 @@ export function CatalogSection({
 
           {selectedCategory && (
             <div id="products" className="container mx-auto px-4 -mt-8">
-              <div>
+              <div ref={filtersRef}>
                 <div className="sticky top-24 bg-white z-40 pb-4 pt-2 -mx-4 px-4">
                 <h2 className="text-4xl font-heading font-bold mb-3">
                   {categories.find(c => c.id === selectedCategory)?.name}
