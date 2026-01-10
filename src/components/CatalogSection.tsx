@@ -133,7 +133,7 @@ export function CatalogSection({
       setTimeout(() => {
         const element = productsRef.current;
         if (element) {
-          const yOffset = -100;
+          const yOffset = -120;
           const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
@@ -142,11 +142,24 @@ export function CatalogSection({
   }, [searchQuery]);
 
   useEffect(() => {
+    if (selectedCategory && productsRef.current) {
+      setTimeout(() => {
+        const element = productsRef.current;
+        if (element) {
+          const yOffset = -120;
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [selectedCategory]);
+
+  useEffect(() => {
     if (selectedSubSubcategory && productsRef.current) {
       setTimeout(() => {
         const element = productsRef.current;
         if (element) {
-          const yOffset = -100;
+          const yOffset = -120;
           const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
