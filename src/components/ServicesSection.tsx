@@ -7,10 +7,10 @@ export function ServicesSection() {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { icon: 'Ruler', title: 'Проектирование', desc: 'Разработка индивидуальных проектов детских площадок', color: 'text-blue-500', bg: 'bg-blue-500/10' },
-            { icon: 'Factory', title: 'Производство', desc: 'Собственное производство из качественных материалов', color: 'text-orange-500', bg: 'bg-orange-500/10' },
-            { icon: 'Truck', title: 'Доставка', desc: 'Доставка по всей России в удобное время', color: 'text-green-500', bg: 'bg-green-500/10' },
-            { icon: 'Wrench', title: 'Монтаж', desc: 'Профессиональная установка и гарантия качества', color: 'text-purple-500', bg: 'bg-purple-500/10' }
+            { icon: 'Ruler', title: 'Проектирование', desc: 'Разработка индивидуальных проектов детских площадок', color: 'text-[#A3E635]', bg: 'bg-[#A3E635]/10' },
+            { icon: 'Factory', title: 'Производство', desc: 'Собственное производство из качественных материалов', color: 'text-[#38BDF8]', bg: 'bg-[#38BDF8]/10' },
+            { icon: 'Truck', title: 'Доставка', desc: 'Доставка по всей России в удобное время', color: 'text-[#A78BFA]', bg: 'bg-[#A78BFA]/10' },
+            { icon: 'Wrench', title: 'Монтаж', desc: 'Профессиональная установка и гарантия качества', color: 'text-[#FB923C]', bg: 'bg-[#FB923C]/10' }
           ].map((service, idx) => (
             <Card key={idx} className="text-center hover:shadow-lg transition-shadow animate-scale-in" style={{ animationDelay: `${idx * 0.15}s` }}>
               <CardHeader className="py-3 px-4">
