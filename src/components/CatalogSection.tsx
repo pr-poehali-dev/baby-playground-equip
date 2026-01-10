@@ -291,7 +291,7 @@ export function CatalogSection({
       <section id="catalog" className="pt-12 pb-4 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-slide-up">
-            <h2 className="text-4xl font-heading font-bold mb-4">Каталог продукции</h2>
+            <h2 className="text-4xl font-heading mb-4 font-semibold">Каталог продукции</h2>
             <p className="text-lg text-muted-foreground">Широкий ассортимент детского игрового и спортивного оборудования </p>
           </div>
 
@@ -314,7 +314,7 @@ export function CatalogSection({
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                   </div>
                   <div className={`py-3 px-4 bg-gradient-to-br ${cat.color} relative flex items-center justify-center border-t-2 border-gray-200 group-hover:border-primary/30 transition-colors`}>
-                    <h3 className="font-heading font-bold text-center text-foreground leading-tight group-hover:scale-105 transition-transform duration-300 text-lg">{cat.name}</h3>
+                    <h3 className="font-heading text-center text-foreground leading-tight group-hover:scale-105 transition-transform duration-300 text-lg font-semibold">{cat.name}</h3>
                   </div>
                 </Card>
               ))}
@@ -338,7 +338,7 @@ export function CatalogSection({
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                   </div>
                   <div className={`py-3 px-4 bg-gradient-to-br ${cat.color} relative flex items-center justify-center border-t-2 border-gray-200 group-hover:border-primary/30 transition-colors`}>
-                    <h3 className="font-heading font-bold text-center text-foreground leading-tight group-hover:scale-105 transition-transform duration-300 text-lg">{cat.name}</h3>
+                    <h3 className="font-heading text-center text-foreground leading-tight group-hover:scale-105 transition-transform duration-300 text-lg font-semibold">{cat.name}</h3>
                   </div>
                 </Card>
               ))}

@@ -13,7 +13,7 @@ export function ContentSections() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
-              <h2 className="text-4xl font-heading font-bold mb-6">О компании</h2>
+              <h2 className="text-4xl font-heading mb-6 font-semibold">О компании</h2>
               <p className="text-lg text-muted-foreground mb-4">
                 Мы специализируемся на производстве детского игрового и спортивного оборудования на протяжении 5 лет. 
                 За это время мы оснастили более 1000 детских площадок по всей России.
@@ -50,7 +50,7 @@ export function ContentSections() {
       <section id="certificates" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-heading font-bold mb-4">Сертификаты</h2>
+            <h2 className="text-4xl font-heading mb-4 font-semibold">Сертификаты</h2>
             <p className="text-lg text-muted-foreground">Вся продукция сертифицирована и соответствует стандартам качества</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -72,7 +72,7 @@ export function ContentSections() {
       <section id="contacts" className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-heading font-bold mb-4">Контакты</h2>
+            <h2 className="text-4xl font-heading mb-4 font-semibold">Контакты</h2>
             <p className="text-lg text-muted-foreground">Свяжитесь с нами любым удобным способом</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">

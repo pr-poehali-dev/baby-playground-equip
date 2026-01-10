@@ -16,7 +16,7 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
 
       <div className="container mx-auto px-6 md:px-8 relative z-10">
         <div className="max-w-3xl animate-fade-in">
-          <h2 className="text-3xl md:text-4xl lg:text-6xl font-heading font-bold mb-4 md:mb-6 text-white">
+          <h2 className="text-3xl md:text-4xl lg:text-6xl font-heading mb-4 md:mb-6 text-white font-semibold">
             Создаём пространство для игры и спорта
           </h2>
           <p className="text-lg md:text-xl text-white/90 mb-6 md:mb-8">
@@ -24,7 +24,7 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
             Безопасность, долговечность и яркий дизайн — наши главные приоритеты.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Button size="lg" className="text-lg px-8" onClick={onOpenCatalog}>Выбрать оборудование</Button>
+            <Button size="lg" className="text-lg px-8" onClick={onOpenCatalog}>Каталог</Button>
           </div>
         </div>
       </div>

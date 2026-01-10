@@ -73,20 +73,20 @@ export function Header({
             <img 
               src="https://cdn.poehali.dev/files/photo_643632026-01-05_09-32-44.png" 
               alt="Urban Play"
-              className="h-16 w-auto"
+              className="h-16 w-auto object-contain rounded-0"
             />
           </div>
           <nav className="hidden md:flex gap-6">
-            <a href="#about" className="text-foreground hover:text-primary transition-colors text-base">О компании</a>
-            <a href="#catalog" className="text-foreground hover:text-primary transition-colors text-base">Каталог</a>
-            <a href="#services" className="text-foreground hover:text-primary transition-colors text-base">Услуги</a>
-            <a href="#certificates" className="text-foreground hover:text-primary transition-colors text-base">Сертификаты</a>
-            <a href="#contacts" className="text-foreground hover:text-primary transition-colors text-base">Контакты</a>
+            <a href="#about" className="text-foreground hover:text-primary transition-colors text-base font-medium">О компании</a>
+            <a href="#catalog" className="text-foreground hover:text-primary transition-colors text-base font-medium">Каталог</a>
+            <a href="#services" className="text-foreground hover:text-primary transition-colors text-base font-medium">Услуги</a>
+            <a href="#certificates" className="text-foreground hover:text-primary transition-colors text-base font-medium">Сертификаты</a>
+            <a href="#contacts" className="text-foreground hover:text-primary transition-colors text-base font-medium">Контакты</a>
           </nav>
           <div className="flex items-center gap-4">
             <a 
               href="tel:+79181151551" 
-              className="hidden lg:flex items-center gap-2 text-foreground hover:text-primary transition-colors text-base font-normal"
+              className="hidden lg:flex items-center gap-2 text-foreground hover:text-primary transition-colors text-base font-medium"
             >
               <Icon name="Phone" size={20} className="text-primary" />
               +7 (918) 115-15-51
