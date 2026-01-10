@@ -412,7 +412,7 @@ export function CatalogSection({
                   <h2 className="text-4xl font-heading font-bold whitespace-nowrap">
                     {categories.find(c => c.id === selectedCategory)?.name}
                   </h2>
-                  <div className="flex gap-2 ml-auto">
+                  <div className="flex gap-2">
                     <Button
                       variant={(selectedSeries?.includes('Classic')) ? 'default' : 'outline'}
                       size="sm"
@@ -430,7 +430,7 @@ export function CatalogSection({
                       Eco
                     </Button>
                   </div>
-                  <div className="relative w-80">
+                  <div className="relative w-80 ml-auto">
                     <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                     <Input 
                       type="text"
