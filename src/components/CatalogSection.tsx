@@ -412,7 +412,25 @@ export function CatalogSection({
                   <h2 className="text-4xl font-heading font-bold whitespace-nowrap">
                     {categories.find(c => c.id === selectedCategory)?.name}
                   </h2>
-                  <div className="relative w-auto">
+                  <div className="flex gap-2">
+                    <Button
+                      variant={(selectedSeries?.includes('Classic')) ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => setSelectedSeries(selectedSeries?.includes('Classic') ? null : 'Серия "Classic"')}
+                      className={selectedSeries?.includes('Classic') ? 'bg-secondary hover:bg-secondary/90' : ''}
+                    >
+                      Classic
+                    </Button>
+                    <Button
+                      variant={(selectedSeries?.includes('Eco')) ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => setSelectedSeries(selectedSeries?.includes('Eco') ? null : 'Серия "Eco"')}
+                      className={selectedSeries?.includes('Eco') ? 'bg-secondary hover:bg-secondary/90' : ''}
+                    >
+                      Eco
+                    </Button>
+                  </div>
+                  <div className="relative flex-1 max-w-md">
                     <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                     <Input 
                       type="text"
@@ -432,25 +450,6 @@ export function CatalogSection({
                       Сбросить
                     </Button>
                   )}
-                </div>
-                
-                <div className="flex gap-2 mb-3">
-                  <Button
-                    variant={(selectedSeries?.includes('Classic')) ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setSelectedSeries(selectedSeries?.includes('Classic') ? null : 'Серия "Classic"')}
-                    className={selectedSeries?.includes('Classic') ? 'bg-secondary hover:bg-secondary/90' : ''}
-                  >
-                    Classic
-                  </Button>
-                  <Button
-                    variant={(selectedSeries?.includes('Eco')) ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setSelectedSeries(selectedSeries?.includes('Eco') ? null : 'Серия "Eco"')}
-                    className={selectedSeries?.includes('Eco') ? 'bg-secondary hover:bg-secondary/90' : ''}
-                  >
-                    Eco
-                  </Button>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
