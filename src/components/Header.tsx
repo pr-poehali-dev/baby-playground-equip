@@ -5,6 +5,19 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 import { CartItem } from './data/catalogData';
+
+interface Product {
+  id: number;
+  name: string;
+  category: string;
+  subcategory?: string;
+  subsubcategory?: string;
+  price: string;
+  image: string;
+  description?: string;
+  dimensions?: string;
+  article?: string;
+}
 import { Link } from 'react-router-dom';
 import { OrderForm, OrderFormData } from './OrderForm';
 
@@ -24,6 +37,8 @@ interface HeaderProps {
   deliveryCost: number;
   generateKP: () => void;
   favoritesCount?: number;
+  allProducts?: Product[];
+  onAddToCart?: (product: Product) => void;
 }
 
 export function Header({
@@ -36,11 +51,19 @@ export function Header({
   calculateTotal,
   deliveryCost,
   generateKP,
-  favoritesCount = 0
+  favoritesCount = 0,
+  allProducts = [],
+  onAddToCart
 }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showOrderForm, setShowOrderForm] = useState(false);
   const [cartSearchQuery, setCartSearchQuery] = useState('');
+
+  const filteredCatalogProducts = allProducts.filter(product => 
+    cartSearchQuery === '' || 
+    product.name.toLowerCase().includes(cartSearchQuery.toLowerCase()) ||
+    (product.article && product.article.toLowerCase().includes(cartSearchQuery.toLowerCase()))
+  );
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50 border-b">
@@ -186,18 +209,54 @@ export function Header({
                             <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                             <Input 
                               type="text"
-                              placeholder="Поиск в корзине..."
+                              placeholder="Поиск по каталогу..."
                               value={cartSearchQuery}
                               onChange={(e) => setCartSearchQuery(e.target.value)}
                               className="pl-10"
                             />
                           </div>
                         </div>
+
+                        {cartSearchQuery && filteredCatalogProducts.length > 0 && (
+                          <div className="mb-4">
+                            <h3 className="text-sm font-semibold mb-2 text-muted-foreground">Результаты поиска:</h3>
+                            <div className="space-y-2 max-h-64 overflow-y-auto">
+                              {filteredCatalogProducts.slice(0, 10).map((product) => (
+                                <Card key={product.id} className="cursor-pointer hover:bg-muted/50">
+                                  <CardContent className="p-3">
+                                    <div className="flex gap-3 items-center">
+                                      <div className="w-12 h-12 bg-white rounded flex items-center justify-center shrink-0 border">
+                                        {product.image.startsWith('http') ? (
+                                          <img src={product.image} alt={product.name} className="w-full h-full object-contain p-1" />
+                                        ) : (
+                                          <span className="text-2xl">{product.image}</span>
+                                        )}
+                                      </div>
+                                      <div className="flex-1 min-w-0">
+                                        <h4 className="text-xs font-semibold line-clamp-2">{product.name}</h4>
+                                        <p className="text-xs text-muted-foreground">{formatPrice(product.price)} ₽</p>
+                                      </div>
+                                      <Button 
+                                        size="sm"
+                                        onClick={() => {
+                                          if (onAddToCart) {
+                                            onAddToCart(product);
+                                            setCartSearchQuery('');
+                                          }
+                                        }}
+                                      >
+                                        <Icon name="Plus" size={14} />
+                                      </Button>
+                                    </div>
+                                  </CardContent>
+                                </Card>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
                         <div className="space-y-4">
-                          {cart.filter(item => 
-                            cartSearchQuery === '' || 
-                            item.name.toLowerCase().includes(cartSearchQuery.toLowerCase())
-                          ).map((item) => (
+                          {cart.map((item) => (
                             <Card key={item.id}>
                               <CardContent className="p-4">
                                 <div className="flex gap-4">

@@ -585,6 +585,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
         deliveryCost={deliveryCost}
         generateKP={generateKP}
         favoritesCount={favorites.length}
+        allProducts={products}
+        onAddToCart={addToCart}
       />
 
       <CatalogSection
