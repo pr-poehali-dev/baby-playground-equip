@@ -147,7 +147,7 @@ export function CatalogSection({
       setTimeout(() => {
         const element = filtersRef.current;
         if (element) {
-          const yOffset = -200;
+          const yOffset = -400;
           const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
