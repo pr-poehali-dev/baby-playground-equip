@@ -144,7 +144,7 @@ export function ContentSections() {
 
       <footer className="bg-foreground text-background py-8">
         <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2024 Urban Play. Все права защищены.</p>
+          <p>&copy; 2026 Urban Play. Все права защищены.</p>
         </div>
       </footer>
 

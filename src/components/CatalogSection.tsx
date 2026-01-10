@@ -173,7 +173,7 @@ export function CatalogSection({
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl animate-fade-in">
             <h2 className="text-3xl md:text-4xl lg:text-6xl font-heading font-bold mb-4 md:mb-6 text-white leading-tight">
-              Создаём пространство для игры и спорта
+              Создаём пространство для игры<br />и спорта
             </h2>
             <p className="text-lg md:text-xl text-white/90 mb-6 md:mb-8">
               Производим качественное детское игровое, спортивное и парковое оборудование. 
@@ -412,7 +412,7 @@ export function CatalogSection({
                   <h2 className="text-4xl font-heading font-bold whitespace-nowrap">
                     {categories.find(c => c.id === selectedCategory)?.name}
                   </h2>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 ml-4">
                     <Button
                       variant={(selectedSeries?.includes('Classic')) ? 'default' : 'outline'}
                       size="sm"
