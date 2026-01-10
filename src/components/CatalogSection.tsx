@@ -410,12 +410,12 @@ export function CatalogSection({
           {selectedCategory && (
             <div id="products" className="container mx-auto px-4">
               <div>
-                <h2 className="text-3xl font-heading font-bold mb-4 mt-8">
-                  {categories.find(c => c.id === selectedCategory)?.name}
-                </h2>
-                <div className="sticky top-24 bg-white z-40 pb-4 pt-4 -mx-4 px-4">
+                <div className="sticky top-24 bg-white z-40 pb-4 pt-2 -mx-4 px-4">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="flex-1 relative">
+                  <h2 className="text-2xl font-heading font-bold whitespace-nowrap">
+                    {categories.find(c => c.id === selectedCategory)?.name}
+                  </h2>
+                  <div className="flex-1 relative max-w-md">
                     <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                     <Input 
                       type="text"
