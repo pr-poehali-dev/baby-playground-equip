@@ -178,7 +178,7 @@ export function OrderForm({ total, installationCost, deliveryCost, grandTotal, o
 
           <div className="border-t pt-4 space-y-2">
             <div className="flex justify-between text-base">
-              <span>Сумма товаров:</span>
+              <span>Сумма</span>
               <span>{total.toLocaleString('ru-RU')} ₽</span>
             </div>
             {installationCost > 0 && (
