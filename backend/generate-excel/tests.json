@@ -1,0 +1,24 @@
+{
+  "tests": [
+    {
+      "name": "Generate Excel with products",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "products": [
+          {
+            "article": "TEST-001",
+            "name": "Тестовый товар",
+            "price": "10000",
+            "quantity": 2,
+            "image": ""
+          }
+        ],
+        "deliveryCost": 5000,
+        "imageColumnWidth": 26,
+        "imageRowHeight": 99
+      },
+      "expectedStatus": 200
+    }
+  ]
+}

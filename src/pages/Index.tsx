@@ -92,7 +92,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
         };
       });
 
-      const response = await fetch('https://functions.poehali.dev/89ecbbe2-1cf9-4dce-8f9c-ba7bafcf46b7', {
+      const response = await fetch('https://functions.poehali.dev/308ef9b0-c437-4586-bfd1-e39fefb50f4d', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'заказ.xlsx';
+      a.download = 'коммерческое_предложение.xlsx';
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
