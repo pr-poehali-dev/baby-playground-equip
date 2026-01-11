@@ -54,36 +54,64 @@ def handler(event, context):
         
         current_row = 1
         
-        # Лого (левый верхний угол) - добавим текст вместо картинки
-        ws.merge_cells(f'A{current_row}:B{current_row+3}')
+        # Логотип (левый верхний угол)
+        try:
+            logo_url = 'https://cdn.poehali.dev/files/Рисунок1.png'
+            req = urllib.request.Request(logo_url, headers={'User-Agent': 'Mozilla/5.0'})
+            with urllib.request.urlopen(req, timeout=10) as response:
+                logo_data = response.read()
+                
+                pil_logo = PILImage.open(io.BytesIO(logo_data))
+                pil_logo.thumbnail((120, 60), PILImage.Resampling.LANCZOS)
+                
+                logo_buffer = io.BytesIO()
+                pil_logo.save(logo_buffer, format='PNG')
+                logo_buffer.seek(0)
+                
+                logo_img = XLImage(logo_buffer)
+                logo_img.width = pil_logo.width
+                logo_img.height = pil_logo.height
+                
+                ws.add_image(logo_img, 'A1')
+        except Exception as e:
+            print(f'Failed to load logo: {e}')
+        
+        ws.merge_cells(f'A{current_row}:B{current_row+4}')
         
         # Шапка компании (правый верхний угол)
         ws.merge_cells(f'E{current_row}:G{current_row}')
-        cell = ws.cell(row=current_row, column=5, value='ИП ИРОНИН РУСЛАН ОЛЕГОВИЧ')
+        cell = ws.cell(row=current_row, column=5, value='ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ')
         cell.font = Font(bold=True, size=10)
         cell.alignment = Alignment(horizontal='right', vertical='center')
         current_row += 1
         
         # ИНН и ОГРНИП
         ws.merge_cells(f'E{current_row}:G{current_row}')
-        cell = ws.cell(row=current_row, column=5, value='ИНН 110290632307 ОГРНИП 321112300012852')
+        cell = ws.cell(row=current_row, column=5, value='ИНН 110209455200 ОГРНИП 32377460012482')
         cell.font = Font(size=8)
         cell.alignment = Alignment(horizontal='right', vertical='center')
         current_row += 1
         
         # Адрес
         ws.merge_cells(f'E{current_row}:G{current_row}')
-        cell = ws.cell(row=current_row, column=5, value='353900, г. Новороссийск, ул. Героев-Десантников, д. 57 кв. 7')
+        cell = ws.cell(row=current_row, column=5, value='350005, г. Краснодар, ул. Кореновская, д. 57 оф.7')
         cell.font = Font(size=8)
         cell.alignment = Alignment(horizontal='right', vertical='center')
         current_row += 1
         
         # Телефон и email
         ws.merge_cells(f'E{current_row}:G{current_row}')
-        cell = ws.cell(row=current_row, column=5, value='тел. +7 918 115 15 51, e-mail: info@urban-play.ru')
+        cell = ws.cell(row=current_row, column=5, value='тел: +7 918 115 15 51 e-mail: info@urban-play.ru')
         cell.font = Font(size=8)
         cell.alignment = Alignment(horizontal='right', vertical='center')
-        current_row += 2
+        current_row += 1
+        
+        # Сайт
+        ws.merge_cells(f'E{current_row}:G{current_row}')
+        cell = ws.cell(row=current_row, column=5, value='www.urban-play.ru')
+        cell.font = Font(size=8)
+        cell.alignment = Alignment(horizontal='right', vertical='center')
+        current_row += 1
         
         # Заголовок КП
         ws.merge_cells(f'A{current_row}:G{current_row}')
