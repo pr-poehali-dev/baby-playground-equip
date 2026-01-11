@@ -422,7 +422,7 @@ export function Header({
                           
                           <Button 
                             variant="outline"
-                            className="w-full border-[#44aa02] text-[#44aa02] hover:bg-transparent hover:text-red-500 hover:border-red-500" 
+                            className="w-full border-[#44aa02] text-[#44aa02]" 
                             size="lg"
                             onClick={() => {
                               if (clearCart && confirm('Вы уверены, что хотите очистить корзину?')) {
@@ -450,7 +450,7 @@ export function Header({
                           
                           <Button 
                             variant="outline" 
-                            className="w-full hover:bg-transparent hover:border-[#44aa02] hover:text-[#44aa02]" 
+                            className="w-full" 
                             size="lg"
                             asChild
                           >
