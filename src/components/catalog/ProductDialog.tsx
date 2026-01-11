@@ -56,8 +56,8 @@ export function ProductDialog({
         </DialogHeader>
         {selectedProduct && (
           <div className="grid md:grid-cols-[2fr,1fr] gap-6 h-full">
-            <div className="space-y-4">
-              <div className="relative aspect-square bg-white rounded-lg flex items-center justify-center overflow-hidden border p-0">
+            <div className="flex flex-col justify-center h-full">
+              <div className="relative aspect-square bg-white rounded-lg flex items-center justify-center overflow-hidden border p-0 max-h-[70vh]">
                 {productImages.length > 0 ? (
                   <>
                     <img 
