@@ -128,11 +128,13 @@ export function Header({
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img 
-              src="https://cdn.poehali.dev/files/photo_643632026-01-05_09-32-44.png" 
-              alt="Urban Play"
-              className="h-16 w-auto object-contain rounded-0"
-            />
+            <a href="#hero" className="cursor-pointer">
+              <img 
+                src="https://cdn.poehali.dev/files/photo_643632026-01-05_09-32-44.png" 
+                alt="Urban Play"
+                className="h-16 w-auto object-contain rounded-0"
+              />
+            </a>
           </div>
           <nav className="hidden md:flex gap-6">
             <a href="#about" className="text-foreground hover:text-primary transition-colors text-base font-medium">О компании</a>
@@ -254,15 +256,27 @@ export function Header({
                       </div>
                     </SheetHeader>
                     <div className="mt-6 mb-4">
-                      <div className="relative">
-                        <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-                        <Input 
-                          type="text"
-                          placeholder="Поиск по каталогу..."
-                          value={cartSearchQuery}
-                          onChange={(e) => setCartSearchQuery(e.target.value)}
-                          className="pl-10"
-                        />
+                      <div className="flex gap-2">
+                        <div className="relative flex-1">
+                          <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                          <Input 
+                            type="text"
+                            placeholder="Поиск по каталогу..."
+                            value={cartSearchQuery}
+                            onChange={(e) => setCartSearchQuery(e.target.value)}
+                            className="pl-10"
+                          />
+                        </div>
+                        {cartSearchQuery && (
+                          <Button 
+                            variant="outline" 
+                            size="icon"
+                            onClick={() => setCartSearchQuery('')}
+                            className="hover:border-primary hover:text-primary hover:bg-transparent"
+                          >
+                            <Icon name="X" size={20} />
+                          </Button>
+                        )}
                       </div>
                     </div>
 

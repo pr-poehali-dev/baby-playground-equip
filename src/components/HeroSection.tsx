@@ -6,7 +6,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
   return (
-    <section className="relative py-16 md:py-28 overflow-hidden">
+    <section id="hero" className="relative py-16 md:py-28 overflow-hidden">
       <div 
         className="absolute inset-0 bg-cover bg-center md:bg-fixed"
         style={{ backgroundImage: 'url(https://cdn.poehali.dev/files/Airbrush-IMAGE-ENHANCER-1768089767504-1768089767504.jpg)' }}

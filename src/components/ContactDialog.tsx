@@ -123,7 +123,7 @@ export function ContactDialog({ open, onOpenChange }: ContactDialogProps) {
             />
           </div>
 
-          <Button type="submit" size="lg" className="w-full">
+          <Button type="submit" size="lg" variant="outline" className="w-full hover:border-primary hover:text-primary hover:bg-transparent">
             <Icon name="Phone" size={20} className="mr-2" />
             Перезвоните мне
           </Button>
