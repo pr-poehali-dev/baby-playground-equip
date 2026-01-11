@@ -194,13 +194,13 @@ export function OrderForm({ total, installationCost, deliveryCost, grandTotal, o
               </div>
             )}
             <div className="flex justify-between text-xl font-bold border-t pt-2">
-              <span>Итого:</span>
+              <span>Сумма товаров:</span>
               <span className="text-primary">{grandTotal.toLocaleString('ru-RU')} ₽</span>
             </div>
           </div>
 
           <div className="flex gap-3 pt-4">
-            <Button type="button" variant="outline" onClick={onCancel} className="flex-1">Изменить</Button>
+            <Button type="button" variant="outline" onClick={onCancel} className="flex-1">Отменить</Button>
             <Button type="submit" className="flex-1"> Заказать</Button>
           </div>
         </form>
