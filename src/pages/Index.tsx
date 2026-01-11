@@ -186,6 +186,39 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       
       <HeroSection onOpenCatalog={() => catalogState.setIsSideMenuOpen(true)} />
       
+      <section id="catalog" className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-heading font-bold text-center mb-4">Каталог продукции</h2>
+          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+            Выберите категорию продукции для просмотра полного ассортимента
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {categories.map((category) => (
+              <div
+                key={category.id}
+                onClick={() => handlers.handleCategoryClick(category)}
+                className="group cursor-pointer"
+              >
+                <div className="relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300 h-64">
+                  <div className="absolute inset-0">
+                    <img 
+                      src={category.image} 
+                      alt={category.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-heading font-bold text-white mb-2">{category.name}</h3>
+                    <p className="text-white/80 text-sm">{category.subcategories.length} серий</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
       <ServicesSection />
       
       <CatalogSection
