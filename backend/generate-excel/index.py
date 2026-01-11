@@ -224,6 +224,19 @@ def handler(event, context):
         # Товары
         equipment_total = 0
         
+        # Рассчитываем общую сумму для распределения
+        base_total = sum(
+            (int(p['price'].replace(' ', '')) if isinstance(p['price'], str) else p['price']) * p['quantity']
+            for p in products
+        )
+        
+        # Рассчитываем коэффициенты для распределения скрытых сумм
+        hidden_addition_per_ruble = 0
+        if hide_installation and installation_cost > 0:
+            hidden_addition_per_ruble += installation_cost / base_total if base_total > 0 else 0
+        if hide_delivery and delivery_cost > 0:
+            hidden_addition_per_ruble += delivery_cost / base_total if base_total > 0 else 0
+        
         for idx, product in enumerate(products, 1):
             ws.row_dimensions[current_row].height = 100.50
             
@@ -320,18 +333,26 @@ def handler(event, context):
             cell.border = thin_border
             cell.font = Font(name='Times New Roman', size=11)
             
-            # Цена
-            price = int(product['price'].replace(' ', '')) if isinstance(product['price'], str) else product['price']
-            cell = ws.cell(row=current_row, column=6, value=price)
+            # Цена (с учетом распределения скрытых сумм)
+            base_price = int(product['price'].replace(' ', '')) if isinstance(product['price'], str) else product['price']
+            base_sum = base_price * quantity
+            
+            # Добавляем пропорциональную часть скрытых сумм
+            hidden_addition = base_sum * hidden_addition_per_ruble
+            
+            # Финальная цена с учетом распределения
+            final_price = base_price + (hidden_addition / quantity)
+            
+            cell = ws.cell(row=current_row, column=6, value=final_price)
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.number_format = '#,##0.00\ ""'
             cell.border = thin_border
             cell.font = Font(name='Times New Roman', size=11)
             
-            # Сумма
-            sum_price = price * quantity
-            equipment_total += sum_price
-            cell = ws.cell(row=current_row, column=7, value=sum_price)
+            # Сумма (с учетом распределения)
+            final_sum = base_sum + hidden_addition
+            equipment_total += final_sum
+            cell = ws.cell(row=current_row, column=7, value=final_sum)
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.number_format = '#,##0.00\ ""'
             cell.border = thin_border
@@ -422,8 +443,12 @@ def handler(event, context):
             
             current_row += 1
         
-        # Итого
-        total_sum = equipment_total + installation_cost + delivery_cost
+        # Итого (с учетом только видимых строк)
+        total_sum = equipment_total
+        if installation_cost > 0 and not hide_installation:
+            total_sum += installation_cost
+        if delivery_cost > 0 and not hide_delivery:
+            total_sum += delivery_cost
         
         # Пустые ячейки БЕЗ рамок
         for col in range(1, 6):
