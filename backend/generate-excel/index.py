@@ -76,6 +76,11 @@ def handler(event, context):
         ws = wb.active
         ws.title = "Коммерческое предложение"
         
+        # Убираем отступы сверху
+        ws.page_margins.top = 0
+        ws.page_margins.left = 0.5
+        ws.page_margins.right = 0.5
+        
         current_row = 1
         
         # Логотип (левый верхний угол)
@@ -142,17 +147,17 @@ def handler(event, context):
         ws.row_dimensions[current_row].height = 15
         current_row += 1
         
-        # Декоративные линии (салатовая и фиолетовая)
+        # Декоративные линии (салатовая и фиолетовая) - тонкие
         ws.merge_cells(f'A{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=1)
         cell.fill = PatternFill(start_color='9FE870', end_color='9FE870', fill_type='solid')  # Салатовый
-        ws.row_dimensions[current_row].height = 8
+        ws.row_dimensions[current_row].height = 3
         current_row += 1
         
         ws.merge_cells(f'A{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=1)
         cell.fill = PatternFill(start_color='C084FC', end_color='C084FC', fill_type='solid')  # Фиолетовый
-        ws.row_dimensions[current_row].height = 8
+        ws.row_dimensions[current_row].height = 3
         current_row += 1
         
         # Заголовок КП
@@ -212,16 +217,16 @@ def handler(event, context):
             cell.border = thin_border
             cell.font = Font(name='Times New Roman', size=11)
             
-            # Наименование
+            # Наименование (сначала название, потом артикул)
             article = product.get('article', '')
             name = product.get('name', '')
-            full_name = f"{article}\n{name}" if article else name
+            full_name = f"{name}\n{article}" if article else name
             cell = ws.cell(row=current_row, column=2, value=full_name)
             cell.alignment = Alignment(horizontal='left', vertical='center', wrap_text=True)
             cell.border = thin_border
             cell.font = Font(name='Times New Roman', size=11)
             
-            # Рисунок
+            # Рисунок - встраиваем напрямую в максимальном качестве
             if product.get('image') and product['image'].startswith('http'):
                 try:
                     # Энкодим URL для корректной работы с кириллицей
@@ -229,9 +234,7 @@ def handler(event, context):
                     
                     # Парсим URL
                     parsed = urllib.parse.urlparse(image_url)
-                    # Кодируем путь (path), оставляя / и : безопасными
                     encoded_path = urllib.parse.quote(parsed.path, safe='/')
-                    # Собираем URL обратно
                     safe_url = urllib.parse.urlunparse((
                         parsed.scheme, parsed.netloc, encoded_path,
                         parsed.params, parsed.query, parsed.fragment
@@ -241,58 +244,40 @@ def handler(event, context):
                     with urllib.request.urlopen(req, timeout=10) as response:
                         img_data = response.read()
                         
-                        # Загружаем оригинальное изображение БЕЗ изменений
+                        # Открываем изображение только для получения размеров
                         pil_img = PILImage.open(io.BytesIO(img_data))
                         original_width, original_height = pil_img.size
                         
-                        # Максимальные размеры для ячейки
-                        max_width = 170
-                        max_height = 120
+                        # Целевые размеры (увеличены для лучшего качества)
+                        target_width = 170
+                        target_height = 120
                         
-                        # Вычисляем масштаб ТОЛЬКО если изображение больше ячейки
-                        scale = 1.0
-                        if original_width > max_width or original_height > max_height:
-                            width_ratio = max_width / original_width
-                            height_ratio = max_height / original_height
-                            scale = min(width_ratio, height_ratio)
+                        # Вычисляем финальные размеры с сохранением пропорций
+                        width_ratio = target_width / original_width
+                        height_ratio = target_height / original_height
+                        ratio = min(width_ratio, height_ratio)
                         
-                        new_width = int(original_width * scale)
-                        new_height = int(original_height * scale)
+                        final_width = int(original_width * ratio)
+                        final_height = int(original_height * ratio)
                         
-                        # Изменяем размер ТОЛЬКО если нужно
-                        if scale < 1.0:
-                            # Используем максимальное качество при уменьшении
-                            pil_img = pil_img.resize((new_width, new_height), PILImage.Resampling.LANCZOS)
+                        # Создаем изображение напрямую из оригинальных байтов
+                        # Это ключевой момент - используем оригинальный файл
+                        original_buffer = io.BytesIO(img_data)
+                        img = XLImage(original_buffer)
                         
-                        # Сохраняем в максимальном качестве БЕЗ сжатия
-                        img_buffer = io.BytesIO()
-                        if pil_img.mode in ('RGBA', 'LA', 'P'):
-                            # PNG без сжатия для прозрачных изображений
-                            if pil_img.mode == 'P':
-                                pil_img = pil_img.convert('RGBA')
-                            pil_img.save(img_buffer, format='PNG', compress_level=0, optimize=False)
-                        else:
-                            # JPEG максимального качества для остальных
-                            if pil_img.mode != 'RGB':
-                                pil_img = pil_img.convert('RGB')
-                            pil_img.save(img_buffer, format='JPEG', quality=100, subsampling=0, optimize=False)
-                        img_buffer.seek(0)
-                        
-                        # Создаём объект изображения для Excel
-                        img = XLImage(img_buffer)
-                        img.width = new_width
-                        img.height = new_height
+                        # Устанавливаем размеры для отображения (это не меняет качество!)
+                        img.width = final_width
+                        img.height = final_height
                         
                         # Центрируем изображение в ячейке
                         from openpyxl.drawing.spreadsheet_drawing import AnchorMarker, TwoCellAnchor
                         
-                        col_width_pixels = 182  # ширина колонки C (25.29 в Excel)
-                        row_height_pixels = 132  # высота строки (99.00 в Excel)
+                        col_width_pixels = 182
+                        row_height_pixels = 132
                         
-                        offset_x = max(0, int((col_width_pixels - new_width) / 2 * 9525))  # EMU
-                        offset_y = max(0, int((row_height_pixels - new_height) / 2 * 9525))  # EMU
+                        offset_x = max(0, int((col_width_pixels - final_width) / 2 * 9525))
+                        offset_y = max(0, int((row_height_pixels - final_height) / 2 * 9525))
                         
-                        # Создаём якорь вручную
                         anchor = TwoCellAnchor()
                         anchor._from = AnchorMarker(col=2, colOff=offset_x, row=current_row-1, rowOff=offset_y)
                         anchor.to = AnchorMarker(col=3, colOff=0, row=current_row, rowOff=0)
