@@ -36,6 +36,8 @@ interface HeaderProps {
   calculateTotal: () => number;
   deliveryCost: number;
   setDeliveryCost: (cost: number) => void;
+  installationCost: number;
+  setInstallationCost: (cost: number) => void;
   generateKP: () => void;
   isExcelSettingsOpen: boolean;
   setIsExcelSettingsOpen: (open: boolean) => void;
@@ -58,6 +60,8 @@ export function Header({
   calculateTotal,
   deliveryCost,
   setDeliveryCost,
+  installationCost,
+  setInstallationCost,
   generateKP,
   isExcelSettingsOpen,
   setIsExcelSettingsOpen,
@@ -324,6 +328,24 @@ export function Header({
                             <span>Итого:</span>
                             <span className="text-primary">{calculateTotal().toLocaleString('ru-RU')} ₽</span>
                           </div>
+                          
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium">Стоимость монтажа:</label>
+                            <Input
+                              type="number"
+                              placeholder="0"
+                              value={installationCost || ''}
+                              onChange={(e) => setInstallationCost(Number(e.target.value))}
+                              className="w-full"
+                            />
+                          </div>
+                          
+                          {installationCost > 0 && (
+                            <div className="flex justify-between text-sm text-muted-foreground">
+                              <span>Монтаж:</span>
+                              <span>{installationCost.toLocaleString('ru-RU')} ₽</span>
+                            </div>
+                          )}
                           
                           <div className="space-y-2">
                             <label className="text-sm font-medium">Стоимость доставки:</label>

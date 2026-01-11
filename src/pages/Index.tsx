@@ -35,6 +35,7 @@ interface IndexProps {
 export default function Index({ favorites, toggleFavorite, cart, addToCart, removeFromCart, updateQuantity }: IndexProps) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [deliveryCost, setDeliveryCost] = useState(0);
+  const [installationCost, setInstallationCost] = useState(0);
   const [isExcelSettingsOpen, setIsExcelSettingsOpen] = useState(false);
   const [imageColumnWidth, setImageColumnWidth] = useState(26);
   const [imageRowHeight, setImageRowHeight] = useState(99);
@@ -136,6 +137,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
         calculateTotal={calculateTotal}
         deliveryCost={deliveryCost}
         setDeliveryCost={setDeliveryCost}
+        installationCost={installationCost}
+        setInstallationCost={setInstallationCost}
         generateKP={handleDownloadExcel}
         isExcelSettingsOpen={isExcelSettingsOpen}
         setIsExcelSettingsOpen={setIsExcelSettingsOpen}
