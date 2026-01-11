@@ -48,28 +48,28 @@ export function CategoryDialogs({
   return (
     <>
       <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
-        <DialogContent className="sm:max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-5xl max-h-[85vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-heading text-center mb-2">
+            <DialogTitle className="text-4xl font-heading text-center mb-8">
               {currentCategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+          <div className="grid grid-cols-2 gap-6 px-8">
             {currentCategory?.subcategories.map((sub) => (
               <Card
                 key={sub.name}
-                className="cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 overflow-hidden group border-2 border-transparent hover:border-primary"
+                className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group border-0"
                 onClick={() => handleSubcategoryClick(sub)}
               >
-                <div className="aspect-square relative overflow-hidden bg-white flex items-center justify-center">
+                <div className="aspect-[4/3] relative overflow-hidden bg-white flex items-center justify-center">
                   {sub.image.startsWith('http') ? (
-                    <img src={sub.image} alt={sub.name} className="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-300" />
+                    <img src={sub.image} alt={sub.name} className="w-full h-full object-cover" />
                   ) : (
-                    <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{sub.image}</span>
+                    <span className="text-6xl">{sub.image}</span>
                   )}
                 </div>
-                <div className="py-2 px-3 bg-white">
-                  <h4 className="text-xl font-semibold text-center">{sub.name}</h4>
+                <div className="py-4 px-6 bg-white">
+                  <h4 className="text-2xl font-semibold text-center">{sub.name}</h4>
                 </div>
               </Card>
             ))}
@@ -78,28 +78,28 @@ export function CategoryDialogs({
       </Dialog>
 
       <Dialog open={isSubSubcategoryDialogOpen} onOpenChange={setIsSubSubcategoryDialogOpen}>
-        <DialogContent className="sm:max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-6xl max-h-[85vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-heading text-center mb-2">
+            <DialogTitle className="text-4xl font-heading text-center mb-8">
               {currentSubcategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-4">
             {currentSubcategory?.children?.map((subSub) => (
               <Card
                 key={subSub.name}
-                className="cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 overflow-hidden group border-2 border-transparent hover:border-primary"
+                className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group border-0"
                 onClick={() => handleSubSubcategoryClick(subSub.name)}
               >
-                <div className="aspect-square relative overflow-hidden bg-white flex items-center justify-center">
+                <div className="aspect-square relative overflow-hidden bg-white flex items-center justify-center p-4">
                   {subSub.image.startsWith('http') ? (
-                    <img src={subSub.image} alt={subSub.name} className="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-300" />
+                    <img src={subSub.image} alt={subSub.name} className="w-full h-full object-contain" />
                   ) : (
-                    <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{subSub.image}</span>
+                    <span className="text-6xl">{subSub.image}</span>
                   )}
                 </div>
-                <div className="py-2 px-3 bg-white">
-                  <h4 className="text-sm font-semibold text-center">{subSub.name}</h4>
+                <div className="py-3 px-4 bg-white">
+                  <h4 className="text-base font-semibold text-center leading-tight">{subSub.name}</h4>
                 </div>
               </Card>
             ))}
