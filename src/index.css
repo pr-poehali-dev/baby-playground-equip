@@ -124,17 +124,23 @@
     @apply active:scale-95 transition-transform duration-150;
   }
 
-  /* Зелёный контур при наведении только на outline кнопки */
+  /* Убрать синий фон при наведении */
+  button:hover {
+    background-color: transparent !important;
+  }
+
+  /* Для кнопок с зелёным фоном (primary) - тёмно-зелёный при наведении */
+  button[class*="bg-primary"]:hover {
+    background-color: hsl(99 98% 28%) !important;
+  }
+
+  /* Зелёный контур при наведении на outline кнопки */
   button[class*="variant-outline"]:hover,
   button[class*="border"]:not([class*="bg-primary"]):not(
       [class*="bg-destructive"]
     ):not([class*="bg-secondary"]):hover {
     border-color: #44aa02 !important;
     color: #44aa02 !important;
-  }
-
-  /* Для кнопок с зелёным фоном (primary) - тёмно-зелёный при наведении */
-  button[class*="bg-primary"]:hover {
-    background-color: hsl(99 98% 28%) !important;
+    background-color: transparent !important;
   }
 }
