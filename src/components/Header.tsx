@@ -306,7 +306,8 @@ export function Header({
                       grandTotal={calculateGrandTotal()}
                       onSubmit={async (formData: OrderFormData) => {
                         const newOrderNumber = getNextOrderNumber();
-                        setOrderNumber(newOrderNumber);
+                        const orderNumberOnly = newOrderNumber.split(' ')[0];
+                        setOrderNumber(orderNumberOnly);
                         setCurrentOrderNumber(getCurrentOrderNumber());
                         
                         // Отправляем заказ на email
