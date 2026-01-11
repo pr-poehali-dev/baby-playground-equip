@@ -202,7 +202,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
                 className="group cursor-pointer"
               >
                 <div className={`relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 aspect-[4/3] ${
-                  catalogState.selectedCategory === category.id ? 'ring-4 ring-primary' : ''
+                  catalogState.selectedCategory === category.id ? 'ring-2 ring-primary' : ''
                 }`}>
                   <div className="absolute inset-0">
                     <img 
@@ -219,7 +219,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
                                     category.id === 'coating' ? 'rgba(220, 252, 231, 0.95)' :
                                     'rgba(243, 232, 255, 0.95)'
                   }}>
-                    <h3 className="text-xl font-heading font-bold text-gray-900 text-center">{category.name}</h3>
+                    <h3 className="text-xl font-heading font-semibold text-gray-900 text-center">{category.name}</h3>
                   </div>
                 </div>
               </div>

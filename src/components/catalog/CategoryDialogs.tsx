@@ -48,13 +48,13 @@ export function CategoryDialogs({
   return (
     <>
       <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
-        <DialogContent className="sm:max-w-5xl max-h-[85vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-4xl font-heading text-center mb-8">
+            <DialogTitle className="text-4xl font-heading font-semibold text-center mb-8">
               {currentCategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-2 gap-6 px-8">
+          <div className="grid grid-cols-2 gap-6 px-4">
             {currentCategory?.subcategories.map((sub) => (
               <Card
                 key={sub.name}
@@ -78,9 +78,9 @@ export function CategoryDialogs({
       </Dialog>
 
       <Dialog open={isSubSubcategoryDialogOpen} onOpenChange={setIsSubSubcategoryDialogOpen}>
-        <DialogContent className="sm:max-w-6xl max-h-[85vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-5xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-4xl font-heading text-center mb-8">
+            <DialogTitle className="text-4xl font-heading font-semibold text-center mb-8">
               {currentSubcategory?.name}
             </DialogTitle>
           </DialogHeader>
