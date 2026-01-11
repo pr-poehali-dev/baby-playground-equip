@@ -186,14 +186,16 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       
       <HeroSection onOpenCatalog={() => catalogState.setIsSideMenuOpen(true)} />
       
+      <ServicesSection />
+      
       <section id="catalog" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-heading font-bold text-center mb-4">Каталог продукции</h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
             Выберите категорию продукции для просмотра полного ассортимента
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {categories.filter(cat => ['playground', 'sport', 'park'].includes(cat.id)).map((category) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            {categories.map((category) => (
               <div
                 key={category.id}
                 onClick={() => handlers.handleCategoryClick(category)}
@@ -210,7 +212,10 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
                   <div className="absolute bottom-0 left-0 right-0 p-6" style={{
                     backgroundColor: category.id === 'playground' ? 'rgba(220, 252, 231, 0.95)' : 
                                     category.id === 'sport' ? 'rgba(243, 232, 255, 0.95)' : 
-                                    'rgba(224, 242, 254, 0.95)'
+                                    category.id === 'park' ? 'rgba(224, 242, 254, 0.95)' :
+                                    category.id === 'improvement' ? 'rgba(254, 249, 195, 0.95)' :
+                                    category.id === 'coating' ? 'rgba(243, 232, 255, 0.95)' :
+                                    'rgba(243, 244, 246, 0.95)'
                   }}>
                     <h3 className="text-2xl font-heading font-bold text-gray-900 text-center">{category.name}</h3>
                   </div>
@@ -220,8 +225,6 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
           </div>
         </div>
       </section>
-      
-      <ServicesSection />
       
       <CatalogSection
         categories={categories}
