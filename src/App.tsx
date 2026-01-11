@@ -77,7 +77,8 @@ const App = () => {
         name: product.name, 
         price: product.price, 
         quantity: 1,
-        image: product.image
+        image: product.image,
+        article: product.article
       }];
     }
     

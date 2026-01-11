@@ -4,6 +4,7 @@ export interface CartItem {
   price: string;
   quantity: number;
   image: string;
+  article?: string;
 }
 
 export interface SubSubcategory {
