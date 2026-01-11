@@ -287,7 +287,7 @@ def handler(event, context):
                         col_width_pixels = 145
                         row_height_pixels = 100
                         
-                        target_width = col_width_pixels - 10  # 149 пикселей с отступом
+                        target_width = col_width_pixels - 10  # 135 пикселей с отступом
                         target_height = row_height_pixels - 10  # 90 пикселей с отступом
                         
                         # Вычисляем финальные размеры с сохранением пропорций
