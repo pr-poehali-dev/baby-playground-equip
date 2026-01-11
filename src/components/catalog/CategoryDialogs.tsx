@@ -58,18 +58,18 @@ export function CategoryDialogs({
             {currentCategory?.subcategories.map((sub) => (
               <Card
                 key={sub.name}
-                className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group border-0"
+                className="cursor-pointer transition-all hover:shadow-xl hover:-translate-y-2 overflow-hidden group shadow-md"
                 onClick={() => handleSubcategoryClick(sub)}
               >
                 <div className="aspect-[4/3] relative overflow-hidden bg-white flex items-center justify-center">
                   {sub.image.startsWith('http') ? (
-                    <img src={sub.image} alt={sub.name} className="w-full h-full object-cover" />
+                    <img src={sub.image} alt={sub.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   ) : (
-                    <span className="text-6xl">{sub.image}</span>
+                    <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{sub.image}</span>
                   )}
                 </div>
                 <div className="py-4 px-6 bg-white">
-                  <h4 className="font-semibold text-center text-base">{sub.name}</h4>
+                  <h4 className="text-2xl font-semibold text-center">{sub.name}</h4>
                 </div>
               </Card>
             ))}
