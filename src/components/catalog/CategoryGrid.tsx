@@ -2,7 +2,7 @@ import { RefObject } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 
@@ -47,6 +47,7 @@ interface CategoryGridProps {
   handleAddToCart: (product: Product) => void;
   favorites: Product[];
   toggleFavorite: (product: Product) => void;
+  setSelectedSubSubcategory: (value: string | null) => void;
 }
 
 const formatPrice = (price: string | number): string => {
@@ -71,8 +72,21 @@ export function CategoryGrid({
   handleAddToCart,
   favorites,
   toggleFavorite,
+  setSelectedSubSubcategory,
 }: CategoryGridProps) {
   if (!selectedCategory) return null;
+
+  const currentCategory = categories.find(c => c.id === selectedCategory);
+  const currentSubcategory = currentCategory?.subcategories.find(s => s.name === selectedSeries);
+  const availableSubSubcategories = currentSubcategory?.children || [];
+
+  const handleReset = () => {
+    if (searchQuery) {
+      setSearchQuery('');
+    } else {
+      handleResetFilters();
+    }
+  };
 
   return (
     <div id="products" className="container mx-auto px-4 pt-2">
@@ -101,6 +115,24 @@ export function CategoryGrid({
                 Eco
               </Button>
             </div>
+            {availableSubSubcategories.length > 0 && (
+              <Select
+                value={selectedSubSubcategory || 'all'}
+                onValueChange={(value) => setSelectedSubSubcategory(value === 'all' ? null : value)}
+              >
+                <SelectTrigger className="w-52 h-9">
+                  <SelectValue placeholder="Все категории" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Все категории</SelectItem>
+                  {availableSubSubcategories.map((subSub) => (
+                    <SelectItem key={subSub.name} value={subSub.name}>
+                      {subSub.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
             <div className="relative w-80 ml-auto">
               <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
               <Input 
@@ -111,42 +143,13 @@ export function CategoryGrid({
                 className="pl-10 h-9"
               />
             </div>
-          </div>
-
-          <div className="flex justify-between items-center">
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="#" onClick={handleResetFilters}>Главная</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="#" onClick={handleResetFilters}>
-                    {categories.find(c => c.id === selectedCategory)?.name}
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                {selectedSubcategory && (
-                  <>
-                    <BreadcrumbSeparator />
-                    <BreadcrumbItem>
-                      {selectedSubSubcategory ? (
-                        <BreadcrumbLink href="#">{selectedSubcategory}</BreadcrumbLink>
-                      ) : (
-                        <BreadcrumbPage>{selectedSubcategory}</BreadcrumbPage>
-                      )}
-                    </BreadcrumbItem>
-                  </>
-                )}
-                {selectedSubSubcategory && (
-                  <>
-                    <BreadcrumbSeparator />
-                    <BreadcrumbItem>
-                      <BreadcrumbPage>{selectedSubSubcategory}</BreadcrumbPage>
-                    </BreadcrumbItem>
-                  </>
-                )}
-              </BreadcrumbList>
-            </Breadcrumb>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleReset}
+            >
+              Сбросить
+            </Button>
           </div>
         </div>
 

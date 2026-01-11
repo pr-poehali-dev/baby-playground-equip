@@ -216,6 +216,7 @@ export function CatalogSection({
         handleResetFilters={handleResetFilters}
         selectedSubcategory={selectedSubcategory}
         selectedSubSubcategory={selectedSubSubcategory}
+        setSelectedSubSubcategory={setSelectedSubSubcategory}
         productsRef={productsRef}
         filteredProducts={filteredProducts}
         handleProductClick={handleProductClick}
