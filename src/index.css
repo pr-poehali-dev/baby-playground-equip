@@ -131,8 +131,13 @@
     color: #44aa02 !important;
   }
 
-  /* Зелёная кнопка "Очистить корзину" с 44aa02 - красный контур и текст при наведении (перезаписывает outline) */
-  button[class*="44aa02"]:hover {
+  /* Кнопка "Очистить корзину" - тёмный контур и текст, при наведении красный */
+  button.clear-cart-btn {
+    border-color: hsl(220 13% 13%) !important;
+    color: hsl(220 13% 13%) !important;
+  }
+
+  button.clear-cart-btn:hover {
     background-color: transparent !important;
     border-color: #ef4444 !important;
     color: #ef4444 !important;

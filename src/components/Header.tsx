@@ -422,7 +422,7 @@ export function Header({
                           
                           <Button 
                             variant="outline"
-                            className="w-full border-[#44aa02] text-[#44aa02]" 
+                            className="w-full clear-cart-btn" 
                             size="lg"
                             onClick={() => {
                               if (clearCart && confirm('Вы уверены, что хотите очистить корзину?')) {
