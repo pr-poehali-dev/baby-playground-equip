@@ -131,13 +131,13 @@ def handler(event, context):
         current_row += 2
         
         # Настройка колонок
-        ws.column_dimensions['A'].width = 4    # №
-        ws.column_dimensions['B'].width = 24   # Наименование
-        ws.column_dimensions['C'].width = 27   # Рисунок - 27.00 (194 пикселя)
-        ws.column_dimensions['D'].width = 7    # Кол-во
-        ws.column_dimensions['E'].width = 7    # Ед. изм
-        ws.column_dimensions['F'].width = 15   # Цена руб
-        ws.column_dimensions['G'].width = 15   # Сумма руб
+        ws.column_dimensions['A'].width = 4      # №
+        ws.column_dimensions['B'].width = 17     # Наименование - 17 (138 пикселей)
+        ws.column_dimensions['C'].width = 25     # Рисунок - 25 (180 пикселей)
+        ws.column_dimensions['D'].width = 6.29   # Кол-во - 6.29 (49 пикселей)
+        ws.column_dimensions['E'].width = 6.29   # Ед. изм - 6.29 (49 пикселей)
+        ws.column_dimensions['F'].width = 10     # Цена руб - 10 (75 пикселей)
+        ws.column_dimensions['G'].width = 10     # Сумма руб - 10 (75 пикселей)
         
         # Границы
         thin_border = Border(
