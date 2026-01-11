@@ -190,7 +190,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       
       <section id="catalog" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-heading font-bold text-center mb-4">Каталог продукции</h2>
+          <h2 className="text-4xl font-heading text-center mb-4 font-semibold">Каталог продукции</h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
             Выберите категорию продукции для просмотра полного ассортимента
           </p>
