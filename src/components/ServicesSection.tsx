@@ -8,9 +8,9 @@ export function ServicesSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             { icon: 'Ruler', title: 'Проектирование', desc: 'Разработка индивидуальных проектов детских площадок', color: 'text-[#44aa02]', bg: 'bg-[#44aa02]/10' },
-            { icon: 'Factory', title: 'Производство', desc: 'Собственное производство из качественных материалов', color: 'text-[#0284c7]', bg: 'bg-[#0284c7]/10' },
+            { icon: 'Factory', title: 'Производство', desc: 'Собственное производство из качественных материалов', color: 'text-[#ea580c]', bg: 'bg-[#ea580c]/10' },
             { icon: 'Truck', title: 'Доставка', desc: 'Доставка по всей России в удобное время', color: 'text-[#58078a]', bg: 'bg-[#58078a]/10' },
-            { icon: 'Wrench', title: 'Монтаж', desc: 'Профессиональная установка и гарантия качества', color: 'text-[#ea580c]', bg: 'bg-[#ea580c]/10' }
+            { icon: 'Wrench', title: 'Монтаж', desc: 'Профессиональная установка и гарантия качества', color: 'text-[#0284c7]', bg: 'bg-[#0284c7]/10' }
           ].map((service, idx) => (
             <Card key={idx} className="text-center hover:shadow-lg transition-shadow animate-scale-in" style={{ animationDelay: `${idx * 0.15}s` }}>
               <CardHeader className="py-3 px-4">
