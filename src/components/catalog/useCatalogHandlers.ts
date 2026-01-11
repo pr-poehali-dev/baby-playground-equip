@@ -145,6 +145,12 @@ export function useCatalogHandlers(props: CatalogHandlersProps) {
       setSelectedSubSubcategory(null);
       setSelectedSeries(null);
       setCurrentCategory(null);
+      setTimeout(() => {
+        const catalogSection = document.getElementById('catalog');
+        if (catalogSection) {
+          catalogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
     }
   };
 
