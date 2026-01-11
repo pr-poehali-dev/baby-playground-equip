@@ -194,7 +194,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
             Выберите категорию продукции для просмотра полного ассортимента
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {categories.map((category) => (
               <div
                 key={category.id}
@@ -209,7 +209,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-3" style={{
+                  <div className="absolute bottom-0 left-0 right-0 py-2 px-3" style={{
                     backgroundColor: category.id === 'playground' ? 'rgba(220, 252, 231, 0.95)' : 
                                     category.id === 'sport' ? 'rgba(243, 232, 255, 0.95)' : 
                                     category.id === 'park' ? 'rgba(224, 242, 254, 0.95)' :
