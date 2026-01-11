@@ -159,7 +159,7 @@ export function CategoryGrid({
             return (
               <Card 
                 key={product.id} 
-                className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group border-2 border-transparent hover:border-primary"
+                className="overflow-hidden transition-all cursor-pointer group border border-gray-200 hover:border-transparent hover:shadow-xl"
               >
                 <div 
                   className="aspect-square bg-white flex items-center justify-center relative overflow-hidden"
@@ -173,7 +173,7 @@ export function CategoryGrid({
                   <Button
                     variant="outline"
                     size="icon"
-                    className="absolute top-2 right-2 bg-white/90 hover:bg-white z-10"
+                    className="absolute top-2 right-2 bg-white/90 hover:bg-white z-10 border-0"
                     onClick={(e) => {
                       e.stopPropagation();
                       toggleFavorite(product);
@@ -184,7 +184,7 @@ export function CategoryGrid({
                 </div>
                 <CardContent className="p-4">
                   <div className="mb-2">
-                    <Badge variant="outline" className="text-xs mb-2">{product.name.split('\n')[0]}</Badge>
+                    <p className="text-xs text-muted-foreground mb-2">{product.name.split('\n')[0]}</p>
                     <h3 className="font-semibold text-base line-clamp-2 min-h-[48px]">{product.name.split('\n')[1] || product.name}</h3>
                   </div>
                   <div className="flex items-center justify-between gap-2">
@@ -195,8 +195,10 @@ export function CategoryGrid({
                         e.stopPropagation();
                         handleAddToCart(product);
                       }}
+                      className="gap-1"
                     >
                       <Icon name="ShoppingCart" size={16} />
+                      <span className="hidden sm:inline">В корзину</span>
                     </Button>
                   </div>
                 </CardContent>
