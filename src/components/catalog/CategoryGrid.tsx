@@ -182,19 +182,19 @@ export function CategoryGrid({
                     <Icon name="Heart" size={18} className={isFavorite ? 'fill-red-500 text-red-500' : ''} />
                   </Button>
                 </div>
-                <CardContent className="p-3">
-                  <p className="text-xs text-muted-foreground mb-0.5">{product.name.split('\n')[0]}</p>
-                  <h3 className="font-semibold text-sm line-clamp-2 mb-1.5">{product.name.split('\n')[1] || product.name}</h3>
-                  <p className="text-lg font-bold text-primary mb-2">{formatPrice(product.price)} ₽</p>
+                <CardContent className="p-2">
+                  <p className="text-xs text-muted-foreground mb-0.5 leading-tight">{product.name.split('\n')[0]}</p>
+                  <h3 className="font-semibold text-sm line-clamp-1 mb-1 leading-tight">{product.name.split('\n')[1] || product.name}</h3>
+                  <p className="text-base font-bold text-primary mb-1.5">{formatPrice(product.price)} ₽</p>
                   <Button 
                     size="sm"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleAddToCart(product);
                     }}
-                    className="gap-1 w-full"
+                    className="gap-1 w-full h-8 text-xs"
                   >
-                    <Icon name="ShoppingCart" size={16} />
+                    <Icon name="ShoppingCart" size={14} />
                     <span>В корзину</span>
                   </Button>
                 </CardContent>
