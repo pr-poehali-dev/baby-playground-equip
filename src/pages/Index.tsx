@@ -201,12 +201,14 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
                 onClick={() => handlers.handleCategoryClick(category)}
                 className="group cursor-pointer"
               >
-                <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300 aspect-[4/3]">
+                <div className={`relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 aspect-[4/3] ${
+                  catalogState.selectedCategory === category.id ? 'ring-4 ring-primary' : ''
+                }`}>
                   <div className="absolute inset-0">
                     <img 
                       src={category.image} 
                       alt={category.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 py-2 px-3" style={{
