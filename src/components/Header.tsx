@@ -220,7 +220,7 @@ export function Header({
             </Sheet>
 
             <Link to="/favorites">
-              <Button variant="outline" className="relative">
+              <Button variant="outline" className="relative hover:border-primary hover:text-primary">
                 <Icon name="Heart" size={20} />
                 {favoritesCount > 0 && (
                   <span className="absolute -top-2 -right-2 bg-red-500 text-white w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold">
@@ -245,7 +245,13 @@ export function Header({
                 {!showOrderForm && (
                   <>
                     <SheetHeader>
-                      <SheetTitle className="text-2xl font-heading">Корзина</SheetTitle>
+                      <div className="flex items-center justify-between">
+                        <SheetTitle className="text-2xl font-heading">Корзина</SheetTitle>
+                        <Button onClick={() => setIsContactDialogOpen(true)} size="sm">
+                          <Icon name="Phone" size={16} className="mr-2" />
+                          Заказать звонок
+                        </Button>
+                      </div>
                     </SheetHeader>
                     <div className="mt-6 mb-4">
                       <div className="relative">
@@ -430,7 +436,7 @@ export function Header({
                           
                           <Button 
                             variant="outline"
-                            className="w-full" 
+                            className="w-full hover:border-red-500 hover:text-red-500" 
                             size="lg"
                             onClick={() => {
                               if (window.confirm('Вы уверены, что хотите очистить корзину?')) {
