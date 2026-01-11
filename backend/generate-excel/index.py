@@ -225,7 +225,7 @@ def handler(event, context):
             cell.border = thin_border
             cell.fill = PatternFill(start_color='D3D3D3', end_color='D3D3D3', fill_type='solid')
         
-        ws.row_dimensions[current_row].height = 22.00
+        ws.row_dimensions[current_row].height = 16.50
         current_row += 1
         
         # Товары
@@ -241,7 +241,7 @@ def handler(event, context):
         installation_percent_multiplier = (installation_percent / 100) if (hide_installation and installation_percent > 0) else 0
         
         for idx, product in enumerate(products, 1):
-            ws.row_dimensions[current_row].height = 100.00
+            ws.row_dimensions[current_row].height = 75.00
             
             # №
             cell = ws.cell(row=current_row, column=1, value=idx)
@@ -280,7 +280,7 @@ def handler(event, context):
                         pil_img = PILImage.open(io.BytesIO(img_data))
                         original_width, original_height = pil_img.size
                         
-                        # Целевые размеры под новую ячейку (21.00 width × 100.00 height)
+                        # Целевые размеры под новую ячейку (21.00 width × 75.00 height)
                         target_width = 145  # 152 пикселя - небольшой отступ
                         target_height = 93  # 100 пикселей - небольшой отступ
                         
@@ -305,7 +305,7 @@ def handler(event, context):
                         from openpyxl.drawing.spreadsheet_drawing import AnchorMarker, TwoCellAnchor
                         
                         col_width_pixels = 152  # 21.00 в Excel
-                        row_height_pixels = 100  # 100.00 в Excel
+                        row_height_pixels = 100  # 75.00 в Excel (100 пикселей)
                         
                         offset_x = max(0, int((col_width_pixels - final_width) / 2 * 9525))
                         offset_y = max(0, int((row_height_pixels - final_height) / 2 * 9525))
