@@ -417,9 +417,7 @@ export function Header({
                     checked={hideInstallationInKP}
                     onCheckedChange={(checked) => setHideInstallationInKP(checked as boolean)}
                   />
-                  <label htmlFor="hide-installation" className="text-sm cursor-pointer">
-                    Спрятать в цену товара
-                  </label>
+                  <label htmlFor="hide-installation" className="text-sm cursor-pointer">включить в стоимость оборудования</label>
                 </div>
               </div>
               <Input
