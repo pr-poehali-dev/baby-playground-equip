@@ -238,9 +238,6 @@ export function Header({
                       <SheetTitle className="text-2xl font-heading">Корзина</SheetTitle>
                     </SheetHeader>
                     <div className="mt-6 mb-4 space-y-3">
-                      <div className="text-sm text-muted-foreground">
-                        Заказ № <span className="font-semibold text-foreground">{currentOrderNumber}</span>
-                      </div>
                       <div className="relative">
                         <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                         <Input 
@@ -250,6 +247,9 @@ export function Header({
                           onChange={(e) => setCartSearchQuery(e.target.value)}
                           className="pl-10"
                         />
+                      </div>
+                      <div className="text-base">
+                        <span className="font-bold">Заказ</span> № {currentOrderNumber.split(' ')[0]} от {currentOrderNumber.split(' ')[1]}
                       </div>
                     </div>
 
