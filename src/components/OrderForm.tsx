@@ -203,10 +203,7 @@ export function OrderForm({ total, installationCost, deliveryCost, grandTotal, o
             <Button type="button" variant="outline" onClick={onCancel} className="flex-1">
               Отмена
             </Button>
-            <Button type="submit" className="flex-1">
-              <Icon name="ShoppingCart" size={18} className="mr-2" />
-              Оформить заказ
-            </Button>
+            <Button type="submit" className="flex-1"> Заказать</Button>
           </div>
         </form>
       </CardContent>
