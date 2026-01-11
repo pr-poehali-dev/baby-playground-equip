@@ -519,14 +519,11 @@ export function Header({
       <Dialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-heading text-center">Благодарим вас за обращение в компанию «Красивый город»!</DialogTitle>
+            <DialogTitle className="text-2xl font-heading text-center">Благодарим вас за обращение в компанию «Urban Play»!</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <p className="text-base">
-              Заявка №{orderNumber} оформлена и находится на проверке. Наш менеджер в течение дня свяжется вами, чтобы проверить заказ и чтобы вы могли убедиться, что всё заказали правильно!
-            </p>
-            <p className="text-base">
-              Также все детали по Заявке №{orderNumber} были отправлены вам на электронную почту.
+              Заявка {orderNumber} оформлена. Наш менеджер в течение дня свяжется вами, чтобы проверить заказ и чтобы вы могли убедиться, что всё заказали правильно!
             </p>
             <Button 
               onClick={() => {
