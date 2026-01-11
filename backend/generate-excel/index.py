@@ -241,37 +241,44 @@ def handler(event, context):
                     with urllib.request.urlopen(req, timeout=10) as response:
                         img_data = response.read()
                         
+                        # Загружаем оригинальное изображение БЕЗ изменений
                         pil_img = PILImage.open(io.BytesIO(img_data))
                         original_width, original_height = pil_img.size
                         
-                        # Целевые размеры под ячейку (высокое качество)
-                        target_width = 170
-                        target_height = 120
+                        # Максимальные размеры для ячейки
+                        max_width = 170
+                        max_height = 120
                         
-                        # Вычисляем пропорции
-                        width_ratio = target_width / original_width
-                        height_ratio = target_height / original_height
-                        ratio = min(width_ratio, height_ratio)
+                        # Вычисляем масштаб ТОЛЬКО если изображение больше ячейки
+                        scale = 1.0
+                        if original_width > max_width or original_height > max_height:
+                            width_ratio = max_width / original_width
+                            height_ratio = max_height / original_height
+                            scale = min(width_ratio, height_ratio)
                         
-                        # Новые размеры с сохранением пропорций
-                        new_width = int(original_width * ratio)
-                        new_height = int(original_height * ratio)
+                        new_width = int(original_width * scale)
+                        new_height = int(original_height * scale)
                         
-                        # Resize с высоким качеством (LANCZOS для уменьшения, BICUBIC для увеличения)
-                        if ratio < 1:
+                        # Изменяем размер ТОЛЬКО если нужно
+                        if scale < 1.0:
+                            # Используем максимальное качество при уменьшении
                             pil_img = pil_img.resize((new_width, new_height), PILImage.Resampling.LANCZOS)
-                        else:
-                            pil_img = pil_img.resize((new_width, new_height), PILImage.Resampling.BICUBIC)
                         
+                        # Сохраняем в максимальном качестве БЕЗ сжатия
                         img_buffer = io.BytesIO()
-                        # Сохраняем в высоком качестве
-                        if pil_img.mode == 'RGBA':
-                            pil_img.save(img_buffer, format='PNG', compress_level=0)
+                        if pil_img.mode in ('RGBA', 'LA', 'P'):
+                            # PNG без сжатия для прозрачных изображений
+                            if pil_img.mode == 'P':
+                                pil_img = pil_img.convert('RGBA')
+                            pil_img.save(img_buffer, format='PNG', compress_level=0, optimize=False)
                         else:
-                            rgb_img = pil_img.convert('RGB')
-                            rgb_img.save(img_buffer, format='JPEG', quality=98, subsampling=0, optimize=False)
+                            # JPEG максимального качества для остальных
+                            if pil_img.mode != 'RGB':
+                                pil_img = pil_img.convert('RGB')
+                            pil_img.save(img_buffer, format='JPEG', quality=100, subsampling=0, optimize=False)
                         img_buffer.seek(0)
                         
+                        # Создаём объект изображения для Excel
                         img = XLImage(img_buffer)
                         img.width = new_width
                         img.height = new_height
@@ -282,8 +289,8 @@ def handler(event, context):
                         col_width_pixels = 182  # ширина колонки C (25.29 в Excel)
                         row_height_pixels = 132  # высота строки (99.00 в Excel)
                         
-                        offset_x = int((col_width_pixels - new_width) / 2 * 9525)  # EMU
-                        offset_y = int((row_height_pixels - new_height) / 2 * 9525)  # EMU
+                        offset_x = max(0, int((col_width_pixels - new_width) / 2 * 9525))  # EMU
+                        offset_y = max(0, int((row_height_pixels - new_height) / 2 * 9525))  # EMU
                         
                         # Создаём якорь вручную
                         anchor = TwoCellAnchor()
