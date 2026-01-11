@@ -72,6 +72,13 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     addToCart(product);
   };
 
+  const calculateTotal = () => {
+    return cart.reduce((total, item) => {
+      const price = typeof item.price === 'string' ? parseInt(item.price.replace(/\s/g, '')) : item.price;
+      return total + (price * item.quantity);
+    }, 0);
+  };
+
   const handleDownloadExcel = async () => {
     try {
       const cartProducts = cart.map(item => {
@@ -123,18 +130,15 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
         cart={cart}
         isCartOpen={isCartOpen}
         setIsCartOpen={setIsCartOpen}
+        setIsSideMenuOpen={catalogState.setIsSideMenuOpen}
         removeFromCart={removeFromCart}
         updateQuantity={updateQuantity}
+        calculateTotal={calculateTotal}
         deliveryCost={deliveryCost}
-        setDeliveryCost={setDeliveryCost}
-        onDownloadExcel={handleDownloadExcel}
-        isExcelSettingsOpen={isExcelSettingsOpen}
-        setIsExcelSettingsOpen={setIsExcelSettingsOpen}
-        imageColumnWidth={imageColumnWidth}
-        setImageColumnWidth={setImageColumnWidth}
-        imageRowHeight={imageRowHeight}
-        setImageRowHeight={setImageRowHeight}
-        products={products}
+        generateKP={handleDownloadExcel}
+        favoritesCount={favorites.length}
+        allProducts={products}
+        onAddToCart={handleAddToCart}
       />
       
       <HeroSection onOpenCatalog={() => catalogState.setIsSideMenuOpen(true)} />
