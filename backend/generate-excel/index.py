@@ -147,17 +147,20 @@ def handler(event, context):
         ws.row_dimensions[current_row].height = 15
         current_row += 1
         
-        # Декоративные линии (салатовая и фиолетовая) - тонкие
+        # Декоративные линии (салатовая и фиолетовая) - очень тонкие
         ws.merge_cells(f'A{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=1)
         cell.fill = PatternFill(start_color='9FE870', end_color='9FE870', fill_type='solid')  # Салатовый
-        ws.row_dimensions[current_row].height = 3
+        ws.row_dimensions[current_row].height = 2
         current_row += 1
         
         ws.merge_cells(f'A{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=1)
         cell.fill = PatternFill(start_color='C084FC', end_color='C084FC', fill_type='solid')  # Фиолетовый
-        ws.row_dimensions[current_row].height = 3
+        ws.row_dimensions[current_row].height = 2
+        current_row += 1
+        
+        # Пустая строка для отступа
         current_row += 1
         
         # Заголовок КП
@@ -177,13 +180,13 @@ def handler(event, context):
         current_row += 2
         
         # Настройка колонок
-        ws.column_dimensions['A'].width = 3.29   # № - 3.29 (28 пикселей)
-        ws.column_dimensions['B'].width = 23.29  # Наименование - 23.29 (168 пикселей)
-        ws.column_dimensions['C'].width = 25.29  # Рисунок - 25.29 (182 пикселя)
-        ws.column_dimensions['D'].width = 6.29   # Кол-во - 6.29 (48 пикселей)
-        ws.column_dimensions['E'].width = 6.29   # Ед. изм - 6.29 (48 пикселей)
-        ws.column_dimensions['F'].width = 14.29  # Цена руб - 14.29 (105 пикселей)
-        ws.column_dimensions['G'].width = 16.29  # Сумма руб - 16.29 (119 пикселей)
+        ws.column_dimensions['A'].width = 3.00   # № - 3.00 (26 пикселей)
+        ws.column_dimensions['B'].width = 23.00  # Наименование - 23.00 (166 пикселей)
+        ws.column_dimensions['C'].width = 27.00  # Рисунок - 27.00 (194 пикселя)
+        ws.column_dimensions['D'].width = 6.00   # Кол-во - 6.00 (47 пикселей)
+        ws.column_dimensions['E'].width = 6.00   # Ед. изм - 6.00 (47 пикселей)
+        ws.column_dimensions['F'].width = 14.00  # Цена руб - 14.00 (103 пикселя)
+        ws.column_dimensions['G'].width = 16.00  # Сумма руб - 16.00 (117 пикселей)
         
         # Границы
         thin_border = Border(
@@ -197,7 +200,7 @@ def handler(event, context):
         headers = ['№', 'Наименование', 'Рисунок', 'Кол-во', 'Ед. изм', 'Цена, руб', 'Сумма, руб']
         for col_num, header in enumerate(headers, 1):
             cell = ws.cell(row=current_row, column=col_num, value=header)
-            cell.font = Font(name='Times New Roman', bold=True, size=8)
+            cell.font = Font(name='Times New Roman', bold=True, size=10)
             cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
             cell.border = thin_border
             cell.fill = PatternFill(start_color='D3D3D3', end_color='D3D3D3', fill_type='solid')
@@ -209,7 +212,7 @@ def handler(event, context):
         equipment_total = 0
         
         for idx, product in enumerate(products, 1):
-            ws.row_dimensions[current_row].height = 99
+            ws.row_dimensions[current_row].height = 100.50
             
             # №
             cell = ws.cell(row=current_row, column=1, value=idx)
@@ -248,9 +251,9 @@ def handler(event, context):
                         pil_img = PILImage.open(io.BytesIO(img_data))
                         original_width, original_height = pil_img.size
                         
-                        # Целевые размеры (увеличены для лучшего качества)
-                        target_width = 170
-                        target_height = 120
+                        # Целевые размеры под новую ячейку
+                        target_width = 185
+                        target_height = 125
                         
                         # Вычисляем финальные размеры с сохранением пропорций
                         width_ratio = target_width / original_width
@@ -272,8 +275,8 @@ def handler(event, context):
                         # Центрируем изображение в ячейке
                         from openpyxl.drawing.spreadsheet_drawing import AnchorMarker, TwoCellAnchor
                         
-                        col_width_pixels = 182
-                        row_height_pixels = 132
+                        col_width_pixels = 194  # 27.00 в Excel
+                        row_height_pixels = 134  # 100.50 в Excel
                         
                         offset_x = max(0, int((col_width_pixels - final_width) / 2 * 9525))
                         offset_y = max(0, int((row_height_pixels - final_height) / 2 * 9525))
