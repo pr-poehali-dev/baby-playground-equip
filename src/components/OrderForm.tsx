@@ -9,7 +9,9 @@ import Icon from '@/components/ui/icon';
 
 interface OrderFormProps {
   total: number;
+  installationCost: number;
   deliveryCost: number;
+  grandTotal: number;
   onSubmit: (formData: OrderFormData) => void;
   onCancel: () => void;
 }
@@ -23,7 +25,7 @@ export interface OrderFormData {
   comment: string;
 }
 
-export function OrderForm({ total, deliveryCost, onSubmit, onCancel }: OrderFormProps) {
+export function OrderForm({ total, installationCost, deliveryCost, grandTotal, onSubmit, onCancel }: OrderFormProps) {
   const [formData, setFormData] = useState<OrderFormData>({
     name: '',
     phone: '',
@@ -81,7 +83,7 @@ export function OrderForm({ total, deliveryCost, onSubmit, onCancel }: OrderForm
     }
   };
 
-  const grandTotal = total + deliveryCost;
+
 
   return (
     <Card className="w-full">
@@ -175,9 +177,25 @@ export function OrderForm({ total, deliveryCost, onSubmit, onCancel }: OrderForm
           </div>
 
           <div className="border-t pt-4 space-y-2">
-            <div className="flex justify-between text-xl font-bold">
-              <span>Сумма заказа:</span>
-              <span className="text-primary">{total.toLocaleString('ru-RU')} ₽</span>
+            <div className="flex justify-between text-base">
+              <span>Сумма товаров:</span>
+              <span>{total.toLocaleString('ru-RU')} ₽</span>
+            </div>
+            {installationCost > 0 && (
+              <div className="flex justify-between text-base text-muted-foreground">
+                <span>Монтаж:</span>
+                <span>{installationCost.toLocaleString('ru-RU')} ₽</span>
+              </div>
+            )}
+            {deliveryCost > 0 && (
+              <div className="flex justify-between text-base text-muted-foreground">
+                <span>Доставка:</span>
+                <span>{deliveryCost.toLocaleString('ru-RU')} ₽</span>
+              </div>
+            )}
+            <div className="flex justify-between text-xl font-bold border-t pt-2">
+              <span>Итого:</span>
+              <span className="text-primary">{grandTotal.toLocaleString('ru-RU')} ₽</span>
             </div>
           </div>
 

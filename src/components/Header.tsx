@@ -269,7 +269,9 @@ export function Header({
                   <div>
                     <OrderForm
                       total={calculateTotal()}
+                      installationCost={calculateInstallationCost()}
                       deliveryCost={deliveryCost}
+                      grandTotal={calculateGrandTotal()}
                       onSubmit={(formData: OrderFormData) => {
                         console.log('Order submitted:', formData);
                       }}
