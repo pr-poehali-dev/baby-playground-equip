@@ -78,39 +78,39 @@ def handler(event, context):
         
         ws.merge_cells(f'A{current_row}:B{current_row+4}')
         
-        # Шапка компании (правый верхний угол)
-        ws.merge_cells(f'E{current_row}:G{current_row}')
-        cell = ws.cell(row=current_row, column=5, value='ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ')
+        # Шапка компании (правый верхний угол) - расширяем до колонки H для полного размещения
+        ws.merge_cells(f'D{current_row}:H{current_row}')
+        cell = ws.cell(row=current_row, column=4, value='ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ')
         cell.font = Font(bold=True, size=10)
-        cell.alignment = Alignment(horizontal='right', vertical='center')
+        cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
         current_row += 1
         
         # ИНН и ОГРНИП
-        ws.merge_cells(f'E{current_row}:G{current_row}')
-        cell = ws.cell(row=current_row, column=5, value='ИНН 110209455200 ОГРНИП 32377460012482')
+        ws.merge_cells(f'D{current_row}:H{current_row}')
+        cell = ws.cell(row=current_row, column=4, value='ИНН 110209455200 ОГРНИП 32377460012482')
         cell.font = Font(size=8)
-        cell.alignment = Alignment(horizontal='right', vertical='center')
+        cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
         current_row += 1
         
         # Адрес
-        ws.merge_cells(f'E{current_row}:G{current_row}')
-        cell = ws.cell(row=current_row, column=5, value='350005, г. Краснодар, ул. Кореновская, д. 57 оф.7')
+        ws.merge_cells(f'D{current_row}:H{current_row}')
+        cell = ws.cell(row=current_row, column=4, value='350005, г. Краснодар, ул. Кореновская, д. 57 оф.7')
         cell.font = Font(size=8)
-        cell.alignment = Alignment(horizontal='right', vertical='center')
+        cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
         current_row += 1
         
         # Телефон и email
-        ws.merge_cells(f'E{current_row}:G{current_row}')
-        cell = ws.cell(row=current_row, column=5, value='тел: +7 918 115 15 51 e-mail: info@urban-play.ru')
+        ws.merge_cells(f'D{current_row}:H{current_row}')
+        cell = ws.cell(row=current_row, column=4, value='тел: +7 918 115 15 51 e-mail: info@urban-play.ru')
         cell.font = Font(size=8)
-        cell.alignment = Alignment(horizontal='right', vertical='center')
+        cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
         current_row += 1
         
         # Сайт
-        ws.merge_cells(f'E{current_row}:G{current_row}')
-        cell = ws.cell(row=current_row, column=5, value='www.urban-play.ru')
+        ws.merge_cells(f'D{current_row}:H{current_row}')
+        cell = ws.cell(row=current_row, column=4, value='www.urban-play.ru')
         cell.font = Font(size=8)
-        cell.alignment = Alignment(horizontal='right', vertical='center')
+        cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
         current_row += 1
         
         # Заголовок КП
@@ -123,9 +123,11 @@ def handler(event, context):
         current_row += 2
         
         # Адрес объекта
-        ws.cell(row=current_row, column=1, value='Адрес объекта:').font = Font(size=10)
+        cell = ws.cell(row=current_row, column=1, value='Адрес объекта:')
+        cell.font = Font(size=10)
         ws.merge_cells(f'B{current_row}:G{current_row}')
-        ws.cell(row=current_row, column=2, value='_' * 100)
+        cell = ws.cell(row=current_row, column=2, value='')
+        cell.border = Border(bottom=Side(style='thin'))
         current_row += 2
         
         # Настройка колонок
@@ -319,7 +321,7 @@ def handler(event, context):
         # Подпись
         ws.cell(row=current_row, column=1, value='Индивидуальный предприниматель').font = Font(size=9)
         ws.merge_cells(f'E{current_row}:G{current_row}')
-        cell = ws.cell(row=current_row, column=5, value='Иронин Р. О.')
+        cell = ws.cell(row=current_row, column=5, value='Пронин Р. О.')
         cell.alignment = Alignment(horizontal='right', vertical='center')
         cell.font = Font(size=9, italic=True)
         
