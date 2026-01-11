@@ -124,7 +124,13 @@
     @apply active:scale-95 transition-transform duration-150;
   }
 
-  /* Все остальные outline кнопки - зелёный контур при наведении (правило должно быть первым!) */
+  /* Все остальные outline кнопки - тёмный контур и текст в обычном состоянии */
+  button[class*="outline"] {
+    border-color: hsl(220 13% 13%) !important;
+    color: hsl(220 13% 13%) !important;
+  }
+
+  /* Все остальные outline кнопки - зелёный контур при наведении */
   button[class*="outline"]:hover {
     background-color: transparent !important;
     border-color: #44aa02 !important;

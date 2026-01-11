@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import Icon from '@/components/ui/icon';
 import { CartItem } from './data/catalogData';
+import { ContactDialog } from './ContactDialog';
 
 interface Product {
   id: number;
@@ -92,6 +93,7 @@ export function Header({
   const [kpDeliveryCost, setKpDeliveryCost] = useState(0);
   const [hideInstallationInKP, setHideInstallationInKP] = useState(false);
   const [hideDeliveryInKP, setHideDeliveryInKP] = useState(false);
+  const [isCallbackDialogOpen, setIsCallbackDialogOpen] = useState(false);
 
   // Генерация номера заказа с датой
   const getNextOrderNumber = () => {
@@ -149,6 +151,12 @@ export function Header({
               <Icon name="Phone" size={20} className="text-primary" />
               +7 (918) 115-15-51
             </a>
+            <Button 
+              className="hidden lg:flex"
+              onClick={() => setIsCallbackDialogOpen(true)}
+            >
+              ЗАКАЗАТЬ ЗВОНОК
+            </Button>
             <div className="flex items-center gap-3">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -596,6 +604,11 @@ export function Header({
           </div>
         </DialogContent>
       </Dialog>
+
+      <ContactDialog 
+        open={isCallbackDialogOpen} 
+        onOpenChange={setIsCallbackDialogOpen}
+      />
     </header>
   );
 }
