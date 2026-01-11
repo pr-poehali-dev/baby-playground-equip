@@ -78,7 +78,7 @@ def handler(event, context):
         
         # Настройка колонок для таблицы
         ws.column_dimensions['A'].width = 4   # №
-        ws.column_dimensions['B'].width = 25  # Изображение
+        ws.column_dimensions['B'].width = 25  # Наименование
         ws.column_dimensions['C'].width = 15  # Рисунок
         ws.column_dimensions['D'].width = 12  # Кол-во
         ws.column_dimensions['E'].width = 8   # Ед. изм
