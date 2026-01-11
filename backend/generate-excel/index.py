@@ -96,7 +96,7 @@ def handler(event, context):
         cell = ws.cell(row=current_row, column=3, value='ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ')
         cell.font = Font(name='Times New Roman', bold=True, size=11)
         cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
-        ws.row_dimensions[current_row].height = 15
+        ws.row_dimensions[current_row].height = 8
         current_row += 1
         
         # ИНН и ОГРНИП
@@ -104,7 +104,7 @@ def handler(event, context):
         cell = ws.cell(row=current_row, column=3, value='ИНН 110209455200 ОГРНИП 32377460012482')
         cell.font = Font(name='Times New Roman', size=11)
         cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
-        ws.row_dimensions[current_row].height = 15
+        ws.row_dimensions[current_row].height = 8
         current_row += 1
         
         # Адрес
@@ -112,7 +112,7 @@ def handler(event, context):
         cell = ws.cell(row=current_row, column=3, value='350005, г. Краснодар, ул. Кореновская, д. 57 оф.7')
         cell.font = Font(name='Times New Roman', size=11)
         cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
-        ws.row_dimensions[current_row].height = 15
+        ws.row_dimensions[current_row].height = 8
         current_row += 1
         
         # Телефон и email
@@ -120,7 +120,7 @@ def handler(event, context):
         cell = ws.cell(row=current_row, column=3, value='тел: +7 918 115 15 51 e-mail: info@urban-play.ru')
         cell.font = Font(name='Times New Roman', size=11)
         cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
-        ws.row_dimensions[current_row].height = 15
+        ws.row_dimensions[current_row].height = 8
         current_row += 1
         
         # Сайт
@@ -128,7 +128,7 @@ def handler(event, context):
         cell = ws.cell(row=current_row, column=3, value='www.urban-play.ru')
         cell.font = Font(name='Times New Roman', size=11)
         cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
-        ws.row_dimensions[current_row].height = 15
+        ws.row_dimensions[current_row].height = 8
         current_row += 1
         
         # Заголовок КП
