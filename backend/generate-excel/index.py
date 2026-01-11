@@ -14,18 +14,27 @@ from PIL import Image as PILImage
 COUNTER_FILE = '/tmp/kp_counter.txt'
 
 def get_next_kp_number():
-    """Получить следующий номер КП из счетчика"""
+    """Получить следующий номер КП из счетчика с автосбросом в начале года"""
     try:
+        current_year = datetime.now().year
+        
         if os.path.exists(COUNTER_FILE):
             with open(COUNTER_FILE, 'r') as f:
-                counter = int(f.read().strip())
+                data = f.read().strip().split(',')
+                saved_year = int(data[0])
+                counter = int(data[1]) if len(data) > 1 else 0
+                
+                # Если год изменился, сбрасываем счетчик
+                if saved_year != current_year:
+                    counter = 0
         else:
             counter = 0
         
         counter += 1
         
+        # Сохраняем год и счетчик
         with open(COUNTER_FILE, 'w') as f:
-            f.write(str(counter))
+            f.write(f'{current_year},{counter}')
         
         return counter
     except:
