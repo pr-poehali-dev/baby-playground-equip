@@ -168,13 +168,13 @@ def handler(event, context):
         # Декоративные линии (салатовая и фиолетовая) - очень тонкие
         ws.merge_cells(f'A{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=1)
-        cell.fill = PatternFill(start_color='9FE870', end_color='9FE870', fill_type='solid')  # Салатовый
+        cell.fill = PatternFill(start_color='44aa02', end_color='44aa02', fill_type='solid')  # Зелёный
         ws.row_dimensions[current_row].height = 2
         current_row += 1
         
         ws.merge_cells(f'A{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=1)
-        cell.fill = PatternFill(start_color='C084FC', end_color='C084FC', fill_type='solid')  # Фиолетовый
+        cell.fill = PatternFill(start_color='58078a', end_color='58078a', fill_type='solid')  # Фиолетовый
         ws.row_dimensions[current_row].height = 2
         current_row += 1
         
