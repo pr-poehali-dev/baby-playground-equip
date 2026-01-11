@@ -123,7 +123,7 @@ export function ProductDialog({
 
             <div className="space-y-6">
               <div>
-                <h2 className="text-3xl font-heading font-bold mb-2">{selectedProduct.name.split('\n')[1] || selectedProduct.name}</h2>
+                <h2 className="font-heading mb-2 text-4xl font-semibold">{selectedProduct.name.split('\n')[1] || selectedProduct.name}</h2>
                 <Badge variant="secondary" className="mb-4">{selectedProduct.name.split('\n')[0]}</Badge>
                 <p className="text-4xl font-bold text-primary mb-4">{formatPrice(selectedProduct.price)} ₽</p>
                 
@@ -150,7 +150,7 @@ export function ProductDialog({
               </div>
 
               <div className="border-t pt-6">
-                <h3 className="text-xl font-heading font-bold mb-4">Техническая информация</h3>
+                <h3 className="text-xl font-heading mb-4 font-semibold">Техническая информация</h3>
                 {selectedProduct.dimensions && (
                   <div className="grid grid-cols-3 gap-4 mb-4">
                     {selectedProduct.dimensions.split('х').map((dim, idx) => (
@@ -180,10 +180,7 @@ export function ProductDialog({
                     setIsProductDialogOpen(false);
                     setIsContactDialogOpen(true);
                   }}
-                >
-                  <Icon name="Phone" size={20} className="mr-2" />
-                  Перезвоните мне
-                </Button>
+                ></Button>
               </div>
             </div>
           </div>
