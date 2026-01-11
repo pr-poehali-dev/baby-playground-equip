@@ -522,9 +522,7 @@ export function Header({
             <DialogTitle className="text-2xl font-heading text-center">Благодарим вас за обращение в компанию «Urban Play»!</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
-            <p className="text-base">
-              Заявка {orderNumber} оформлена. Наш менеджер в течение дня свяжется вами, чтобы проверить заказ и чтобы вы могли убедиться, что всё заказали правильно!
-            </p>
+            <p className="text-base">Заявка 5378 оформлена. Наш менеджер в течение дня свяжется с вами, чтобы проверить заказ и чтобы вы могли убедиться, что всё заказали правильно!</p>
             <Button 
               onClick={() => {
                 setShowSuccessDialog(false);
