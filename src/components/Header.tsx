@@ -430,12 +430,14 @@ export function Header({
                 max="100"
                 step="5"
               />
-              {kpInstallationPercent > 0 && (
-                <div className="flex justify-between text-sm text-muted-foreground">
-                  <span>Стоимость монтажа ({kpInstallationPercent}%):</span>
-                  <span>{Math.round(calculateTotal() * (kpInstallationPercent / 100)).toLocaleString('ru-RU')} ₽</span>
-                </div>
-              )}
+              <div className="flex justify-between text-sm text-muted-foreground min-h-[20px]">
+                {kpInstallationPercent > 0 && (
+                  <>
+                    <span>Стоимость монтажа ({kpInstallationPercent}%):</span>
+                    <span>{Math.round(calculateTotal() * (kpInstallationPercent / 100)).toLocaleString('ru-RU')} ₽</span>
+                  </>
+                )}
+              </div>
             </div>
 
             {/* Доставка */}
@@ -459,12 +461,14 @@ export function Header({
                 className="w-full"
                 step="1000"
               />
-              {kpDeliveryCost > 0 && (
-                <div className="flex justify-between text-sm text-muted-foreground">
-                  <span>Доставка:</span>
-                  <span>{kpDeliveryCost.toLocaleString('ru-RU')} ₽</span>
-                </div>
-              )}
+              <div className="flex justify-between text-sm text-muted-foreground min-h-[20px]">
+                {kpDeliveryCost > 0 && (
+                  <>
+                    <span>Доставка:</span>
+                    <span>{kpDeliveryCost.toLocaleString('ru-RU')} ₽</span>
+                  </>
+                )}
+              </div>
             </div>
 
             {/* Итого */}
