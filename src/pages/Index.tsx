@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
 import { ServicesSection } from '@/components/ServicesSection';
+import { CatalogGrid } from '@/components/CatalogGrid';
 import { CatalogSection } from '@/components/CatalogSection';
 import { ContentSections } from '@/components/ContentSections';
 import { categories, CartItem } from '@/components/data/catalogData';
@@ -186,9 +187,12 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       
       <HeroSection onOpenCatalog={() => catalogState.setIsSideMenuOpen(true)} />
       
-      <section id="catalog"></section>
-      
       <ServicesSection />
+      
+      <CatalogGrid 
+        categories={categories}
+        onCategoryClick={handlers.handleCategoryClick}
+      />
       
       <CatalogSection
         categories={categories}
