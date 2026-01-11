@@ -135,7 +135,14 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
         updateQuantity={updateQuantity}
         calculateTotal={calculateTotal}
         deliveryCost={deliveryCost}
+        setDeliveryCost={setDeliveryCost}
         generateKP={handleDownloadExcel}
+        isExcelSettingsOpen={isExcelSettingsOpen}
+        setIsExcelSettingsOpen={setIsExcelSettingsOpen}
+        imageColumnWidth={imageColumnWidth}
+        setImageColumnWidth={setImageColumnWidth}
+        imageRowHeight={imageRowHeight}
+        setImageRowHeight={setImageRowHeight}
         favoritesCount={favorites.length}
         allProducts={products}
         onAddToCart={handleAddToCart}

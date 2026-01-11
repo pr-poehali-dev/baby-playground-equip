@@ -35,7 +35,14 @@ interface HeaderProps {
   removeFromCart: (id: number) => void;
   calculateTotal: () => number;
   deliveryCost: number;
+  setDeliveryCost: (cost: number) => void;
   generateKP: () => void;
+  isExcelSettingsOpen: boolean;
+  setIsExcelSettingsOpen: (open: boolean) => void;
+  imageColumnWidth: number;
+  setImageColumnWidth: (width: number) => void;
+  imageRowHeight: number;
+  setImageRowHeight: (height: number) => void;
   favoritesCount?: number;
   allProducts?: Product[];
   onAddToCart?: (product: Product) => void;
@@ -50,7 +57,14 @@ export function Header({
   removeFromCart,
   calculateTotal,
   deliveryCost,
+  setDeliveryCost,
   generateKP,
+  isExcelSettingsOpen,
+  setIsExcelSettingsOpen,
+  imageColumnWidth,
+  setImageColumnWidth,
+  imageRowHeight,
+  setImageRowHeight,
   favoritesCount = 0,
   allProducts = [],
   onAddToCart
@@ -311,6 +325,17 @@ export function Header({
                             <span className="text-primary">{calculateTotal().toLocaleString('ru-RU')} ₽</span>
                           </div>
                           
+                          <div className="space-y-2">
+                            <label className="text-sm font-medium">Стоимость доставки:</label>
+                            <Input
+                              type="number"
+                              placeholder="0"
+                              value={deliveryCost || ''}
+                              onChange={(e) => setDeliveryCost(Number(e.target.value))}
+                              className="w-full"
+                            />
+                          </div>
+                          
                           {deliveryCost > 0 && (
                             <div className="flex justify-between text-sm text-muted-foreground">
                               <span>Доставка:</span>
@@ -327,18 +352,53 @@ export function Header({
                             Оформить заказ
                           </Button>
                         
-                          <Button 
-                            variant="outline"
-                            className="w-full" 
-                            size="lg"
-                            onClick={() => {
-                              generateKP();
-                              setIsCartOpen(false);
-                            }}
-                          >
-                            <Icon name="FileText" size={20} className="mr-2" />
-                            Скачать коммерческое предложение
-                          </Button>
+                          <div className="space-y-2">
+                            <Button 
+                              variant="outline"
+                              className="w-full" 
+                              size="lg"
+                              onClick={() => {
+                                generateKP();
+                                setIsCartOpen(false);
+                              }}
+                            >
+                              <Icon name="FileText" size={20} className="mr-2" />
+                              Скачать коммерческое предложение
+                            </Button>
+                            
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="w-full"
+                              onClick={() => setIsExcelSettingsOpen(!isExcelSettingsOpen)}
+                            >
+                              <Icon name={isExcelSettingsOpen ? "ChevronUp" : "ChevronDown"} size={16} className="mr-2" />
+                              Настройки Excel
+                            </Button>
+                            
+                            {isExcelSettingsOpen && (
+                              <div className="space-y-3 p-3 bg-muted rounded-lg">
+                                <div className="space-y-2">
+                                  <label className="text-xs font-medium">Ширина колонки с изображением:</label>
+                                  <Input
+                                    type="number"
+                                    value={imageColumnWidth}
+                                    onChange={(e) => setImageColumnWidth(Number(e.target.value))}
+                                    className="h-8 text-sm"
+                                  />
+                                </div>
+                                <div className="space-y-2">
+                                  <label className="text-xs font-medium">Высота строки с изображением:</label>
+                                  <Input
+                                    type="number"
+                                    value={imageRowHeight}
+                                    onChange={(e) => setImageRowHeight(Number(e.target.value))}
+                                    className="h-8 text-sm"
+                                  />
+                                </div>
+                              </div>
+                            )}
+                          </div>
                           
                           <Button 
                             variant="outline" 
