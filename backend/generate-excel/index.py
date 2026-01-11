@@ -118,7 +118,7 @@ def handler(event, context):
                 logo_img.width = final_width
                 logo_img.height = final_height
                 
-                ws.add_image(logo_img, 'A1')
+                ws.add_image(logo_img, 'A2')
         except Exception as e:
             print(f'Failed to load logo: {e}')
         
