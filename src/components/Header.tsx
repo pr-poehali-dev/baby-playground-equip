@@ -237,7 +237,7 @@ export function Header({
                     <SheetHeader>
                       <SheetTitle className="text-2xl font-heading">Корзина</SheetTitle>
                     </SheetHeader>
-                    <div className="mt-6 mb-4 space-y-3">
+                    <div className="mt-6 mb-4">
                       <div className="relative">
                         <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                         <Input 
@@ -247,9 +247,6 @@ export function Header({
                           onChange={(e) => setCartSearchQuery(e.target.value)}
                           className="pl-10"
                         />
-                      </div>
-                      <div className="text-base">
-                        <span className="font-bold">Заказ</span> № {currentOrderNumber.split(' ')[0]} от {currentOrderNumber.split(' ')[1]}
                       </div>
                     </div>
 
@@ -574,7 +571,7 @@ export function Header({
             <DialogTitle className="text-2xl font-heading text-center">Благодарим вас за обращение в компанию «Urban Play»!</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
-            <p className="text-base">Заказ 5378 оформлен. Наш менеджер в течение дня свяжется с вами, чтобы проверить заказ и чтобы вы могли убедиться, что всё заказали правильно!</p>
+            <p className="text-base">Заказ № {orderNumber} оформлен. Наш менеджер в течение дня свяжется с вами, чтобы проверить заказ и чтобы вы могли убедиться, что всё заказали правильно!</p>
             <Button 
               onClick={() => {
                 setShowSuccessDialog(false);
