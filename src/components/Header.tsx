@@ -282,12 +282,38 @@ export function Header({
                       installationCost={calculateInstallationCost()}
                       deliveryCost={deliveryCost}
                       grandTotal={calculateGrandTotal()}
-                      onSubmit={(formData: OrderFormData) => {
+                      onSubmit={async (formData: OrderFormData) => {
                         const newOrderNumber = Math.floor(1000 + Math.random() * 9000).toString();
                         setOrderNumber(newOrderNumber);
+                        
+                        // Отправляем заказ на email
+                        try {
+                          await fetch('https://functions.poehali.dev/b4ac51ba-4335-450b-8400-234c423fa7b0', {
+                            method: 'POST',
+                            headers: {
+                              'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                              orderNumber: newOrderNumber,
+                              name: formData.name,
+                              phone: formData.phone,
+                              email: formData.email,
+                              address: formData.address,
+                              legalStatus: formData.legalStatus,
+                              comment: formData.comment,
+                              cartItems: cart,
+                              total: calculateTotal(),
+                              installationCost: calculateInstallationCost(),
+                              deliveryCost: deliveryCost,
+                              grandTotal: calculateGrandTotal()
+                            })
+                          });
+                        } catch (error) {
+                          console.error('Failed to send order email:', error);
+                        }
+                        
                         setShowOrderForm(false);
                         setShowSuccessDialog(true);
-                        console.log('Order submitted:', formData);
                       }}
                       onCancel={() => setShowOrderForm(false)}
                     />

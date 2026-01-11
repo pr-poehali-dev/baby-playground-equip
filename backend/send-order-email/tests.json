@@ -1,0 +1,35 @@
+{
+  "tests": [
+    {
+      "name": "Send order email",
+      "method": "POST",
+      "body": {
+        "orderNumber": "1234",
+        "name": "Иван Иванов",
+        "phone": "+7 (918) 123-45-67",
+        "email": "test@example.com",
+        "address": "г. Краснодар, ул. Тестовая, д. 1",
+        "legalStatus": "Физическое лицо",
+        "comment": "Тестовый заказ",
+        "cartItems": [
+          {
+            "id": 1,
+            "name": "Игровой комплекс",
+            "article": "ИК-001",
+            "price": "50000",
+            "quantity": 2
+          }
+        ],
+        "total": 100000,
+        "installationCost": 10000,
+        "deliveryCost": 5000,
+        "grandTotal": 115000
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
