@@ -69,7 +69,7 @@ export function CategoryDialogs({
                   )}
                 </div>
                 <div className="py-4 px-6 bg-white">
-                  <h4 className="text-2xl font-semibold text-center">{sub.name}</h4>
+                  <h4 className="font-semibold text-center text-base">{sub.name}</h4>
                 </div>
               </Card>
             ))}
