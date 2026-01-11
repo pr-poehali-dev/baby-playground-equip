@@ -10,34 +10,44 @@ from openpyxl.utils import get_column_letter
 import urllib.request
 import urllib.parse
 from PIL import Image as PILImage
-
-COUNTER_FILE = '/tmp/kp_counter.txt'
+import psycopg2
 
 def get_next_kp_number():
     """Получить следующий номер КП из счетчика с автосбросом в начале года"""
     try:
         current_year = datetime.now().year
+        database_url = os.environ.get('DATABASE_URL')
         
-        if os.path.exists(COUNTER_FILE):
-            with open(COUNTER_FILE, 'r') as f:
-                data = f.read().strip().split(',')
-                saved_year = int(data[0])
-                counter = int(data[1]) if len(data) > 1 else 0
-                
-                # Если год изменился, сбрасываем счетчик
-                if saved_year != current_year:
-                    counter = 0
+        conn = psycopg2.connect(database_url)
+        cur = conn.cursor()
+        
+        # Получаем текущий счетчик
+        cur.execute("SELECT year, counter FROM kp_counter WHERE id = 1")
+        row = cur.fetchone()
+        
+        if row:
+            saved_year, counter = row
+            # Если год изменился, сбрасываем счетчик
+            if saved_year != current_year:
+                counter = 0
         else:
             counter = 0
         
         counter += 1
         
-        # Сохраняем год и счетчик
-        with open(COUNTER_FILE, 'w') as f:
-            f.write(f'{current_year},{counter}')
+        # Обновляем счетчик в базе
+        cur.execute(
+            "UPDATE kp_counter SET year = %s, counter = %s, updated_at = CURRENT_TIMESTAMP WHERE id = 1",
+            (current_year, counter)
+        )
+        conn.commit()
+        
+        cur.close()
+        conn.close()
         
         return counter
-    except:
+    except Exception as e:
+        print(f'Error getting KP number: {e}')
         return 1
 
 def handler(event, context):
