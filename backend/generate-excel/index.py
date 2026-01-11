@@ -62,7 +62,7 @@ def handler(event, context):
                 logo_data = response.read()
                 
                 pil_logo = PILImage.open(io.BytesIO(logo_data))
-                pil_logo.thumbnail((120, 60), PILImage.Resampling.LANCZOS)
+                pil_logo.thumbnail((180, 90), PILImage.Resampling.LANCZOS)
                 
                 logo_buffer = io.BytesIO()
                 pil_logo.save(logo_buffer, format='PNG')
@@ -123,11 +123,10 @@ def handler(event, context):
         current_row += 2
         
         # Адрес объекта
-        cell = ws.cell(row=current_row, column=1, value='Адрес объекта:')
+        ws.merge_cells(f'A{current_row}:G{current_row}')
+        cell = ws.cell(row=current_row, column=1, value='Адрес объекта: _________________________________')
         cell.font = Font(size=10)
-        ws.merge_cells(f'B{current_row}:G{current_row}')
-        cell = ws.cell(row=current_row, column=2, value='')
-        cell.border = Border(bottom=Side(style='thin'))
+        cell.alignment = Alignment(horizontal='left', vertical='center')
         current_row += 2
         
         # Настройка колонок
