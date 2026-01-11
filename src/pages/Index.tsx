@@ -186,6 +186,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       
       <HeroSection onOpenCatalog={() => catalogState.setIsSideMenuOpen(true)} />
       
+      <section id="catalog"></section>
+      
       <ServicesSection />
       
       <CatalogSection
