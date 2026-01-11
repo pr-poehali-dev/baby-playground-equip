@@ -84,7 +84,8 @@ def handler(event, context):
         ws.page_margins.left = 0.5
         ws.page_margins.right = 0.5
         
-        current_row = 1
+        # Отступ одной строки сверху
+        current_row = 2
         
         # Логотип (левый верхний угол) - встраиваем в исходном качестве
         try:
@@ -126,7 +127,7 @@ def handler(event, context):
         # Шапка компании (правый верхний угол) - начинаем с колонки C чтобы было левее
         ws.merge_cells(f'C{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=3, value='ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ')
-        cell.font = Font(name='Times New Roman', bold=True, size=11)
+        cell.font = Font(name='Calibri', bold=True, size=11)
         cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
         ws.row_dimensions[current_row].height = 15
         current_row += 1
@@ -134,7 +135,7 @@ def handler(event, context):
         # ИНН и ОГРНИП
         ws.merge_cells(f'C{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=3, value='ИНН 110209455200 ОГРНИП 32377460012482')
-        cell.font = Font(name='Times New Roman', size=11)
+        cell.font = Font(name='Calibri', size=11)
         cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
         ws.row_dimensions[current_row].height = 15
         current_row += 1
@@ -142,7 +143,7 @@ def handler(event, context):
         # Адрес
         ws.merge_cells(f'C{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=3, value='350005, г. Краснодар, ул. Кореновская, д. 57 оф.7')
-        cell.font = Font(name='Times New Roman', size=11)
+        cell.font = Font(name='Calibri', size=11)
         cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
         ws.row_dimensions[current_row].height = 15
         current_row += 1
@@ -150,7 +151,7 @@ def handler(event, context):
         # Телефон и email
         ws.merge_cells(f'C{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=3, value='тел: +7 918 115 15 51 e-mail: info@urban-play.ru')
-        cell.font = Font(name='Times New Roman', size=11)
+        cell.font = Font(name='Calibri', size=11)
         cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
         ws.row_dimensions[current_row].height = 15
         current_row += 1
@@ -159,7 +160,7 @@ def handler(event, context):
         ws.merge_cells(f'C{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=3)
         cell.value = '=HYPERLINK("https://www.urban-play.ru", "www.urban-play.ru")'
-        cell.font = Font(name='Times New Roman', size=11, color='0563C1', underline='single')
+        cell.font = Font(name='Calibri', size=11, color='0563C1', underline='single')
         cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
         ws.row_dimensions[current_row].height = 15
         current_row += 1
@@ -185,7 +186,7 @@ def handler(event, context):
         kp_number = get_next_kp_number()
         kp_title = f'Коммерческое предложение № {kp_number:04d} от {datetime.now().strftime("%d.%m.%Y")}'
         cell = ws.cell(row=current_row, column=1, value=kp_title)
-        cell.font = Font(bold=True, size=12)
+        cell.font = Font(name='Calibri', bold=True, size=12)
         cell.alignment = Alignment(horizontal='center', vertical='center')
         ws.row_dimensions[current_row].height = 20
         current_row += 2
@@ -194,7 +195,7 @@ def handler(event, context):
         if address:
             ws.merge_cells(f'A{current_row}:G{current_row}')
             cell = ws.cell(row=current_row, column=1, value=f'Адрес объекта: {address}')
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             cell.alignment = Alignment(horizontal='left', vertical='center')
             ws.row_dimensions[current_row].height = 15
             current_row += 2
@@ -220,7 +221,7 @@ def handler(event, context):
         headers = ['№', 'Наименование', 'Рисунок', 'Кол-во', 'Ед. изм', 'Цена, руб', 'Сумма, руб']
         for col_num, header in enumerate(headers, 1):
             cell = ws.cell(row=current_row, column=col_num, value=header)
-            cell.font = Font(name='Times New Roman', bold=True, size=10)
+            cell.font = Font(name='Calibri', bold=True, size=10)
             cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
             cell.border = thin_border
             cell.fill = PatternFill(start_color='D3D3D3', end_color='D3D3D3', fill_type='solid')
@@ -247,7 +248,7 @@ def handler(event, context):
             cell = ws.cell(row=current_row, column=1, value=idx)
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             # Наименование (сначала название, потом артикул)
             article = product.get('article', '')
@@ -256,7 +257,7 @@ def handler(event, context):
             cell = ws.cell(row=current_row, column=2, value=full_name)
             cell.alignment = Alignment(horizontal='left', vertical='center', wrap_text=True)
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             # Рисунок - встраиваем напрямую в максимальном качестве
             if product.get('image') and product['image'].startswith('http'):
@@ -328,13 +329,13 @@ def handler(event, context):
             cell = ws.cell(row=current_row, column=4, value=quantity)
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             # Ед. изм
             cell = ws.cell(row=current_row, column=5, value='шт')
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             # Цена (с учетом распределения)
             base_price = int(product['price'].replace(' ', '')) if isinstance(product['price'], str) else product['price']
@@ -349,7 +350,7 @@ def handler(event, context):
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.number_format = '#,##0.00\ ""'
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             # Сумма
             final_sum = final_price * quantity
@@ -358,7 +359,7 @@ def handler(event, context):
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.number_format = '#,##0.00\ ""'
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             current_row += 1
         
@@ -369,12 +370,12 @@ def handler(event, context):
             cell = ws.cell(row=current_row, column=1, value=len(products) + 1)
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             cell = ws.cell(row=current_row, column=2, value=f'Монтаж ({installation_percent}%)')
             cell.alignment = Alignment(horizontal='left', vertical='center')
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             cell = ws.cell(row=current_row, column=3, value='')
             cell.border = thin_border
@@ -382,24 +383,24 @@ def handler(event, context):
             cell = ws.cell(row=current_row, column=4, value=1)
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             cell = ws.cell(row=current_row, column=5, value='усл')
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             cell = ws.cell(row=current_row, column=6, value=installation_cost)
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.number_format = '#,##0.00\ ""'
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             cell = ws.cell(row=current_row, column=7, value=installation_cost)
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.number_format = '#,##0.00\ ""'
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             current_row += 1
         
@@ -411,12 +412,12 @@ def handler(event, context):
             cell = ws.cell(row=current_row, column=1, value=next_num)
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             cell = ws.cell(row=current_row, column=2, value='Доставка')
             cell.alignment = Alignment(horizontal='left', vertical='center')
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             cell = ws.cell(row=current_row, column=3, value='')
             cell.border = thin_border
@@ -424,24 +425,24 @@ def handler(event, context):
             cell = ws.cell(row=current_row, column=4, value=1)
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             cell = ws.cell(row=current_row, column=5, value='усл')
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             cell = ws.cell(row=current_row, column=6, value=delivery_cost)
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.number_format = '#,##0.00\ ""'
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             cell = ws.cell(row=current_row, column=7, value=delivery_cost)
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.number_format = '#,##0.00\ ""'
             cell.border = thin_border
-            cell.font = Font(name='Times New Roman', size=11)
+            cell.font = Font(name='Calibri', size=11)
             
             current_row += 1
         
@@ -458,13 +459,13 @@ def handler(event, context):
         
         cell = ws.cell(row=current_row, column=6, value='Итого:')
         cell.alignment = Alignment(horizontal='center', vertical='center')
-        cell.font = Font(name='Times New Roman', bold=True, size=11)
+        cell.font = Font(name='Calibri', bold=True, size=11)
         cell.border = thin_border
         
         cell = ws.cell(row=current_row, column=7, value=total_sum)
         cell.alignment = Alignment(horizontal='center', vertical='center')
         cell.number_format = '#,##0.00\ ""'
-        cell.font = Font(name='Times New Roman', bold=True, size=11)
+        cell.font = Font(name='Calibri', bold=True, size=11)
         cell.border = thin_border
         
         current_row += 1
@@ -472,19 +473,19 @@ def handler(event, context):
         # Футер с условиями
         ws.merge_cells(f'A{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=1, value='Оборудование имеет сертификат соответствия ТС ЕАЭС 042-2017')
-        cell.font = Font(name='Times New Roman', size=11)
+        cell.font = Font(name='Calibri', size=11)
         cell.alignment = Alignment(horizontal='left', vertical='center')
         current_row += 1
         
         ws.merge_cells(f'A{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=1, value='Срок действия коммерческого предложения 15 дней')
-        cell.font = Font(name='Times New Roman', size=11)
+        cell.font = Font(name='Calibri', size=11)
         cell.alignment = Alignment(horizontal='left', vertical='center')
         current_row += 1
         
         ws.merge_cells(f'A{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=1, value='Срок изготовления оборудования 30 дней')
-        cell.font = Font(name='Times New Roman', size=11)
+        cell.font = Font(name='Calibri', size=11)
         cell.alignment = Alignment(horizontal='left', vertical='center')
         current_row += 2
         
@@ -492,7 +493,7 @@ def handler(event, context):
         ws.merge_cells(f'A{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=1, value='Индивидуальный предприниматель___________________________/Пронин Р.О./')
         cell.alignment = Alignment(horizontal='center', vertical='center')
-        cell.font = Font(name='Times New Roman', size=11)
+        cell.font = Font(name='Calibri', size=11)
         
         # Сохранение
         output = io.BytesIO()
