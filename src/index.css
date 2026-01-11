@@ -156,6 +156,11 @@
     color: white !important;
   }
 
+  /* Для кнопок с зелёным фоном (primary) - белый текст всегда */
+  button[class*="bg-primary"] {
+    color: white !important;
+  }
+
   /* Для кнопок с зелёным фоном (primary) - тёмно-зелёный при наведении (самый высокий приоритет) */
   button[class*="bg-primary"]:hover {
     background-color: hsl(99 98% 28%) !important;
