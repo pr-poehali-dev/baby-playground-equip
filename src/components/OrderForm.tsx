@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
 
 interface OrderFormProps {
@@ -38,6 +39,7 @@ export function OrderForm({ total, installationCost, deliveryCost, grandTotal, o
 
   const [errors, setErrors] = useState<Partial<OrderFormData>>({});
   const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
+  const [showPrivacyDialog, setShowPrivacyDialog] = useState(false);
 
   const validateForm = () => {
     const newErrors: Partial<OrderFormData> = {};
@@ -96,64 +98,64 @@ export function OrderForm({ total, installationCost, deliveryCost, grandTotal, o
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-3">
           <div>
-            <Label htmlFor="name">Ваше имя *</Label>
+            <Label htmlFor="name" className="text-sm">Ваше имя *</Label>
             <Input
               id="name"
               value={formData.name}
               onChange={(e) => handleChange('name', e.target.value)}
               placeholder="Иван Иванов"
-              className={errors.name ? 'border-red-500' : ''}
+              className={`h-9 ${errors.name ? 'border-red-500' : ''}`}
             />
-            {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
+            {errors.name && <p className="text-xs text-red-500 mt-0.5">{errors.name}</p>}
           </div>
 
           <div>
-            <Label htmlFor="phone">Телефон *</Label>
+            <Label htmlFor="phone" className="text-sm">Телефон *</Label>
             <Input
               id="phone"
               value={formData.phone}
               onChange={(e) => handleChange('phone', e.target.value)}
               placeholder="+7 (918) 123-45-67"
-              className={errors.phone ? 'border-red-500' : ''}
+              className={`h-9 ${errors.phone ? 'border-red-500' : ''}`}
             />
-            {errors.phone && <p className="text-sm text-red-500 mt-1">{errors.phone}</p>}
+            {errors.phone && <p className="text-xs text-red-500 mt-0.5">{errors.phone}</p>}
           </div>
 
           <div>
-            <Label htmlFor="email">Email *</Label>
+            <Label htmlFor="email" className="text-sm">Email *</Label>
             <Input
               id="email"
               type="email"
               value={formData.email}
               onChange={(e) => handleChange('email', e.target.value)}
               placeholder="example@mail.ru"
-              className={errors.email ? 'border-red-500' : ''}
+              className={`h-9 ${errors.email ? 'border-red-500' : ''}`}
             />
-            {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
+            {errors.email && <p className="text-xs text-red-500 mt-0.5">{errors.email}</p>}
           </div>
 
           <div>
-            <Label htmlFor="address">Адрес доставки *</Label>
+            <Label htmlFor="address" className="text-sm">Адрес доставки *</Label>
             <Textarea
               id="address"
               value={formData.address}
               onChange={(e) => handleChange('address', e.target.value)}
               placeholder="Город, улица, дом, квартира"
-              className={errors.address ? 'border-red-500' : ''}
-              rows={3}
+              className={`min-h-[60px] ${errors.address ? 'border-red-500' : ''}`}
+              rows={2}
             />
-            {errors.address && <p className="text-sm text-red-500 mt-1">{errors.address}</p>}
+            {errors.address && <p className="text-xs text-red-500 mt-0.5">{errors.address}</p>}
           </div>
 
           <div>
-            <Label htmlFor="legalStatus">Правовой статус *</Label>
+            <Label htmlFor="legalStatus" className="text-sm">Правовой статус *</Label>
             <Select 
               value={formData.legalStatus} 
               onValueChange={(value) => handleChange('legalStatus', value)}
             >
-              <SelectTrigger className={errors.legalStatus ? 'border-red-500' : ''}>
+              <SelectTrigger className={`h-9 ${errors.legalStatus ? 'border-red-500' : ''}`}>
                 <SelectValue placeholder="Выберите правовой статус" />
               </SelectTrigger>
               <SelectContent>
@@ -164,34 +166,35 @@ export function OrderForm({ total, installationCost, deliveryCost, grandTotal, o
                 <SelectItem value="education">Образовательное учреждение</SelectItem>
               </SelectContent>
             </Select>
-            {errors.legalStatus && <p className="text-sm text-red-500 mt-1">{errors.legalStatus}</p>}
+            {errors.legalStatus && <p className="text-xs text-red-500 mt-0.5">{errors.legalStatus}</p>}
           </div>
 
           <div>
-            <Label htmlFor="comment">Комментарий к заказу</Label>
+            <Label htmlFor="comment" className="text-sm">Комментарий к заказу</Label>
             <Textarea
               id="comment"
               value={formData.comment}
               onChange={(e) => handleChange('comment', e.target.value)}
               placeholder="Дополнительная информация"
-              rows={3}
+              className="min-h-[60px]"
+              rows={2}
             />
           </div>
 
-          <div className="border-t pt-4 space-y-2">
+          <div className="border-t pt-3 space-y-1.5">
             {installationCost > 0 && (
-              <div className="flex justify-between text-base text-muted-foreground">
+              <div className="flex justify-between text-sm text-muted-foreground">
                 <span>Монтаж:</span>
                 <span>{installationCost.toLocaleString('ru-RU')} ₽</span>
               </div>
             )}
             {deliveryCost > 0 && (
-              <div className="flex justify-between text-base text-muted-foreground">
+              <div className="flex justify-between text-sm text-muted-foreground">
                 <span>Доставка:</span>
                 <span>{deliveryCost.toLocaleString('ru-RU')} ₽</span>
               </div>
             )}
-            <div className="flex justify-between text-xl font-bold border-t pt-2">
+            <div className="flex justify-between text-lg font-bold border-t pt-1.5">
               <span>Сумма товаров:</span>
               <span className="text-primary">{grandTotal.toLocaleString('ru-RU')} ₽</span>
             </div>
@@ -204,15 +207,24 @@ export function OrderForm({ total, installationCost, deliveryCost, grandTotal, o
               onCheckedChange={(checked) => setAcceptedPrivacy(checked as boolean)}
             />
             <label htmlFor="privacy" className="text-sm text-muted-foreground leading-tight cursor-pointer">
-              Я согласен с обработкой моих персональных данных
+              Я согласен с обработкой{' '}
+              <span 
+                className="text-[#44aa02] underline cursor-pointer hover:text-[#44aa02]/80"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowPrivacyDialog(true);
+                }}
+              >
+                моих персональных данных
+              </span>
             </label>
           </div>
 
-          <div className="flex gap-3 pt-4">
-            <Button type="button" variant="outline" onClick={onCancel} className="flex-1">Отменить</Button>
+          <div className="flex gap-3 pt-3">
+            <Button type="button" variant="outline" onClick={onCancel} className="flex-1 h-9">Отменить</Button>
             <Button 
               type="submit" 
-              className="flex-1" 
+              className="flex-1 h-9" 
               disabled={!acceptedPrivacy}
               style={{
                 backgroundColor: acceptedPrivacy ? '' : '#ffffff',
@@ -225,6 +237,43 @@ export function OrderForm({ total, installationCost, deliveryCost, grandTotal, o
           </div>
         </form>
       </CardContent>
+
+      <Dialog open={showPrivacyDialog} onOpenChange={setShowPrivacyDialog}>
+        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-heading">Соглашение на обработку персональных данных</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 text-sm leading-relaxed">
+            <p>
+              Настоящим в соответствии с Федеральным законом № 152-ФЗ «О персональных данных» от 27.07.2006 года Вы подтверждаете свое согласие на обработку компанией ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ персональных данных: сбор, систематизацию, накопление, хранение, уточнение (обновление, изменение), использование, передачу исключительно в целях продажи программного обеспечения на Ваше имя, как это описано ниже, блокирование, обезличивание, уничтожение.
+            </p>
+            <p>
+              Компания ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ гарантирует конфиденциальность получаемой информации. Обработка персональных данных осуществляется в целях эффективного исполнения заказов, договоров и иных обязательств, принятых компанией ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ в качестве обязательных к исполнению.
+            </p>
+            <p>
+              В случае необходимости предоставления Ваших персональных данных правообладателю, дистрибьютору или реселлеру программного обеспечения в целях регистрации программного обеспечения на ваше имя, вы даёте согласие на передачу ваших персональных данных. Компания ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ гарантирует, что правообладатель, дистрибьютор или реселлер программного обеспечения осуществляет защиту персональных данных на условиях, аналогичных изложенным в Политике конфиденциальности персональных данных.
+            </p>
+            <p>
+              Настоящее согласие распространяется на следующие Ваши персональные данные: фамилия, имя и отчество, адрес электронной почты, почтовый адрес доставки заказов, контактный телефон, платёжные реквизиты.
+            </p>
+            <p>
+              Срок действия согласия является неограниченным. Вы можете в любой момент отозвать настоящее согласие, направив письменное уведомления на адрес: 350005, г. Краснодар, ул. Кореновская, д. 57, офис 7 с пометкой «Отзыв согласия на обработку персональных данных».
+            </p>
+            <p>
+              Обращаем ваше внимание, что отзыв согласия на обработку персональных данных влечёт за собой удаление Вашей учётной записи с Интернет-сайта (https://www.urban-play.ru), а также уничтожение записей, содержащих ваши персональные данные, в системах обработки персональных данных компании ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ, что может сделать невозможным пользование интернет-сервисами компании ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ.
+            </p>
+            <p>
+              Гарантирую, что представленная мной информация является полной, точной и достоверной, а также что при представлении информации не нарушаются действующее законодательство Российской Федерации, законные права и интересы третьих лиц. Вся представленная информация заполнена мною в отношении себя лично.
+            </p>
+            <p>
+              Настоящее согласие действует в течение всего периода хранения персональных данных, если иное не предусмотрено законодательством Российской Федерации.
+            </p>
+          </div>
+          <div className="flex justify-end pt-4">
+            <Button onClick={() => setShowPrivacyDialog(false)}>Закрыть</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 }
