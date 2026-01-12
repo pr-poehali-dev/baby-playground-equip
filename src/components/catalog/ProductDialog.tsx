@@ -186,7 +186,7 @@ export function ProductDialog({
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full"
+                  className="w-full hover:border-primary hover:text-primary hover:bg-transparent"
                   onClick={() => {
                     setIsProductDialogOpen(false);
                     setIsContactDialogOpen(true);
