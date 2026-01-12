@@ -50,7 +50,7 @@ export function CategoryDialogs({
       <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
         <DialogContent className="sm:max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-4xl font-heading font-semibold text-center mb-4">
+            <DialogTitle className="text-4xl font-heading font-semibold text-center mb-2 sm:mb-4">
               {currentCategory?.name}
             </DialogTitle>
           </DialogHeader>
