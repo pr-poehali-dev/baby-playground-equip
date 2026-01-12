@@ -184,8 +184,8 @@ export function CategoryGrid({
                   </Button>
                 </div>
                 <CardContent className="p-2">
-                  <p className="text-xs text-muted-foreground mb-0.5 leading-tight">{product.name.split('\n')[0]}</p>
-                  <h3 className="font-semibold text-sm line-clamp-1 mb-1 leading-tight">{product.name.split('\n')[1] || product.name}</h3>
+                  <p className="mb-0.5 leading-tight text-xs text-[#5a098c]">{product.name.split('\n')[0]}</p>
+                  <h3 className="font-semibold line-clamp-1 mb-1 leading-tight text-base">{product.name.split('\n')[1] || product.name}</h3>
                   <p className="text-base font-bold text-primary mb-1.5">{formatPrice(product.price)} ₽</p>
                   <Button 
                     size="sm"
