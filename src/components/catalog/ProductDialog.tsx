@@ -143,6 +143,7 @@ export function ProductDialog({
                     size="lg"
                     variant="outline"
                     onClick={() => toggleFavorite(selectedProduct)}
+                    className="hover:border-primary hover:text-primary hover:bg-transparent"
                   >
                     <Icon name="Heart" size={20} className={isFavorite ? 'fill-red-500 text-red-500' : ''} />
                   </Button>
@@ -150,6 +151,7 @@ export function ProductDialog({
                     size="lg"
                     variant="outline"
                     asChild
+                    className="hover:border-primary hover:text-primary hover:bg-transparent"
                   >
                     <a href="tel:+79181151551">
                       <Icon name="Phone" size={20} />
