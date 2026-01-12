@@ -66,7 +66,7 @@ export function CategoryDialogs({
                                    sub.name.includes('Eco') ? 'rgba(232, 222, 248, 0.95)' : 
                                    'white'
                 }}>
-                  <h4 className="font-semibold text-center text-xs sm:text-sm break-words">{sub.name}</h4>
+                  <h4 className="font-semibold text-center sm:text-sm break-words text-base">{sub.name}</h4>
                 </div>
                 <div className="aspect-[4/3] relative overflow-hidden bg-white flex items-center justify-center p-2 flex-1">
                   {sub.image.startsWith('http') ? (
