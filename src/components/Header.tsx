@@ -492,11 +492,11 @@ export function Header({
             <div className="lg:hidden">
               <Button 
                 asChild
-                className="bg-primary text-white hover:bg-primary/90 w-10 h-10 active:scale-95 transition-transform"
+                className="bg-primary text-white hover:bg-primary/90 w-12 h-12 active:scale-95 transition-transform"
                 size="icon"
               >
                 <a href="tel:+79181151551">
-                  <Icon name="PhoneCall" size={20} />
+                  <Icon name="Phone" size={24} />
                 </a>
               </Button>
             </div>
