@@ -50,7 +50,7 @@ export function CategoryDialogs({
       <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
         <DialogContent className="sm:max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-4xl font-heading font-semibold text-center mb-8">
+            <DialogTitle className="text-4xl font-heading font-semibold text-center mb-4">
               {currentCategory?.name}
             </DialogTitle>
           </DialogHeader>
@@ -61,19 +61,19 @@ export function CategoryDialogs({
                 className="cursor-pointer transition-all hover:shadow-xl hover:-translate-y-2 overflow-hidden group shadow-md flex flex-col"
                 onClick={() => handleSubcategoryClick(sub)}
               >
-                <div className="py-2 px-4 rounded-none" style={{
-                  backgroundColor: sub.name.includes('Classic') ? 'rgba(214, 236, 204, 0.95)' : 
-                                   sub.name.includes('Eco') ? 'rgba(232, 222, 248, 0.95)' : 
-                                   'white'
-                }}>
-                  <h4 className="font-semibold text-center sm:text-sm break-words text-base">{sub.name}</h4>
-                </div>
                 <div className="aspect-[4/3] relative overflow-hidden bg-white flex items-center justify-center p-2 flex-1">
                   {sub.image.startsWith('http') ? (
                     <img src={sub.image} alt={sub.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 scale-110" />
                   ) : (
                     <span className="text-7xl group-hover:scale-110 transition-transform duration-300">{sub.image}</span>
                   )}
+                </div>
+                <div className="py-2 px-4 rounded-none" style={{
+                  backgroundColor: sub.name.includes('Classic') ? 'rgba(214, 236, 204, 0.95)' : 
+                                   sub.name.includes('Eco') ? 'rgba(232, 222, 248, 0.95)' : 
+                                   'white'
+                }}>
+                  <h4 className="font-semibold text-center sm:text-sm break-words text-base">{sub.name}</h4>
                 </div>
               </Card>
             ))}
@@ -84,7 +84,7 @@ export function CategoryDialogs({
       <Dialog open={isSubSubcategoryDialogOpen} onOpenChange={setIsSubSubcategoryDialogOpen}>
         <DialogContent className="sm:max-w-5xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-4xl font-heading font-semibold text-center mb-8">
+            <DialogTitle className="text-4xl font-heading font-semibold text-center mb-4">
               {currentSubcategory?.name}
             </DialogTitle>
           </DialogHeader>
