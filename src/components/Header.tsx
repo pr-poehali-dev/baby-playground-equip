@@ -161,8 +161,7 @@ export function Header({
               <SheetTrigger asChild>
                 <Button 
                   variant="outline" 
-                  size="icon"
-                  className="md:hidden hover:border-primary hover:text-primary hover:bg-transparent w-10 h-10 active:scale-95 transition-transform"
+                  className="md:hidden hover:border-primary hover:text-primary hover:bg-transparent h-10 px-4 active:scale-95 transition-transform"
                 >
                   <Icon name="Menu" size={20} />
                 </Button>
@@ -180,18 +179,18 @@ export function Header({
                     О компании
                   </a>
                   <a 
-                    href="#catalog" 
-                    className="text-base hover:text-primary transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Каталог
-                  </a>
-                  <a 
                     href="#services" 
                     className="text-base hover:text-primary transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Услуги
+                  </a>
+                  <a 
+                    href="#catalog" 
+                    className="text-base hover:text-primary transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Каталог
                   </a>
                   <a 
                     href="#certificates" 
