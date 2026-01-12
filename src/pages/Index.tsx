@@ -186,9 +186,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       
       <HeroSection onOpenCatalog={() => catalogState.setIsSideMenuOpen(true)} />
       
-      <ServicesSection />
-      
-      <section id="catalog" className="py-16 bg-gray-50">
+      <div className="flex flex-col md:flex-col">
+      <section id="catalog" className="py-16 bg-gray-50 order-1 md:order-2">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-heading text-center mb-4 font-semibold">Каталог продукции</h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -228,6 +227,9 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
           </div>
         </div>
       </section>
+      
+      <ServicesSection />
+      </div>
       
       <CatalogSection
         categories={categories}
