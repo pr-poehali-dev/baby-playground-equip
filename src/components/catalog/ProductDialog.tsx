@@ -125,7 +125,7 @@ export function ProductDialog({
               <div>
                 <h2 className="font-heading mb-2 text-4xl font-semibold">{selectedProduct.name.split('\n')[1] || selectedProduct.name}</h2>
                 <p className="text-sm text-muted-foreground mb-4">{selectedProduct.name.split('\n')[0]}</p>
-                <p className="text-4xl font-bold text-primary mb-4">{formatPrice(selectedProduct.price)} ₽</p>
+                <p className="font-bold text-primary mb-4 text-3xl">{formatPrice(selectedProduct.price)} ₽</p>
                 
                 <div className="flex gap-3">
                   <Button 
@@ -161,7 +161,7 @@ export function ProductDialog({
               </div>
 
               <div className="border-t pt-6">
-                <h3 className="text-xl font-heading mb-4 font-semibold">Техническая информация</h3>
+                <h3 className="font-heading mb-4 font-semibold text-base">Техническая информация</h3>
                 {selectedProduct.dimensions && (
                   <div className="grid grid-cols-3 gap-4 mb-4">
                     {selectedProduct.dimensions.split('х').map((dim, idx) => (
@@ -169,7 +169,7 @@ export function ProductDialog({
                         <p className="text-xs text-muted-foreground mb-1">
                           {idx === 0 ? 'Ширина' : idx === 1 ? 'Длина' : 'Высота'}
                         </p>
-                        <p className="text-lg font-bold">{dim.trim()}</p>
+                        <p className="font-semibold text-base">{dim.trim()}</p>
                       </div>
                     ))}
                   </div>
@@ -180,7 +180,7 @@ export function ProductDialog({
               </div>
 
               <div className="border-t pt-6">
-                <p className="text-muted-foreground mb-4">
+                <p className="text-muted-foreground mb-4 text-sm">
                   Если появились вопросы, вы можете получить консультацию руководителя проекта:
                 </p>
                 <Button 
