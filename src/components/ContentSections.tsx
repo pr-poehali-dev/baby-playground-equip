@@ -9,7 +9,7 @@ export function ContentSections() {
 
   return (
     <>
-      <section id="about" className="py-16 bg-muted/30 order-5">
+      <section id="about" className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
@@ -47,7 +47,7 @@ export function ContentSections() {
         </div>
       </section>
 
-      <section id="certificates" className="py-16 bg-white order-6">
+      <section id="certificates" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-heading mb-4 font-semibold">Сертификаты</h2>
@@ -69,7 +69,7 @@ export function ContentSections() {
         </div>
       </section>
 
-      <section id="contacts" className="py-16 bg-muted/30 order-7">
+      <section id="contacts" className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-heading mb-4 font-semibold">Контакты</h2>
