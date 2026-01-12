@@ -145,11 +145,20 @@ export function Header({
           </nav>
           <div className="flex items-center gap-4">
             <div className="hidden lg:flex items-center gap-3">
+              <Button 
+                asChild
+                variant="ghost"
+                size="icon"
+                className="text-primary hover:text-primary/80 hover:bg-transparent active:scale-95 transition-all"
+              >
+                <a href="tel:+79181151551">
+                  <Icon name="Phone" size={20} />
+                </a>
+              </Button>
               <a 
                 href="tel:+79181151551" 
-                className="flex items-center gap-2 text-foreground hover:text-primary transition-colors text-base font-medium whitespace-nowrap"
+                className="text-foreground hover:text-primary transition-colors text-base font-medium whitespace-nowrap"
               >
-                <Icon name="Phone" size={20} className="text-primary" />
                 +7 918 115-15-51
               </a>
               <Button onClick={() => setIsContactDialogOpen(true)} size="sm">
@@ -225,16 +234,6 @@ export function Header({
                 </nav>
               </SheetContent>
             </Sheet>
-
-            <Button 
-              asChild
-              className="md:hidden bg-primary text-white hover:bg-primary/90 w-10 h-10 active:scale-95 transition-transform"
-              size="icon"
-            >
-              <a href="tel:+79181151551">
-                <Icon name="Phone" size={20} />
-              </a>
-            </Button>
 
             <Link to="/favorites">
               <Button variant="outline" className="relative hover:border-primary hover:text-primary hover:bg-transparent w-10 h-10 active:scale-95 transition-transform">
