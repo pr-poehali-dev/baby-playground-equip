@@ -138,22 +138,7 @@ export function Header({
           </div>
           <nav className="hidden md:flex gap-6">
             <a href="#about" className="text-foreground hover:text-primary transition-colors text-base font-medium">О компании</a>
-            <a 
-              href="#catalog" 
-              className="text-foreground hover:text-primary transition-colors text-base font-medium"
-              onClick={(e) => {
-                e.preventDefault();
-                const catalogSection = document.getElementById('catalog');
-                if (catalogSection) {
-                  const headerHeight = 80;
-                  const offset = 100;
-                  const targetPosition = catalogSection.offsetTop - headerHeight - offset;
-                  window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                }
-              }}
-            >
-              Каталог
-            </a>
+            <a href="#catalog" className="text-foreground hover:text-primary transition-colors text-base font-medium">Каталог</a>
             <a href="#services" className="text-foreground hover:text-primary transition-colors text-base font-medium">Услуги</a>
             <a href="#certificates" className="text-foreground hover:text-primary transition-colors text-base font-medium">Сертификаты</a>
             <a href="#contacts" className="text-foreground hover:text-primary transition-colors text-base font-medium">Контакты</a>
@@ -196,17 +181,7 @@ export function Header({
                   <a 
                     href="#catalog" 
                     className="text-base hover:text-primary transition-colors"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setIsMobileMenuOpen(false);
-                      const catalogSection = document.getElementById('catalog');
-                      if (catalogSection) {
-                        const headerHeight = 80;
-                        const offset = 100;
-                        const targetPosition = catalogSection.offsetTop - headerHeight - offset;
-                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                      }
-                    }}
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Каталог
                   </a>
