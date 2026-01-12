@@ -455,11 +455,10 @@ export function Header({
                             className="w-full hover:border-red-500 hover:text-red-500 hover:bg-transparent" 
                             size="lg"
                             onClick={() => {
-                              if (window.confirm('Вы уверены, что хотите очистить корзину?')) {
-                                if (clearCart) {
-                                  clearCart();
-                                }
+                              if (clearCart) {
+                                clearCart();
                               }
+                              setIsCartOpen(false);
                             }}
                           >
                             <Icon name="Trash2" size={20} className="mr-2" />
