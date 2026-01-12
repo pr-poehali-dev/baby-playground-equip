@@ -212,11 +212,11 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
                     />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 py-2 px-3" style={{
-                    backgroundColor: category.id === 'playground' ? 'rgba(209, 250, 229, 0.95)' : 
+                    backgroundColor: category.id === 'playground' ? 'rgba(214, 236, 204, 0.95)' : 
                                     category.id === 'sport' ? 'rgba(232, 222, 248, 0.95)' : 
                                     category.id === 'park' ? 'rgba(224, 242, 254, 0.95)' :
                                     category.id === 'improvement' ? 'rgba(224, 242, 254, 0.95)' :
-                                    category.id === 'coating' ? 'rgba(209, 250, 229, 0.95)' :
+                                    category.id === 'coating' ? 'rgba(214, 236, 204, 0.95)' :
                                     category.id === 'fencing' ? 'rgba(232, 222, 248, 0.95)' :
                                     'rgba(243, 232, 255, 0.95)'
                   }}>
