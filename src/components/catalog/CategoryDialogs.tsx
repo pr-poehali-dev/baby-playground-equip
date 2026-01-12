@@ -95,11 +95,11 @@ export function CategoryDialogs({
                 className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group border-0"
                 onClick={() => handleSubSubcategoryClick(subSub.name)}
               >
-                <div className="aspect-square relative overflow-hidden bg-white flex items-center justify-center p-4">
+                <div className="aspect-square relative overflow-hidden bg-white flex items-center justify-center p-2">
                   {subSub.image.startsWith('http') ? (
-                    <img src={subSub.image} alt={subSub.name} className="w-full h-full object-contain" />
+                    <img src={subSub.image} alt={subSub.name} className="w-full h-full object-contain scale-110" />
                   ) : (
-                    <span className="text-6xl">{subSub.image}</span>
+                    <span className="text-7xl">{subSub.image}</span>
                   )}
                 </div>
                 <div className="py-3 px-4 bg-white">

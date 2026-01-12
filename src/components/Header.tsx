@@ -208,13 +208,19 @@ export function Header({
                     Контакты
                   </a>
                   <div className="border-t pt-4 mt-2">
-                    <a 
-                      href="tel:+79181151551" 
-                      className="flex items-center gap-2 text-lg font-semibold hover:text-primary transition-colors"
+                    <Button 
+                      asChild
+                      className="w-full bg-primary text-white hover:bg-primary/90"
+                      size="lg"
                     >
-                      <Icon name="Phone" size={20} className="text-primary" />
-                      +7 918 115-15-51
-                    </a>
+                      <a 
+                        href="tel:+79181151551" 
+                        className="flex items-center gap-2"
+                      >
+                        <Icon name="Phone" size={20} />
+                        +7 918 115-15-51
+                      </a>
+                    </Button>
                   </div>
                 </nav>
               </SheetContent>
