@@ -235,6 +235,16 @@ export function Header({
               </SheetContent>
             </Sheet>
 
+            <Button 
+              asChild
+              className="md:hidden bg-primary text-white hover:bg-primary/90 w-10 h-10 active:scale-95 transition-transform"
+              size="icon"
+            >
+              <a href="tel:+79181151551">
+                <Icon name="Phone" size={20} />
+              </a>
+            </Button>
+
             <Link to="/favorites">
               <Button variant="outline" className="relative hover:border-primary hover:text-primary hover:bg-transparent w-10 h-10 active:scale-95 transition-transform">
                 <Icon name="Heart" size={20} />
