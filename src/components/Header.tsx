@@ -152,7 +152,6 @@ export function Header({
                 +7 918 115-15-51
               </a>
               <Button onClick={() => setIsContactDialogOpen(true)} size="sm">
-                <Icon name="Phone" size={16} className="mr-2" />
                 Заказать звонок
               </Button>
             </div>
