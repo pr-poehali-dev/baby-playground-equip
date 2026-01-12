@@ -496,7 +496,7 @@ export function Header({
                 size="icon"
               >
                 <a href="tel:+79181151551">
-                  <Icon name="Phone" size={20} />
+                  <Icon name="PhoneCall" size={20} />
                 </a>
               </Button>
             </div>
