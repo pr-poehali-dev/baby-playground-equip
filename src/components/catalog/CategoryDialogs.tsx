@@ -1,5 +1,7 @@
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import Icon from '@/components/ui/icon';
 
 interface SubSubcategory {
   name: string;
@@ -49,6 +51,14 @@ export function CategoryDialogs({
     <>
       <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
         <DialogContent className="sm:max-w-4xl max-h-[80vh] sm:max-h-[80vh] h-full sm:h-auto overflow-y-auto m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute left-4 top-4 sm:hidden z-50"
+            onClick={() => setIsCategoryDialogOpen(false)}
+          >
+            <Icon name="ArrowLeft" size={24} />
+          </Button>
           <DialogHeader>
             <DialogTitle className="text-4xl font-heading font-semibold text-center mb-2 sm:mb-4">
               {currentCategory?.name}
@@ -82,7 +92,15 @@ export function CategoryDialogs({
       </Dialog>
 
       <Dialog open={isSubSubcategoryDialogOpen} onOpenChange={setIsSubSubcategoryDialogOpen}>
-        <DialogContent className="sm:max-w-5xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-5xl max-h-[80vh] sm:max-h-[80vh] h-full sm:h-auto overflow-y-auto m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute left-4 top-4 sm:hidden z-50"
+            onClick={() => setIsSubSubcategoryDialogOpen(false)}
+          >
+            <Icon name="ArrowLeft" size={24} />
+          </Button>
           <DialogHeader>
             <DialogTitle className="text-4xl font-heading font-semibold text-center mb-4">
               {currentSubcategory?.name}
