@@ -48,7 +48,7 @@ export function CategoryDialogs({
   return (
     <>
       <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
-        <DialogContent className="sm:max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-4xl max-h-[80vh] sm:max-h-[80vh] h-full sm:h-auto overflow-y-auto m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full">
           <DialogHeader>
             <DialogTitle className="text-4xl font-heading font-semibold text-center mb-2 sm:mb-4">
               {currentCategory?.name}
@@ -58,7 +58,7 @@ export function CategoryDialogs({
             {currentCategory?.subcategories.map((sub) => (
               <Card
                 key={sub.name}
-                className="cursor-pointer transition-all hover:shadow-xl hover:-translate-y-2 overflow-hidden group shadow-md flex flex-col"
+                className="cursor-pointer transition-all hover:shadow-xl hover:-translate-y-2 overflow-hidden group flex flex-col border border-gray-200 hover:border-transparent"
                 onClick={() => handleSubcategoryClick(sub)}
               >
                 <div className="aspect-[4/3] relative overflow-hidden bg-white flex items-center justify-center p-2 flex-1">
