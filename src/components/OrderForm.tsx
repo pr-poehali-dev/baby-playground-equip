@@ -221,7 +221,7 @@ export function OrderForm({ total, installationCost, deliveryCost, grandTotal, o
           </div>
 
           <div className="flex gap-3 pt-3">
-            <Button type="button" variant="outline" onClick={onCancel} className="flex-1 h-9">Отменить</Button>
+            <Button type="button" variant="outline" onClick={onCancel} className="flex-1 h-9 hover:border-primary hover:text-primary hover:bg-transparent">Отменить</Button>
             <Button 
               type="submit" 
               className="flex-1 h-9" 

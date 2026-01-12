@@ -301,12 +301,14 @@ export function Header({
                                   </div>
                                   <Button 
                                     size="sm"
+                                    variant="outline"
                                     onClick={() => {
                                       if (onAddToCart) {
                                         onAddToCart(product);
                                         setCartSearchQuery('');
                                       }
                                     }}
+                                    className="hover:border-primary hover:text-primary hover:bg-transparent"
                                   >
                                     <Icon name="Plus" size={14} />
                                   </Button>

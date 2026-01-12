@@ -189,11 +189,12 @@ export function CategoryGrid({
                   <p className="text-base font-bold text-primary mb-1.5">{formatPrice(product.price)} ₽</p>
                   <Button 
                     size="sm"
+                    variant="outline"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleAddToCart(product);
                     }}
-                    className="gap-1 w-full h-8 text-xs"
+                    className="gap-1 w-full h-8 text-xs hover:border-primary hover:text-primary hover:bg-transparent"
                   >
                     <Icon name="ShoppingCart" size={14} />
                     <span>В корзину</span>
