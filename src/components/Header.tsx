@@ -228,7 +228,7 @@ export function Header({
 
             <Button 
               asChild
-              className="md:hidden bg-primary text-white hover:bg-primary/90 w-10 h-10 active:scale-95 transition-transform"
+              className="lg:hidden bg-primary text-white hover:bg-primary/90 w-10 h-10 active:scale-95 transition-transform"
               size="icon"
             >
               <a href="tel:+79181151551">
