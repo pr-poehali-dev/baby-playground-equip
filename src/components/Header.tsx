@@ -159,7 +159,7 @@ export function Header({
             </div>
             <a 
               href="tel:+79181151551" 
-              className="flex lg:hidden items-center gap-2 text-foreground hover:text-primary transition-colors"
+              className="flex md:hidden items-center gap-2 text-foreground hover:text-primary transition-colors"
             >
               <Icon name="Phone" size={20} className="text-primary" />
             </a>
