@@ -146,6 +146,15 @@ export function ProductDialog({
                   >
                     <Icon name="Heart" size={20} className={isFavorite ? 'fill-red-500 text-red-500' : ''} />
                   </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    asChild
+                  >
+                    <a href="tel:+79181151551">
+                      <Icon name="Phone" size={20} />
+                    </a>
+                  </Button>
                 </div>
               </div>
 
