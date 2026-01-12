@@ -228,6 +228,11 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
         </div>
       </section>
       
+      <ServicesSection />
+      
+      <ContentSections />
+      </div>
+      
       <CatalogSection
         categories={categories}
         products={products}
@@ -263,11 +268,6 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
         favorites={favorites}
         toggleFavorite={toggleFavorite}
       />
-      
-      <ServicesSection />
-      
-      <ContentSections />
-      </div>
     </div>
   );
 }
