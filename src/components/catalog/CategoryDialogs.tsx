@@ -69,7 +69,7 @@ export function CategoryDialogs({
                   )}
                 </div>
                 <div className="py-2 px-6" style={{
-                  backgroundColor: sub.name.includes('Classic') ? 'rgba(0, 167, 145, 0.95)' : 
+                  backgroundColor: sub.name.includes('Classic') ? 'rgba(187, 247, 208, 0.95)' : 
                                    sub.name.includes('Eco') ? 'rgba(232, 222, 248, 0.95)' : 
                                    'white'
                 }}>
