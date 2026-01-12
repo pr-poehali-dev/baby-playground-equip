@@ -187,6 +187,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       <HeroSection onOpenCatalog={() => catalogState.setIsSideMenuOpen(true)} />
       
       <div className="flex flex-col">
+      <ServicesSection />
+      
       <section id="catalog" className="py-16 bg-gray-50 md:order-2">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-heading text-center mb-4 font-semibold">Каталог продукции</h2>
@@ -228,46 +230,46 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
         </div>
       </section>
       
-      <ServicesSection />
+      <div className="order-3">
+        <CatalogSection
+          categories={categories}
+          products={products}
+          isSideMenuOpen={catalogState.isSideMenuOpen}
+          setIsSideMenuOpen={catalogState.setIsSideMenuOpen}
+          expandedCategories={catalogState.expandedCategories}
+          toggleCategory={handlers.toggleCategory}
+          selectedCategory={catalogState.selectedCategory}
+          selectedSubcategory={catalogState.selectedSubcategory}
+          selectedSubSubcategory={catalogState.selectedSubSubcategory}
+          setSelectedSubSubcategory={catalogState.setSelectedSubSubcategory}
+          handleTreeCategorySelect={handlers.handleTreeCategorySelect}
+          expandedSubcategories={catalogState.expandedSubcategories}
+          handleTreeSubcategorySelect={handlers.handleTreeSubcategorySelect}
+          handleTreeSubSubcategorySelect={handlers.handleTreeSubSubcategorySelect}
+          isCategoryDialogOpen={catalogState.isCategoryDialogOpen}
+          setIsCategoryDialogOpen={catalogState.setIsCategoryDialogOpen}
+          currentCategory={catalogState.currentCategory}
+          handleCategoryClick={handlers.handleCategoryClick}
+          handleSubcategoryClick={handlers.handleSubcategorySelect}
+          isSubSubcategoryDialogOpen={catalogState.isSubSubcategoryDialogOpen}
+          setIsSubSubcategoryDialogOpen={catalogState.setIsSubSubcategoryDialogOpen}
+          currentSubcategory={catalogState.currentSubcategory}
+          handleSubSubcategoryClick={handlers.handleSubSubcategorySelect}
+          filteredProducts={filteredProducts}
+          handleAddToCart={handleAddToCart}
+          searchQuery={catalogState.searchQuery}
+          setSearchQuery={catalogState.setSearchQuery}
+          handleResetFilters={handlers.handleResetFilters}
+          selectedSeries={catalogState.selectedSeries}
+          setSelectedSeries={catalogState.setSelectedSeries}
+          availableCategories={availableCategories}
+          favorites={favorites}
+          toggleFavorite={toggleFavorite}
+        />
+      </div>
       
       <ContentSections />
       </div>
-      
-      <CatalogSection
-        categories={categories}
-        products={products}
-        isSideMenuOpen={catalogState.isSideMenuOpen}
-        setIsSideMenuOpen={catalogState.setIsSideMenuOpen}
-        expandedCategories={catalogState.expandedCategories}
-        toggleCategory={handlers.toggleCategory}
-        selectedCategory={catalogState.selectedCategory}
-        selectedSubcategory={catalogState.selectedSubcategory}
-        selectedSubSubcategory={catalogState.selectedSubSubcategory}
-        setSelectedSubSubcategory={catalogState.setSelectedSubSubcategory}
-        handleTreeCategorySelect={handlers.handleTreeCategorySelect}
-        expandedSubcategories={catalogState.expandedSubcategories}
-        handleTreeSubcategorySelect={handlers.handleTreeSubcategorySelect}
-        handleTreeSubSubcategorySelect={handlers.handleTreeSubSubcategorySelect}
-        isCategoryDialogOpen={catalogState.isCategoryDialogOpen}
-        setIsCategoryDialogOpen={catalogState.setIsCategoryDialogOpen}
-        currentCategory={catalogState.currentCategory}
-        handleCategoryClick={handlers.handleCategoryClick}
-        handleSubcategoryClick={handlers.handleSubcategorySelect}
-        isSubSubcategoryDialogOpen={catalogState.isSubSubcategoryDialogOpen}
-        setIsSubSubcategoryDialogOpen={catalogState.setIsSubSubcategoryDialogOpen}
-        currentSubcategory={catalogState.currentSubcategory}
-        handleSubSubcategoryClick={handlers.handleSubSubcategorySelect}
-        filteredProducts={filteredProducts}
-        handleAddToCart={handleAddToCart}
-        searchQuery={catalogState.searchQuery}
-        setSearchQuery={catalogState.setSearchQuery}
-        handleResetFilters={handlers.handleResetFilters}
-        selectedSeries={catalogState.selectedSeries}
-        setSelectedSeries={catalogState.setSelectedSeries}
-        availableCategories={availableCategories}
-        favorites={favorites}
-        toggleFavorite={toggleFavorite}
-      />
     </div>
   );
 }
