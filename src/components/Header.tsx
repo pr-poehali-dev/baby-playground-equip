@@ -492,7 +492,8 @@ export function Header({
             <div className="lg:hidden">
               <Button 
                 asChild
-                className="bg-primary text-white hover:bg-primary/90 w-12 h-12 active:scale-95 transition-transform"
+                variant="outline"
+                className="border-2 border-primary text-primary hover:bg-primary hover:text-white w-12 h-12 active:scale-95 transition-all"
                 size="icon"
               >
                 <a href="tel:+79181151551">

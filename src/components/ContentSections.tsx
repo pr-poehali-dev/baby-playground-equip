@@ -56,12 +56,12 @@ export function ContentSections() {
           <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
             {['ГОСТ Р', 'ТР ТС', 'ISO 9001'].map((cert, idx) => (
               <Card key={idx} className="text-center hover:shadow-lg transition-shadow animate-scale-in" style={{ animationDelay: `${idx * 0.1}s` }}>
-                <CardContent className="p-8">
-                  <div className="w-24 h-24 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon name="Award" size={48} className="text-primary" />
+                <CardContent className="p-3 md:p-8">
+                  <div className="w-12 h-12 md:w-24 md:h-24 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full flex items-center justify-center mx-auto mb-2 md:mb-4">
+                    <Icon name="Award" size={24} className="text-primary md:w-12 md:h-12" />
                   </div>
-                  <h3 className="text-xl font-heading font-bold mb-2">{cert}</h3>
-                  <p className="text-sm text-muted-foreground">Сертификат соответствия</p>
+                  <h3 className="text-sm md:text-xl font-heading font-bold mb-1 md:mb-2">{cert}</h3>
+                  <p className="text-xs md:text-sm text-muted-foreground">Сертификат соответствия</p>
                 </CardContent>
               </Card>
             ))}
@@ -77,12 +77,12 @@ export function ContentSections() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
             <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon name="Phone" size={32} className="text-primary" />
+              <CardContent className="p-4 md:p-8">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2 md:mb-4">
+                  <Icon name="Phone" size={20} className="text-primary md:w-8 md:h-8" />
                 </div>
-                <h3 className="font-bold mb-2">Телефон</h3>
-                <a href="tel:+79181151551" className="text-primary hover:underline block mb-3">+7 (918) 115-15-51</a>
+                <h3 className="text-sm md:text-base font-bold mb-1 md:mb-2">Телефон</h3>
+                <a href="tel:+79181151551" className="text-xs md:text-base text-primary hover:underline block mb-2 md:mb-3">+7 (918) 115-15-51</a>
                 <Button 
                   variant="outline" 
                   size="sm" 
@@ -94,21 +94,21 @@ export function ContentSections() {
               </CardContent>
             </Card>
             <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon name="Mail" size={32} className="text-secondary" />
+              <CardContent className="p-4 md:p-8">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-2 md:mb-4">
+                  <Icon name="Mail" size={20} className="text-secondary md:w-8 md:h-8" />
                 </div>
-                <h3 className="font-bold mb-2">Email</h3>
-                <a href="mailto:info@urban-play.ru" className="text-secondary hover:underline">info@urban-play.ru</a>
+                <h3 className="text-sm md:text-base font-bold mb-1 md:mb-2">Email</h3>
+                <a href="mailto:info@urban-play.ru" className="text-xs md:text-base text-secondary hover:underline">info@urban-play.ru</a>
               </CardContent>
             </Card>
             <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-[#0284c7]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Icon name="MapPin" size={32} className="text-[#0284c7]" />
+              <CardContent className="p-4 md:p-8">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-[#0284c7]/10 rounded-full flex items-center justify-center mx-auto mb-2 md:mb-4">
+                  <Icon name="MapPin" size={20} className="text-[#0284c7] md:w-8 md:h-8" />
                 </div>
-                <h3 className="font-bold mb-2">Адрес</h3>
-                <p className="text-muted-foreground">г. Краснодар,      ул. Кореновская, д. 57 оф. 7</p>
+                <h3 className="text-sm md:text-base font-bold mb-1 md:mb-2">Адрес</h3>
+                <p className="text-xs md:text-base text-muted-foreground">г. Краснодар, ул. Кореновская, д. 57 оф. 7</p>
               </CardContent>
             </Card>
           </div>
