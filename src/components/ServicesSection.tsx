@@ -3,7 +3,7 @@ import Icon from '@/components/ui/icon';
 
 export function ServicesSection() {
   return (
-    <section id="services" className="pt-4 pb-8 bg-muted/30 order-1 md:order-1">
+    <section id="services" className="pt-4 md:pt-12 pb-8 bg-muted/30 order-1 md:order-1">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {[
