@@ -263,10 +263,19 @@ export function Header({
                 <Button
                   variant="outline"
                   className="absolute left-4 top-4 sm:hidden z-50 hover:border-primary hover:text-primary hover:bg-transparent h-9 px-3"
-                  onClick={() => setIsCartOpen(false)}
+                  onClick={() => {
+                    setIsCartOpen(false);
+                    setTimeout(() => {
+                      const element = document.getElementById('catalog');
+                      if (element) {
+                        const yOffset = -90;
+                        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                      }
+                    }, 100);
+                  }}
                 >
-                  <Icon name="ArrowLeft" size={20} className="mr-2" />
-                  <span className="text-sm">Назад к каталогу</span>
+                  Назад в каталог
                 </Button>
                 {!showOrderForm && (
                   <>
