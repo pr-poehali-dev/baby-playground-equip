@@ -159,7 +159,7 @@ export function ProductDialog({
                     size="lg"
                     variant="outline"
                     asChild
-                    className="hover:border-green-600 hover:text-green-600 border-green-600 text-green-600 bg-transparent h-12 w-12 p-0"
+                    className="hover:bg-green-600 hover:text-white border-green-600 text-green-600 bg-transparent h-12 w-12 p-0 transition-colors"
                   >
                     <a href="tel:+79181151551">
                       <Icon name="Phone" size={22} />
