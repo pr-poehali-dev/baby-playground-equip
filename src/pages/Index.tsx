@@ -212,7 +212,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 py-1.5 px-2 -mb-px" style={{
+                  <div className="absolute bottom-0 left-0 right-0 py-1.5 px-2 -mb-px bg-[#caf8b4f2]" style={{
                     backgroundColor: category.id === 'playground' ? 'rgba(214, 236, 204, 0.95)' : 
                                     category.id === 'sport' ? 'rgba(232, 222, 248, 0.95)' : 
                                     category.id === 'park' ? 'rgba(224, 242, 254, 0.95)' :
