@@ -261,12 +261,12 @@ export function Header({
               </SheetTrigger>
               <SheetContent className="w-full sm:max-w-lg overflow-y-auto">
                 <Button
-                  variant="ghost"
-                  size="icon"
-                  className="absolute left-4 top-4 sm:hidden z-50"
+                  variant="outline"
+                  className="absolute left-4 top-4 sm:hidden z-50 hover:border-primary hover:text-primary hover:bg-transparent h-9 px-3"
                   onClick={() => setIsCartOpen(false)}
                 >
-                  <Icon name="ArrowLeft" size={24} />
+                  <Icon name="ArrowLeft" size={20} className="mr-2" />
+                  <span className="text-sm">Назад к каталогу</span>
                 </Button>
                 {!showOrderForm && (
                   <>
