@@ -237,6 +237,15 @@ export function CatalogSection({
         setIsContactDialogOpen={setIsContactDialogOpen}
         favorites={favorites}
         toggleFavorite={toggleFavorite}
+        onBackToCatalog={() => {
+          // Прокрутка к категории товара
+          if (selectedProduct) {
+            const category = categories.find(c => c.id === selectedProduct.category);
+            if (category) {
+              handleCategoryClick(category);
+            }
+          }
+        }}
       />
 
       <ContactDialog 
