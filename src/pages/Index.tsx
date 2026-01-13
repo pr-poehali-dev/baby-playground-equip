@@ -212,16 +212,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 py-1.5 px-2 -mb-px bg-[#86d262f2]" style={{
-                    backgroundColor: category.id === 'playground' ? 'rgba(214, 236, 204, 0.95)' : 
-                                    category.id === 'sport' ? 'rgba(232, 222, 248, 0.95)' : 
-                                    category.id === 'park' ? 'rgba(224, 242, 254, 0.95)' :
-                                    category.id === 'improvement' ? 'rgba(224, 242, 254, 0.95)' :
-                                    category.id === 'coating' ? 'rgba(214, 236, 204, 0.95)' :
-                                    category.id === 'fencing' ? 'rgba(232, 222, 248, 0.95)' :
-                                    'rgba(243, 232, 255, 0.95)'
-                  }}>
-                    <h3 className="font-heading font-semibold text-gray-900 text-center text-sm sm:text-base leading-tight">{category.name}</h3>
+                  <div className="absolute bottom-0 left-0 right-0 py-1.5 px-2 -mb-px" style={{ backgroundColor: '#86d262f2' }}>
+                    <h3 className="font-heading font-semibold text-white text-center text-sm sm:text-base leading-tight">{category.name}</h3>
                   </div>
                 </div>
               </div>

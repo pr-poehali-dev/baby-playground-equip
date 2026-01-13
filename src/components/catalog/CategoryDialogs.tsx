@@ -78,12 +78,8 @@ export function CategoryDialogs({
                     <span className="text-7xl group-hover:scale-110 transition-transform duration-300">{sub.image}</span>
                   )}
                 </div>
-                <div className="py-1 sm:py-2 px-2 sm:px-4 rounded-none -mt-px bg-[#9ef874f2]" style={{
-                  backgroundColor: sub.name.includes('Classic') ? 'rgba(214, 236, 204, 0.95)' : 
-                                   sub.name.includes('Eco') ? 'rgba(232, 222, 248, 0.95)' : 
-                                   'white'
-                }}>
-                  <h4 className="font-semibold text-center text-xs sm:text-sm break-words leading-tight">{sub.name}</h4>
+                <div className="py-1 sm:py-2 px-2 sm:px-4 rounded-none -mt-px" style={{ backgroundColor: '#86d262f2' }}>
+                  <h4 className="font-semibold text-center text-xs sm:text-sm break-words leading-tight text-white">{sub.name}</h4>
                 </div>
               </Card>
             ))}
@@ -120,8 +116,8 @@ export function CategoryDialogs({
                     <span className="text-7xl">{subSub.image}</span>
                   )}
                 </div>
-                <div className="py-1 sm:py-3 px-2 sm:px-4 bg-white -mt-px">
-                  <h4 className="text-xs sm:text-base font-semibold text-center leading-tight">{subSub.name}</h4>
+                <div className="py-1 sm:py-3 px-2 sm:px-4 -mt-px" style={{ backgroundColor: '#86d262f2' }}>
+                  <h4 className="text-xs sm:text-base font-semibold text-center leading-tight text-white">{subSub.name}</h4>
                 </div>
               </Card>
             ))}
