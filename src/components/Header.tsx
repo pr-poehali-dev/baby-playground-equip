@@ -97,21 +97,46 @@ export function Header({
 
   // Генерация номера заказа с датой
   const getNextOrderNumber = () => {
-    const orderCount = parseInt(localStorage.getItem('orderCount') || '0', 10) + 1;
-    localStorage.setItem('orderCount', orderCount.toString());
     const now = new Date();
+    const currentYear = now.getFullYear();
+    
+    // Получаем сохранённый год и счётчик
+    const savedYear = parseInt(localStorage.getItem('orderYear') || '0', 10);
+    let orderCount = parseInt(localStorage.getItem('orderCount') || '0', 10);
+    
+    // Сбрасываем счётчик, если наступил новый год
+    if (savedYear !== currentYear) {
+      orderCount = 0;
+      localStorage.setItem('orderYear', currentYear.toString());
+    }
+    
+    orderCount += 1;
+    localStorage.setItem('orderCount', orderCount.toString());
+    
     const day = String(now.getDate()).padStart(2, '0');
     const month = String(now.getMonth() + 1).padStart(2, '0');
-    const year = now.getFullYear();
+    const year = currentYear;
     return `${String(orderCount).padStart(4, '0')} ${day}.${month}.${year}`;
   };
 
   const getCurrentOrderNumber = () => {
-    const orderCount = parseInt(localStorage.getItem('orderCount') || '0', 10) + 1;
     const now = new Date();
+    const currentYear = now.getFullYear();
+    
+    // Получаем сохранённый год и счётчик
+    const savedYear = parseInt(localStorage.getItem('orderYear') || '0', 10);
+    let orderCount = parseInt(localStorage.getItem('orderCount') || '0', 10);
+    
+    // Сбрасываем счётчик, если наступил новый год
+    if (savedYear !== currentYear) {
+      orderCount = 0;
+    }
+    
+    orderCount += 1;
+    
     const day = String(now.getDate()).padStart(2, '0');
     const month = String(now.getMonth() + 1).padStart(2, '0');
-    const year = now.getFullYear();
+    const year = currentYear;
     return `${String(orderCount).padStart(4, '0')} ${day}.${month}.${year}`;
   };
 
