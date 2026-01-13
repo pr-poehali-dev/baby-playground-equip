@@ -122,7 +122,7 @@ export function CategoryGrid({
                 value={selectedSubSubcategory || 'all'}
                 onValueChange={(value) => setSelectedSubSubcategory(value === 'all' ? null : value)}
               >
-                <SelectTrigger className="w-52 h-9">
+                <SelectTrigger className={`w-52 h-9 ${selectedSubSubcategory ? 'border-2 border-green-600' : ''} hover:border-secondary hover:text-secondary hover:bg-white`}>
                   <SelectValue placeholder="Все категории" />
                 </SelectTrigger>
                 <SelectContent>
@@ -163,7 +163,7 @@ export function CategoryGrid({
             return (
               <Card 
                 key={product.id} 
-                className={`overflow-hidden transition-all cursor-pointer group border-2 hover:shadow-xl rounded-[2px] sm:rounded-lg ${
+                className={`overflow-hidden transition-all cursor-pointer group border-2 hover:shadow-xl rounded-[2px] ${
                   isSelected ? 'border-green-600' : 'border-gray-200 hover:border-transparent'
                 }`}
               >
