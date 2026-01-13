@@ -78,7 +78,7 @@ export function CategoryDialogs({
                     <span className="text-7xl group-hover:scale-110 transition-transform duration-300">{sub.image}</span>
                   )}
                 </div>
-                <div className="py-1 sm:py-2 px-2 sm:px-4 rounded-none -mt-px" style={{
+                <div className="py-1 sm:py-2 px-2 sm:px-4 rounded-none -mt-px bg-[#9ef874f2]" style={{
                   backgroundColor: sub.name.includes('Classic') ? 'rgba(214, 236, 204, 0.95)' : 
                                    sub.name.includes('Eco') ? 'rgba(232, 222, 248, 0.95)' : 
                                    'white'
