@@ -68,22 +68,22 @@ export function CategoryDialogs({
             {currentCategory?.subcategories.map((sub) => (
               <Card
                 key={sub.name}
-                className="cursor-pointer transition-all hover:shadow-xl hover:-translate-y-2 overflow-hidden group flex flex-col border border-gray-200 hover:border-transparent"
+                className="cursor-pointer transition-all hover:shadow-xl hover:-translate-y-2 overflow-hidden group flex flex-col border border-gray-200 hover:border-transparent rounded-sm sm:rounded-lg"
                 onClick={() => handleSubcategoryClick(sub)}
               >
-                <div className="aspect-[4/3] relative overflow-hidden bg-white flex items-center justify-center p-2 flex-1">
+                <div className="aspect-[4/3] relative overflow-hidden bg-white flex items-center justify-center p-0 sm:p-2 flex-1">
                   {sub.image.startsWith('http') ? (
                     <img src={sub.image} alt={sub.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 scale-110" />
                   ) : (
                     <span className="text-7xl group-hover:scale-110 transition-transform duration-300">{sub.image}</span>
                   )}
                 </div>
-                <div className="py-2 px-4 rounded-none" style={{
+                <div className="py-1 sm:py-2 px-2 sm:px-4 rounded-none" style={{
                   backgroundColor: sub.name.includes('Classic') ? 'rgba(214, 236, 204, 0.95)' : 
                                    sub.name.includes('Eco') ? 'rgba(232, 222, 248, 0.95)' : 
                                    'white'
                 }}>
-                  <h4 className="font-semibold text-center sm:text-sm break-words text-base">{sub.name}</h4>
+                  <h4 className="font-semibold text-center text-xs sm:text-sm break-words">{sub.name}</h4>
                 </div>
               </Card>
             ))}
@@ -110,18 +110,18 @@ export function CategoryDialogs({
             {currentSubcategory?.children?.map((subSub) => (
               <Card
                 key={subSub.name}
-                className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group border-0"
+                className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group border-0 rounded-sm sm:rounded-lg"
                 onClick={() => handleSubSubcategoryClick(subSub.name)}
               >
-                <div className="aspect-square relative overflow-hidden bg-white flex items-center justify-center p-2">
+                <div className="aspect-square relative overflow-hidden bg-white flex items-center justify-center p-0 sm:p-2">
                   {subSub.image.startsWith('http') ? (
                     <img src={subSub.image} alt={subSub.name} className="w-full h-full object-contain scale-110" />
                   ) : (
                     <span className="text-7xl">{subSub.image}</span>
                   )}
                 </div>
-                <div className="py-3 px-4 bg-white">
-                  <h4 className="text-base font-semibold text-center leading-tight">{subSub.name}</h4>
+                <div className="py-1.5 sm:py-3 px-2 sm:px-4 bg-white">
+                  <h4 className="text-xs sm:text-base font-semibold text-center leading-tight">{subSub.name}</h4>
                 </div>
               </Card>
             ))}
