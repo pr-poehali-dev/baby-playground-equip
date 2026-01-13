@@ -50,7 +50,7 @@ export function ProductDialog({
 
   return (
     <Dialog open={isProductDialogOpen} onOpenChange={setIsProductDialogOpen}>
-      <DialogContent className="max-w-4xl max-h-[90vh] sm:max-h-[85vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[85vh] sm:max-h-[85vh] overflow-y-auto">
         <Button
           variant="ghost"
           size="icon"
@@ -63,7 +63,7 @@ export function ProductDialog({
           <DialogTitle className="sr-only">Информация о товаре</DialogTitle>
         </DialogHeader>
         {selectedProduct && (
-          <div className="grid md:grid-cols-[2fr,1fr] gap-4 md:gap-6">
+          <div className="grid md:grid-cols-[2fr,1fr] gap-3 md:gap-6">
             <div>
               <div className="relative aspect-square bg-white rounded-lg flex items-center justify-center overflow-hidden border p-0">
                 {productImages.length > 0 ? (
@@ -129,79 +129,79 @@ export function ProductDialog({
               )}
             </div>
 
-            <div className="flex flex-col justify-center space-y-4">
+            <div className="flex flex-col justify-center space-y-3 md:space-y-4">
               <div>
-                <p className="text-sm mb-2 text-[#5a098c]">{selectedProduct.name.split('\n')[0]}</p>
-                <h2 className="font-heading mb-4 font-semibold text-3xl">{selectedProduct.name.split('\n')[1] || selectedProduct.name}</h2>
-                <p className="font-bold text-primary mb-4 text-3xl">{formatPrice(selectedProduct.price)} ₽</p>
+                <p className="text-xs sm:text-sm mb-1 sm:mb-2 text-[#5a098c]">{selectedProduct.name.split('\n')[0]}</p>
+                <h2 className="font-heading mb-2 sm:mb-4 font-semibold text-xl sm:text-3xl">{selectedProduct.name.split('\n')[1] || selectedProduct.name}</h2>
+                <p className="font-bold text-primary mb-2 sm:mb-4 text-2xl sm:text-3xl">{formatPrice(selectedProduct.price)} ₽</p>
                 
-                <div className="flex gap-3">
+                <div className="flex gap-2 sm:gap-3">
                   <Button 
                     size="lg" 
-                    className="flex-1"
+                    className="flex-1 h-10 sm:h-11"
                     onClick={() => {
                       handleAddToCart(selectedProduct);
                       setIsProductDialogOpen(false);
                     }}
                   >
-                    <Icon name="ShoppingCart" size={20} className="mr-2" />
-                    В корзину
+                    <Icon name="ShoppingCart" size={18} className="mr-2" />
+                    <span className="text-sm sm:text-base">В корзину</span>
                   </Button>
                   <Button
                     size="lg"
                     variant="outline"
                     onClick={() => toggleFavorite(selectedProduct)}
-                    className="hover:border-primary hover:text-primary hover:bg-transparent"
+                    className="hover:border-primary hover:text-primary hover:bg-transparent h-10 sm:h-11 w-10 sm:w-11 p-0"
                   >
-                    <Icon name="Heart" size={20} className={isFavorite ? 'fill-red-500 text-red-500' : ''} />
+                    <Icon name="Heart" size={18} className={isFavorite ? 'fill-red-500 text-red-500' : ''} />
                   </Button>
                   <Button
                     size="lg"
                     variant="outline"
                     asChild
-                    className="hover:border-primary hover:text-primary hover:bg-transparent"
+                    className="hover:border-primary hover:text-primary hover:bg-transparent h-10 sm:h-11 w-10 sm:w-11 p-0"
                   >
                     <a href="tel:+79181151551">
-                      <Icon name="Phone" size={20} />
+                      <Icon name="Phone" size={18} />
                     </a>
                   </Button>
                 </div>
               </div>
 
-              <div className="border-t py-[5px]">
-                <h3 className="font-heading mb-2 font-semibold text-base">Техническая информация</h3>
+              <div className="border-t py-2 sm:py-[5px]">
+                <h3 className="font-heading mb-1.5 sm:mb-2 font-semibold text-sm sm:text-base">Техническая информация</h3>
                 {selectedProduct.dimensions && (
-                  <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-2 sm:mb-4">
                     {selectedProduct.dimensions.split('х').map((dim, idx) => (
-                      <div key={idx} className="bg-muted/30 p-3 rounded-lg">
-                        <p className="text-xs text-muted-foreground mb-1">
+                      <div key={idx} className="bg-muted/30 p-2 sm:p-3 rounded-lg">
+                        <p className="text-[10px] sm:text-xs text-muted-foreground mb-0.5 sm:mb-1">
                           {idx === 0 ? 'Ширина' : idx === 1 ? 'Длина' : 'Высота'}
                         </p>
-                        <p className="font-semibold text-base">{dim.trim()}</p>
+                        <p className="font-semibold text-sm sm:text-base">{dim.trim()}</p>
                       </div>
                     ))}
                   </div>
                 )}
                 {selectedProduct.description && (
-                  <p className="text-sm text-muted-foreground">{selectedProduct.description}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{selectedProduct.description}</p>
                 )}
               </div>
 
-              <div className="border-t py-3 mx-0 my-[1px]">
+              <div className="border-t py-2 sm:py-3 mx-0 my-[1px]">
                 <p className="text-muted-foreground text-sm py-0 my-[18px] hidden md:block">
                   Если появились вопросы, вы можете получить консультацию руководителя проекта:
                 </p>
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full border-2 border-green-600 text-green-600 bg-transparent hover:bg-green-600 hover:text-white transition-colors"
+                  className="w-full border-2 border-green-600 text-green-600 bg-transparent hover:bg-green-600 hover:text-white transition-colors h-10 sm:h-11"
                   onClick={() => {
                     setIsProductDialogOpen(false);
                     setIsContactDialogOpen(true);
                   }}
                 >
-                  <Icon name="Phone" size={20} className="mr-2" />
-                  Заказать звонок
+                  <Icon name="Phone" size={18} className="mr-2" />
+                  <span className="text-sm sm:text-base">Заказать звонок</span>
                 </Button>
               </div>
             </div>
