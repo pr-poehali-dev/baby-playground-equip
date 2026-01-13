@@ -24,7 +24,7 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
             Безопасность, долговечность и яркий дизайн — наши главные приоритеты.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Button size="lg" className="text-lg px-8" onClick={onOpenCatalog}>Каталог</Button>
+            <Button size="lg" className="text-lg px-8" style={{ backgroundColor: '#3eaa03' }} onClick={onOpenCatalog}>Каталог</Button>
           </div>
         </div>
       </div>
