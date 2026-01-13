@@ -454,11 +454,10 @@ export function Header({
                                     )}
                                   </div>
                                   <div className="flex-1 min-w-0">
-                                    <div className="flex justify-between items-start gap-1 sm:gap-2 mb-1">
+                                    <div className="flex justify-between items-start gap-1 sm:gap-2 mb-2">
                                       <h3 className="font-semibold text-xs sm:text-sm leading-tight flex-1">{item.name}</h3>
                                       <span className="font-semibold text-xs sm:text-sm whitespace-nowrap">{formatPrice(item.price)} ₽</span>
                                     </div>
-                                    <p className="text-xs text-muted-foreground mb-1 sm:mb-2">Арт. {item.article || 'Н/Д'}</p>
                                     <div className="flex items-center gap-1 sm:gap-2">
                                       <Button 
                                         size="sm" 
