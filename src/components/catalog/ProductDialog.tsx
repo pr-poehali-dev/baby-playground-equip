@@ -135,10 +135,10 @@ export function ProductDialog({
                 <h2 className="font-heading mb-2 sm:mb-4 font-semibold text-xl sm:text-3xl">{selectedProduct.name.split('\n')[1] || selectedProduct.name}</h2>
                 <p className="font-bold text-primary mb-2 sm:mb-4 text-2xl sm:text-3xl">{formatPrice(selectedProduct.price)} ₽</p>
                 
-                <div className="flex gap-2 sm:gap-3">
+                <div className="flex gap-2 sm:gap-3 justify-start">
                   <Button 
                     size="lg" 
-                    className="flex-1 h-10 sm:h-11"
+                    className="h-10 sm:h-11 px-6"
                     onClick={() => {
                       handleAddToCart(selectedProduct);
                       setIsProductDialogOpen(false);
