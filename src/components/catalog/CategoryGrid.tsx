@@ -101,18 +101,18 @@ export function CategoryGrid({
           <div className="flex items-center gap-3 mb-4">
             <div className="flex gap-2">
               <Button
-                variant={(selectedSeries?.includes('Classic')) ? 'secondary' : 'outline'}
+                variant="outline"
                 size="sm"
                 onClick={() => setSelectedSeries(selectedSeries?.includes('Classic') ? null : 'Серия "Classic"')}
-                className={selectedSeries?.includes('Classic') ? 'bg-secondary text-white hover:bg-secondary/90' : 'bg-white hover:border-secondary hover:text-secondary hover:bg-white'}
+                className={selectedSeries?.includes('Classic') ? 'bg-white text-[#5a098c] border-2 border-[#3eaa03] hover:bg-white hover:text-[#5a098c]' : 'bg-white hover:border-secondary hover:text-secondary hover:bg-white'}
               >
                 Classic
               </Button>
               <Button
-                variant={(selectedSeries?.includes('Eco')) ? 'secondary' : 'outline'}
+                variant="outline"
                 size="sm"
                 onClick={() => setSelectedSeries(selectedSeries?.includes('Eco') ? null : 'Серия "Eco"')}
-                className={selectedSeries?.includes('Eco') ? 'bg-secondary text-white hover:bg-secondary/90' : 'bg-white hover:border-secondary hover:text-secondary hover:bg-white'}
+                className={selectedSeries?.includes('Eco') ? 'bg-white text-[#5a098c] border-2 border-[#3eaa03] hover:bg-white hover:text-[#5a098c]' : 'bg-white hover:border-secondary hover:text-secondary hover:bg-white'}
               >
                 Eco
               </Button>
@@ -122,7 +122,7 @@ export function CategoryGrid({
                 value={selectedSubSubcategory || 'all'}
                 onValueChange={(value) => setSelectedSubSubcategory(value === 'all' ? null : value)}
               >
-                <SelectTrigger className={`w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white ${selectedSubSubcategory ? 'text-secondary' : ''}`}>
+                <SelectTrigger className={`w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white ${selectedSubSubcategory ? 'text-[#3eaa03]' : ''}`}>
                   <SelectValue placeholder="Все категории" />
                 </SelectTrigger>
                 <SelectContent>
@@ -169,11 +169,11 @@ export function CategoryGrid({
                 style={isSelected ? { borderColor: '#3eaa03' } : {}}
               >
                 <div 
-                  className="aspect-[4/3] bg-white flex items-center justify-center relative overflow-hidden"
+                  className="aspect-[4/3] bg-white flex items-center justify-center relative overflow-hidden p-2"
                   onClick={() => handleProductClick(product)}
                 >
                   {product.image.startsWith('http') ? (
-                    <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                    <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300" />
                   ) : (
                     <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{product.image}</span>
                   )}
