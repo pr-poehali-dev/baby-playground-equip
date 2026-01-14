@@ -80,7 +80,7 @@ export function ProductDialog({
           <DialogTitle className="sr-only">Информация о товаре</DialogTitle>
         </DialogHeader>
         {selectedProduct && (
-          <div className="grid md:grid-cols-[1fr,1fr] gap-2 md:gap-6">
+          <div className="grid md:grid-cols-[1.2fr,0.8fr] gap-2 md:gap-6">
             <div>
               <div className="relative aspect-square bg-white rounded-lg flex items-center justify-center overflow-hidden border p-0 mb-2">
                 {productImages.length > 0 ? (
@@ -213,8 +213,8 @@ export function ProductDialog({
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full border-2 transition-colors h-10 sm:h-11 bg-transparent hover:bg-[#3eaa03] hover:text-white hidden sm:flex"
-                  style={{ borderColor: '#3eaa03', color: '#3eaa03' }}
+                  className="w-full border-2 transition-colors h-10 sm:h-11 bg-[#3eaa03] text-white hover:bg-[#2d8902] hover:text-white hidden sm:flex"
+                  style={{ borderColor: '#3eaa03' }}
                   onClick={() => {
                     setIsProductDialogOpen(false);
                     setIsContactDialogOpen(true);
