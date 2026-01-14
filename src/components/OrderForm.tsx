@@ -9,13 +9,26 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
 
+interface CartItem {
+  id: number;
+  name: string;
+  price: string;
+  quantity: number;
+  image: string;
+  article?: string;
+}
+
 interface OrderFormProps {
-  total: number;
-  installationCost: number;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  cart: CartItem[];
+  calculateTotal: () => number;
   deliveryCost: number;
-  grandTotal: number;
+  installationPercent: number;
+  calculateInstallationCost: () => number;
+  calculateGrandTotal: () => number;
   onSubmit: (formData: OrderFormData) => void;
-  onCancel: () => void;
+  currentOrderNumber: string;
 }
 
 export interface OrderFormData {
@@ -27,7 +40,7 @@ export interface OrderFormData {
   comment: string;
 }
 
-export function OrderForm({ total, installationCost, deliveryCost, grandTotal, onSubmit, onCancel }: OrderFormProps) {
+export function OrderForm({ open, onOpenChange, cart, calculateTotal, deliveryCost, installationPercent, calculateInstallationCost, calculateGrandTotal, onSubmit, currentOrderNumber }: OrderFormProps) {
   const [formData, setFormData] = useState<OrderFormData>({
     name: '',
     phone: '',
@@ -89,8 +102,17 @@ export function OrderForm({ total, installationCost, deliveryCost, grandTotal, o
 
 
 
+  const total = calculateTotal();
+  const installationCost = calculateInstallationCost();
+  const grandTotal = calculateGrandTotal();
+
   return (
-    <Card className="w-full">
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="sr-only">Оформление заказа</DialogTitle>
+        </DialogHeader>
+    <Card className="w-full border-0 shadow-none">
       <CardHeader>
         <CardTitle className="text-2xl font-heading flex items-center gap-2">
           <Icon name="FileText" size={24} />
@@ -221,7 +243,7 @@ export function OrderForm({ total, installationCost, deliveryCost, grandTotal, o
           </div>
 
           <div className="flex gap-3 pt-3">
-            <Button type="button" variant="outline" onClick={onCancel} className="flex-1 h-9 hover:border-primary hover:text-primary hover:bg-transparent">Отменить</Button>
+            <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="flex-1 h-9 hover:border-primary hover:text-primary hover:bg-transparent">Отменить</Button>
             <Button 
               type="submit" 
               className="flex-1 h-9" 
@@ -275,5 +297,7 @@ export function OrderForm({ total, installationCost, deliveryCost, grandTotal, o
         </DialogContent>
       </Dialog>
     </Card>
+      </DialogContent>
+    </Dialog>
   );
 }
