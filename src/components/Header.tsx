@@ -88,8 +88,8 @@ export function Header({
   const [orderNumber, setOrderNumber] = useState<string>('');
   const [showKPDialog, setShowKPDialog] = useState(false);
   const [kpAddress, setKpAddress] = useState('');
-  const [kpInstallationPercent, setKpInstallationPercent] = useState(5);
-  const [kpDeliveryCost, setKpDeliveryCost] = useState(500);
+  const [kpInstallationPercent, setKpInstallationPercent] = useState(0);
+  const [kpDeliveryCost, setKpDeliveryCost] = useState(0);
   const [hideInstallationInKP, setHideInstallationInKP] = useState(false);
   const [hideDeliveryInKP, setHideDeliveryInKP] = useState(false);
   const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
