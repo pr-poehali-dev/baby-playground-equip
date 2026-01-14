@@ -82,7 +82,7 @@ export function ProductDialog({
         {selectedProduct && (
           <div className="grid md:grid-cols-[1.2fr,0.8fr] gap-2 md:gap-6">
             <div>
-              <div className="relative aspect-square bg-white rounded-lg flex items-center justify-center overflow-hidden border p-0 mb-2">
+              <div className="relative aspect-square bg-white rounded-lg flex items-center justify-center overflow-hidden border md:border p-0 mb-2">
                 {productImages.length > 0 ? (
                   <>
                     <img 
@@ -130,7 +130,7 @@ export function ProductDialog({
               </div>
               
               {productImages.length > 1 && (
-                <div className="grid grid-cols-4 gap-2">
+                <div className="hidden md:grid grid-cols-4 gap-2">
                   {productImages.map((img, idx) => (
                     <button
                       key={idx}
