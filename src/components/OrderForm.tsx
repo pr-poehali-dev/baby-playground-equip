@@ -110,17 +110,14 @@ export function OrderForm({ open, onOpenChange, cart, calculateTotal, deliveryCo
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="sr-only">Оформление заказа</DialogTitle>
+          <DialogTitle className="text-xl font-heading flex items-center gap-2">
+            <Icon name="FileText" size={20} />
+            Оформление заказа
+          </DialogTitle>
         </DialogHeader>
     <Card className="w-full border-0 shadow-none">
-      <CardHeader>
-        <CardTitle className="text-2xl font-heading flex items-center gap-2">
-          <Icon name="FileText" size={24} />
-          Оформление заказа
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-3">
+      <CardContent className="pt-4">
+        <form onSubmit={handleSubmit} className="space-y-2.5">
           <div>
             <Label htmlFor="name" className="text-sm">Ваше имя *</Label>
             <Input
@@ -165,7 +162,7 @@ export function OrderForm({ open, onOpenChange, cart, calculateTotal, deliveryCo
               value={formData.address}
               onChange={(e) => handleChange('address', e.target.value)}
               placeholder="Город, улица, дом, квартира"
-              className={`min-h-[60px] ${errors.address ? 'border-red-500' : ''}`}
+              className={`min-h-[50px] ${errors.address ? 'border-red-500' : ''}`}
               rows={2}
             />
             {errors.address && <p className="text-xs text-red-500 mt-0.5">{errors.address}</p>}
@@ -198,12 +195,12 @@ export function OrderForm({ open, onOpenChange, cart, calculateTotal, deliveryCo
               value={formData.comment}
               onChange={(e) => handleChange('comment', e.target.value)}
               placeholder="Дополнительная информация"
-              className="min-h-[60px]"
+              className="min-h-[50px]"
               rows={2}
             />
           </div>
 
-          <div className="border-t pt-3 space-y-1.5">
+          <div className="border-t pt-2 space-y-1">
             {installationCost > 0 && (
               <div className="flex justify-between text-sm text-muted-foreground">
                 <span>Монтаж:</span>
@@ -216,19 +213,19 @@ export function OrderForm({ open, onOpenChange, cart, calculateTotal, deliveryCo
                 <span>{deliveryCost.toLocaleString('ru-RU')} ₽</span>
               </div>
             )}
-            <div className="flex justify-between text-lg font-bold border-t pt-1.5">
+            <div className="flex justify-between text-base font-bold border-t pt-1">
               <span>Сумма товаров:</span>
               <span className="text-primary">{grandTotal.toLocaleString('ru-RU')} ₽</span>
             </div>
           </div>
 
-          <div className="flex items-start gap-2 pt-2">
+          <div className="flex items-start gap-2 pt-1">
             <Checkbox 
               id="privacy" 
               checked={acceptedPrivacy}
               onCheckedChange={(checked) => setAcceptedPrivacy(checked as boolean)}
             />
-            <label htmlFor="privacy" className="text-sm text-muted-foreground leading-tight cursor-pointer">
+            <label htmlFor="privacy" className="text-xs text-muted-foreground leading-tight cursor-pointer">
               Я согласен с обработкой{' '}
               <span 
                 className="text-[#44aa02] underline cursor-pointer hover:text-[#44aa02]/80"
@@ -242,7 +239,7 @@ export function OrderForm({ open, onOpenChange, cart, calculateTotal, deliveryCo
             </label>
           </div>
 
-          <div className="flex gap-3 pt-3">
+          <div className="flex gap-2 pt-2">
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="flex-1 h-9 hover:border-primary hover:text-primary hover:bg-transparent">Отменить</Button>
             <Button 
               type="submit" 
