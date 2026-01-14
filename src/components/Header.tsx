@@ -403,7 +403,7 @@ export function Header({
                                           variant="outline"
                                           size="icon"
                                           onClick={() => updateQuantity(item.id, Math.max(0, item.quantity - 1))}
-                                          className="h-8 w-8 hover:border-[#3eaa03] hover:text-[#3eaa03]"
+                                          className="h-8 w-8 bg-transparent hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03] active:bg-transparent"
                                         >
                                           <Icon name="Minus" size={16} />
                                         </Button>
@@ -412,7 +412,7 @@ export function Header({
                                           variant="outline"
                                           size="icon"
                                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                          className="h-8 w-8 hover:border-[#3eaa03] hover:text-[#3eaa03]"
+                                          className="h-8 w-8 bg-transparent hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03] active:bg-transparent"
                                         >
                                           <Icon name="Plus" size={16} />
                                         </Button>
