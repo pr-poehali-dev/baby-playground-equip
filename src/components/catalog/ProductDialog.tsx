@@ -155,7 +155,7 @@ export function ProductDialog({
                 <div className="flex gap-2 sm:gap-3 justify-start">
                   <Button 
                     size="lg" 
-                    className="h-10 sm:h-11 px-6"
+                    className="h-11 px-6"
                     onClick={() => {
                       handleAddToCart(selectedProduct);
                       setIsProductDialogOpen(false);
@@ -168,7 +168,7 @@ export function ProductDialog({
                     size="lg"
                     variant="outline"
                     onClick={() => toggleFavorite(selectedProduct)}
-                    className="hover:border-primary hover:text-primary hover:bg-transparent h-10 w-10 p-0"
+                    className="hover:border-primary hover:text-primary hover:bg-transparent h-11 w-11 p-0"
                   >
                     <Icon name="Heart" size={20} className={isFavorite ? 'fill-red-500 text-red-500' : ''} />
                   </Button>
@@ -176,7 +176,7 @@ export function ProductDialog({
                     size="lg"
                     variant="outline"
                     asChild
-                    className="border-2 bg-transparent h-10 w-10 p-0 transition-colors hover:bg-[#3eaa03] hover:text-white"
+                    className="border-2 bg-transparent h-11 w-11 p-0 transition-colors hover:bg-[#3eaa03] hover:text-white"
                     style={{ borderColor: '#3eaa03', color: '#3eaa03' }}
                   >
                     <a href="tel:+79181151551">
