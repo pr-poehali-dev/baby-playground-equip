@@ -150,7 +150,7 @@ export function ProductDialog({
               <div>
                 <p className="sm:text-sm sm:mb-2 text-[#5a098c] text-base my-0">{selectedProduct.name.split('\n')[0]}</p>
                 <h2 className="font-heading sm:mb-4 font-semibold text-lg sm:text-3xl my-0">{selectedProduct.name.split('\n')[1] || selectedProduct.name}</h2>
-                <p className="font-bold text-primary sm:mb-4 text-xl sm:text-3xl my-0 py-1">{formatPrice(selectedProduct.price)} ₽</p>
+                <p className="font-bold text-primary sm:mb-4 text-xl sm:text-3xl my-0 py-1 mt-3">{formatPrice(selectedProduct.price)} ₽</p>
                 
                 <div className="flex gap-2 sm:gap-3 justify-start">
                   <Button 
@@ -176,7 +176,18 @@ export function ProductDialog({
                     size="lg"
                     variant="outline"
                     asChild
-                    className="border-2 bg-transparent h-11 w-11 p-0 transition-colors hover:bg-[#3eaa03] hover:text-white"
+                    className="border-2 bg-transparent h-11 w-11 p-0 transition-colors hover:bg-[#3eaa03] hover:text-white sm:hidden"
+                    style={{ borderColor: '#3eaa03', color: '#3eaa03' }}
+                  >
+                    <a href="tel:+79181151551">
+                      <Icon name="Phone" size={20} />
+                    </a>
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    asChild
+                    className="border-2 bg-transparent h-11 w-11 p-0 transition-colors hover:bg-[#3eaa03] hover:text-white hidden sm:flex"
                     style={{ borderColor: '#3eaa03', color: '#3eaa03' }}
                   >
                     <a href="tel:+79181151551">
@@ -191,7 +202,7 @@ export function ProductDialog({
                 {selectedProduct.dimensions && (
                   <div className="grid grid-cols-3 gap-1.5 sm:gap-4 mb-1.5 sm:mb-4">
                     {selectedProduct.dimensions.split('х').map((dim, idx) => (
-                      <div key={idx} className="bg-muted/30 p-1.5 sm:p-3 rounded-lg">
+                      <div key={idx} className="bg-muted/30 p-1.5 sm:p-3 rounded-lg text-center">
                         <p className="text-[9px] sm:text-xs text-muted-foreground mb-0.5 sm:mb-1">
                           {idx === 0 ? 'Ширина' : idx === 1 ? 'Длина' : 'Высота'}
                         </p>
