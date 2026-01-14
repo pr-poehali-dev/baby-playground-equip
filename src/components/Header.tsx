@@ -369,7 +369,7 @@ export function Header({
                       </div>
                     ) : (
                       <>
-                        <div className="space-y-3 mb-4 hidden sm:block">
+                        <div className="space-y-3 mb-4">
                           <div className="relative">
                             <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground z-10" />
                             <Input 
