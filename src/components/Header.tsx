@@ -570,9 +570,7 @@ export function Header({
                 });
                 setShowKPDialog(false);
               }}
-            >
-              Создать КП
-            </Button>
+            >Создать коммерческое предложение</Button>
           </div>
         </DialogContent>
       </Dialog>
