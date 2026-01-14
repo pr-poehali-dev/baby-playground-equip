@@ -226,38 +226,9 @@ export function CartSheet({
               </div>
               <div className="space-y-3 border-t pt-4">
                 <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span>Стоимость товаров:</span>
-                    <span className="font-semibold">{formatPrice(calculateTotal())} ₽</span>
-                  </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span>Доставка:</span>
-                    <Input
-                      type="number"
-                      value={deliveryCost || ''}
-                      onChange={(e) => setDeliveryCost(Number(e.target.value) || 0)}
-                      placeholder="0"
-                      className="w-32 h-8 text-right"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span>Монтаж (%):</span>
-                    <div className="flex items-center gap-2">
-                      <Input
-                        type="number"
-                        value={installationPercent || ''}
-                        onChange={(e) => setInstallationPercent(Number(e.target.value) || 0)}
-                        placeholder="0"
-                        className="w-20 h-8 text-right"
-                      />
-                      <span className="text-muted-foreground w-20 text-right">
-                        {formatPrice(calculateInstallationCost())} ₽
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex justify-between text-lg font-bold pt-2 border-t">
+                  <div className="flex justify-between text-lg font-bold">
                     <span>Итого:</span>
-                    <span className="text-primary">{formatPrice(calculateGrandTotal())} ₽</span>
+                    <span className="text-primary">{formatPrice(calculateTotal())} ₽</span>
                   </div>
                 </div>
                 <div className="space-y-2">
