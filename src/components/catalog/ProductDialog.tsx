@@ -148,7 +148,7 @@ export function ProductDialog({
 
             <div className="flex flex-col justify-center space-y-2 md:space-y-4 px-0 mx-0">
               <div>
-                <p className="sm:text-sm sm:mb-2 text-[#5a098c] my-0 text-base">{selectedProduct.name.split('\n')[0]}</p>
+                <p className="sm:text-sm sm:mb-2 text-[#5a098c] text-base my-0">{selectedProduct.name.split('\n')[0]}</p>
                 <h2 className="font-heading sm:mb-4 font-semibold text-lg sm:text-3xl my-0">{selectedProduct.name.split('\n')[1] || selectedProduct.name}</h2>
                 <p className="font-bold text-primary sm:mb-4 text-xl sm:text-3xl my-0 py-1">{formatPrice(selectedProduct.price)} ₽</p>
                 
@@ -186,7 +186,7 @@ export function ProductDialog({
                 </div>
               </div>
 
-              <div className="border-t py-1.5 sm:py-[5px] my-1.5">
+              <div className="border-t sm:py-[5px] my-1.5 py-0">
                 <h3 className="font-heading mb-1 sm:mb-2 font-semibold text-sm sm:text-base">Техническая информация</h3>
                 {selectedProduct.dimensions && (
                   <div className="grid grid-cols-3 gap-1.5 sm:gap-4 mb-1.5 sm:mb-4">
@@ -205,8 +205,8 @@ export function ProductDialog({
                 )}
               </div>
 
-              <div className="border-t py-1.5 sm:py-3 mx-0 my-[1px]">
-                <p className="text-muted-foreground text-sm py-0 my-[18px] hidden md:block">
+              <div className="border-t sm:py-3 mx-0 py-0 my-0">
+                <p className="text-muted-foreground text-sm py-0 hidden md:block my-0">
                   Если появились вопросы, вы можете получить консультацию руководителя проекта:
                 </p>
                 <Button 
