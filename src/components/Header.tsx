@@ -447,7 +447,7 @@ export function Header({
                             </Button>
                             <Button 
                               variant="outline" 
-                              className="w-full"
+                              className="w-full bg-transparent hover:bg-transparent"
                               onClick={() => {
                                 setShowKPDialog(true);
                               }}
@@ -457,7 +457,7 @@ export function Header({
                             {clearCart && (
                               <Button 
                                 variant="outline" 
-                                className="w-full"
+                                className="w-full bg-transparent hover:bg-transparent hover:border-red-500 hover:text-red-500"
                                 onClick={clearCart}
                               >
                                 Очистить корзину
