@@ -88,7 +88,7 @@ export function ProductDialog({
                     <img 
                       src={productImages[currentImageIndex]} 
                       alt={selectedProduct.name} 
-                      className="w-full h-full p-1 object-contain py-0 px-0" 
+                      className="w-full h-full p-1 object-contain px-0 my-0 mx-0 py-0" 
                     />
                     {productImages.length > 1 && (
                       <>
@@ -146,7 +146,7 @@ export function ProductDialog({
               )}
             </div>
 
-            <div className="flex flex-col justify-center space-y-2 md:space-y-4 px-0 mx-0">
+            <div className="flex flex-col justify-center space-y-2 md:space-y-4 px-0 mx-0 my-0">
               <div>
                 <p className="sm:text-sm sm:mb-2 text-[#5a098c] text-base my-0">{selectedProduct.name.split('\n')[0]}</p>
                 <h2 className="font-heading sm:mb-4 font-semibold text-lg sm:text-3xl my-0">{selectedProduct.name.split('\n')[1] || selectedProduct.name}</h2>
@@ -186,8 +186,8 @@ export function ProductDialog({
                 </div>
               </div>
 
-              <div className="border-t sm:py-[5px] my-1.5 py-0">
-                <h3 className="font-heading mb-1 sm:mb-2 font-semibold text-sm sm:text-base">Техническая информация</h3>
+              <div className="border-t sm:py-[5px] my-0 py-0">
+                <h3 className="font-heading sm:mb-2 font-semibold text-sm sm:text-base my-2.5">Техническая информация</h3>
                 {selectedProduct.dimensions && (
                   <div className="grid grid-cols-3 gap-1.5 sm:gap-4 mb-1.5 sm:mb-4">
                     {selectedProduct.dimensions.split('х').map((dim, idx) => (
@@ -206,7 +206,7 @@ export function ProductDialog({
               </div>
 
               <div className="border-t sm:py-3 mx-0 my-0 py-0">
-                <p className="text-muted-foreground text-sm py-0 hidden md:block my-0">
+                <p className="text-muted-foreground text-sm hidden md:block my-0 py-[5px]">
                   Если появились вопросы, вы можете получить консультацию руководителя проекта:
                 </p>
                 <Button 
