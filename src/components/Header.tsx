@@ -403,7 +403,7 @@ export function Header({
                                           variant="outline"
                                           size="icon"
                                           onClick={() => updateQuantity(item.id, Math.max(0, item.quantity - 1))}
-                                          className="h-8 w-8"
+                                          className="h-8 w-8 hover:border-[#3eaa03] hover:text-[#3eaa03]"
                                         >
                                           <Icon name="Minus" size={16} />
                                         </Button>
@@ -412,7 +412,7 @@ export function Header({
                                           variant="outline"
                                           size="icon"
                                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                          className="h-8 w-8"
+                                          className="h-8 w-8 hover:border-[#3eaa03] hover:text-[#3eaa03]"
                                         >
                                           <Icon name="Plus" size={16} />
                                         </Button>
@@ -447,7 +447,7 @@ export function Header({
                             </Button>
                             <Button 
                               variant="outline" 
-                              className="w-full bg-transparent hover:bg-transparent"
+                              className="w-full bg-transparent hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03]"
                               onClick={() => {
                                 setShowKPDialog(true);
                               }}
