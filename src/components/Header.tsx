@@ -533,6 +533,7 @@ export function Header({
                 value={kpInstallationPercent || ''}
                 onChange={(e) => setKpInstallationPercent(Number(e.target.value) || 0)}
                 placeholder="0"
+                step="5"
               />
             </div>
             <div>
@@ -552,6 +553,7 @@ export function Header({
                 value={kpDeliveryCost || ''}
                 onChange={(e) => setKpDeliveryCost(Number(e.target.value) || 0)}
                 placeholder="0"
+                step="500"
               />
             </div>
             <Button 
