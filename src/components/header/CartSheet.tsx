@@ -271,25 +271,15 @@ export function CartSheet({
                   >
                     Оформить заказ
                   </Button>
-                  <div className="flex gap-2">
-                    <Button 
-                      variant="outline" 
-                      className="flex-1"
-                      onClick={() => {
-                        setShowKPDialog(true);
-                      }}
-                    >
-                      Создать КП
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      size="icon"
-                      onClick={() => setIsExcelSettingsOpen(true)}
-                      title="Настройки Excel"
-                    >
-                      <Icon name="Settings" size={20} />
-                    </Button>
-                  </div>
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => {
+                      setShowKPDialog(true);
+                    }}
+                  >
+                    Сформировать коммерческое предложение
+                  </Button>
                   {clearCart && (
                     <Button 
                       variant="outline" 
