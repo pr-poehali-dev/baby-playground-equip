@@ -370,6 +370,55 @@ export function Header({
                       </div>
                     ) : (
                       <>
+                        <div className="space-y-3 mb-4">
+                          <div className="relative">
+                            <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground z-10" />
+                            <Input 
+                              type="text"
+                              placeholder="Поиск по товарам..."
+                              value={cartSearchQuery}
+                              onChange={(e) => setCartSearchQuery(e.target.value)}
+                              className="pl-10"
+                            />
+                          </div>
+                          {cartSearchQuery && filteredCatalogProducts.length > 0 && (
+                            <div className="max-h-96 overflow-y-auto space-y-2 border rounded-lg p-2">
+                              {filteredCatalogProducts.map(product => (
+                                <Card key={product.id} className="overflow-hidden">
+                                  <CardContent className="p-3">
+                                    <div className="flex gap-3">
+                                      <div className="w-16 h-16 flex-shrink-0 bg-white rounded flex items-center justify-center">
+                                        {product.image.startsWith('http') ? (
+                                          <img src={product.image} alt={product.name} className="w-full h-full object-contain" />
+                                        ) : (
+                                          <span className="text-2xl">{product.image}</span>
+                                        )}
+                                      </div>
+                                      <div className="flex-1 min-w-0">
+                                        <p className="text-xs text-[#5a098c] mb-1">{product.name.split('\n')[0]}</p>
+                                        <p className="font-semibold text-sm line-clamp-2 mb-1">{product.name.split('\n')[1] || product.name}</p>
+                                        <p className="text-sm font-bold text-primary mb-2">{formatPrice(product.price)} ₽</p>
+                                        <Button 
+                                          size="sm"
+                                          onClick={() => {
+                                            if (onAddToCart) {
+                                              onAddToCart(product);
+                                              setCartSearchQuery('');
+                                            }
+                                          }}
+                                          className="w-full h-7 text-xs"
+                                        >
+                                          <Icon name="Plus" size={14} className="mr-1" />
+                                          Добавить
+                                        </Button>
+                                      </div>
+                                    </div>
+                                  </CardContent>
+                                </Card>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                         <div className="space-y-3">
                           {cart.map((item) => (
                             <Card key={item.id} className="overflow-hidden">
