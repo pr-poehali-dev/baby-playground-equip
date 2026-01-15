@@ -174,17 +174,6 @@ export function ProductDialog({
                   >
                     <Icon name="Heart" size={20} className={isFavorite ? 'fill-red-500 text-red-500' : ''} />
                   </Button>
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    asChild
-                    className="md:hidden border-[#3eaa03] text-[#3eaa03] bg-transparent hover:bg-[#3eaa03] hover:text-white h-11 px-4 ml-auto flex-shrink-0"
-                  >
-                    <a href="tel:+79181151551" className="flex items-center gap-2">
-                      <Icon name="Phone" size={18} />
-                      <span className="text-sm">Позвонить</span>
-                    </a>
-                  </Button>
                 </div>
               </div>
 
