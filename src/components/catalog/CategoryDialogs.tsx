@@ -87,7 +87,7 @@ export function CategoryDialogs({
                     <span className="text-7xl group-hover:scale-110 transition-transform duration-300">{sub.image}</span>
                   )}
                   <div className="absolute bottom-0 left-0 right-0 py-1 px-2">
-                    <h4 className="font-heading text-white text-sm sm:text-xl leading-tight font-light text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] py-[7px]">{sub.name}</h4>
+                    <h4 className="font-heading text-white sm:text-xl leading-tight font-light text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] py-[7px] text-2xl">{sub.name}</h4>
                   </div>
                 </div>
               </div>
