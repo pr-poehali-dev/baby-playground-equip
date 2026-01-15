@@ -317,7 +317,7 @@ export function Header({
                               placeholder="Поиск по товарам..."
                               value={cartSearchQuery}
                               onChange={(e) => setCartSearchQuery(e.target.value)}
-                              className="pl-10"
+                              className="pl-10 focus-visible:ring-0 focus-visible:ring-offset-0"
                             />
                           </div>
                           {cartSearchQuery && filteredCatalogProducts.length > 0 && (
