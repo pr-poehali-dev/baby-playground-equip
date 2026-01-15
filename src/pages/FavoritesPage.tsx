@@ -125,6 +125,7 @@ export default function FavoritesPage({ favorites, removeFromFavorites, addToCar
                       size="sm"
                       variant="outline"
                       onClick={() => removeFromFavorites(product.id)}
+                      className="hover:bg-transparent"
                     >
                       <Icon name="Trash2" size={14} />
                     </Button>
