@@ -93,7 +93,7 @@ export function CategoryGrid({
   return (
     <div id="products" className="container mx-auto px-4 pt-2">
       <div ref={filtersRef}>
-        <div className="sticky top-[84px] bg-white z-40 pb-3 pt-2 -mx-4 px-4 min-h-[120px]">
+        <div className="sticky top-[84px] bg-white z-40 pb-3 pt-2 -mx-4 px-4">
           <h2 className="text-4xl font-heading font-bold mb-4">
             {categories.find(c => c.id === selectedCategory)?.name}
           </h2>
@@ -125,7 +125,7 @@ export function CategoryGrid({
                 <SelectTrigger className={`w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedSubSubcategory ? 'text-[#1d2025]' : ''}`}>
                   <SelectValue placeholder="Все категории" />
                 </SelectTrigger>
-                <SelectContent className="z-50" position="popper" sideOffset={5}>
+                <SelectContent className="z-[60]" position="popper">
                   <SelectItem value="all">Все категории</SelectItem>
                   {availableSubSubcategories.map((subSub) => (
                     <SelectItem key={subSub.name} value={subSub.name}>
