@@ -215,7 +215,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 py-1.5 px-2 -mb-px">
+                  <div className="absolute bottom-0 left-0 right-0 py-1.5 px-2 -mb-px bg-transparent sm:bg-black/20">
                     <h3 className="font-heading text-white text-sm sm:text-xl leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-light py-[7px] text-center">{category.name}</h3>
                   </div>
                 </div>
