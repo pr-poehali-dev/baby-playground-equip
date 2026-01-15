@@ -68,6 +68,24 @@ export function ProductDialog({
   return (
     <Dialog open={isProductDialogOpen} onOpenChange={setIsProductDialogOpen}>
       <DialogContent className="max-w-4xl max-h-[90vh] sm:max-h-[85vh] overflow-y-auto p-3 sm:p-6">
+        <div className="absolute top-4 left-4 right-4 flex justify-between sm:hidden z-50">
+          <Button
+            variant="outline"
+            className="border-[#1d2025] text-[#1d2025] hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03] h-9 px-3"
+            onClick={handleBackToCatalog}
+          >
+            <Icon name="ArrowLeft" size={18} className="mr-1" />
+            Назад
+          </Button>
+          <Button
+            variant="outline"
+            className="border-[#1d2025] text-[#1d2025] hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03] h-9 px-3"
+            onClick={() => setIsProductDialogOpen(false)}
+          >
+            Закрыть
+            <Icon name="X" size={18} className="ml-1" />
+          </Button>
+        </div>
         <DialogHeader>
           <DialogTitle className="sr-only">Информация о товаре</DialogTitle>
         </DialogHeader>
