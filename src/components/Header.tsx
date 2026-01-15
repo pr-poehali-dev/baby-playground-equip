@@ -429,10 +429,10 @@ export function Header({
                                         <p className="font-semibold text-sm line-clamp-2">{item.name.split('\n')[1] || item.name}</p>
                                       </div>
                                       <Button
-                                        variant="ghost"
+                                        variant="outline"
                                         size="icon"
                                         onClick={() => removeFromCart(item.id)}
-                                        className="h-8 w-8 flex-shrink-0 hover:text-destructive hover:bg-transparent"
+                                        className="h-8 w-8 flex-shrink-0 hover:border-red-500 hover:text-red-500 hover:bg-transparent"
                                       >
                                         <Icon name="Trash2" size={16} />
                                       </Button>
