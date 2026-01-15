@@ -105,7 +105,7 @@ export function CategoryDialogs({
           </DialogHeader>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 px-4">
             {currentSubcategory?.children?.map((subSub) => (
-              <div key={subSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative" onClick={() => handleSubSubcategoryClick(subSub.name)}>
+              <div key={subSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200" onClick={() => handleSubSubcategoryClick(subSub.name)}>
                 <div className="aspect-square overflow-hidden flex items-center justify-center p-0">
                   {subSub.image.startsWith('http') ? (
                     <img src={subSub.image} alt={subSub.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300" />
@@ -113,8 +113,8 @@ export function CategoryDialogs({
                     <span className="text-7xl group-hover:scale-110 transition-transform duration-300">{subSub.image}</span>
                   )}
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 py-2 px-2 sm:px-4">
-                  <h4 className="font-semibold text-center text-xs sm:text-base break-words leading-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{subSub.name}</h4>
+                <div className="absolute bottom-0 left-0 right-0 py-2 px-2 sm:px-4 bg-white/90 sm:bg-transparent">
+                  <h4 className="font-semibold text-center text-xs sm:text-base break-words leading-tight text-[#1d2025] sm:text-white sm:drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{subSub.name}</h4>
                 </div>
               </div>
             ))}
