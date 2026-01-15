@@ -291,24 +291,34 @@ export function Header({
                   </Button>
                 </SheetTrigger>
                 <SheetContent className="w-full sm:max-w-lg overflow-y-auto">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="absolute right-4 top-4 sm:hidden z-50 hover:border-primary hover:text-primary hover:bg-transparent w-9 h-9"
-                    onClick={() => {
-                      setIsCartOpen(false);
-                      setTimeout(() => {
-                        const element = document.getElementById('catalog');
-                        if (element) {
-                          const yOffset = -80;
-                          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                          window.scrollTo({ top: y, behavior: 'smooth' });
-                        }
-                      }, 300);
-                    }}
-                  >
-                    <Icon name="ArrowLeft" size={18} />
-                  </Button>
+                  <div className="absolute top-4 left-4 right-4 flex justify-between sm:hidden z-50">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="border-[#1d2025] text-[#1d2025] hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03] h-9 w-9"
+                      onClick={() => {
+                        setIsCartOpen(false);
+                        setTimeout(() => {
+                          const element = document.getElementById('catalog');
+                          if (element) {
+                            const yOffset = -80;
+                            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                            window.scrollTo({ top: y, behavior: 'smooth' });
+                          }
+                        }, 300);
+                      }}
+                    >
+                      <Icon name="ArrowLeft" size={20} />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="border-[#1d2025] text-[#1d2025] hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03] h-9 w-9"
+                      onClick={() => setIsCartOpen(false)}
+                    >
+                      <Icon name="X" size={20} />
+                    </Button>
+                  </div>
                   <SheetHeader>
                     <SheetTitle className="text-2xl font-heading">Корзина</SheetTitle>
                   </SheetHeader>

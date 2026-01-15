@@ -55,11 +55,12 @@ export default function FavoritesPage({ favorites, removeFromFavorites, addToCar
             </Link>
             <Button 
               variant="outline" 
+              size="icon"
               onClick={handleNavigateToCatalog}
-              className="hover:border-primary hover:text-primary hover:bg-transparent"
+              className="hover:border-primary hover:text-primary hover:bg-transparent h-9 w-9 md:h-10 md:w-auto md:px-4"
             >
-              <Icon name="ArrowLeft" size={20} className="mr-2" />
-              Назад в каталог
+              <Icon name="ArrowLeft" size={20} className="md:mr-2" />
+              <span className="hidden md:inline">Назад в каталог</span>
             </Button>
           </div>
         </div>

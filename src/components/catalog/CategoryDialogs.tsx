@@ -54,19 +54,19 @@ export function CategoryDialogs({
           <div className="absolute top-4 left-4 right-4 flex justify-between sm:hidden z-50">
             <Button
               variant="outline"
-              className="border-[#1d2025] text-[#1d2025] hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03] h-9 px-3"
+              size="icon"
+              className="border-[#1d2025] text-[#1d2025] hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03] h-9 w-9"
               onClick={() => setIsCategoryDialogOpen(false)}
             >
-              <Icon name="ArrowLeft" size={18} className="mr-1" />
-              Назад
+              <Icon name="ArrowLeft" size={20} />
             </Button>
             <Button
               variant="outline"
-              className="border-[#1d2025] text-[#1d2025] hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03] h-9 px-3"
+              size="icon"
+              className="border-[#1d2025] text-[#1d2025] hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03] h-9 w-9"
               onClick={() => setIsCategoryDialogOpen(false)}
             >
-              Закрыть
-              <Icon name="X" size={18} className="ml-1" />
+              <Icon name="X" size={20} />
             </Button>
           </div>
           <DialogHeader>
@@ -106,19 +106,19 @@ export function CategoryDialogs({
           <div className="absolute top-4 left-4 right-4 flex justify-between sm:hidden z-50">
             <Button
               variant="outline"
-              className="border-[#1d2025] text-[#1d2025] hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03] h-9 px-3"
+              size="icon"
+              className="border-[#1d2025] text-[#1d2025] hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03] h-9 w-9"
               onClick={() => setIsSubSubcategoryDialogOpen(false)}
             >
-              <Icon name="ArrowLeft" size={18} className="mr-1" />
-              Назад
+              <Icon name="ArrowLeft" size={20} />
             </Button>
             <Button
               variant="outline"
-              className="border-[#1d2025] text-[#1d2025] hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03] h-9 px-3"
+              size="icon"
+              className="border-[#1d2025] text-[#1d2025] hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03] h-9 w-9"
               onClick={() => setIsSubSubcategoryDialogOpen(false)}
             >
-              Закрыть
-              <Icon name="X" size={18} className="ml-1" />
+              <Icon name="X" size={20} />
             </Button>
           </div>
           <DialogHeader>
