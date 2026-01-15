@@ -116,9 +116,9 @@ export function CategoryDialogs({
                   ) : (
                     <span className="text-7xl">{subSub.image}</span>
                   )}
-                </div>
-                <div className="py-1 sm:py-3 px-2 sm:px-4 bg-white -mt-px">
-                  <h4 className="text-xs sm:text-base font-semibold text-center leading-tight">{subSub.name}</h4>
+                  <div className="absolute bottom-0 left-0 right-0 py-1 sm:py-2 px-2 sm:px-4 -mb-px">
+                    <h4 className="font-semibold text-center text-xs sm:text-base break-words leading-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{subSub.name}</h4>
+                  </div>
                 </div>
               </Card>
             ))}
