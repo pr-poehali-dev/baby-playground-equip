@@ -75,22 +75,22 @@ export function CategoryDialogs({
           </DialogHeader>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 px-4">
             {currentCategory?.subcategories.map((sub) => (
-              <Card
+              <div
                 key={sub.name}
-                className="cursor-pointer transition-all hover:shadow-xl hover:-translate-y-2 overflow-hidden group flex flex-col border-2 border-gray-200 hover:border-gray-200 rounded-md"
+                className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group flex flex-col rounded-md relative"
                 onClick={() => handleSubcategoryClick(sub)}
               >
-                <div className="aspect-[4/3] relative overflow-hidden bg-white flex items-center justify-center p-0">
+                <div className="aspect-[4/3] relative overflow-hidden flex items-center justify-center p-0">
                   {sub.image.startsWith('http') ? (
-                    <img src={sub.image} alt={sub.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 scale-110" />
+                    <img src={sub.image} alt={sub.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                   ) : (
                     <span className="text-7xl group-hover:scale-110 transition-transform duration-300">{sub.image}</span>
                   )}
                 </div>
-                <div className="py-2 px-2 sm:px-4">
+                <div className="absolute bottom-0 left-0 right-0 py-2 px-2 sm:px-4">
                   <h4 className="font-semibold text-center text-xs sm:text-base break-words leading-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{sub.name}</h4>
                 </div>
-              </Card>
+              </div>
             ))}
           </div>
         </DialogContent>
