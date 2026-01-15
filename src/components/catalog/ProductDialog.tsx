@@ -175,12 +175,12 @@ export function ProductDialog({
                     <Icon name="Heart" size={20} className={isFavorite ? 'fill-red-500 text-red-500' : ''} />
                   </Button>
                   <Button
-                    size="icon"
-                    variant="outline"
+                    size="lg"
                     onClick={() => window.location.href = 'tel:+79181151551'}
-                    className="sm:hidden hover:border-primary hover:text-primary hover:bg-transparent h-11 w-11 p-0 flex-shrink-0 ml-auto border-primary text-primary"
+                    className="sm:hidden h-11 px-6 flex-shrink-0 ml-auto bg-primary text-white hover:bg-primary/90"
                   >
-                    <Icon name="Phone" size={20} />
+                    <Icon name="Phone" size={18} className="mr-2" />
+                    <span className="text-sm">Позвонить</span>
                   </Button>
                 </div>
               </div>
