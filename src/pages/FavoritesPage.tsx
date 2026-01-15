@@ -101,7 +101,7 @@ export default function FavoritesPage({ favorites, removeFromFavorites, addToCar
                   <div className="leading-tight space-y-0">
                     {product.name.includes('\n') ? (
                       <>
-                        <p className="text-xs text-muted-foreground leading-tight">{product.name.split('\n')[0]}</p>
+                        <p className="text-xs text-[#5a098c] leading-tight">{product.name.split('\n')[0]}</p>
                         <h3 className="text-sm font-heading font-bold line-clamp-2 leading-tight">{product.name.split('\n')[1]}</h3>
                       </>
                     ) : (
@@ -125,7 +125,7 @@ export default function FavoritesPage({ favorites, removeFromFavorites, addToCar
                       size="sm"
                       variant="outline"
                       onClick={() => removeFromFavorites(product.id)}
-                      className="hover:bg-transparent"
+                      className="hover:bg-transparent hover:border-red-500 hover:text-red-500"
                     >
                       <Icon name="Trash2" size={14} />
                     </Button>
