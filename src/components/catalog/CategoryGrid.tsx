@@ -122,7 +122,7 @@ export function CategoryGrid({
                 value={selectedSubSubcategory || 'all'}
                 onValueChange={(value) => setSelectedSubSubcategory(value === 'all' ? null : value)}
               >
-                <SelectTrigger className={`w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white ${selectedSubSubcategory ? 'text-[#1d2025]' : ''}`}>
+                <SelectTrigger className={`w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedSubSubcategory ? 'text-[#1d2025]' : ''}`}>
                   <SelectValue placeholder="Все категории" />
                 </SelectTrigger>
                 <SelectContent>
