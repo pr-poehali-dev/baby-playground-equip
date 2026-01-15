@@ -118,24 +118,22 @@ export function CategoryGrid({
               </Button>
             </div>
             {availableSubSubcategories.length > 0 && (
-              <div className="relative">
-                <Select
-                  value={selectedSubSubcategory || 'all'}
-                  onValueChange={(value) => setSelectedSubSubcategory(value === 'all' ? null : value)}
-                >
-                  <SelectTrigger className={`w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedSubSubcategory ? 'text-[#1d2025]' : ''}`}>
-                    <SelectValue placeholder="Все категории" />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    <SelectItem value="all">Все категории</SelectItem>
-                    {availableSubSubcategories.map((subSub) => (
-                      <SelectItem key={subSub.name} value={subSub.name}>
-                        {subSub.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              <Select
+                value={selectedSubSubcategory || 'all'}
+                onValueChange={(value) => setSelectedSubSubcategory(value === 'all' ? null : value)}
+              >
+                <SelectTrigger className={`w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedSubSubcategory ? 'text-[#1d2025]' : ''}`}>
+                  <SelectValue placeholder="Все категории" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Все категории</SelectItem>
+                  {availableSubSubcategories.map((subSub) => (
+                    <SelectItem key={subSub.name} value={subSub.name}>
+                      {subSub.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             )}
             <div className="relative w-80 ml-auto">
               <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
