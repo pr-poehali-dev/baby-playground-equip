@@ -82,7 +82,7 @@ export default function FavoritesPage({ favorites, removeFromFavorites, addToCar
             </Button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
             {favorites.map((product) => (
               <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all group">
                 <div className="aspect-[4/3] relative overflow-hidden bg-white flex items-center justify-center">
@@ -90,44 +90,41 @@ export default function FavoritesPage({ favorites, removeFromFavorites, addToCar
                     <img 
                       src={product.image} 
                       alt={product.name}
-                      className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />
                   ) : (
-                    <span className="text-5xl">{product.image}</span>
+                    <span className="text-4xl">{product.image}</span>
                   )}
                 </div>
-                <CardContent className="p-3">
+                <CardContent className="p-2">
                   <div className="leading-tight space-y-0">
                     {product.name.includes('\n') ? (
                       <>
-                        <p className="text-xs text-[#5a098c] leading-tight">{product.name.split('\n')[0]}</p>
-                        <h3 className="text-sm font-heading font-bold line-clamp-2 leading-tight">{product.name.split('\n')[1]}</h3>
+                        <p className="text-[10px] text-[#5a098c] leading-tight">{product.name.split('\n')[0]}</p>
+                        <h3 className="text-xs font-heading font-bold line-clamp-2 leading-tight">{product.name.split('\n')[1]}</h3>
                       </>
                     ) : (
-                      <h3 className="text-sm font-heading font-bold line-clamp-2">{product.name}</h3>
-                    )}
-                    {product.description && (
-                      <p className="text-xs text-muted-foreground line-clamp-1 leading-tight">{product.description}</p>
+                      <h3 className="text-xs font-heading font-bold line-clamp-2">{product.name}</h3>
                     )}
                   </div>
-                  <p className="text-lg font-bold text-primary mt-2">{formatPrice(product.price)} ₽</p>
-                  <div className="flex gap-2 mt-2">
+                  <p className="text-sm font-bold text-primary mt-1">{formatPrice(product.price)} ₽</p>
+                  <div className="flex gap-1 mt-1">
                     <Button 
                       size="sm"
-                      className="flex-1"
+                      className="flex-1 h-7 text-xs px-2"
                       onClick={() => addToCart(product)}
                     >
-                      <Icon name="ShoppingCart" size={14} className="mr-1" />
+                      <Icon name="ShoppingCart" size={12} className="mr-1" />
                       В корзину
                     </Button>
                     <Button 
                       size="sm"
                       variant="outline"
                       onClick={() => removeFromFavorites(product.id)}
-                      className="hover:bg-transparent hover:border-red-500 hover:text-red-500"
+                      className="hover:bg-transparent hover:border-red-500 hover:text-red-500 h-7 w-7 p-0"
                     >
-                      <Icon name="Trash2" size={14} />
+                      <Icon name="Trash2" size={12} />
                     </Button>
                   </div>
                 </CardContent>
