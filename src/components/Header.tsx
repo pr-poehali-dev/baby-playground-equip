@@ -291,25 +291,7 @@ export function Header({
                   </Button>
                 </SheetTrigger>
                 <SheetContent className="w-full sm:max-w-lg overflow-y-auto">
-                  <div className="absolute top-4 left-4 right-4 flex justify-between sm:hidden z-50">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="hover:border-primary hover:text-primary hover:bg-transparent h-9 w-9"
-                      onClick={() => {
-                        setIsCartOpen(false);
-                        setTimeout(() => {
-                          const element = document.getElementById('catalog');
-                          if (element) {
-                            const yOffset = -80;
-                            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                            window.scrollTo({ top: y, behavior: 'smooth' });
-                          }
-                        }, 300);
-                      }}
-                    >
-                      <Icon name="ArrowLeft" size={20} />
-                    </Button>
+                  <div className="absolute top-4 right-4 sm:hidden z-50">
                     <Button
                       variant="outline"
                       size="icon"

@@ -68,16 +68,6 @@ export function CategoryDialogs({
     <>
       <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
         <DialogContent className="sm:max-w-4xl max-h-[80vh] sm:max-h-[80vh] h-full sm:h-auto overflow-y-auto m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full">
-          <div className="absolute top-4 left-4 sm:hidden z-50">
-            <Button
-              variant="outline"
-              size="icon"
-              className="hover:border-primary hover:text-primary hover:bg-transparent h-9 w-9"
-              onClick={handleBackFromSubcategory}
-            >
-              <Icon name="ArrowLeft" size={20} />
-            </Button>
-          </div>
           <DialogHeader>
             <DialogTitle className="text-4xl font-heading font-semibold text-center mb-2 sm:mb-4">
               {currentCategory?.name}
@@ -108,16 +98,6 @@ export function CategoryDialogs({
 
       <Dialog open={isSubSubcategoryDialogOpen} onOpenChange={setIsSubSubcategoryDialogOpen}>
         <DialogContent className="sm:max-w-5xl max-h-[80vh] sm:max-h-[80vh] h-full sm:h-auto overflow-y-auto m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full">
-          <div className="absolute top-4 left-4 sm:hidden z-50">
-            <Button
-              variant="outline"
-              size="icon"
-              className="hover:border-primary hover:text-primary hover:bg-transparent h-9 w-9"
-              onClick={handleBackFromSubSubcategory}
-            >
-              <Icon name="ArrowLeft" size={20} />
-            </Button>
-          </div>
           <DialogHeader>
             <DialogTitle className="text-4xl font-heading font-semibold text-center mb-4">
               {currentSubcategory?.name}
