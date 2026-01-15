@@ -180,7 +180,7 @@ export function CategoryGrid({
                   <Button
                     variant="outline"
                     size="icon"
-                    className="absolute top-2 right-2 bg-white/90 hover:bg-white z-10 border-0"
+                    className="absolute top-2 right-2 bg-white/90 hover:bg-white hover:text-red-500 z-10 border-0"
                     onClick={(e) => {
                       e.stopPropagation();
                       toggleFavorite(product);
