@@ -93,12 +93,12 @@ export function CategoryGrid({
   return (
     <div id="products" className="container mx-auto px-4 pt-2">
       <div ref={filtersRef}>
-        <div className="sticky top-[84px] bg-white z-40 pb-3 pt-2 -mx-4 px-4 min-h-[140px]">
-          <h2 className="text-4xl font-heading font-bold mb-4">
+        <div className="sticky top-[84px] bg-white z-40 pb-2 pt-2 -mx-4 px-4 min-h-[120px]">
+          <h2 className="text-4xl font-heading font-bold mb-2">
             {categories.find(c => c.id === selectedCategory)?.name}
           </h2>
           
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-3 mb-2">
             <div className="flex gap-2">
               <Button
                 variant="outline"
