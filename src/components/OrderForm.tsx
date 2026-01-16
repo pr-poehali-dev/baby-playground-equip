@@ -120,7 +120,7 @@ export function OrderForm({ open, onOpenChange, cart, calculateTotal, deliveryCo
           </Button>
         </div>
         <DialogHeader className="pb-2">
-          <DialogTitle className="text-lg font-heading flex items-center gap-2">
+          <DialogTitle className="text-lg font-heading flex items-center justify-center gap-2">
             <Icon name="FileText" size={18} />
             Оформление заказа
           </DialogTitle>
