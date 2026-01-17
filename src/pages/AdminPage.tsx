@@ -119,7 +119,7 @@ export default function AdminPage() {
                       <img
                         src={product.images[0]}
                         alt={product.name}
-                        className="w-full aspect-square object-cover rounded border"
+                        className="w-full aspect-square object-cover rounded border-2 border-primary"
                       />
                       <p className="text-xs text-muted-foreground text-center">{product.article}</p>
                     </div>

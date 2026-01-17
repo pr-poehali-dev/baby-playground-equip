@@ -105,7 +105,7 @@ export function CategoryDialogs({
           </DialogHeader>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-4">
             {currentSubcategory?.children?.map((subSub) => (
-              <div key={subSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200" onClick={() => handleSubSubcategoryClick(subSub.name)}>
+              <div key={subSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-primary" onClick={() => handleSubSubcategoryClick(subSub.name)}>
                 <div className="aspect-square overflow-hidden flex items-center justify-center p-4">
                   {subSub.image.startsWith('http') ? (
                     <img src={subSub.image} alt={subSub.name} className="w-full h-full object-contain" />
