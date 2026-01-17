@@ -2,6 +2,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { ProductDialog } from '@/components/catalog/ProductDialog';
 
 const formatPrice = (price: string | number): string => {
   const numPrice = typeof price === 'string' ? parseInt(price.replace(/\s/g, '')) : price;
@@ -24,11 +26,16 @@ interface FavoritesPageProps {
   favorites: Product[];
   removeFromFavorites: (id: number) => void;
   addToCart: (product: Product) => void;
-  onProductClick: (product: Product) => void;
+  toggleFavorite: (product: Product) => void;
 }
 
-export default function FavoritesPage({ favorites, removeFromFavorites, addToCart, onProductClick }: FavoritesPageProps) {
+export default function FavoritesPage({ favorites, removeFromFavorites, addToCart, toggleFavorite }: FavoritesPageProps) {
   const navigate = useNavigate();
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isProductDialogOpen, setIsProductDialogOpen] = useState(false);
+  const [productImages, setProductImages] = useState<string[]>([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
 
   const handleNavigateToCatalog = () => {
     navigate('/');
@@ -40,6 +47,26 @@ export default function FavoritesPage({ favorites, removeFromFavorites, addToCar
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }, 100);
+  };
+
+  const handleProductClick = async (product: Product) => {
+    setSelectedProduct(product);
+    setIsProductDialogOpen(true);
+    setCurrentImageIndex(0);
+    setProductImages([]);
+    
+    const article = product.name.split('\n')[0]?.replace('Арт. ', '');
+    if (article) {
+      try {
+        const response = await fetch(`https://functions.poehali.dev/686e9704-6a8f-429d-a2d2-88f49ab86fd8?article=${article}`);
+        const data = await response.json();
+        if (data.success && data.images.length > 0) {
+          setProductImages(data.images);
+        }
+      } catch (error) {
+        console.error('Failed to load product images:', error);
+      }
+    }
   };
 
   return (
@@ -85,7 +112,7 @@ export default function FavoritesPage({ favorites, removeFromFavorites, addToCar
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
             {favorites.map((product) => (
-              <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all group cursor-pointer" onClick={() => onProductClick(product)}>
+              <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all group cursor-pointer" onClick={() => handleProductClick(product)}>
                 <div className="aspect-[4/3] relative overflow-hidden bg-white flex items-center justify-center">
                   {product.image.startsWith('http') ? (
                     <img 
@@ -140,6 +167,19 @@ export default function FavoritesPage({ favorites, removeFromFavorites, addToCar
           </div>
         )}
       </main>
+
+      <ProductDialog
+        isProductDialogOpen={isProductDialogOpen}
+        setIsProductDialogOpen={setIsProductDialogOpen}
+        selectedProduct={selectedProduct}
+        productImages={productImages}
+        currentImageIndex={currentImageIndex}
+        setCurrentImageIndex={setCurrentImageIndex}
+        handleAddToCart={addToCart}
+        setIsContactDialogOpen={setIsContactDialogOpen}
+        favorites={favorites}
+        toggleFavorite={toggleFavorite}
+      />
     </div>
   );
 }
