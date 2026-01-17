@@ -38,7 +38,15 @@ export default function FavoritesPage({ favorites, removeFromFavorites, addToCar
   const [isContactDialogOpen, setIsContactDialogOpen] = useState(false);
 
   const handleNavigateToCatalog = () => {
-    navigate(-1);
+    navigate('/');
+    setTimeout(() => {
+      const element = document.getElementById('catalog');
+      if (element) {
+        const yOffset = -90;
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   const handleProductClick = async (product: Product) => {
