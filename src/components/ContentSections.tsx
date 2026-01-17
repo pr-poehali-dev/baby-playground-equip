@@ -13,7 +13,7 @@ export function ContentSections() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
-              <h2 className="text-4xl font-heading mb-6 font-semibold">О компании</h2>
+              <h2 className="text-4xl font-heading mb-6 font-semibold text-center md:text-left">О компании</h2>
               <p className="text-lg text-muted-foreground mb-4">Мы специализируемся на производстве детского игрового и спортивного оборудования на протяжении 5 лет. За это время мы оснастили более 500 детских площадок по всей России.</p>
               <p className="text-lg text-muted-foreground mb-6">
                 Наша продукция соответствует всем стандартам безопасности и имеет необходимые сертификаты. 
