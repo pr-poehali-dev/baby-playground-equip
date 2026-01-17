@@ -150,9 +150,11 @@ export function CatalogSection({
       setTimeout(() => {
         const element = filtersRef.current;
         if (element) {
-          const yOffset = -90;
-          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
+          // Calculate absolute position of element
+          const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+          // Scroll so the element sits at 84px from top (matching sticky top-[84px])
+          const targetScrollPosition = elementTop - 84;
+          window.scrollTo({ top: targetScrollPosition, behavior: 'smooth' });
         }
       }, 100);
     }
