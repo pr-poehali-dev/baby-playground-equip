@@ -529,7 +529,7 @@ export function Header({
       />
 
       <Dialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
-        <DialogContent className="[&>button]:rounded-full [&>button]:bg-transparent [&>button]:hover:bg-transparent [&>button]:hover:border-primary [&>button]:hover:text-primary">
+        <DialogContent>
           <DialogHeader>
             <DialogTitle>Заказ успешно оформлен!</DialogTitle>
           </DialogHeader>
@@ -542,7 +542,7 @@ export function Header({
       </Dialog>
 
       <Dialog open={showKPDialog} onOpenChange={setShowKPDialog}>
-        <DialogContent className="[&>button]:rounded-full [&>button]:bg-transparent [&>button]:hover:bg-transparent [&>button]:hover:border-primary [&>button]:hover:text-primary">
+        <DialogContent>
           <DialogHeader>
             <DialogTitle>Параметры коммерческого предложения</DialogTitle>
           </DialogHeader>

@@ -108,7 +108,7 @@ export function OrderForm({ open, onOpenChange, cart, calculateTotal, deliveryCo
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[95vh] overflow-hidden [&>button]:rounded-full [&>button]:bg-transparent [&>button]:hover:bg-transparent [&>button]:hover:border-primary [&>button]:hover:text-primary">
+      <DialogContent className="max-w-2xl max-h-[95vh] overflow-hidden">
         <div className="absolute top-4 left-4 sm:hidden z-50">
           <Button
             variant="outline"
@@ -269,7 +269,7 @@ export function OrderForm({ open, onOpenChange, cart, calculateTotal, deliveryCo
       </CardContent>
 
       <Dialog open={showPrivacyDialog} onOpenChange={setShowPrivacyDialog}>
-        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto [&>button]:rounded-full [&>button]:bg-transparent [&>button]:hover:bg-transparent [&>button]:hover:border-primary [&>button]:hover:text-primary">
+        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-xl font-heading">Соглашение на обработку персональных данных</DialogTitle>
           </DialogHeader>
