@@ -111,7 +111,7 @@ export function ContentSections() {
         </div>
       </section>
 
-      <footer className="bg-foreground text-background py-8">
+      <footer className="bg-foreground text-background py-4">
         <div className="container mx-auto px-4 text-center">
           <p>&copy; 2026 Urban Play. Все права защищены.</p>
         </div>
