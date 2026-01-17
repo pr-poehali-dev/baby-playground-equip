@@ -85,9 +85,9 @@ export default function FavoritesPage({ favorites, removeFromFavorites, addToCar
               variant="outline" 
               size="icon"
               onClick={handleNavigateToCatalog}
-              className="rounded-full bg-transparent hover:bg-transparent hover:border-primary hover:text-primary h-9 w-9 md:h-10 md:w-10"
+              className="rounded-full bg-transparent hover:bg-transparent hover:border-primary hover:text-primary h-9 w-9"
             >
-              <Icon name="X" size={20} />
+              <Icon name="X" size={18} />
             </Button>
           </div>
         </div>
