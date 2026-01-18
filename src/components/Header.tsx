@@ -97,13 +97,14 @@ export function Header({
   const orderButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (isCartOpen && cart.length > 0 && orderButtonRef.current) {
-      setTimeout(() => {
-        orderButtonRef.current?.focus();
-      }, 100);
-    }
     if (isCartOpen) {
-      document.activeElement?.blur();
+      setTimeout(() => {
+        if (cart.length > 0 && orderButtonRef.current) {
+          orderButtonRef.current.focus();
+        } else {
+          (document.activeElement as HTMLElement)?.blur();
+        }
+      }, 150);
     }
   }, [isCartOpen, cart.length]);
 
