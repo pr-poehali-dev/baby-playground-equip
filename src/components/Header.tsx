@@ -319,6 +319,7 @@ export function Header({
                               value={cartSearchQuery}
                               onChange={(e) => setCartSearchQuery(e.target.value)}
                               className="pl-10 focus-visible:ring-0 focus-visible:ring-offset-0"
+                              autoFocus={false}
                             />
                           </div>
                           {cartSearchQuery && filteredCatalogProducts.length > 0 && (
