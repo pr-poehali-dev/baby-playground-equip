@@ -182,35 +182,43 @@ def handler(event: dict, context) -> dict:
                 # Ищем изображение для этой строки
                 image_url = image_map.get(row_idx, None)
                 
+                # Escape для Simple Query Protocol
+                safe_article = article.replace("'", "''")
+                safe_name = name.replace("'", "''")
+                safe_category = full_category.replace("'", "''")
+                safe_dimensions = dimensions.replace("'", "''")
+                safe_image_url = (image_url or '').replace("'", "''")
+                
                 # Проверяем существует ли товар
-                cursor.execute(f'SELECT id FROM {schema}.products WHERE article = %s', (article,))
+                cursor.execute(f"SELECT id FROM {schema}.products WHERE article = '{safe_article}'")
                 existing = cursor.fetchone()
                 
                 if update_mode == 'update':
                     # Режим обновления - обновляем существующие или добавляем новые
-                    cursor.execute(f'''
-                        INSERT INTO {schema}.products (article, name, category, price, dimensions, image_url)
-                        VALUES (%s, %s, %s, %s, %s, %s)
-                        ON CONFLICT (article) 
-                        DO UPDATE SET 
-                            name = EXCLUDED.name,
-                            category = EXCLUDED.category,
-                            price = EXCLUDED.price,
-                            dimensions = EXCLUDED.dimensions,
-                            image_url = COALESCE(EXCLUDED.image_url, {schema}.products.image_url)
-                    ''', (article, name, full_category, price, dimensions, image_url))
-                    
                     if existing:
+                        cursor.execute(f"""
+                            UPDATE {schema}.products 
+                            SET name = '{safe_name}',
+                                category = '{safe_category}',
+                                price = {price},
+                                dimensions = '{safe_dimensions}',
+                                image_url = CASE WHEN '{safe_image_url}' != '' THEN '{safe_image_url}' ELSE image_url END
+                            WHERE article = '{safe_article}'
+                        """)
                         updated_count += 1
                     else:
+                        cursor.execute(f"""
+                            INSERT INTO {schema}.products (article, name, category, price, dimensions, image_url)
+                            VALUES ('{safe_article}', '{safe_name}', '{safe_category}', {price}, '{safe_dimensions}', '{safe_image_url}')
+                        """)
                         added_count += 1
                 else:
                     # Режим добавления - только новые товары
                     if not existing:
-                        cursor.execute(f'''
+                        cursor.execute(f"""
                             INSERT INTO {schema}.products (article, name, category, price, dimensions, image_url)
-                            VALUES (%s, %s, %s, %s, %s, %s)
-                        ''', (article, name, full_category, price, dimensions, image_url))
+                            VALUES ('{safe_article}', '{safe_name}', '{safe_category}', {price}, '{safe_dimensions}', '{safe_image_url}')
+                        """)
                         added_count += 1
                 
                 products_count += 1
