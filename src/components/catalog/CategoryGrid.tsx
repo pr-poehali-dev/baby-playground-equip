@@ -109,34 +109,35 @@ export function CategoryGrid({
   return (
     <div id="products" className="container mx-auto px-4 pt-2">
       <div ref={filtersRef}>
-        {/* Заголовок - скрывается при скролле на мобильных */}
+        {/* Заголовок и поиск - скрываются при скролле на мобильных */}
         <h2 className="text-4xl font-heading font-bold mb-4 sm:block">
           {categories.find(c => c.id === selectedCategory)?.name}
         </h2>
         
-        <div className="sticky top-[84px] bg-white z-40 pb-3 pt-3 -mx-4 px-4">
-          {/* Поиск и сброс - мобильная версия */}
-          <div className="flex sm:hidden items-center gap-2 mb-3">
-            <div className="relative flex-1">
-              <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <Input 
-                type="text"
-                placeholder="Поиск"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-9"
-              />
-            </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleReset}
-              className="hover:border-primary hover:text-primary hover:bg-transparent"
-            >
-              Сбросить
-            </Button>
+        {/* Поиск и сброс - мобильная версия */}
+        <div className="flex sm:hidden items-center gap-2 mb-3">
+          <div className="relative flex-1">
+            <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Input 
+              type="text"
+              placeholder="Поиск"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 h-9"
+            />
           </div>
-          
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleReset}
+            className="hover:border-primary hover:text-primary hover:bg-transparent"
+          >
+            Сбросить
+          </Button>
+        </div>
+        
+        {/* Фильтры - липкие к шапке */}
+        <div className="sticky top-[84px] bg-white z-40 pb-3 pt-3 -mx-4 px-4">
           <div className="flex items-center gap-1 sm:gap-2 mb-4">
             <Select
               value={selectedSeries || 'all-series'}
