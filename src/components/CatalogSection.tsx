@@ -281,8 +281,6 @@ export function CatalogSection({
         favorites={favorites}
         toggleFavorite={toggleFavorite}
         selectedProduct={selectedProduct}
-        setCurrentSubSubSubcategory={setCurrentSubSubSubcategory}
-        setIsFinalCategoryDialogOpen={setIsFinalCategoryDialogOpen}
       />
 
       <ProductDialog

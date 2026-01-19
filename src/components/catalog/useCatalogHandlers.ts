@@ -76,17 +76,16 @@ export function useCatalogHandlers(props: CatalogHandlersProps) {
     console.log('handleSubSubcategorySelect called:', {
       name: subSub.name,
       hasChildren: subSub.hasChildren,
-      childrenCount: subSub.children?.length,
-      showChildrenAsFilters: subSub.showChildrenAsFilters
+      childrenCount: subSub.children?.length
     });
     
-    if (subSub.hasChildren && subSub.children && !subSub.showChildrenAsFilters) {
+    if (subSub.hasChildren && subSub.children) {
       console.log('Opening SubSubSub dialog with children:', subSub.children);
       setCurrentSubSubcategory(subSub);
       setIsSubSubSubcategoryDialogOpen(true);
       setIsSubSubcategoryDialogOpen(false);
     } else {
-      console.log('No children or showChildrenAsFilters=true, showing products');
+      console.log('No children, showing products');
       if (currentCategory) {
         setSelectedCategory(currentCategory.id);
         setSelectedSubcategory(currentSubcategory?.name || null);
