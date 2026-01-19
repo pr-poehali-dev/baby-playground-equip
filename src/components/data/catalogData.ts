@@ -19,6 +19,7 @@ export interface SubSubcategory {
   image: string;
   hasChildren?: boolean;
   children?: SubSubSubcategory[];
+  showChildrenAsFilters?: boolean;
 }
 
 export interface Subcategory {
@@ -70,7 +71,8 @@ export const categories = [
                   { name: 'Лабиринт', image: '🌀' }
                 ]
               }
-            ]
+            ],
+            showChildrenAsFilters: true
           },
           { name: 'Балансиры', image: 'https://cdn.poehali.dev/files/мишкаа.png' },
           { name: 'Горки', image: 'https://cdn.poehali.dev/files/0100.png' },

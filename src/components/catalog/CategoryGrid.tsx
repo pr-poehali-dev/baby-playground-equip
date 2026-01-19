@@ -30,6 +30,13 @@ interface Category {
   order?: number;
 }
 
+interface SubSubSubcategory {
+  name: string;
+  image: string;
+  hasChildren?: boolean;
+  children?: { name: string; image: string }[];
+}
+
 interface CategoryGridProps {
   selectedCategory: string | null;
   categories: Category[];
@@ -49,6 +56,8 @@ interface CategoryGridProps {
   toggleFavorite: (product: Product) => void;
   setSelectedSubSubcategory: (value: string | null) => void;
   selectedProduct: Product | null;
+  setCurrentSubSubSubcategory?: (cat: SubSubSubcategory | null) => void;
+  setIsFinalCategoryDialogOpen?: (open: boolean) => void;
 }
 
 const formatPrice = (price: string | number): string => {
@@ -75,6 +84,8 @@ export function CategoryGrid({
   toggleFavorite,
   setSelectedSubSubcategory,
   selectedProduct,
+  setCurrentSubSubSubcategory,
+  setIsFinalCategoryDialogOpen,
 }: CategoryGridProps) {
   if (!selectedCategory) return null;
 
@@ -88,6 +99,8 @@ export function CategoryGrid({
   
   const currentSubSub = availableSubSubcategories.find(s => s.name === selectedSubSubLevel1);
   const availableSubSubSubcategories = currentSubSub?.children || [];
+  
+  const shouldShowFiltersInsteadOfDialog = currentSubSub?.showChildrenAsFilters && availableSubSubSubcategories.length > 0;
 
   const handleReset = () => {
     if (searchQuery) {
@@ -142,7 +155,7 @@ export function CategoryGrid({
                 </SelectContent>
               </Select>
             )}
-            {availableSubSubSubcategories.length > 0 && selectedSubSubLevel1 && (
+            {availableSubSubSubcategories.length > 0 && selectedSubSubLevel1 && !shouldShowFiltersInsteadOfDialog && (
               <Select
                 value={selectedSubSubLevel2 || 'all-sub'}
                 onValueChange={(value) => setSelectedSubSubcategory(value === 'all-sub' ? selectedSubSubLevel1 : `${selectedSubSubLevel1} > ${value}`)}
@@ -159,6 +172,28 @@ export function CategoryGrid({
                   ))}
                 </SelectContent>
               </Select>
+            )}
+            {shouldShowFiltersInsteadOfDialog && (
+              <div className="flex gap-2">
+                {availableSubSubSubcategories.map((ageFilter) => (
+                  <Button
+                    key={ageFilter.name}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      if (ageFilter.hasChildren && ageFilter.children && setCurrentSubSubSubcategory && setIsFinalCategoryDialogOpen) {
+                        setCurrentSubSubSubcategory(ageFilter as any);
+                        setIsFinalCategoryDialogOpen(true);
+                      } else {
+                        setSelectedSubSubcategory(selectedSubSubLevel2 === ageFilter.name ? selectedSubSubLevel1 : `${selectedSubSubLevel1} > ${ageFilter.name}`);
+                      }
+                    }}
+                    className={selectedSubSubLevel2 === ageFilter.name ? 'bg-white text-[#5a098c] border-2 border-[#5a098c] hover:bg-white hover:text-[#5a098c]' : 'bg-white hover:border-secondary hover:text-secondary hover:bg-white'}
+                  >
+                    {ageFilter.name}
+                  </Button>
+                ))}
+              </div>
             )}
             <div className="relative w-80 ml-auto">
               <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
