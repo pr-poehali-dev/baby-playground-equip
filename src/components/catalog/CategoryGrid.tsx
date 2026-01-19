@@ -136,8 +136,8 @@ export function CategoryGrid({
             </Button>
           </div>
           
-          <div className="flex items-center gap-3 mb-4 flex-wrap sm:flex-nowrap">
-            <div className="flex gap-2">
+          <div className="flex items-center gap-2 mb-4 overflow-x-auto">
+            <div className="flex gap-2 flex-shrink-0">
               <Button
                 variant="outline"
                 size="sm"
@@ -160,7 +160,7 @@ export function CategoryGrid({
                 value={firstSelectValue}
                 onValueChange={(value) => setSelectedSubSubcategory(value === 'all' ? null : value)}
               >
-                <SelectTrigger className={`w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedSubSubLevel1 ? 'text-[#1d2025]' : ''}`}>
+                <SelectTrigger className={`w-40 sm:w-52 h-9 flex-shrink-0 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedSubSubLevel1 ? 'text-[#1d2025]' : ''}`}>
                   <SelectValue placeholder="Все категории" />
                 </SelectTrigger>
                 <SelectContent>
@@ -190,7 +190,7 @@ export function CategoryGrid({
                   }, 100);
                 }}
               >
-                <SelectTrigger className={`w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedSubSubLevel2 ? 'text-[#1d2025]' : ''}`}>
+                <SelectTrigger className={`w-32 sm:w-52 h-9 flex-shrink-0 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedSubSubLevel2 ? 'text-[#1d2025]' : ''}`}>
                   <SelectValue placeholder="Все серии" />
                 </SelectTrigger>
                 <SelectContent>
