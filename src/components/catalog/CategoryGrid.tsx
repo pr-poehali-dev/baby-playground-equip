@@ -122,7 +122,17 @@ export function CategoryGrid({
                 type="text"
                 placeholder="Поиск"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  if (e.target.value.trim()) {
+                    setTimeout(() => {
+                      const productsSection = document.getElementById('products');
+                      if (productsSection) {
+                        productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                    }, 100);
+                  }
+                }}
                 className="pl-10 h-9"
               />
             </div>
