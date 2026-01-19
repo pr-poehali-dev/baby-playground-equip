@@ -47,7 +47,8 @@ export function useCatalogFilters({
     if (searchQuery.trim()) {
       filtered = products.filter(p => 
         p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.id.toString().includes(searchQuery)
+        p.id.toString().includes(searchQuery) ||
+        (p.article && p.article.toLowerCase().includes(searchQuery.toLowerCase()))
       );
       filtered = filtered.filter(p => parseInt(p.price) > 0);
       return filtered;
