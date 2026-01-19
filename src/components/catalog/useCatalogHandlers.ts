@@ -202,6 +202,13 @@ export function useCatalogHandlers(props: CatalogHandlersProps) {
   };
 
   const handleSubSubSubcategorySelect = (subSubSubName: string) => {
+    console.log('handleSubSubSubcategorySelect called:', {
+      subSubSubName,
+      currentCategory: currentCategory?.name,
+      currentSubcategory: currentSubcategory?.name,
+      currentSubSubcategory: currentSubSubcategory?.name
+    });
+    
     if (currentCategory && currentSubSubcategory) {
       setSelectedCategory(currentCategory.id);
       setSelectedSubcategory(currentSubcategory?.name || null);
@@ -214,13 +221,19 @@ export function useCatalogHandlers(props: CatalogHandlersProps) {
         }
       });
       
+      console.log('Parent found:', parentSubSub?.name);
+      
+      let finalPath = '';
       if (parentSubSub) {
         // Полный путь: "Игровые комплексы > 3-7 лет > Классик"
-        setSelectedSubSubcategory(`${parentSubSub.name} > ${currentSubSubcategory.name} > ${subSubSubName}`);
+        finalPath = `${parentSubSub.name} > ${currentSubSubcategory.name} > ${subSubSubName}`;
       } else {
         // Если родитель не найден, используем старую логику
-        setSelectedSubSubcategory(`${currentSubSubcategory.name} > ${subSubSubName}`);
+        finalPath = `${currentSubSubcategory.name} > ${subSubSubName}`;
       }
+      
+      console.log('Setting selectedSubSubcategory to:', finalPath);
+      setSelectedSubSubcategory(finalPath);
       
       setSelectedSeries(currentSubcategory?.name || null);
       setIsSubSubSubcategoryDialogOpen(false);

@@ -106,6 +106,15 @@ export function CategoryGrid({
     // Если только первый уровень
     firstSelectValue = selectedSubSubLevel1;
   }
+  
+  console.log('CategoryGrid state:', {
+    selectedSubSubcategory,
+    selectedSubSubLevel1,
+    selectedSubSubLevel2,
+    selectedSubSubLevel3,
+    firstSelectValue,
+    availableSubSubSubcategories: availableSubSubSubcategories.length
+  });
 
   const handleReset = () => {
     if (searchQuery) {
