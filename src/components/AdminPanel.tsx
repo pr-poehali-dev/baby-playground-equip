@@ -9,8 +9,9 @@ export function AdminPanel() {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
-  const [updateMode, setUpdateMode] = useState<'new' | 'update'>('new');
+  const [updateMode, setUpdateMode] = useState<'new' | 'update'>('update');
   const [isDownloadingTemplate, setIsDownloadingTemplate] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -132,6 +133,43 @@ export function AdminPanel() {
     }
   };
 
+  const handleClearDuplicates = async () => {
+    if (!confirm('Удалить дубли товаров 0230-0265? Это необратимо!')) {
+      return;
+    }
+
+    setIsDeleting(true);
+    setUploadStatus('idle');
+    setMessage('');
+
+    try {
+      const response = await fetch('https://functions.poehali.dev/86a5f270-0e5f-4fc8-8762-1839512f352a', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          articles: ['0230-0265']
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setUploadStatus('success');
+        setMessage(`Удалено дублей: ${result.deleted}. Теперь загрузите файл заново!`);
+      } else {
+        throw new Error(result.error || 'Ошибка удаления');
+      }
+    } catch (error) {
+      console.error('Delete error:', error);
+      setUploadStatus('error');
+      setMessage(error instanceof Error ? error.message : 'Ошибка при удалении дублей');
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <Card className="max-w-2xl mx-auto">
@@ -195,42 +233,64 @@ export function AdminPanel() {
             )}
           </div>
 
-          <div className="flex gap-3">
-            <Button
-              onClick={handleDownloadTemplate}
-              disabled={isDownloadingTemplate}
-              variant="outline"
-              size="lg"
-              className="flex-1"
-            >
-              {isDownloadingTemplate ? (
-                <>
-                  <Icon name="Loader2" size={20} className="mr-2 animate-spin" />
-                  Скачивание...
-                </>
-              ) : (
-                <>
-                  <Icon name="Download" size={20} className="mr-2" />
-                  Скачать шаблон
-                </>
-              )}
-            </Button>
+          <div className="space-y-3">
+            <div className="flex gap-3">
+              <Button
+                onClick={handleDownloadTemplate}
+                disabled={isDownloadingTemplate}
+                variant="outline"
+                size="lg"
+                className="flex-1"
+              >
+                {isDownloadingTemplate ? (
+                  <>
+                    <Icon name="Loader2" size={20} className="mr-2 animate-spin" />
+                    Скачивание...
+                  </>
+                ) : (
+                  <>
+                    <Icon name="Download" size={20} className="mr-2" />
+                    Скачать шаблон
+                  </>
+                )}
+              </Button>
+
+              <Button
+                onClick={handleUpload}
+                disabled={!file || isUploading}
+                className="flex-1"
+                size="lg"
+              >
+                {isUploading ? (
+                  <>
+                    <Icon name="Loader2" size={20} className="mr-2 animate-spin" />
+                    Загрузка...
+                  </>
+                ) : (
+                  <>
+                    <Icon name="Upload" size={20} className="mr-2" />
+                    Загрузить каталог
+                  </>
+                )}
+              </Button>
+            </div>
 
             <Button
-              onClick={handleUpload}
-              disabled={!file || isUploading}
-              className="flex-1"
-              size="lg"
+              onClick={handleClearDuplicates}
+              disabled={isDeleting}
+              variant="destructive"
+              size="sm"
+              className="w-full"
             >
-              {isUploading ? (
+              {isDeleting ? (
                 <>
-                  <Icon name="Loader2" size={20} className="mr-2 animate-spin" />
-                  Загрузка...
+                  <Icon name="Loader2" size={16} className="mr-2 animate-spin" />
+                  Удаление...
                 </>
               ) : (
                 <>
-                  <Icon name="Upload" size={20} className="mr-2" />
-                  Загрузить каталог
+                  <Icon name="Trash2" size={16} className="mr-2" />
+                  Очистить дубли 0230-0265
                 </>
               )}
             </Button>

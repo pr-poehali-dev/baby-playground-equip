@@ -51,10 +51,31 @@ def handler(event: dict, context) -> dict:
         schema = os.environ.get('MAIN_DB_SCHEMA', 'public')
         
         deleted_count = 0
-        for article in articles:
-            safe_article = article.replace("'", "''")
-            cursor.execute(f"DELETE FROM {schema}.products WHERE article = '{safe_article}'")
-            deleted_count += cursor.rowcount
+        
+        # Специальный режим: удалить по диапазону артикулов
+        if len(articles) == 1 and '-' in articles[0]:
+            # Формат: "0230-0265"
+            parts = articles[0].split('-')
+            if len(parts) == 2:
+                try:
+                    start = int(parts[0])
+                    end = int(parts[1])
+                    for num in range(start, end + 1):
+                        article = str(num).zfill(4)
+                        cursor.execute(f"DELETE FROM {schema}.products WHERE article = '{article}'")
+                        deleted_count += cursor.rowcount
+                except ValueError:
+                    # Не числа - удаляем как обычный артикул
+                    for article in articles:
+                        safe_article = article.replace("'", "''")
+                        cursor.execute(f"DELETE FROM {schema}.products WHERE article = '{safe_article}'")
+                        deleted_count += cursor.rowcount
+        else:
+            # Обычное удаление по списку
+            for article in articles:
+                safe_article = article.replace("'", "''")
+                cursor.execute(f"DELETE FROM {schema}.products WHERE article = '{safe_article}'")
+                deleted_count += cursor.rowcount
         
         conn.commit()
         cursor.close()
