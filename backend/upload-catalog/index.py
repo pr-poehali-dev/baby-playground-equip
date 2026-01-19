@@ -118,6 +118,10 @@ def handler(event: dict, context) -> dict:
                     for col_idx, val in enumerate(row_values):
                         if 'картинк' in val or 'фото' in val or 'изображен' in val:
                             col_indices['image'] = col_idx
+                        elif 'подподподподкатегория' in val:
+                            col_indices['subcategory4'] = col_idx
+                        elif 'подподподкатегория' in val:
+                            col_indices['subcategory3'] = col_idx
                         elif 'подподкатегория' in val:
                             col_indices['subcategory2'] = col_idx
                         elif 'подкатегория' in val:
@@ -142,10 +146,12 @@ def handler(event: dict, context) -> dict:
                 if not any(str(val).strip() if val else '' for val in row):
                     continue
                 
-                # Извлекаем данные: Картинка(0), Категория(1), Подкатегория(2), Подподкатегория(3), Артикул(4), Название(5), Размеры(6), Цена(7)
+                # Извлекаем данные: Картинка(0), Категория(1), Подкатегория(2), Подподкатегория(3), Подподподкатегория(4), Подподподподкатегория(5), Артикул, Название, Размеры, Цена
                 category = str(row[col_indices.get('category', 1)]).strip() if col_indices.get('category') is not None and len(row) > col_indices.get('category', 1) and row[col_indices.get('category', 1)] else 'Без категории'
                 subcategory1 = str(row[col_indices.get('subcategory1', 2)]).strip() if col_indices.get('subcategory1') is not None and len(row) > col_indices.get('subcategory1', 2) and row[col_indices.get('subcategory1', 2)] else ''
                 subcategory2 = str(row[col_indices.get('subcategory2', 3)]).strip() if col_indices.get('subcategory2') is not None and len(row) > col_indices.get('subcategory2', 3) and row[col_indices.get('subcategory2', 3)] else ''
+                subcategory3 = str(row[col_indices.get('subcategory3', 4)]).strip() if col_indices.get('subcategory3') is not None and len(row) > col_indices.get('subcategory3', 4) and row[col_indices.get('subcategory3', 4)] else ''
+                subcategory4 = str(row[col_indices.get('subcategory4', 5)]).strip() if col_indices.get('subcategory4') is not None and len(row) > col_indices.get('subcategory4', 5) and row[col_indices.get('subcategory4', 5)] else ''
                 
                 # Собираем полный путь категории
                 category_parts = [category]
@@ -153,6 +159,10 @@ def handler(event: dict, context) -> dict:
                     category_parts.append(subcategory1)
                 if subcategory2 and subcategory2 != 'None':
                     category_parts.append(subcategory2)
+                if subcategory3 and subcategory3 != 'None':
+                    category_parts.append(subcategory3)
+                if subcategory4 and subcategory4 != 'None':
+                    category_parts.append(subcategory4)
                 full_category = ' > '.join(category_parts)
                 
                 article = str(row[col_indices.get('article', 4)]).strip() if col_indices.get('article') is not None and len(row) > col_indices.get('article', 4) and row[col_indices.get('article', 4)] else ''
