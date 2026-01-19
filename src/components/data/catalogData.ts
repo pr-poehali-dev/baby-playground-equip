@@ -34,8 +34,8 @@ export const categories = [
     name: 'Игра',
     icon: 'Smile',
     color: 'from-primary/20 to-primary/5',
-    image: 'https://cdn.poehali.dev/files/6d65946f-8017-455c-ab38-7c27a47bd2c9.png',
-    bgImage: 'https://cdn.poehali.dev/files/6d65946f-8017-455c-ab38-7c27a47bd2c9.png',
+    image: 'https://cdn.poehali.dev/files/%D0%B8%D0%B3%D1%80%D0%B0%20(2).png',
+    bgImage: 'https://cdn.poehali.dev/files/%D0%B8%D0%B3%D1%80%D0%B0%20(2).png',
     order: 1,
     subcategories: [
       { 
