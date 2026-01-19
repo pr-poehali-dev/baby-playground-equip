@@ -109,11 +109,12 @@ export function CategoryGrid({
   return (
     <div id="products" className="container mx-auto px-4 pt-2">
       <div ref={filtersRef}>
-        <div className="sticky top-[84px] bg-white z-40 pb-3 pt-2 -mx-4 px-4 min-h-[140px]">
-          <h2 className="text-4xl font-heading font-bold mb-4">
-            {categories.find(c => c.id === selectedCategory)?.name}
-          </h2>
-          
+        {/* Заголовок - скрывается при скролле на мобильных */}
+        <h2 className="text-4xl font-heading font-bold mb-4 sm:block">
+          {categories.find(c => c.id === selectedCategory)?.name}
+        </h2>
+        
+        <div className="sticky top-[84px] bg-white z-40 pb-3 pt-2 -mx-4 px-4">
           {/* Поиск и сброс - мобильная версия */}
           <div className="flex sm:hidden items-center gap-2 mb-3">
             <div className="relative flex-1">
