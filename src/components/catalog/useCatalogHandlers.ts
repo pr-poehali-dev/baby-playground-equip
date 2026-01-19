@@ -1,4 +1,4 @@
-import { categories, Subcategory } from '@/components/data/catalogData';
+import { categories, Subcategory, SubSubcategory } from '@/components/data/catalogData';
 
 interface CatalogHandlersProps {
   setSelectedCategory: (value: string | null) => void;
@@ -10,6 +10,7 @@ interface CatalogHandlersProps {
   setIsSubSubcategoryDialogOpen: (value: boolean) => void;
   setIsSideMenuOpen: (value: boolean) => void;
   setExpandedSubcategories: (value: string[] | ((prev: string[]) => string[])) => void;
+  setExpandedSubSubcategories: (value: string[] | ((prev: string[]) => string[])) => void;
   setExpandedCategories: (value: string[] | ((prev: string[]) => string[])) => void;
   setSelectedSeries: (value: string | null) => void;
   setSearchQuery: (value: string) => void;
@@ -29,6 +30,7 @@ export function useCatalogHandlers(props: CatalogHandlersProps) {
     setIsSubSubcategoryDialogOpen,
     setIsSideMenuOpen,
     setExpandedSubcategories,
+    setExpandedSubSubcategories,
     setExpandedCategories,
     setSelectedSeries,
     setSearchQuery,
@@ -117,10 +119,32 @@ export function useCatalogHandlers(props: CatalogHandlersProps) {
     }
   };
 
-  const handleTreeSubSubcategorySelect = (categoryId: string, categoryData: typeof categories[0], subName: string, subSubName: string) => {
+  const handleTreeSubSubcategorySelect = (categoryId: string, categoryData: typeof categories[0], subName: string, subSubName: string, subSub: SubSubcategory) => {
+    if (subSub.hasChildren) {
+      const key = `${categoryId}-${subName}-${subSubName}`;
+      setExpandedSubSubcategories(prev => 
+        prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]
+      );
+    } else {
+      setSelectedCategory(categoryId);
+      setSelectedSubcategory(subName);
+      setSelectedSubSubcategory(subSubName);
+      setSelectedSeries(subName);
+      setCurrentCategory(categoryData);
+      setIsSideMenuOpen(false);
+      setTimeout(() => {
+        const productsSection = document.getElementById('products');
+        if (productsSection) {
+          productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 300);
+    }
+  };
+
+  const handleTreeSubSubSubcategorySelect = (categoryId: string, categoryData: typeof categories[0], subName: string, subSubName: string, subSubSubName: string) => {
     setSelectedCategory(categoryId);
     setSelectedSubcategory(subName);
-    setSelectedSubSubcategory(subSubName);
+    setSelectedSubSubcategory(`${subSubName} > ${subSubSubName}`);
     setSelectedSeries(subName);
     setCurrentCategory(categoryData);
     setIsSideMenuOpen(false);
@@ -164,6 +188,7 @@ export function useCatalogHandlers(props: CatalogHandlersProps) {
     handleTreeCategorySelect,
     handleTreeSubcategorySelect,
     handleTreeSubSubcategorySelect,
+    handleTreeSubSubSubcategorySelect,
     toggleCategory,
     handleResetFilters,
   };

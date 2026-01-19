@@ -12,6 +12,7 @@ export function useCatalogState() {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
   const [expandedSubcategories, setExpandedSubcategories] = useState<string[]>([]);
+  const [expandedSubSubcategories, setExpandedSubSubcategories] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSeries, setSelectedSeries] = useState<string | null>(null);
 
@@ -36,6 +37,8 @@ export function useCatalogState() {
     setExpandedCategories,
     expandedSubcategories,
     setExpandedSubcategories,
+    expandedSubSubcategories,
+    setExpandedSubSubcategories,
     searchQuery,
     setSearchQuery,
     selectedSeries,

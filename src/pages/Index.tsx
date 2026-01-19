@@ -54,6 +54,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     setIsSubSubcategoryDialogOpen: catalogState.setIsSubSubcategoryDialogOpen,
     setIsSideMenuOpen: catalogState.setIsSideMenuOpen,
     setExpandedSubcategories: catalogState.setExpandedSubcategories,
+    setExpandedSubSubcategories: catalogState.setExpandedSubSubcategories,
     setExpandedCategories: catalogState.setExpandedCategories,
     setSelectedSeries: catalogState.setSelectedSeries,
     setSearchQuery: catalogState.setSearchQuery,
@@ -236,8 +237,10 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
           setSelectedSubSubcategory={catalogState.setSelectedSubSubcategory}
           handleTreeCategorySelect={handlers.handleTreeCategorySelect}
           expandedSubcategories={catalogState.expandedSubcategories}
+          expandedSubSubcategories={catalogState.expandedSubSubcategories}
           handleTreeSubcategorySelect={handlers.handleTreeSubcategorySelect}
           handleTreeSubSubcategorySelect={handlers.handleTreeSubSubcategorySelect}
+          handleTreeSubSubSubcategorySelect={handlers.handleTreeSubSubSubcategorySelect}
           isCategoryDialogOpen={catalogState.isCategoryDialogOpen}
           setIsCategoryDialogOpen={catalogState.setIsCategoryDialogOpen}
           currentCategory={catalogState.currentCategory}

@@ -7,9 +7,16 @@ export interface CartItem {
   article?: string;
 }
 
+export interface SubSubSubcategory {
+  name: string;
+  image: string;
+}
+
 export interface SubSubcategory {
   name: string;
   image: string;
+  hasChildren?: boolean;
+  children?: SubSubSubcategory[];
 }
 
 export interface Subcategory {
@@ -34,7 +41,43 @@ export const categories = [
         image: 'https://cdn.poehali.dev/files/%D0%B8%D0%B3%D1%80%D0%B0%20ciassic.png',
         hasChildren: true,
         children: [
-          { name: 'Игровые комплексы', image: 'https://cdn.poehali.dev/files/ененпре.png' },
+          { 
+            name: 'Игровые комплексы', 
+            image: 'https://cdn.poehali.dev/files/ененпре.png',
+            hasChildren: true,
+            children: [
+              {
+                name: '3-7 лет',
+                image: '👶',
+                hasChildren: true,
+                children: [
+                  { name: 'Классик', image: '🏰' },
+                  { name: 'Джунгли', image: '🌴' },
+                  { name: 'Замок', image: '🏯' },
+                  { name: 'Сказка', image: '📖' },
+                  { name: 'Техника', image: '🚗' },
+                  { name: 'Космос', image: '🚀' }
+                ]
+              },
+              {
+                name: '5-12 лет',
+                image: '👦',
+                hasChildren: true,
+                children: [
+                  { name: 'Классик', image: '🏰' },
+                  { name: 'Замок', image: '🏯' },
+                  { name: 'Джунгли', image: '🌴' },
+                  { name: 'Сказка', image: '📖' },
+                  { name: 'Морская', image: '🌊' },
+                  { name: 'Техника', image: '🚗' },
+                  { name: 'Космос', image: '🚀' },
+                  { name: 'Лабиринт', image: '🌀' },
+                  { name: 'Карандаши', image: '✏️' },
+                  { name: 'Спорт', image: '⚽' }
+                ]
+              }
+            ]
+          },
           { name: 'Балансиры', image: 'https://cdn.poehali.dev/files/мишкаа.png' },
           { name: 'Горки', image: 'https://cdn.poehali.dev/files/0100.png' },
           { name: 'Домики', image: 'https://cdn.poehali.dev/files/домик 2.png' },

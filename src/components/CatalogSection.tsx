@@ -5,9 +5,16 @@ import { CategoryDialogs } from './catalog/CategoryDialogs';
 import { CategoryGrid } from './catalog/CategoryGrid';
 import { ProductDialog } from './catalog/ProductDialog';
 
+interface SubSubSubcategory {
+  name: string;
+  image: string;
+}
+
 interface SubSubcategory {
   name: string;
   image: string;
+  hasChildren?: boolean;
+  children?: SubSubSubcategory[];
 }
 
 interface Subcategory {
@@ -54,8 +61,10 @@ interface CatalogSectionProps {
   setSelectedSubSubcategory: (value: string | null) => void;
   handleTreeCategorySelect: (id: string, cat: Category) => void;
   expandedSubcategories: string[];
+  expandedSubSubcategories: string[];
   handleTreeSubcategorySelect: (catId: string, cat: Category, subName: string, sub: Subcategory) => void;
-  handleTreeSubSubcategorySelect: (catId: string, cat: Category, subName: string, subSubName: string) => void;
+  handleTreeSubSubcategorySelect: (catId: string, cat: Category, subName: string, subSubName: string, subSub: SubSubcategory) => void;
+  handleTreeSubSubSubcategorySelect: (catId: string, cat: Category, subName: string, subSubName: string, subSubSubName: string) => void;
   isCategoryDialogOpen: boolean;
   setIsCategoryDialogOpen: (open: boolean) => void;
   currentCategory: Category | null;
@@ -90,8 +99,10 @@ export function CatalogSection({
   setSelectedSubSubcategory,
   handleTreeCategorySelect,
   expandedSubcategories,
+  expandedSubSubcategories,
   handleTreeSubcategorySelect,
   handleTreeSubSubcategorySelect,
+  handleTreeSubSubSubcategorySelect,
   isCategoryDialogOpen,
   setIsCategoryDialogOpen,
   currentCategory,
@@ -205,8 +216,10 @@ export function CatalogSection({
         selectedSubcategory={selectedSubcategory}
         handleTreeCategorySelect={handleTreeCategorySelect}
         expandedSubcategories={expandedSubcategories}
+        expandedSubSubcategories={expandedSubSubcategories}
         handleTreeSubcategorySelect={handleTreeSubcategorySelect}
         handleTreeSubSubcategorySelect={handleTreeSubSubcategorySelect}
+        handleTreeSubSubSubcategorySelect={handleTreeSubSubSubcategorySelect}
       />
 
       <CategoryDialogs

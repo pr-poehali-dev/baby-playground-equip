@@ -31,28 +31,60 @@ export function useProducts() {
           };
           
           setProducts(data.products.map((p: any) => {
-            const mappedCategory = categoryMap[p.category] || p.category;
+            let mappedCategory = categoryMap[p.category] || p.category;
             let subcategory = undefined;
             let subsubcategory = undefined;
             
-            if (p.name.includes('Сиденье') || p.name.includes('Качели')) {
-              subcategory = 'Серия "Classic"';
-              subsubcategory = 'Качели';
-            } else if (p.name.includes('Карусель')) {
-              subcategory = 'Серия "Classic"';
-              subsubcategory = 'Карусели';
-            } else if (p.name.includes('Балансир')) {
-              subcategory = 'Серия "Classic"';
-              subsubcategory = 'Балансиры';
-            } else if (p.name.includes('Горка')) {
-              subcategory = 'Серия "Classic"';
-              subsubcategory = 'Горки';
-            } else if (p.name.includes('Игровой комплекс')) {
-              subcategory = 'Серия "Classic"';
-              subsubcategory = 'Игровые комплексы';
-            } else if (p.name.includes('Воркаут')) {
-              subcategory = 'Серия "Classic"';
-              subsubcategory = 'Workout';
+            // Парсим категорию из формата "Категория > Подкатегория > Подподкатегория > ..."
+            if (typeof p.category === 'string' && p.category.includes(' > ')) {
+              const parts = p.category.split(' > ').map((s: string) => s.trim());
+              
+              // parts[0] - основная категория (Детские площадки, Спорт и т.д.)
+              if (parts[0] === 'Детские площадки') {
+                mappedCategory = 'playground';
+              } else if (parts[0] === 'Спорт') {
+                mappedCategory = 'sport';
+              } else if (parts[0] === 'Парк') {
+                mappedCategory = 'park';
+              }
+              
+              // parts[1] - серия (Игровые комплексы, и т.д.)
+              // parts[2] - возрастная группа или тип (3-7 лет, 5-12 лет)
+              // parts[3] - тематика (Классик, Джунгли, Замок и т.д.)
+              
+              if (parts.length >= 2) {
+                subcategory = 'Серия "Classic"'; // Всё в Classic серию
+              }
+              
+              if (parts.length === 2) {
+                // Простой случай: Категория > Подкатегория
+                subsubcategory = parts[1];
+              } else if (parts.length >= 3) {
+                // Сложный случай: Категория > Подкатегория > Подподкатегория > ...
+                // Объединяем всё после первой части
+                subsubcategory = parts.slice(1).join(' > ');
+              }
+            } else {
+              // Старая логика для обратной совместимости
+              if (p.name.includes('Сиденье') || p.name.includes('Качели')) {
+                subcategory = 'Серия "Classic"';
+                subsubcategory = 'Качели';
+              } else if (p.name.includes('Карусель')) {
+                subcategory = 'Серия "Classic"';
+                subsubcategory = 'Карусели';
+              } else if (p.name.includes('Балансир')) {
+                subcategory = 'Серия "Classic"';
+                subsubcategory = 'Балансиры';
+              } else if (p.name.includes('Горка')) {
+                subcategory = 'Серия "Classic"';
+                subsubcategory = 'Горки';
+              } else if (p.name.includes('Игровой комплекс')) {
+                subcategory = 'Серия "Classic"';
+                subsubcategory = 'Игровые комплексы';
+              } else if (p.name.includes('Воркаут')) {
+                subcategory = 'Серия "Classic"';
+                subsubcategory = 'Workout';
+              }
             }
             
             return {
