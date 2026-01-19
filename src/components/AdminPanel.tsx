@@ -65,7 +65,8 @@ export function AdminPanel() {
 
           if (result.success) {
             setUploadStatus('success');
-            setMessage(`Файл успешно загружен! Обработано товаров: ${result.productsCount || 0}`);
+            const imagesText = result.imagesUploaded ? `, изображений: ${result.imagesUploaded}` : '';
+            setMessage(`Файл успешно загружен! Обработано товаров: ${result.productsCount || 0}${imagesText}`);
             setFile(null);
             
             // Сбрасываем input
@@ -184,6 +185,7 @@ export function AdminPanel() {
               <li>Формат: .xls или .xlsx</li>
               <li>Структура: Артикул, Название, Категория, Цена, Габариты</li>
               <li>Первая строка должна содержать заголовки</li>
+              <li>Изображения внутри файла будут автоматически загружены</li>
               <li>Максимальный размер файла: 10 MB</li>
             </ul>
           </div>

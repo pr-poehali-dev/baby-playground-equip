@@ -2,9 +2,10 @@ import json
 import base64
 import os
 import boto3
-import xlrd
+import openpyxl
 import re
 from io import BytesIO
+import uuid
 
 def handler(event: dict, context) -> dict:
     '''Загрузка Excel-файла с каталогом и обновление базы товаров'''
@@ -59,20 +60,40 @@ def handler(event: dict, context) -> dict:
             ContentType='application/vnd.ms-excel'
         )
         
-        # Парсим Excel для подсчёта товаров
-        workbook = xlrd.open_workbook(file_contents=file_data)
+        # Парсим Excel и извлекаем изображения
+        workbook = openpyxl.load_workbook(BytesIO(file_data))
         products_count = 0
+        images_uploaded = 0
         
-        for sheet_idx in range(workbook.nsheets):
-            sheet = workbook.sheet_by_index(sheet_idx)
-            sheet_name = workbook.sheet_names()[sheet_idx]
+        for sheet in workbook.worksheets:
+            sheet_name = sheet.title
             
             if 'оглавление' in sheet_name.lower():
                 continue
             
+            # Извлекаем изображения из листа
+            if hasattr(sheet, '_images'):
+                for image in sheet._images:
+                    try:
+                        img_data = image._data()
+                        img_ext = image.format.lower()
+                        img_filename = f"catalog-images/{uuid.uuid4()}.{img_ext}"
+                        
+                        # Загружаем изображение в S3
+                        s3.put_object(
+                            Bucket='files',
+                            Key=img_filename,
+                            Body=img_data,
+                            ContentType=f'image/{img_ext}'
+                        )
+                        images_uploaded += 1
+                    except Exception as img_error:
+                        print(f'Error uploading image: {img_error}')
+            
+            # Ищем заголовки
             header_row_idx = None
-            for row_idx in range(min(10, sheet.nrows)):
-                row_values = [str(sheet.cell_value(row_idx, col)) for col in range(sheet.ncols)]
+            for row_idx, row in enumerate(sheet.iter_rows(max_row=10, values_only=True)):
+                row_values = [str(val) if val else '' for val in row]
                 if any('артикул' in val.lower() for val in row_values):
                     header_row_idx = row_idx
                     break
@@ -80,13 +101,12 @@ def handler(event: dict, context) -> dict:
             if header_row_idx is None:
                 continue
             
-            for row_idx in range(header_row_idx + 1, sheet.nrows):
-                row_values = [sheet.cell_value(row_idx, col) for col in range(sheet.ncols)]
-                
-                if not any(str(val).strip() for val in row_values):
+            # Считаем товары
+            for row in sheet.iter_rows(min_row=header_row_idx + 2, values_only=True):
+                if not any(str(val).strip() if val else '' for val in row):
                     continue
                 
-                name_and_code = str(row_values[2]).strip() if len(row_values) > 2 else ''
+                name_and_code = str(row[2]).strip() if len(row) > 2 and row[2] else ''
                 
                 if not name_and_code:
                     continue
@@ -109,8 +129,9 @@ def handler(event: dict, context) -> dict:
             'body': json.dumps({
                 'success': True,
                 'productsCount': products_count,
+                'imagesUploaded': images_uploaded,
                 'fileUrl': cdn_url,
-                'message': f'Файл загружен успешно. Найдено товаров: {products_count}'
+                'message': f'Файл загружен успешно. Найдено товаров: {products_count}, изображений: {images_uploaded}'
             }, ensure_ascii=False),
             'isBase64Encoded': False
         }
