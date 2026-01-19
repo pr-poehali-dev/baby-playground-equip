@@ -138,13 +138,13 @@ export function CategoryDialogs({
       </Dialog>
 
       <Dialog open={isSubSubSubcategoryDialogOpen} onOpenChange={setIsSubSubSubcategoryDialogOpen}>
-        <DialogContent className="sm:max-w-3xl max-h-[80vh] sm:max-h-[80vh] h-full sm:h-auto overflow-y-auto m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full">
+        <DialogContent className="sm:max-w-2xl max-h-[80vh] sm:max-h-[80vh] h-full sm:h-auto overflow-y-auto m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full">
           <DialogHeader>
             <DialogTitle className="text-2xl sm:text-4xl font-heading font-semibold text-center mb-2 sm:mb-4">
               {currentSubSubcategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-3 gap-4 px-4 pb-4">
+          <div className="grid grid-cols-2 gap-4 px-4 pb-4">
             {currentSubSubcategory?.children?.map((subSubSub) => (
               <div key={subSubSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200" onClick={() => {
                 if (subSubSub.hasChildren && subSubSub.children) {
