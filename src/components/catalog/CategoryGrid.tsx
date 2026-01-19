@@ -110,7 +110,7 @@ export function CategoryGrid({
     <div id="products" className="container mx-auto px-4 pt-2">
       <div ref={filtersRef}>
         {/* Заголовок - скрывается при скролле на мобильных */}
-        <h2 className="text-4xl font-heading font-bold mb-4 sm:block">
+        <h2 className="text-4xl font-heading mb-4 sm:block font-semibold">
           {categories.find(c => c.id === selectedCategory)?.name}
         </h2>
         
