@@ -27,17 +27,19 @@ def handler(event: dict, context) -> dict:
         conn = psycopg2.connect(dsn)
         cursor = conn.cursor()
         
+        schema = os.environ.get('MAIN_DB_SCHEMA', 'public')
+        
         if category:
-            cursor.execute("""
+            cursor.execute(f"""
                 SELECT id, article, name, category, dimensions, price, image_url, description
-                FROM products
+                FROM {schema}.products
                 WHERE category = %s
                 ORDER BY id
             """, (category,))
         else:
-            cursor.execute("""
+            cursor.execute(f"""
                 SELECT id, article, name, category, dimensions, price, image_url, description
-                FROM products
+                FROM {schema}.products
                 ORDER BY id
             """)
         
