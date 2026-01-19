@@ -139,7 +139,10 @@ def handler(event: dict, context) -> dict:
                     break
             
             if header_row_idx is None:
+                print(f'Sheet {sheet_name}: header not found')
                 continue
+            
+            print(f'Sheet {sheet_name}: found header at row {header_row_idx}, columns: {col_indices}')
             
             # Читаем товары
             for row_idx, row in enumerate(sheet.iter_rows(min_row=header_row_idx + 1, values_only=True), start=header_row_idx + 1):
@@ -178,6 +181,8 @@ def handler(event: dict, context) -> dict:
                 
                 if not article and not name:
                     continue
+                
+                print(f'Processing: article={article}, name={name[:30]}, category={full_category}, image={bool(image_url)}')
                 
                 # Ищем изображение для этой строки
                 image_url = image_map.get(row_idx, None)
