@@ -96,11 +96,11 @@ export function CategoryDialogs({
               {currentCategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className="flex overflow-x-auto gap-4 px-4 pb-4 snap-x snap-mandatory scrollbar-hide sm:grid sm:grid-cols-2 sm:overflow-x-visible sm:pb-0">
+          <div className="grid grid-cols-1 gap-4 px-4 pb-4 sm:grid-cols-2">
             {currentCategory?.subcategories.map((sub) => (
               <div
                 key={sub.name}
-                className="flex-none w-[70vw] sm:w-auto cursor-pointer transition-all hover:shadow-xl group rounded-md relative snap-start"
+                className="cursor-pointer transition-all hover:shadow-xl group rounded-md relative"
                 onClick={() => handleSubcategoryClick(sub)}
               >
                 <div className="aspect-[4/3] relative flex items-center justify-center overflow-hidden rounded-md">
