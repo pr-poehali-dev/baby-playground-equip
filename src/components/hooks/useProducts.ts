@@ -73,7 +73,18 @@ export function useProducts() {
               } else if (parts.length >= 3) {
                 // Сложный случай: Категория > Серия > Подкатегория > Подподкатегория > ...
                 // Объединяем всё после серии (начиная с parts[2])
-                subsubcategory = parts.slice(2).join(' > ');
+                let subParts = parts.slice(2);
+                
+                // Убираем промежуточный уровень "Игровой комплекс X-Y лет"
+                subParts = subParts.map(p => {
+                  if (p.includes('Игровой комплекс')) {
+                    // "Игровой комплекс 3-7 лет" → "3-7 лет"
+                    return p.replace(/Игровой комплекс\s+/, '');
+                  }
+                  return p;
+                });
+                
+                subsubcategory = subParts.join(' > ');
               }
             } else {
               // Старая логика для обратной совместимости
