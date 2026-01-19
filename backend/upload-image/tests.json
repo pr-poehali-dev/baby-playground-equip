@@ -1,0 +1,21 @@
+{
+  "tests": [
+    {
+      "name": "Upload image for existing product",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "article": "0001",
+        "filename": "test.png",
+        "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "article": "string",
+        "image_url": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

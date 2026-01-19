@@ -12,6 +12,8 @@ export function AdminPanel() {
   const [updateMode, setUpdateMode] = useState<'new' | 'update'>('update');
   const [isDownloadingTemplate, setIsDownloadingTemplate] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
+  const [isUploadingImages, setIsUploadingImages] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -170,6 +172,85 @@ export function AdminPanel() {
     }
   };
 
+  const handleImageFilesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+      const imageFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
+      setImageFiles(imageFiles);
+      setUploadStatus('idle');
+      setMessage('');
+    }
+  };
+
+  const handleUploadImages = async () => {
+    if (imageFiles.length === 0) {
+      setMessage('Выберите изображения для загрузки');
+      setUploadStatus('error');
+      return;
+    }
+
+    setIsUploadingImages(true);
+    setUploadStatus('idle');
+    setMessage('');
+
+    try {
+      let uploaded = 0;
+      let errors = 0;
+
+      for (const file of imageFiles) {
+        // Извлекаем артикул из имени файла (например: 0230.png -> 0230)
+        const article = file.name.split('.')[0];
+        
+        const reader = new FileReader();
+        await new Promise((resolve, reject) => {
+          reader.onload = async () => {
+            try {
+              const base64 = reader.result as string;
+              const base64Data = base64.split(',')[1];
+
+              const response = await fetch('https://functions.poehali.dev/cffc3d7a-5348-4b4d-899c-7d41c585573d', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  article: article,
+                  filename: file.name,
+                  content: base64Data,
+                }),
+              });
+
+              const result = await response.json();
+              if (result.success) {
+                uploaded++;
+              } else {
+                errors++;
+              }
+              resolve(result);
+            } catch (error) {
+              errors++;
+              reject(error);
+            }
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      setUploadStatus('success');
+      setMessage(`Загружено изображений: ${uploaded}${errors > 0 ? `, ошибок: ${errors}` : ''}`);
+      setImageFiles([]);
+      const fileInput = document.getElementById('image-files-input') as HTMLInputElement;
+      if (fileInput) fileInput.value = '';
+    } catch (error) {
+      console.error('Upload images error:', error);
+      setUploadStatus('error');
+      setMessage(error instanceof Error ? error.message : 'Ошибка при загрузке изображений');
+    } finally {
+      setIsUploadingImages(false);
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <Card className="max-w-2xl mx-auto">
@@ -291,6 +372,57 @@ export function AdminPanel() {
                 <>
                   <Icon name="Trash2" size={16} className="mr-2" />
                   Очистить дубли 0230-0265
+                </>
+              )}
+            </Button>
+          </div>
+
+          <div className="border-t pt-6 space-y-4">
+            <div>
+              <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
+                <Icon name="Image" size={20} className="text-primary" />
+                Загрузка изображений
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Загрузите изображения товаров. Имена файлов должны совпадать с артикулами (например: 0230.png, 0231.jpg)
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="image-files-input" className="text-sm font-medium">
+                Выберите изображения
+              </label>
+              <Input
+                id="image-files-input"
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={handleImageFilesChange}
+                disabled={isUploadingImages}
+                className="cursor-pointer"
+              />
+              {imageFiles.length > 0 && (
+                <p className="text-sm text-muted-foreground flex items-center gap-2">
+                  <Icon name="Image" size={16} />
+                  Выбрано файлов: {imageFiles.length}
+                </p>
+              )}
+            </div>
+
+            <Button
+              onClick={handleUploadImages}
+              disabled={isUploadingImages || imageFiles.length === 0}
+              className="w-full"
+            >
+              {isUploadingImages ? (
+                <>
+                  <Icon name="Loader2" size={16} className="mr-2 animate-spin" />
+                  Загрузка изображений...
+                </>
+              ) : (
+                <>
+                  <Icon name="Image" size={16} className="mr-2" />
+                  Загрузить изображения
                 </>
               )}
             </Button>
