@@ -35,7 +35,7 @@ export function ContentSections() {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="aspect-square bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg flex items-center justify-center text-7xl"></div>
+              <div className="aspect-square bg-cover bg-center rounded-lg" style={{ backgroundImage: 'url(https://cdn.poehali.dev/files/0123.jpg)' }}></div>
               <div className="aspect-square bg-gradient-to-br from-secondary/20 to-secondary/5 rounded-lg flex items-center justify-center text-7xl"></div>
               <div className="aspect-square bg-gradient-to-br from-accent/20 to-accent/5 rounded-lg flex items-center justify-center text-7xl"></div>
               <div className="aspect-square bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg flex items-center justify-center text-7xl"></div>
