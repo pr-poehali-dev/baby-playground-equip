@@ -56,23 +56,35 @@ export function useCatalogFilters({
     
     if (selectedSubSubcategory) {
       const parts = selectedSubSubcategory.split(' > ');
+      console.log('Filtering by selectedSubSubcategory:', selectedSubSubcategory, 'parts:', parts);
+      
       filtered = filtered.filter(p => {
         if (!p.subsubcategory) return false;
         
         // Если выбрано просто "Комплексы 3-7 лет" (все серии)
         if (parts.length === 1) {
-          return p.subsubcategory.includes(parts[0]);
+          const match = p.subsubcategory.includes(parts[0]);
+          if (match) {
+            console.log('Match (all series):', p.name, 'subsubcategory:', p.subsubcategory);
+          }
+          return match;
         }
         
         // Если выбрано "Комплексы 3-7 лет > Классик" (конкретная серия)
         if (parts.length === 2) {
-          return p.subsubcategory.includes(parts[0]) && p.subsubcategory.includes(parts[1]);
+          const match = p.subsubcategory.includes(parts[0]) && p.subsubcategory.includes(parts[1]);
+          if (match) {
+            console.log('Match (specific series):', p.name, 'subsubcategory:', p.subsubcategory);
+          }
+          return match;
         }
         
         // Для других категорий (не игровые комплексы)
         return p.subsubcategory === selectedSubSubcategory || 
                p.subsubcategory.includes(selectedSubSubcategory);
       });
+      
+      console.log('Filtered products count:', filtered.length);
     }
     
     if (selectedSeries) {
