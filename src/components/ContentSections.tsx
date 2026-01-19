@@ -37,26 +37,26 @@ export function ContentSections() {
             <div className="grid grid-cols-2 gap-4">
               <Card className="aspect-square flex items-center justify-center bg-gradient-to-br from-primary/10 to-primary/5">
                 <CardContent className="text-center p-6">
-                  <div className="text-5xl font-bold text-primary mb-2">5+</div>
-                  <div className="text-sm text-muted-foreground">лет на рынке</div>
+                  <div className="text-5xl font-bold text-primary mb-2"></div>
+                  <div className="text-sm text-muted-foreground"></div>
                 </CardContent>
               </Card>
               <Card className="aspect-square flex items-center justify-center bg-gradient-to-br from-secondary/10 to-secondary/5">
                 <CardContent className="text-center p-6">
-                  <div className="text-5xl font-bold text-secondary mb-2">500+</div>
-                  <div className="text-sm text-muted-foreground">площадок</div>
+                  <div className="text-5xl font-bold text-secondary mb-2"></div>
+                  <div className="text-sm text-muted-foreground"></div>
                 </CardContent>
               </Card>
               <Card className="aspect-square flex items-center justify-center bg-gradient-to-br from-[#0284c7]/10 to-[#0284c7]/5">
                 <CardContent className="text-center p-6">
-                  <div className="text-5xl font-bold text-[#0284c7] mb-2">700+</div>
-                  <div className="text-sm text-muted-foreground">товаров</div>
+                  <div className="text-5xl font-bold text-[#0284c7] mb-2"></div>
+                  <div className="text-sm text-muted-foreground"></div>
                 </CardContent>
               </Card>
               <Card className="aspect-square flex items-center justify-center bg-gradient-to-br from-accent/10 to-accent/5">
                 <CardContent className="text-center p-6">
-                  <div className="text-5xl font-bold text-accent mb-2">100%</div>
-                  <div className="text-sm text-muted-foreground">качество</div>
+                  <div className="text-5xl font-bold text-accent mb-2"></div>
+                  <div className="text-sm text-muted-foreground"></div>
                 </CardContent>
               </Card>
             </div>
