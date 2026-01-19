@@ -100,10 +100,11 @@ export function CategoryGrid({
   // Значение для первого селекта
   let firstSelectValue = 'all';
   if (selectedSubSubLevel1 && selectedSubSubLevel2) {
-    // Если есть оба уровня, формируем значение как "Игровые комплексы > 3-7 лет"
+    // Если есть оба уровня (например "Игровые комплексы > 3-7 лет"), 
+    // формируем значение для первого селекта
     firstSelectValue = `${selectedSubSubLevel1} > ${selectedSubSubLevel2}`;
-  } else if (selectedSubSubLevel1) {
-    // Если только первый уровень
+  } else if (selectedSubSubLevel1 && !selectedSubSubLevel2) {
+    // Если только первый уровень (обычная категория без вложенности)
     firstSelectValue = selectedSubSubLevel1;
   }
   
