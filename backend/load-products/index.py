@@ -22,12 +22,11 @@ def upload_images_handler(body: dict) -> dict:
     dsn = os.environ.get('DATABASE_URL')
     conn = psycopg2.connect(dsn)
     cursor = conn.cursor()
+    schema = os.environ.get('MAIN_DB_SCHEMA', 'public')
     
     # Находим товар по артикулу
-    cursor.execute(
-        "SELECT id, name FROM t_p92226548_baby_playground_equi.products WHERE article = %s LIMIT 1",
-        (article,)
-    )
+    safe_article = article.replace("'", "''")
+    cursor.execute(f"SELECT id, name FROM {schema}.products WHERE article = '{safe_article}' LIMIT 1")
     result = cursor.fetchone()
     
     if not result:
@@ -46,10 +45,10 @@ def upload_images_handler(body: dict) -> dict:
     product_id = result[0]
     
     # Создаем таблицу для изображений если не существует
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS t_p92226548_baby_playground_equi.product_images (
+    cursor.execute(f"""
+        CREATE TABLE IF NOT EXISTS {schema}.product_images (
             id SERIAL PRIMARY KEY,
-            product_id INTEGER NOT NULL REFERENCES t_p92226548_baby_playground_equi.products(id) ON DELETE CASCADE,
+            product_id INTEGER NOT NULL REFERENCES {schema}.products(id) ON DELETE CASCADE,
             image_url TEXT NOT NULL,
             sort_order INTEGER DEFAULT 0,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -57,17 +56,12 @@ def upload_images_handler(body: dict) -> dict:
     """)
     
     # Удаляем старые изображения для этого товара
-    cursor.execute(
-        "DELETE FROM t_p92226548_baby_playground_equi.product_images WHERE product_id = %s",
-        (product_id,)
-    )
+    cursor.execute(f"DELETE FROM {schema}.product_images WHERE product_id = {product_id}")
     
     # Добавляем новые изображения
     for idx, img_url in enumerate(images):
-        cursor.execute(
-            "INSERT INTO t_p92226548_baby_playground_equi.product_images (product_id, image_url, sort_order) VALUES (%s, %s, %s)",
-            (product_id, img_url, idx)
-        )
+        safe_url = img_url.replace("'", "''")
+        cursor.execute(f"INSERT INTO {schema}.product_images (product_id, image_url, sort_order) VALUES ({product_id}, '{safe_url}', {idx})")
     
     conn.commit()
     cursor.close()
@@ -146,17 +140,18 @@ def handler(event: dict, context) -> dict:
         
         # Очищаем таблицу только если явно указано
         if body.get('clear_existing', False):
-            cursor.execute("DELETE FROM products")
+            cursor.execute(f"DELETE FROM {schema}.products")
         
         # Вставляем товары
         inserted = 0
+        schema = os.environ.get('MAIN_DB_SCHEMA', 'public')
+        
         for product in products:
-            article = product.get('article', '')
-            name = product.get('name', '')
-            category = product.get('category', '')
-            dimensions = product.get('dimensions', '')
-            weight = product.get('weight', '')
-            volume = product.get('volume', '')
+            article = product.get('article', '').replace("'", "''")
+            name = product.get('name', '').replace("'", "''")
+            category = product.get('category', '').replace("'", "''")
+            dimensions = product.get('dimensions', '').replace("'", "''")
+            image_url = product.get('image', '').replace("'", "''")
             price_str = product.get('price', '')
             
             # Пропускаем если нет имени
@@ -164,18 +159,18 @@ def handler(event: dict, context) -> dict:
                 continue
             
             # Конвертируем цену в число
-            price = None
+            price = 0
             if price_str:
                 try:
                     price = int(float(price_str))
                 except:
                     pass
             
-            # Вставляем товар
-            cursor.execute("""
-                INSERT INTO products (article, name, category, dimensions, price)
-                VALUES (%s, %s, %s, %s, %s)
-            """, (article, name, category, dimensions, price))
+            # Вставляем товар с image_url
+            cursor.execute(f"""
+                INSERT INTO {schema}.products (article, name, category, dimensions, price, image_url)
+                VALUES ('{article}', '{name}', '{category}', '{dimensions}', {price}, '{image_url}')
+            """)
             inserted += 1
         
         # Сохраняем изменения
