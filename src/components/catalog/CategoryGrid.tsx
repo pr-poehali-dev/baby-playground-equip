@@ -157,15 +157,7 @@ export function CategoryGrid({
             {availableSubSubcategories.length > 0 && (
               <Select
                 value={firstSelectValue}
-                onValueChange={(value) => {
-                  setSelectedSubSubcategory(value === 'all' ? null : value);
-                  setTimeout(() => {
-                    const productsSection = document.getElementById('products');
-                    if (productsSection) {
-                      productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                  }, 100);
-                }}
+                onValueChange={(value) => setSelectedSubSubcategory(value === 'all' ? null : value)}
               >
                 <SelectTrigger className={`w-[35%] sm:w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedSubSubLevel1 ? 'text-[#1d2025]' : ''}`}>
                   <SelectValue placeholder="Категории" />
