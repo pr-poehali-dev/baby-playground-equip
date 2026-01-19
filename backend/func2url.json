@@ -1,4 +1,5 @@
 {
+  "delete-products": "https://functions.poehali.dev/86a5f270-0e5f-4fc8-8762-1839512f352a",
   "download-template": "https://functions.poehali.dev/917765db-45ab-4e16-aab0-381a5f51201c",
   "send-order-email": "https://functions.poehali.dev/b4ac51ba-4335-450b-8400-234c423fa7b0",
   "generate-excel": "https://functions.poehali.dev/308ef9b0-c437-4586-bfd1-e39fefb50f4d",

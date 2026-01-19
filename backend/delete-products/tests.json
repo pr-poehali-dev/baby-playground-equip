@@ -1,0 +1,17 @@
+{
+  "tests": [
+    {
+      "name": "Delete products by articles",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "articles": ["TEST-001"]
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

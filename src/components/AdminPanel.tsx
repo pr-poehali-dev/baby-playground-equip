@@ -11,6 +11,7 @@ export function AdminPanel() {
   const [message, setMessage] = useState('');
   const [updateMode, setUpdateMode] = useState<'new' | 'update'>('new');
   const [isDownloadingTemplate, setIsDownloadingTemplate] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -135,6 +136,39 @@ export function AdminPanel() {
     }
   };
 
+  const handleDeleteProducts = async () => {
+    setIsDeleting(true);
+    setUploadStatus('idle');
+    setMessage('');
+
+    try {
+      const response = await fetch('https://functions.poehali.dev/86a5f270-0e5f-4fc8-8762-1839512f352a', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          articles: ['0126', 'ИК-020']
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setUploadStatus('success');
+        setMessage(`Удалено товаров: ${result.deleted}`);
+      } else {
+        throw new Error(result.error || 'Ошибка удаления');
+      }
+    } catch (error) {
+      console.error('Delete error:', error);
+      setUploadStatus('error');
+      setMessage(error instanceof Error ? error.message : 'Ошибка при удалении товаров');
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <Card className="max-w-2xl mx-auto">
@@ -198,42 +232,64 @@ export function AdminPanel() {
             )}
           </div>
 
-          <div className="flex gap-3">
-            <Button
-              onClick={handleDownloadTemplate}
-              disabled={isDownloadingTemplate}
-              variant="outline"
-              size="lg"
-              className="flex-1"
-            >
-              {isDownloadingTemplate ? (
-                <>
-                  <Icon name="Loader2" size={20} className="mr-2 animate-spin" />
-                  Скачивание...
-                </>
-              ) : (
-                <>
-                  <Icon name="Download" size={20} className="mr-2" />
-                  Скачать шаблон
-                </>
-              )}
-            </Button>
+          <div className="space-y-3">
+            <div className="flex gap-3">
+              <Button
+                onClick={handleDownloadTemplate}
+                disabled={isDownloadingTemplate}
+                variant="outline"
+                size="lg"
+                className="flex-1"
+              >
+                {isDownloadingTemplate ? (
+                  <>
+                    <Icon name="Loader2" size={20} className="mr-2 animate-spin" />
+                    Скачивание...
+                  </>
+                ) : (
+                  <>
+                    <Icon name="Download" size={20} className="mr-2" />
+                    Скачать шаблон
+                  </>
+                )}
+              </Button>
+
+              <Button
+                onClick={handleUpload}
+                disabled={!file || isUploading}
+                className="flex-1"
+                size="lg"
+              >
+                {isUploading ? (
+                  <>
+                    <Icon name="Loader2" size={20} className="mr-2 animate-spin" />
+                    Загрузка...
+                  </>
+                ) : (
+                  <>
+                    <Icon name="Upload" size={20} className="mr-2" />
+                    Загрузить каталог
+                  </>
+                )}
+              </Button>
+            </div>
 
             <Button
-              onClick={handleUpload}
-              disabled={!file || isUploading}
-              className="flex-1"
+              onClick={handleDeleteProducts}
+              disabled={isDeleting}
+              variant="destructive"
               size="lg"
+              className="w-full"
             >
-              {isUploading ? (
+              {isDeleting ? (
                 <>
                   <Icon name="Loader2" size={20} className="mr-2 animate-spin" />
-                  Загрузка...
+                  Удаление...
                 </>
               ) : (
                 <>
-                  <Icon name="Upload" size={20} className="mr-2" />
-                  Загрузить каталог
+                  <Icon name="Trash2" size={20} className="mr-2" />
+                  Удалить качели (0126) и Спорт (ИК-020)
                 </>
               )}
             </Button>
