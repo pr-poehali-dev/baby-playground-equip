@@ -141,7 +141,7 @@ export function CategoryDialogs({
                   )}
                 </div>
                 <div className="absolute bottom-2 left-0 right-0 py-1 px-2 sm:px-4">
-                  <h4 className="font-semibold text-center text-sm sm:text-sm break-words leading-tight text-[#1d2025]">{subSub.name}</h4>
+                  <h4 className="font-semibold text-center sm:text-sm break-words leading-tight text-[#1d2025] text-sm">{subSub.name}</h4>
                 </div>
               </div>
             ))}
