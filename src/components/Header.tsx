@@ -180,7 +180,7 @@ export function Header({
               />
             </a>
           </div>
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-6 flex-1 justify-between ml-6">
             <nav className="flex gap-6">
               <a href="#about" className="text-foreground hover:text-primary transition-colors text-base font-medium">О компании</a>
               <a href="#catalog" className="text-foreground hover:text-primary transition-colors text-base font-medium">Каталог</a>
