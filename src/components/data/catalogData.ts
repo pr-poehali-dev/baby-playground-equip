@@ -43,33 +43,26 @@ export const categories = [
         image: 'https://cdn.poehali.dev/files/%D0%B8%D0%B3%D1%80%D0%B0%20ciassic.png',
         hasChildren: true,
         children: [
-          { 
-            name: 'Игровые комплексы', 
+          {
+            name: 'Комплексы 3-7 лет',
             image: 'https://cdn.poehali.dev/files/ененпре.png',
             hasChildren: true,
             children: [
-              {
-                name: '3-7 лет',
-                image: '👶',
-                hasChildren: true,
-                children: [
-                  { name: 'Классик', image: '🏰' },
-                  { name: 'Джунгли', image: '🌴' },
-                  { name: 'Замок', image: '🏯' }
-                ]
-              },
-              {
-                name: '5-12 лет',
-                image: '👦',
-                hasChildren: true,
-                children: [
-                  { name: 'Классик', image: '🏰' },
-                  { name: 'Замок', image: '🏯' },
-                  { name: 'Джунгли', image: '🌴' },
-                  { name: 'Морская', image: '🌊' },
-                  { name: 'Лабиринт', image: '🌀' }
-                ]
-              }
+              { name: 'Классик', image: '🏰' },
+              { name: 'Джунгли', image: '🌴' },
+              { name: 'Замок', image: '🏯' }
+            ]
+          },
+          {
+            name: 'Комплексы 5-12 лет',
+            image: 'https://cdn.poehali.dev/files/ененпре.png',
+            hasChildren: true,
+            children: [
+              { name: 'Классик', image: '🏰' },
+              { name: 'Замок', image: '🏯' },
+              { name: 'Джунгли', image: '🌴' },
+              { name: 'Морская', image: '🌊' },
+              { name: 'Лабиринт', image: '🌀' }
             ]
           },
           { name: 'Балансиры', image: 'https://cdn.poehali.dev/files/мишкаа.png' },

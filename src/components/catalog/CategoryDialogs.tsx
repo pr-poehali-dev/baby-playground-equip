@@ -152,15 +152,11 @@ export function CategoryDialogs({
               {currentSubSubcategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-2 gap-4 px-4 pb-4">
+          <div className="grid grid-cols-3 gap-4 px-4 pb-4">
             {currentSubSubcategory?.children?.map((subSubSub) => (
               <div key={subSubSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200" onClick={() => {
-                if (subSubSub.hasChildren && subSubSub.children) {
-                  setCurrentSubSubSubcategory(subSubSub as any);
-                  setIsFinalCategoryDialogOpen(true);
-                } else {
-                  handleSubSubSubcategoryClick(subSubSub.name);
-                }
+                handleSubSubSubcategoryClick(subSubSub.name);
+                setIsSubSubSubcategoryDialogOpen(false);
               }}>
                 <div className="aspect-square overflow-hidden flex items-center justify-center p-4">
                   {subSubSub.image.startsWith('http') ? (
@@ -171,35 +167,6 @@ export function CategoryDialogs({
                 </div>
                 <div className="absolute bottom-2 left-0 right-0 py-1 px-2 sm:px-4">
                   <h4 className="font-semibold text-center text-xs sm:text-sm break-words leading-tight text-[#1d2025]">{subSubSub.name}</h4>
-                </div>
-              </div>
-            ))}
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      <Dialog open={isFinalCategoryDialogOpen} onOpenChange={setIsFinalCategoryDialogOpen}>
-        <DialogContent className="sm:max-w-3xl max-h-[80vh] sm:max-h-[80vh] h-full sm:h-auto overflow-y-auto m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full">
-          <DialogHeader>
-            <DialogTitle className="text-2xl sm:text-4xl font-heading font-semibold text-center mb-2 sm:mb-4">
-              {currentSubSubSubcategory?.name}
-            </DialogTitle>
-          </DialogHeader>
-          <div className="grid grid-cols-3 gap-4 px-4 pb-4">
-            {currentSubSubSubcategory?.children?.map((finalItem) => (
-              <div key={finalItem.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200" onClick={() => {
-                handleSubSubSubcategoryClick(finalItem.name);
-                setIsFinalCategoryDialogOpen(false);
-              }}>
-                <div className="aspect-square overflow-hidden flex items-center justify-center p-4">
-                  {finalItem.image.startsWith('http') ? (
-                    <img src={finalItem.image} alt={finalItem.name} className="w-full h-full object-contain" />
-                  ) : (
-                    <span className="text-7xl">{finalItem.image}</span>
-                  )}
-                </div>
-                <div className="absolute bottom-2 left-0 right-0 py-1 px-2 sm:px-4">
-                  <h4 className="font-semibold text-center text-xs sm:text-sm break-words leading-tight text-[#1d2025]">{finalItem.name}</h4>
                 </div>
               </div>
             ))}

@@ -202,39 +202,14 @@ export function useCatalogHandlers(props: CatalogHandlersProps) {
   };
 
   const handleSubSubSubcategorySelect = (subSubSubName: string) => {
-    console.log('handleSubSubSubcategorySelect called:', {
-      subSubSubName,
-      currentCategory: currentCategory?.name,
-      currentSubcategory: currentSubcategory?.name,
-      currentSubSubcategory: currentSubSubcategory?.name
-    });
-    
     if (currentCategory && currentSubSubcategory) {
       setSelectedCategory(currentCategory.id);
       setSelectedSubcategory(currentSubcategory?.name || null);
       
-      // Найти родителя currentSubSubcategory (например "Игровые комплексы")
-      let parentSubSub = null;
-      currentSubcategory?.children?.forEach(subSub => {
-        if (subSub.children?.some(child => child.name === currentSubSubcategory.name)) {
-          parentSubSub = subSub;
-        }
-      });
+      // Теперь путь простой: "Комплексы 3-7 лет > Классик"
+      const finalPath = `${currentSubSubcategory.name} > ${subSubSubName}`;
       
-      console.log('Parent found:', parentSubSub?.name);
-      
-      let finalPath = '';
-      if (parentSubSub) {
-        // Полный путь: "Игровые комплексы > 3-7 лет > Классик"
-        finalPath = `${parentSubSub.name} > ${currentSubSubcategory.name} > ${subSubSubName}`;
-      } else {
-        // Если родитель не найден, используем старую логику
-        finalPath = `${currentSubSubcategory.name} > ${subSubSubName}`;
-      }
-      
-      console.log('Setting selectedSubSubcategory to:', finalPath);
       setSelectedSubSubcategory(finalPath);
-      
       setSelectedSeries(currentSubcategory?.name || null);
       setIsSubSubSubcategoryDialogOpen(false);
       setTimeout(() => {

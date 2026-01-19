@@ -85,37 +85,18 @@ export function CategoryGrid({
   const selectedSubSubParts = selectedSubSubcategory?.split(' > ') || [];
   const selectedSubSubLevel1 = selectedSubSubParts[0] || null;
   const selectedSubSubLevel2 = selectedSubSubParts[1] || null;
-  const selectedSubSubLevel3 = selectedSubSubParts[2] || null;
   
-  // Найти родительскую категорию (например "Игровые комплексы")
+  // Найти текущую категорию
   const currentSubSub = availableSubSubcategories.find(s => s.name === selectedSubSubLevel1);
   let availableSubSubSubcategories: any[] = [];
   
-  // Если выбран вложенный элемент (например "Игровые комплексы > 3-7 лет")
-  if (selectedSubSubLevel2 && currentSubSub?.children) {
-    const ageCategory = currentSubSub.children.find(c => c.name === selectedSubSubLevel2);
-    availableSubSubSubcategories = ageCategory?.children || [];
+  // Если у выбранной категории есть дети (темы)
+  if (selectedSubSubLevel1 && currentSubSub?.children) {
+    availableSubSubSubcategories = currentSubSub.children;
   }
   
   // Значение для первого селекта
-  let firstSelectValue = 'all';
-  if (selectedSubSubLevel1 && selectedSubSubLevel2) {
-    // Если есть оба уровня (например "Игровые комплексы > 3-7 лет"), 
-    // формируем значение для первого селекта
-    firstSelectValue = `${selectedSubSubLevel1} > ${selectedSubSubLevel2}`;
-  } else if (selectedSubSubLevel1 && !selectedSubSubLevel2) {
-    // Если только первый уровень (обычная категория без вложенности)
-    firstSelectValue = selectedSubSubLevel1;
-  }
-  
-  console.log('CategoryGrid state:', {
-    selectedSubSubcategory,
-    selectedSubSubLevel1,
-    selectedSubSubLevel2,
-    selectedSubSubLevel3,
-    firstSelectValue,
-    availableSubSubSubcategories: availableSubSubSubcategories.length
-  });
+  const firstSelectValue = selectedSubSubLevel1 || 'all';
 
   const handleReset = () => {
     if (searchQuery) {
@@ -162,39 +143,30 @@ export function CategoryGrid({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">Все категории</SelectItem>
-                  {availableSubSubcategories.map((subSub) => {
-                    if (subSub.hasChildren && subSub.children && subSub.name === 'Игровые комплексы') {
-                      return subSub.children.map((child) => (
-                        <SelectItem key={`${subSub.name}-${child.name}`} value={`${subSub.name} > ${child.name}`}>
-                          Комплексы {child.name}
-                        </SelectItem>
-                      ));
-                    }
-                    return (
-                      <SelectItem key={subSub.name} value={subSub.name}>
-                        {subSub.name}
-                      </SelectItem>
-                    );
-                  })}
+                  {availableSubSubcategories.map((subSub) => (
+                    <SelectItem key={subSub.name} value={subSub.name}>
+                      {subSub.name}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             )}
-            {availableSubSubSubcategories.length > 0 && selectedSubSubLevel2 && (
+            {availableSubSubSubcategories.length > 0 && selectedSubSubLevel1 && (
               <Select
-                value={selectedSubSubLevel3 || 'all-sub'}
+                value={selectedSubSubLevel2 || 'all-themes'}
                 onValueChange={(value) => {
-                  if (value === 'all-sub') {
-                    setSelectedSubSubcategory(`${selectedSubSubLevel1} > ${selectedSubSubLevel2}`);
+                  if (value === 'all-themes') {
+                    setSelectedSubSubcategory(selectedSubSubLevel1);
                   } else {
-                    setSelectedSubSubcategory(`${selectedSubSubLevel1} > ${selectedSubSubLevel2} > ${value}`);
+                    setSelectedSubSubcategory(`${selectedSubSubLevel1} > ${value}`);
                   }
                 }}
               >
-                <SelectTrigger className={`w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedSubSubLevel3 ? 'text-[#1d2025]' : ''}`}>
-                  <SelectValue placeholder="Все подкатегории" />
+                <SelectTrigger className={`w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedSubSubLevel2 ? 'text-[#1d2025]' : ''}`}>
+                  <SelectValue placeholder="Все темы" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all-sub">Все подкатегории</SelectItem>
+                  <SelectItem value="all-themes">Все темы</SelectItem>
                   {availableSubSubSubcategories.map((subSubSub) => (
                     <SelectItem key={subSubSub.name} value={subSubSub.name}>
                       {subSubSub.name}
