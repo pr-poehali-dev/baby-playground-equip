@@ -90,13 +90,13 @@ export function CategoryDialogs({
   return (
     <>
       <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
-        <DialogContent className="sm:max-w-2xl max-h-[70vh] sm:max-h-[80vh] h-auto sm:h-auto overflow-y-auto m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full">
+        <DialogContent className="sm:max-w-2xl max-h-[80vh] sm:max-h-[80vh] h-full sm:h-auto overflow-y-auto m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full">
           <DialogHeader>
-            <DialogTitle className="text-xl sm:text-4xl font-heading font-semibold text-center mb-2 sm:mb-4">
+            <DialogTitle className="text-2xl sm:text-4xl font-heading font-semibold text-center mb-2 sm:mb-4">
               {currentCategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-2 gap-3 px-3 pb-3 sm:gap-4 sm:px-4 sm:pb-4">
+          <div className="grid grid-cols-2 gap-4 px-4 pb-4 sm:pb-0">
             {currentCategory?.subcategories.map((sub) => (
               <div
                 key={sub.name}
