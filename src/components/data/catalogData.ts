@@ -47,6 +47,16 @@ export const categories = [
             hasChildren: true,
             children: [
               {
+                name: 'ИК 3-7 лет',
+                image: '👶',
+                hasChildren: true,
+                children: [
+                  { name: 'Классик', image: '🏰' },
+                  { name: 'Джунгли', image: '🌴' },
+                  { name: 'Замок', image: '🏯' }
+                ]
+              },
+              {
                 name: '3-7 лет',
                 image: '👶',
                 hasChildren: true,
