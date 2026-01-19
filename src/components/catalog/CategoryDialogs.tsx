@@ -130,18 +130,18 @@ export function CategoryDialogs({
               {currentSubcategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-4 pb-4 sm:gap-4 sm:px-4 sm:pb-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 px-5 pb-5 sm:gap-4 sm:px-4 sm:pb-4">
             {currentSubcategory?.children?.map((subSub) => (
               <div key={subSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200" onClick={() => handleSubSubcategoryClick(subSub)}>
-                <div className="aspect-square overflow-hidden flex items-center justify-center p-5 sm:p-4">
+                <div className="aspect-square overflow-hidden flex items-center justify-center p-6 sm:p-4">
                   {subSub.image.startsWith('http') ? (
                     <img src={subSub.image} alt={subSub.name} className="w-full h-full object-contain" />
                   ) : (
-                    <span className="text-8xl sm:text-7xl">{subSub.image}</span>
+                    <span className="text-9xl sm:text-7xl">{subSub.image}</span>
                   )}
                 </div>
                 <div className="absolute bottom-2 left-0 right-0 py-1 px-2 sm:px-4">
-                  <h4 className="font-semibold text-center text-sm sm:text-sm break-words leading-tight text-[#1d2025]">{subSub.name}</h4>
+                  <h4 className="font-semibold text-center text-base sm:text-sm break-words leading-tight text-[#1d2025]">{subSub.name}</h4>
                 </div>
               </div>
             ))}
