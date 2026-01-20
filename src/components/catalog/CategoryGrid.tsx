@@ -79,6 +79,7 @@ export function CategoryGrid({
   if (!selectedCategory) return null;
 
   const currentCategory = categories.find(c => c.id === selectedCategory);
+  const availableSeries = currentCategory?.subcategories || [];
   const currentSubcategory = currentCategory?.subcategories.find(s => s.name === selectedSeries);
   const availableSubSubcategories = currentSubcategory?.children || [];
   
@@ -138,22 +139,26 @@ export function CategoryGrid({
           </div>
           
           <div className="flex items-center gap-1 sm:gap-2 mb-4 py-0">
-            <Select
-              value={selectedSeries || 'all-series'}
-              onValueChange={(value) => {
-                setSelectedSeries(value === 'all-series' ? null : value);
-                setSelectedSubSubcategory(null);
-              }}
-            >
-              <SelectTrigger className={`w-[30%] sm:w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedSeries ? 'text-[#1d2025]' : ''}`}>
-                <SelectValue placeholder="Серии" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all-series">Все серии</SelectItem>
-                <SelectItem value='Серия "Classic"'>Classic</SelectItem>
-                <SelectItem value='Серия "Eco"'>Eco</SelectItem>
-              </SelectContent>
-            </Select>
+            {availableSeries.length > 0 && (
+              <Select
+                value={selectedSeries || 'all-series'}
+                onValueChange={(value) => {
+                  setSelectedSeries(value === 'all-series' ? null : value);
+                }}
+              >
+                <SelectTrigger className={`w-[30%] sm:w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedSeries ? 'text-[#1d2025]' : ''}`}>
+                  <SelectValue placeholder="Серии" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all-series">Все серии</SelectItem>
+                  {availableSeries.map((series) => (
+                    <SelectItem key={series.name} value={series.name}>
+                      {series.name.replace('Серия "', '').replace('"', '')}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
             {availableSubSubcategories.length > 0 && (
               <Select
                 value={firstSelectValue}
