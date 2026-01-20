@@ -189,18 +189,7 @@ export function CatalogSection({
     }
   }, [selectedCategory]);
 
-  useEffect(() => {
-    if (selectedSubSubcategory && productsRef.current) {
-      setTimeout(() => {
-        const element = productsRef.current;
-        if (element) {
-          const yOffset = -300;
-          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
-      }, 100);
-    }
-  }, [selectedSubSubcategory]);
+
 
   const handleProductClick = async (product: Product) => {
     setSelectedProduct(product);
