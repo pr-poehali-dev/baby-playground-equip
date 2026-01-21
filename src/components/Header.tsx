@@ -39,7 +39,7 @@ interface HeaderProps {
   setInstallationPercent: (percent: number) => void;
   calculateInstallationCost: () => number;
   calculateGrandTotal: () => number;
-  generateKP: (options?: { address?: string; installationPercent?: number; deliveryCost?: number; hideInstallation?: boolean; hideDelivery?: boolean; format?: 'xlsx' | 'pdf' }) => void;
+  generateKP: (options?: { address?: string; installationPercent?: number; deliveryCost?: number; hideInstallation?: boolean; hideDelivery?: boolean; format?: 'xlsx' | 'pdf'; sortedCart?: CartItem[] }) => void;
   isExcelSettingsOpen: boolean;
   setIsExcelSettingsOpen: (open: boolean) => void;
   imageColumnWidth: number;
@@ -720,7 +720,8 @@ export function Header({
                   deliveryCost: kpDeliveryCost,
                   hideInstallation: hideInstallationInKP,
                   hideDelivery: hideDeliveryInKP,
-                  format: kpFormat
+                  format: kpFormat,
+                  sortedCart: sortedCart
                 });
                 setShowKPDialog(false);
               }}

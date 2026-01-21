@@ -129,14 +129,18 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     deliveryCost?: number; 
     hideInstallation?: boolean; 
     hideDelivery?: boolean;
-    format?: 'xlsx' | 'pdf'
+    format?: 'xlsx' | 'pdf';
+    sortedCart?: CartItem[]
   }) => {
     try {
       const finalInstallationPercent = options?.installationPercent ?? installationPercent;
       const finalDeliveryCost = options?.deliveryCost ?? deliveryCost;
       const finalInstallationCost = Math.round(calculateTotal() * (finalInstallationPercent / 100));
 
-      const cartProducts = cart.map(item => {
+      // Используем sortedCart если передан, иначе обычный cart
+      const itemsToExport = options?.sortedCart || cart;
+      
+      const cartProducts = itemsToExport.map(item => {
         const product = products.find(p => p.id === item.id);
         return {
           article: product?.article || '',
