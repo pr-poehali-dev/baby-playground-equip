@@ -43,6 +43,8 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
             font_loaded = True
             break
     
+    # Настройка шрифтов
+    font_name = 'DejaVu'
     if font_loaded:
         # Скачиваем Bold версию
         download_font('https://github.com/dejavu-fonts/dejavu-fonts/raw/refs/heads/master/ttf/DejaVuSans-Bold.ttf', font_bold)
@@ -52,6 +54,11 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
             pdf.add_font('DejaVu', '', font_regular)
         if os.path.exists(font_bold):
             pdf.add_font('DejaVu', 'B', font_bold)
+    else:
+        # Если шрифты не загрузились, используем встроенный Arial (с ограниченной поддержкой кириллицы)
+        font_name = 'Arial'
+        print('Warning: DejaVu fonts not loaded, using Arial')
+    
     pdf.add_page()
     pdf.set_auto_page_break(auto=False)
     
@@ -68,11 +75,11 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
         pass
     
     # Информация о компании (справа)
-    pdf.set_font('DejaVu', 'B', 11)
+    pdf.set_font(font_name, 'B', 11)
     pdf.set_xy(120, 10)
     pdf.cell(0, 5, 'ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ', align='R')
     
-    pdf.set_font('DejaVu', '', 9)
+    pdf.set_font(font_name, '', 9)
     pdf.set_xy(120, 15)
     pdf.cell(0, 5, 'ИНН 110209455200 ОГРНИП 32377460012482', align='R')
     
@@ -98,7 +105,7 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
     pdf.rect(10, 46, 190, 0.5, 'F')
     
     # Заголовок КП
-    pdf.set_font('DejaVu', 'B', 14)
+    pdf.set_font(font_name, 'B', 14)
     pdf.set_xy(10, 52)
     kp_date = datetime.now().strftime("%d.%m.%Y")
     pdf.cell(0, 8, f'Коммерческое предложение № {kp_number:04d} от {kp_date}', align='C')
@@ -106,13 +113,13 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
     # Адрес объекта
     y_pos = 65
     if address:
-        pdf.set_font('DejaVu', '', 11)
+        pdf.set_font(font_name, '', 11)
         pdf.set_xy(10, y_pos)
         pdf.cell(0, 6, f'Адрес объекта: {address}')
         y_pos += 10
     
     # Таблица товаров
-    pdf.set_font('DejaVu', 'B', 9)
+    pdf.set_font(font_name, 'B', 9)
     pdf.set_fill_color(68, 170, 2)
     pdf.set_text_color(255, 255, 255)
     
@@ -127,7 +134,7 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
     y_pos += 8
     pdf.set_text_color(0, 0, 0)
     pdf.set_fill_color(255, 255, 255)
-    pdf.set_font('DejaVu', '', 9)
+    pdf.set_font(font_name, '', 9)
     
     total = 0
     for idx, product in enumerate(products, 1):
@@ -152,7 +159,7 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
         y_pos += 6
     
     # Итого
-    pdf.set_font('DejaVu', 'B', 9)
+    pdf.set_font(font_name, 'B', 9)
     pdf.set_xy(x_start + sum(col_widths[:4]), y_pos)
     pdf.cell(col_widths[4], 6, 'Итого:', border=1, align='R')
     pdf.cell(col_widths[5], 6, f"{total:,}".replace(',', ' '), border=1, align='R')
@@ -181,7 +188,7 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
     y_pos += 10
     
     # Футер
-    pdf.set_font('DejaVu', '', 10)
+    pdf.set_font(font_name, '', 10)
     pdf.set_xy(10, y_pos)
     pdf.cell(0, 5, 'Оборудование имеет сертификат соответствия ТС ЕАЭС 042-2017')
     y_pos += 6
