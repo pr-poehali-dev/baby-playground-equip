@@ -228,8 +228,11 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
     
     # Высота одной строки ~25-30mm (учитывая изображения)
     row_height = 30*mm
-    available_height = y_pos - 80*mm  # Оставляем место для футера
-    rows_per_page = int(available_height / row_height)
+    # Для первой страницы оставляем место под футер, для остальных используем весь лист
+    first_page_height = y_pos - 80*mm
+    next_page_height = height - 40*mm  # На новых страницах используем весь лист
+    first_page_rows = int(first_page_height / row_height)
+    next_page_rows = int(next_page_height / row_height)
     
     # Функция для отрисовки таблицы на странице
     def draw_table_chunk(chunk_data, y_position, is_first_page=True, is_last_page=False):
@@ -273,36 +276,20 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
     while data_rows:
         page_num += 1
         is_first = (page_num == 1)
-        chunk = data_rows[:rows_per_page]
-        data_rows = data_rows[rows_per_page:]
+        
+        # На первой странице меньше строк, на остальных больше
+        rows_to_take = first_page_rows if is_first else next_page_rows
+        chunk = data_rows[:rows_to_take]
+        data_rows = data_rows[rows_to_take:]
         is_last = (len(data_rows) == 0)
         
         current_y = draw_table_chunk(chunk, current_y, is_first, is_last)
         
-        # Если есть ещё данные, создаём новую страницу
+        # Если есть ещё данные, создаём новую страницу БЕЗ логотипа
         if data_rows:
             c.showPage()
-            # Рисуем шапку на новой странице
-            current_y = height - 15*mm
-            try:
-                logo_url = 'https://cdn.poehali.dev/files/логокп.png'
-                parsed = urllib.parse.urlparse(logo_url)
-                encoded_path = urllib.parse.quote(parsed.path, safe='/')
-                safe_url = urllib.parse.urlunparse((
-                    parsed.scheme, parsed.netloc, encoded_path,
-                    parsed.params, parsed.query, parsed.fragment
-                ))
-                req = urllib.request.Request(safe_url, headers={'User-Agent': 'Mozilla/5.0'})
-                with urllib.request.urlopen(req, timeout=3) as response:
-                    logo_data = io.BytesIO(response.read())
-                    pil_logo = PILImage.open(logo_data)
-                    pil_logo.thumbnail((180, 90), PILImage.Resampling.LANCZOS)
-                    temp_logo = '/tmp/logo.png'
-                    pil_logo.save(temp_logo, 'PNG', optimize=True)
-                    c.drawImage(temp_logo, 10*mm, current_y - 22*mm, width=60*mm, height=25*mm, preserveAspectRatio=True, mask='auto')
-            except:
-                pass
-            current_y -= 30*mm
+            # На новой странице начинаем сверху
+            current_y = height - 20*mm
     
     y_pos = current_y - 10*mm
     
