@@ -51,8 +51,7 @@ def get_next_kp_number():
         return 1
 
 def handler(event, context):
-    """Генерация Excel файла с коммерческим предложением по точному формату"""
-    # Updated: Added decorative lime and purple lines for visual design
+    """Генерация Excel или PDF файла с коммерческим предложением"""
     
     if event.get('httpMethod') == 'OPTIONS':
         return {
@@ -74,7 +73,32 @@ def handler(event, context):
         delivery_cost = body.get('deliveryCost', 0)
         hide_installation = body.get('hideInstallation', False)
         hide_delivery = body.get('hideDelivery', False)
+        file_format = body.get('format', 'xlsx')
         
+        # Получаем номер КП
+        kp_number = get_next_kp_number()
+        
+        # Генерация PDF
+        if file_format == 'pdf':
+            from pdf_generator import generate_pdf
+            
+            pdf_content = generate_pdf(
+                products, address, installation_percent, installation_cost,
+                delivery_cost, hide_installation, hide_delivery, kp_number
+            )
+            
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/pdf',
+                    'Content-Disposition': 'attachment; filename="commercial_offer.pdf"',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': base64.b64encode(pdf_content).decode('utf-8'),
+                'isBase64Encoded': True
+            }
+        
+        # Генерация Excel (по умолчанию)
         wb = Workbook()
         ws = wb.active
         ws.title = "Коммерческое предложение"
@@ -183,7 +207,6 @@ def handler(event, context):
         
         # Заголовок КП
         ws.merge_cells(f'A{current_row}:G{current_row}')
-        kp_number = get_next_kp_number()
         kp_title = f'Коммерческое предложение № {kp_number:04d} от {datetime.now().strftime("%d.%m.%Y")}'
         cell = ws.cell(row=current_row, column=1, value=kp_title)
         cell.font = Font(name='Calibri', bold=True, size=12)

@@ -128,7 +128,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     installationPercent?: number; 
     deliveryCost?: number; 
     hideInstallation?: boolean; 
-    hideDelivery?: boolean 
+    hideDelivery?: boolean;
+    format?: 'xlsx' | 'pdf'
   }) => {
     try {
       const finalInstallationPercent = options?.installationPercent ?? installationPercent;
@@ -160,7 +161,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
           hideInstallation: options?.hideInstallation || false,
           hideDelivery: options?.hideDelivery || false,
           imageColumnWidth,
-          imageRowHeight
+          imageRowHeight,
+          format: options?.format || 'xlsx'
         }),
       });
 
@@ -176,7 +178,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
       // Формируем имя файла с адресом
       const date = new Date().toLocaleDateString('ru-RU');
       const addressPart = options?.address ? options.address.substring(0, 30).replace(/[^а-яА-Яa-zA-Z0-9\s]/g, '') : 'объект';
-      a.download = `КП_${addressPart}_${date}.xlsx`;
+      const fileExtension = options?.format || 'xlsx';
+      a.download = `КП_${addressPart}_${date}.${fileExtension}`;
       
       document.body.appendChild(a);
       a.click();
