@@ -92,7 +92,7 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
     c.drawRightString(right_x, y_pos, 'тел: +7 918 115 15 51 e-mail: info@urban-play.ru')
     y_pos -= 4*mm
     
-    c.setFillColor(colors.HexColor('#0563C1'))
+    c.setFillColor(colors.HexColor('#58078a'))  # Фиолетовый цвет ссылки
     c.drawRightString(right_x, y_pos, 'www.urban-play.ru')
     c.linkURL('https://www.urban-play.ru', (right_x - 40*mm, y_pos - 2*mm, right_x, y_pos + 3*mm))
     c.setFillColor(colors.black)
@@ -215,17 +215,19 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
     
     # Создаем таблицу с правильными пропорциями (как в XLSX)
     # Колонки: №(4), Наименование(27), Рисунок(20), Кол-во(7), Ед.изм(7), Цена(13), Сумма(14)
-    col_widths = [8*mm, 50*mm, 38*mm, 13*mm, 13*mm, 25*mm, 27*mm]
+    # Растягиваем таблицу на всю ширину страницы
+    page_width = width - 20*mm  # 10mm отступы с каждой стороны
+    col_widths = [8*mm, 55*mm, 40*mm, 15*mm, 15*mm, 28*mm, 30*mm]
     
     table = Table(table_data, colWidths=col_widths, rowHeights=None)
     table.setStyle(TableStyle([
         # Шрифты
         ('FONT', (0, 0), (-1, -1), font_name, 10),
-        ('FONT', (0, 0), (-1, 0), font_name_bold, 10),  # Заголовки жирным
+        ('FONT', (0, 0), (-1, 0), font_name_bold, 8),  # Заголовки меньше
         ('FONT', (-2, -1), (-1, -1), font_name_bold, 11),  # Итого жирным
         
-        # Фон заголовков
-        ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#D3D3D3')),
+        # Фон заголовков - светло-фиолетовый
+        ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#D8BFD8')),
         
         # Выравнивание
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),

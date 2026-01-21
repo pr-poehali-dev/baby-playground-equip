@@ -180,11 +180,11 @@ def handler(event, context):
         ws.row_dimensions[current_row].height = 15
         current_row += 1
         
-        # Сайт (кликабельная ссылка)
+        # Сайт (кликабельная ссылка) - фиолетовый цвет
         ws.merge_cells(f'C{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=3)
         cell.value = '=HYPERLINK("https://www.urban-play.ru", "www.urban-play.ru")'
-        cell.font = Font(name='Calibri', size=11, color='0563C1', underline='single')
+        cell.font = Font(name='Calibri', size=11, color='58078a', underline='single')
         cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
         ws.row_dimensions[current_row].height = 15
         current_row += 1
@@ -240,14 +240,14 @@ def handler(event, context):
             bottom=Side(style='thin')
         )
         
-        # Заголовки таблицы
+        # Заголовки таблицы - светло-фиолетовый фон
         headers = ['№', 'Наименование', 'Рисунок', 'Кол-во', 'Ед. изм', 'Цена, руб', 'Сумма, руб']
         for col_num, header in enumerate(headers, 1):
             cell = ws.cell(row=current_row, column=col_num, value=header)
             cell.font = Font(name='Calibri', bold=True, size=10)
             cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
             cell.border = thin_border
-            cell.fill = PatternFill(start_color='D3D3D3', end_color='D3D3D3', fill_type='solid')
+            cell.fill = PatternFill(start_color='D8BFD8', end_color='D8BFD8', fill_type='solid')
         
         ws.row_dimensions[current_row].height = 16.50
         current_row += 1
