@@ -121,7 +121,7 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
     if address:
         c.setFont(font_name, 11)
         c.drawString(10*mm, y_pos, f'Адрес объекта: {address}')
-        y_pos -= 10*mm
+        y_pos -= 6*mm
     
     # Таблица товаров
     table_data = [
