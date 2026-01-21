@@ -646,20 +646,28 @@ export function Header({
                   type="button"
                   variant="outline"
                   size="sm"
-                  className={`flex-1 ${kpFormat === 'xlsx' ? 'bg-transparent border-primary text-primary hover:bg-primary/5' : 'border-border text-muted-foreground hover:bg-muted'}`}
+                  className={`flex-1 h-8 text-xs ${
+                    kpFormat === 'xlsx' 
+                      ? 'bg-transparent border-primary text-primary font-semibold hover:bg-transparent hover:border-primary hover:text-primary' 
+                      : 'border-border text-muted-foreground hover:bg-transparent hover:border-primary hover:text-primary'
+                  }`}
                   onClick={() => setKpFormat('xlsx')}
                 >
-                  <Icon name="FileSpreadsheet" size={16} className="mr-1.5" />
+                  <Icon name="FileSpreadsheet" size={14} className="mr-1" />
                   XLSX
                 </Button>
                 <Button
                   type="button"
                   variant="outline"
                   size="sm"
-                  className={`flex-1 ${kpFormat === 'pdf' ? 'bg-transparent border-primary text-primary hover:bg-primary/5' : 'border-border text-muted-foreground hover:bg-muted'}`}
+                  className={`flex-1 h-8 text-xs ${
+                    kpFormat === 'pdf' 
+                      ? 'bg-transparent border-primary text-primary font-semibold hover:bg-transparent hover:border-primary hover:text-primary' 
+                      : 'border-border text-muted-foreground hover:bg-transparent hover:border-primary hover:text-primary'
+                  }`}
                   onClick={() => setKpFormat('pdf')}
                 >
-                  <Icon name="FileText" size={16} className="mr-1.5" />
+                  <Icon name="FileText" size={14} className="mr-1" />
                   PDF
                 </Button>
               </div>
