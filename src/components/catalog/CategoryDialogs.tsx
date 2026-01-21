@@ -106,7 +106,7 @@ export function CategoryDialogs({
                 <div className="relative overflow-hidden rounded-md bg-white shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 aspect-[4/3] border-2 border-gray-200 hover:border-gray-200">
                   <div className="absolute inset-0">
                     {sub.image.startsWith('http') ? (
-                      <img src={sub.image} alt={sub.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                      <img src={sub.image} alt={sub.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
                         <span className="text-7xl group-hover:scale-110 transition-transform duration-300">{sub.image}</span>
@@ -135,7 +135,7 @@ export function CategoryDialogs({
               <div key={subSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200" onClick={() => handleSubSubcategoryClick(subSub)}>
                 <div className="aspect-square overflow-hidden flex items-center justify-center p-6 sm:p-4">
                   {subSub.image.startsWith('http') ? (
-                    <img src={subSub.image} alt={subSub.name} className="w-full h-full object-contain" />
+                    <img src={subSub.image} alt={subSub.name} className="w-full h-full object-contain" loading="lazy" />
                   ) : (
                     <span className="text-9xl sm:text-7xl">{subSub.image}</span>
                   )}
@@ -164,7 +164,7 @@ export function CategoryDialogs({
               }}>
                 <div className="aspect-square overflow-hidden flex items-center justify-center p-5 sm:p-4">
                   {subSubSub.image.startsWith('http') ? (
-                    <img src={subSubSub.image} alt={subSubSub.name} className="w-full h-full object-contain" />
+                    <img src={subSubSub.image} alt={subSubSub.name} className="w-full h-full object-contain" loading="lazy" />
                   ) : (
                     <span className="text-8xl sm:text-7xl">{subSubSub.image}</span>
                   )}

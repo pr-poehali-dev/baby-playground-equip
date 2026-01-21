@@ -67,7 +67,7 @@ export const categories = [
           },
           { name: 'Балансиры', image: 'https://cdn.poehali.dev/files/мишкаа.png' },
           { name: 'Горки', image: 'https://cdn.poehali.dev/files/0100.png' },
-          { name: 'Домики', image: 'https://cdn.poehali.dev/files/домик 2.png' },
+          { name: 'Домики', image: 'https://cdn.poehali.dev/files/%D0%B4%D0%BE%D0%BC%D0%B8%D0%BA%202.png' },
           { name: 'Качели', image: 'https://cdn.poehali.dev/files/качели.png' },
           { name: 'Карусели', image: 'https://cdn.poehali.dev/files/карусель.png' },
           { name: 'Качалки', image: 'https://cdn.poehali.dev/files/качалка.png' },

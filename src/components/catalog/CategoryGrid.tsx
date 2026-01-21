@@ -224,7 +224,7 @@ export function CategoryGrid({
                   onClick={() => handleProductClick(product)}
                 >
                   {product.image.startsWith('http') ? (
-                    <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300" />
+                    <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300" loading="lazy" />
                   ) : (
                     <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{product.image}</span>
                   )}
