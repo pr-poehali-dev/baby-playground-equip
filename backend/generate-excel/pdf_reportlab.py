@@ -246,68 +246,12 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
         ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
     ]))
     
-    # Рисуем таблицу с автоматическим разбиением на страницы
+    # Рисуем таблицу
     table.wrapOn(c, width, height)
     table_height = table._height
+    table.drawOn(c, 10*mm, y_pos - table_height)
     
-    # Проверяем, помещается ли таблица на текущей странице
-    min_space_for_footer = 40*mm  # Минимум места для футера и подписи
-    
-    if y_pos - table_height < min_space_for_footer:
-        # Таблица не помещается - разбиваем на части
-        # Заголовок всегда на первой странице
-        header_row = [table_data[0]]
-        data_rows = table_data[1:]
-        
-        # Рисуем таблицу порциями
-        row_heights = [30*mm] * len(data_rows)  # Примерная высота строки с изображением
-        row_heights[-1] = 12*mm  # Строка "Итого" меньше
-        
-        current_y = y_pos
-        rows_drawn = 0
-        
-        while rows_drawn < len(data_rows):
-            # Определяем, сколько строк поместится на странице
-            available_height = current_y - min_space_for_footer
-            header_height = 10*mm
-            cumulative_height = header_height
-            rows_to_draw = 0
-            
-            for i in range(rows_drawn, len(data_rows)):
-                if cumulative_height + row_heights[i] <= available_height:
-                    cumulative_height += row_heights[i]
-                    rows_to_draw += 1
-                else:
-                    break
-            
-            # Рисуем порцию таблицы
-            if rows_to_draw > 0:
-                chunk_data = header_row + data_rows[rows_drawn:rows_drawn + rows_to_draw]
-                chunk_table = Table(chunk_data, colWidths=col_widths, rowHeights=None)
-                chunk_table.setStyle(table.getStyle())
-                
-                chunk_table.wrapOn(c, width, height)
-                chunk_height = chunk_table._height
-                chunk_table.drawOn(c, 10*mm, current_y - chunk_height)
-                
-                rows_drawn += rows_to_draw
-                
-                # Если остались строки, создаем новую страницу
-                if rows_drawn < len(data_rows):
-                    c.showPage()
-                    current_y = height - 20*mm
-                else:
-                    current_y = current_y - chunk_height - 10*mm
-            else:
-                # Если даже одна строка не помещается, рисуем на новой странице
-                c.showPage()
-                current_y = height - 20*mm
-        
-        y_pos = current_y
-    else:
-        # Таблица помещается целиком
-        table.drawOn(c, 10*mm, y_pos - table_height)
-        y_pos = y_pos - table_height - 10*mm
+    y_pos = y_pos - table_height - 10*mm
     
     # Футер с условиями - исходные интервалы
     c.setFont(font_name, 11)
