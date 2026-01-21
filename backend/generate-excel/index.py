@@ -183,7 +183,7 @@ def handler(event, context):
         ws.merge_cells(f'C{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=3)
         cell.value = '=HYPERLINK("https://www.urban-play.ru", "www.urban-play.ru")'
-        cell.font = Font(name='Calibri', size=11, color='58078a', underline='single')
+        cell.font = Font(name='Calibri', size=11, color='59068c', underline='single')
         cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
         ws.row_dimensions[current_row].height = 15
         current_row += 1
@@ -246,7 +246,8 @@ def handler(event, context):
             cell.font = Font(name='Calibri', bold=True, size=10)
             cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
             cell.border = thin_border
-            cell.fill = PatternFill(start_color='D8BFD8', end_color='D8BFD8', fill_type='solid')
+            cell.fill = PatternFill(start_color='59068c', end_color='59068c', fill_type='solid')
+            cell.font = Font(name='Calibri', bold=True, size=10, color='FFFFFF')
         
         ws.row_dimensions[current_row].height = 16.50
         current_row += 1

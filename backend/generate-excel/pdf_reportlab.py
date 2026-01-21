@@ -94,7 +94,7 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
     c.drawRightString(right_x, y_pos, 'тел: +7 918 115 15 51 e-mail: info@urban-play.ru')
     y_pos -= 5*mm  # Увеличено с 4mm до 5mm
     
-    c.setFillColor(colors.HexColor('#58078a'))  # Фиолетовый цвет ссылки
+    c.setFillColor(colors.HexColor('#59068c'))  # Фиолетовый цвет ссылки
     c.drawRightString(right_x, y_pos, 'www.urban-play.ru')
     c.linkURL('https://www.urban-play.ru', (right_x - 40*mm, y_pos - 2*mm, right_x, y_pos + 3*mm))
     c.setFillColor(colors.black)
@@ -247,7 +247,8 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
             # Шрифты
             ('FONT', (0, 0), (-1, -1), font_name, 10),
             ('FONT', (0, 0), (-1, 0), font_name, 8),  # Заголовки
-            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#D8BFD8')),
+            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#59068c')),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
             ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
             ('ALIGN', (1, 1), (1, -1), 'LEFT'),
             ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
