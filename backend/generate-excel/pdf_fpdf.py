@@ -29,8 +29,8 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
     font_regular = '/tmp/DejaVuSans.ttf'
     font_bold = '/tmp/DejaVuSans-Bold.ttf'
     
-    download_font('https://github.com/dejavu-fonts/dejavu-fonts/raw/master/ttf/DejaVuSans.ttf', font_regular)
-    download_font('https://github.com/dejavu-fonts/dejavu-fonts/raw/master/ttf/DejaVuSans-Bold.ttf', font_bold)
+    download_font('https://raw.githubusercontent.com/dejavu-fonts/dejavu-fonts/master/ttf/DejaVuSans.ttf', font_regular)
+    download_font('https://raw.githubusercontent.com/dejavu-fonts/dejavu-fonts/master/ttf/DejaVuSans-Bold.ttf', font_bold)
     
     pdf = FPDF()
     
