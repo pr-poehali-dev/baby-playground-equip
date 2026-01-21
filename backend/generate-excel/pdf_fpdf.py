@@ -25,21 +25,33 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
                       hide_installation, hide_delivery, kp_number):
     """Генерация PDF с использованием FPDF2"""
     
+    pdf = FPDF()
+    
     # Скачиваем шрифты
     font_regular = '/tmp/DejaVuSans.ttf'
     font_bold = '/tmp/DejaVuSans-Bold.ttf'
     
-    # Используем CDN jsdelivr для надежной загрузки шрифтов
-    download_font('https://cdn.jsdelivr.net/gh/dejavu-fonts/dejavu-fonts@2.37/ttf/DejaVuSans.ttf', font_regular)
-    download_font('https://cdn.jsdelivr.net/gh/dejavu-fonts/dejavu-fonts@2.37/ttf/DejaVuSans-Bold.ttf', font_bold)
+    # Пробуем разные источники шрифтов
+    urls_to_try = [
+        ('https://dejavu-fonts.github.io/DejaVuSans.ttf', font_regular),
+        ('https://github.com/dejavu-fonts/dejavu-fonts/raw/refs/heads/master/ttf/DejaVuSans.ttf', font_regular),
+    ]
     
-    pdf = FPDF()
+    font_loaded = False
+    for url, filepath in urls_to_try:
+        if download_font(url, filepath):
+            font_loaded = True
+            break
     
-    # Добавляем шрифты только если они успешно загружены
-    if os.path.exists(font_regular):
-        pdf.add_font('DejaVu', '', font_regular)
-    if os.path.exists(font_bold):
-        pdf.add_font('DejaVu', 'B', font_bold)
+    if font_loaded:
+        # Скачиваем Bold версию
+        download_font('https://github.com/dejavu-fonts/dejavu-fonts/raw/refs/heads/master/ttf/DejaVuSans-Bold.ttf', font_bold)
+        
+        # Добавляем шрифты
+        if os.path.exists(font_regular):
+            pdf.add_font('DejaVu', '', font_regular)
+        if os.path.exists(font_bold):
+            pdf.add_font('DejaVu', 'B', font_bold)
     pdf.add_page()
     pdf.set_auto_page_break(auto=False)
     
