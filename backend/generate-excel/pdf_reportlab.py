@@ -257,7 +257,22 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
         
         # Стиль для итоговой строки
         if is_last_page:
-            pass  # Без дополнительных стилей
+            # Убираем все линии в пустых ячейках (столбцы 0-4)
+            style_list.extend([
+                ('LINEBELOW', (0, -1), (4, -1), 0, colors.white),
+                ('LINEABOVE', (0, -1), (4, -1), 0, colors.white),
+                ('LINEBEFORE', (0, -1), (4, -1), 0, colors.white),
+                ('LINEAFTER', (0, -1), (4, -1), 0, colors.white),
+            ])
+            # Добавляем линию снизу последнего товара (строка перед итогом = -2)
+            style_list.extend([
+                ('LINEBELOW', (0, -2), (-1, -2), 0.5, colors.black),
+            ])
+            # Обводим ячейки "Итого" и сумму
+            style_list.extend([
+                ('BOX', (5, -1), (5, -1), 0.5, colors.black),  # Ячейка "Итого"
+                ('BOX', (6, -1), (6, -1), 0.5, colors.black),  # Ячейка с суммой
+            ])
         
         table.setStyle(TableStyle(style_list))
         table.wrapOn(c, width, height)
