@@ -539,11 +539,14 @@ def handler(event, context):
         }
         
     except Exception as e:
+        import traceback
+        error_details = traceback.format_exc()
+        print(f'ERROR in handler: {error_details}')
         return {
             'statusCode': 500,
             'headers': {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            'body': json.dumps({'error': str(e)})
+            'body': json.dumps({'error': str(e), 'details': error_details})
         }
