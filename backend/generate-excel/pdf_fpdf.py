@@ -6,61 +6,18 @@ from fpdf import FPDF
 from PIL import Image as PILImage
 
 
-def download_font(url, filename):
-    """Скачать шрифт если его нет"""
-    if os.path.exists(filename):
-        return True
-    try:
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        with urllib.request.urlopen(req, timeout=15) as response:
-            with open(filename, 'wb') as f:
-                f.write(response.read())
-        return True
-    except Exception as e:
-        print(f'Failed to download {filename}: {e}')
-        return False
-
-
 def generate_pdf_fpdf(products, address, installation_percent, installation_cost, delivery_cost, 
                       hide_installation, hide_delivery, kp_number):
     """Генерация PDF с использованием FPDF2"""
     
     pdf = FPDF()
-    
-    # Скачиваем шрифты
-    font_regular = '/tmp/DejaVuSans.ttf'
-    font_bold = '/tmp/DejaVuSans-Bold.ttf'
-    
-    # Пробуем разные источники шрифтов
-    urls_to_try = [
-        ('https://dejavu-fonts.github.io/DejaVuSans.ttf', font_regular),
-        ('https://github.com/dejavu-fonts/dejavu-fonts/raw/refs/heads/master/ttf/DejaVuSans.ttf', font_regular),
-    ]
-    
-    font_loaded = False
-    for url, filepath in urls_to_try:
-        if download_font(url, filepath):
-            font_loaded = True
-            break
-    
-    # Настройка шрифтов
-    font_name = 'DejaVu'
-    if font_loaded:
-        # Скачиваем Bold версию
-        download_font('https://github.com/dejavu-fonts/dejavu-fonts/raw/refs/heads/master/ttf/DejaVuSans-Bold.ttf', font_bold)
-        
-        # Добавляем шрифты
-        if os.path.exists(font_regular):
-            pdf.add_font('DejaVu', '', font_regular)
-        if os.path.exists(font_bold):
-            pdf.add_font('DejaVu', 'B', font_bold)
-    else:
-        # Если шрифты не загрузились, используем встроенный Arial (с ограниченной поддержкой кириллицы)
-        font_name = 'Arial'
-        print('Warning: DejaVu fonts not loaded, using Arial')
-    
     pdf.add_page()
     pdf.set_auto_page_break(auto=False)
+    
+    # Используем встроенный шрифт с поддержкой UTF-8
+    pdf.add_font('DejaVu', '', '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf')
+    pdf.add_font('DejaVu', 'B', '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf')
+    pdf.set_font('DejaVu', '', 11)
     
     # Логотип
     try:
@@ -68,18 +25,18 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
         req = urllib.request.Request(logo_url, headers={'User-Agent': 'Mozilla/5.0'})
         with urllib.request.urlopen(req, timeout=10) as response:
             logo_data = io.BytesIO(response.read())
-            with open('logo_temp.png', 'wb') as f:
+            with open('/tmp/logo_temp.png', 'wb') as f:
                 f.write(logo_data.getvalue())
-            pdf.image('logo_temp.png', x=10, y=10, w=60)
+            pdf.image('/tmp/logo_temp.png', x=10, y=10, w=60)
     except:
         pass
     
     # Информация о компании (справа)
-    pdf.set_font(font_name, 'B', 11)
+    pdf.set_font('DejaVu', 'B', 11)
     pdf.set_xy(120, 10)
     pdf.cell(0, 5, 'ИП ПРОНИН РУСЛАН ОЛЕГОВИЧ', align='R')
     
-    pdf.set_font(font_name, '', 9)
+    pdf.set_font('DejaVu', '', 9)
     pdf.set_xy(120, 15)
     pdf.cell(0, 5, 'ИНН 110209455200 ОГРНИП 32377460012482', align='R')
     
@@ -105,7 +62,7 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
     pdf.rect(10, 46, 190, 0.5, 'F')
     
     # Заголовок КП
-    pdf.set_font(font_name, 'B', 14)
+    pdf.set_font('DejaVu', 'B', 14)
     pdf.set_xy(10, 52)
     kp_date = datetime.now().strftime("%d.%m.%Y")
     pdf.cell(0, 8, f'Коммерческое предложение № {kp_number:04d} от {kp_date}', align='C')
@@ -113,13 +70,13 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
     # Адрес объекта
     y_pos = 65
     if address:
-        pdf.set_font(font_name, '', 11)
+        pdf.set_font('DejaVu', '', 11)
         pdf.set_xy(10, y_pos)
         pdf.cell(0, 6, f'Адрес объекта: {address}')
         y_pos += 10
     
     # Таблица товаров
-    pdf.set_font(font_name, 'B', 9)
+    pdf.set_font('DejaVu', 'B', 9)
     pdf.set_fill_color(68, 170, 2)
     pdf.set_text_color(255, 255, 255)
     
@@ -134,7 +91,7 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
     y_pos += 8
     pdf.set_text_color(0, 0, 0)
     pdf.set_fill_color(255, 255, 255)
-    pdf.set_font(font_name, '', 9)
+    pdf.set_font('DejaVu', '', 9)
     
     total = 0
     for idx, product in enumerate(products, 1):
@@ -159,7 +116,7 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
         y_pos += 6
     
     # Итого
-    pdf.set_font(font_name, 'B', 9)
+    pdf.set_font('DejaVu', 'B', 9)
     pdf.set_xy(x_start + sum(col_widths[:4]), y_pos)
     pdf.cell(col_widths[4], 6, 'Итого:', border=1, align='R')
     pdf.cell(col_widths[5], 6, f"{total:,}".replace(',', ' '), border=1, align='R')
@@ -188,7 +145,7 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
     y_pos += 10
     
     # Футер
-    pdf.set_font(font_name, '', 10)
+    pdf.set_font('DejaVu', '', 10)
     pdf.set_xy(10, y_pos)
     pdf.cell(0, 5, 'Оборудование имеет сертификат соответствия ТС ЕАЭС 042-2017')
     y_pos += 6
@@ -204,7 +161,5 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
     # Подпись
     pdf.set_xy(10, y_pos)
     pdf.cell(0, 5, 'Индивидуальный предприниматель___________________________/Пронин Р.О./', align='C')
-    
-    return pdf.output()
     
     return pdf.output()
