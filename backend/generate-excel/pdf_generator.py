@@ -7,11 +7,24 @@ from reportlab.lib.units import mm
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, Image
 from reportlab.lib.enums import TA_CENTER, TA_RIGHT, TA_LEFT
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 
 
 def generate_pdf(products, address, installation_percent, installation_cost, delivery_cost, 
                  hide_installation, hide_delivery, kp_number):
     """Генерация PDF файла коммерческого предложения"""
+    
+    # Регистрируем шрифт DejaVu для кириллицы
+    try:
+        pdfmetrics.registerFont(TTFont('DejaVuSans', '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'))
+        pdfmetrics.registerFont(TTFont('DejaVuSans-Bold', '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'))
+        font_name = 'DejaVuSans'
+        font_name_bold = 'DejaVuSans-Bold'
+    except:
+        # Fallback на стандартные шрифты
+        font_name = 'Helvetica'
+        font_name_bold = 'Helvetica-Bold'
     
     buffer = io.BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=A4, 
@@ -29,7 +42,7 @@ def generate_pdf(products, address, installation_percent, installation_cost, del
         textColor=colors.black,
         spaceAfter=12,
         alignment=TA_CENTER,
-        fontName='Helvetica-Bold'
+        fontName=font_name_bold
     )
     
     company_style = ParagraphStyle(
@@ -37,7 +50,7 @@ def generate_pdf(products, address, installation_percent, installation_cost, del
         parent=styles['Normal'],
         fontSize=9,
         alignment=TA_RIGHT,
-        fontName='Helvetica'
+        fontName=font_name
     )
     
     # Логотип
@@ -143,16 +156,17 @@ def generate_pdf(products, address, installation_percent, installation_cost, del
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
         ('ALIGN', (2, 1), (2, -1), 'LEFT'),
-        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTNAME', (0, 0), (-1, -1), font_name),
+        ('FONTNAME', (0, 0), (-1, 0), font_name_bold),
         ('FONTSIZE', (0, 0), (-1, 0), 9),
         ('FONTSIZE', (0, 1), (-1, -1), 8),
         ('BOTTOMPADDING', (0, 0), (-1, 0), 8),
         ('TOPPADDING', (0, 0), (-1, 0), 8),
         ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-        ('FONTNAME', (0, -1), (-1, -1), 'Helvetica-Bold'),
-        ('FONTNAME', (0, -2), (-1, -2), 'Helvetica-Bold'),
-        ('FONTNAME', (0, -3), (-1, -3), 'Helvetica-Bold'),
+        ('FONTNAME', (0, -1), (-1, -1), font_name_bold),
+        ('FONTNAME', (0, -2), (-1, -2), font_name_bold),
+        ('FONTNAME', (0, -3), (-1, -3), font_name_bold),
     ]))
     
     story.append(product_table)
