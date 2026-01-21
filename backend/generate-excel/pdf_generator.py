@@ -7,24 +7,15 @@ from reportlab.lib.units import mm
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, Image
 from reportlab.lib.enums import TA_CENTER, TA_RIGHT, TA_LEFT
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
+from font_helper import register_cyrillic_font
 
 
 def generate_pdf(products, address, installation_percent, installation_cost, delivery_cost, 
                  hide_installation, hide_delivery, kp_number):
     """Генерация PDF файла коммерческого предложения"""
     
-    # Регистрируем шрифт DejaVu для кириллицы
-    try:
-        pdfmetrics.registerFont(TTFont('DejaVuSans', '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'))
-        pdfmetrics.registerFont(TTFont('DejaVuSans-Bold', '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'))
-        font_name = 'DejaVuSans'
-        font_name_bold = 'DejaVuSans-Bold'
-    except:
-        # Fallback на стандартные шрифты
-        font_name = 'Helvetica'
-        font_name_bold = 'Helvetica-Bold'
+    # Регистрируем шрифт с поддержкой кириллицы
+    font_name, font_name_bold = register_cyrillic_font()
     
     buffer = io.BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=A4, 
