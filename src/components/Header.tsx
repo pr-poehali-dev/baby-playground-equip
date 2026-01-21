@@ -591,7 +591,7 @@ export function Header({
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <label className="text-sm font-medium mb-2 block">Адрес доставки</label>
+              <label className="text-sm font-medium mb-2 block">Адрес объекта</label>
               <Input
                 type="text"
                 value={kpAddress}
