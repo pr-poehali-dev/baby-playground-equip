@@ -257,13 +257,12 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
         
         # Стиль для итоговой строки
         if is_last_page:
-            # Убираем все линии в пустых ячейках (столбцы 0-4)
-            style_list.extend([
-                ('LINEBELOW', (0, -1), (4, -1), 0, colors.white),
-                ('LINEABOVE', (0, -1), (4, -1), 0, colors.white),
-                ('LINEBEFORE', (0, -1), (4, -1), 0, colors.white),
-                ('LINEAFTER', (0, -1), (4, -1), 0, colors.white),
-            ])
+            # Полностью убираем сетку в пустых ячейках (столбцы 0-4) - делаем невидимыми
+            for col in range(5):
+                style_list.extend([
+                    ('INNERGRID', (col, -1), (col, -1), 0, colors.white),
+                    ('BOX', (col, -1), (col, -1), 0, colors.white),
+                ])
             # Добавляем линию снизу последнего товара (строка перед итогом = -2)
             style_list.extend([
                 ('LINEBELOW', (0, -2), (-1, -2), 0.5, colors.black),
