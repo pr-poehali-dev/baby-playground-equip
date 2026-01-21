@@ -228,9 +228,9 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
     
     # Высота одной строки ~25mm (с учётом изображений)
     row_height = 25*mm
-    # Для первой страницы оставляем место под футер (50мм), для остальных оставляем место для нумерации (20мм снизу)
+    # Для всех страниц оставляем 50мм снизу
     first_page_height = y_pos - 50*mm
-    next_page_height = height - 20*mm  # На новых страницах оставляем 20мм снизу для нумерации
+    next_page_height = height - 50*mm  # На новых страницах тоже 50мм снизу
     first_page_rows = int(first_page_height / row_height)
     next_page_rows = int(next_page_height / row_height)
     
