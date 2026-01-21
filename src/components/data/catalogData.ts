@@ -40,7 +40,7 @@ export const categories = [
     subcategories: [
       { 
         name: 'Серия "Classic"', 
-        image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/files/859ba648-3303-4951-93a2-f25dac078a60.jpg',
+        image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/067111fd-2e0b-49ec-9be9-f3e7fd24162e.png',
         hasChildren: true,
         children: [
           {
