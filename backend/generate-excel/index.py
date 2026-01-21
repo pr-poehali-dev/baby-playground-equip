@@ -80,9 +80,9 @@ def handler(event, context):
         
         # Генерация PDF
         if file_format == 'pdf':
-            from pdf_weasy import generate_pdf_weasy
+            from pdf_reportlab import generate_pdf_reportlab
             
-            pdf_content = generate_pdf_weasy(
+            pdf_content = generate_pdf_reportlab(
                 products, address, installation_percent, installation_cost,
                 delivery_cost, hide_installation, hide_delivery, kp_number
             )
