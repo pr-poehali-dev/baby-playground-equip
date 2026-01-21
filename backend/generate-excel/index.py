@@ -140,7 +140,7 @@ def handler(event, context):
                 logo_img.width = pil_logo.width
                 logo_img.height = pil_logo.height
                 
-                ws.add_image(logo_img, 'A2')
+                ws.add_image(logo_img, 'B2')
                 print('Logo loaded successfully')
         except Exception as e:
             print(f'Failed to load logo: {e}')
