@@ -206,3 +206,5 @@ def generate_pdf_fpdf(products, address, installation_percent, installation_cost
     pdf.cell(0, 5, 'Индивидуальный предприниматель___________________________/Пронин Р.О./', align='C')
     
     return pdf.output()
+    
+    return pdf.output()
