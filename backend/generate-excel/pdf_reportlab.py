@@ -219,43 +219,92 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
     
     # Создаем таблицу с правильными пропорциями (как в XLSX)
     # Колонки: №(4), Наименование(27), Рисунок(20), Кол-во(7), Ед.изм(7), Цена(13), Сумма(14)
-    # Растягиваем таблицу на всю ширину страницы
-    page_width = width - 20*mm  # 10mm отступы с каждой стороны
     col_widths = [8*mm, 55*mm, 40*mm, 15*mm, 15*mm, 28*mm, 30*mm]
     
-    table = Table(table_data, colWidths=col_widths, rowHeights=None)
-    table.setStyle(TableStyle([
-        # Шрифты
-        ('FONT', (0, 0), (-1, -1), font_name, 10),
-        ('FONT', (0, 0), (-1, 0), font_name, 8),  # Заголовки обычным шрифтом
-        ('FONT', (-2, -1), (-1, -1), font_name_bold, 11),  # Итого жирным
-        
-        # Фон заголовков - светло-фиолетовый
-        ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#D8BFD8')),
-        
-        # Выравнивание
-        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-        ('ALIGN', (1, 1), (1, -1), 'LEFT'),  # Наименование влево
-        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-        
-        # Границы
-        ('GRID', (0, 0), (-1, -2), 0.5, colors.black),  # Все ячейки кроме итого
-        ('LINEABOVE', (5, -1), (-1, -1), 0.5, colors.black),  # Линия сверху итого
-        ('LINEBELOW', (5, -1), (-1, -1), 0.5, colors.black),  # Линия снизу итого
-        ('LINEBEFORE', (5, -1), (5, -1), 0.5, colors.black),  # Линия слева Итого
-        ('LINEAFTER', (5, -1), (5, -1), 0.5, colors.black),  # Линия справа Итого (разделитель)
-        ('LINEAFTER', (-1, -1), (-1, -1), 0.5, colors.black),  # Линия справа суммы
-        
-        # Цвет текста
-        ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
-    ]))
+    # Отделяем заголовок от данных
+    header = table_data[0:1]
+    data_rows = table_data[1:-1]  # Все кроме заголовка и итого
+    footer = table_data[-1:]  # Строка «Итого»
     
-    # Рисуем таблицу
-    table.wrapOn(c, width, height)
-    table_height = table._height
-    table.drawOn(c, 10*mm, y_pos - table_height)
+    # Высота одной строки ~25-30mm (учитывая изображения)
+    row_height = 30*mm
+    available_height = y_pos - 80*mm  # Оставляем место для футера
+    rows_per_page = int(available_height / row_height)
     
-    y_pos = y_pos - table_height - 10*mm
+    # Функция для отрисовки таблицы на странице
+    def draw_table_chunk(chunk_data, y_position, is_first_page=True, is_last_page=False):
+        # Добавляем заголовок на каждую страницу
+        chunk_with_header = header + chunk_data
+        if is_last_page:
+            chunk_with_header += footer
+        
+        table = Table(chunk_with_header, colWidths=col_widths, rowHeights=None)
+        
+        style_list = [
+            # Шрифты
+            ('FONT', (0, 0), (-1, -1), font_name, 10),
+            ('FONT', (0, 0), (-1, 0), font_name, 8),  # Заголовки
+            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#D8BFD8')),
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('ALIGN', (1, 1), (1, -1), 'LEFT'),
+            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+            ('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+            ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
+        ]
+        
+        # Стиль для итоговой строки
+        if is_last_page:
+            style_list.extend([
+                ('FONT', (-2, -1), (-1, -1), font_name_bold, 11),
+                ('LINEABOVE', (5, -1), (-1, -1), 1.5, colors.black),
+                ('LINEBELOW', (5, -1), (-1, -1), 1.5, colors.black),
+            ])
+        
+        table.setStyle(TableStyle(style_list))
+        table.wrapOn(c, width, height)
+        table_height = table._height
+        table.drawOn(c, 10*mm, y_position - table_height)
+        return y_position - table_height
+    
+    # Разбиваем данные на страницы
+    current_y = y_pos
+    page_num = 0
+    
+    while data_rows:
+        page_num += 1
+        is_first = (page_num == 1)
+        chunk = data_rows[:rows_per_page]
+        data_rows = data_rows[rows_per_page:]
+        is_last = (len(data_rows) == 0)
+        
+        current_y = draw_table_chunk(chunk, current_y, is_first, is_last)
+        
+        # Если есть ещё данные, создаём новую страницу
+        if data_rows:
+            c.showPage()
+            # Рисуем шапку на новой странице
+            current_y = height - 15*mm
+            try:
+                logo_url = 'https://cdn.poehali.dev/files/логокп.png'
+                parsed = urllib.parse.urlparse(logo_url)
+                encoded_path = urllib.parse.quote(parsed.path, safe='/')
+                safe_url = urllib.parse.urlunparse((
+                    parsed.scheme, parsed.netloc, encoded_path,
+                    parsed.params, parsed.query, parsed.fragment
+                ))
+                req = urllib.request.Request(safe_url, headers={'User-Agent': 'Mozilla/5.0'})
+                with urllib.request.urlopen(req, timeout=3) as response:
+                    logo_data = io.BytesIO(response.read())
+                    pil_logo = PILImage.open(logo_data)
+                    pil_logo.thumbnail((180, 90), PILImage.Resampling.LANCZOS)
+                    temp_logo = '/tmp/logo.png'
+                    pil_logo.save(temp_logo, 'PNG', optimize=True)
+                    c.drawImage(temp_logo, 10*mm, current_y - 22*mm, width=60*mm, height=25*mm, preserveAspectRatio=True, mask='auto')
+            except:
+                pass
+            current_y -= 30*mm
+    
+    y_pos = current_y - 10*mm
     
     # Футер с условиями - исходные интервалы
     c.setFont(font_name, 11)
