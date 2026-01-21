@@ -210,7 +210,7 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
         total_sum += delivery_cost
     
     table_data.append([
-        '', '', '', '', '', 'Итого:', f'{total_sum:,.2f}'.replace(',', ' ')
+        '', '', '', '', '', 'Итого', f'{total_sum:,.2f}'.replace(',', ' ')
     ])
     
     # Создаем таблицу с правильными пропорциями (как в XLSX)
@@ -223,7 +223,7 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
     table.setStyle(TableStyle([
         # Шрифты
         ('FONT', (0, 0), (-1, -1), font_name, 10),
-        ('FONT', (0, 0), (-1, 0), font_name_bold, 8),  # Заголовки меньше
+        ('FONT', (0, 0), (-1, 0), font_name, 8),  # Заголовки обычным шрифтом
         ('FONT', (-2, -1), (-1, -1), font_name_bold, 11),  # Итого жирным
         
         # Фон заголовков - светло-фиолетовый
@@ -236,7 +236,11 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
         
         # Границы
         ('GRID', (0, 0), (-1, -2), 0.5, colors.black),  # Все ячейки кроме итого
-        ('BOX', (5, -1), (-1, -1), 0.5, colors.black),  # Рамка для итого
+        ('LINEABOVE', (5, -1), (-1, -1), 0.5, colors.black),  # Линия сверху итого
+        ('LINEBELOW', (5, -1), (-1, -1), 0.5, colors.black),  # Линия снизу итого
+        ('LINEBEFORE', (5, -1), (5, -1), 0.5, colors.black),  # Линия слева Итого
+        ('LINEAFTER', (5, -1), (5, -1), 0.5, colors.black),  # Линия справа Итого (разделитель)
+        ('LINEAFTER', (-1, -1), (-1, -1), 0.5, colors.black),  # Линия справа суммы
         
         # Цвет текста
         ('TEXTCOLOR', (0, 0), (-1, -1), colors.black),
@@ -249,14 +253,14 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
     
     y_pos = y_pos - table_height - 10*mm
     
-    # Футер с условиями - увеличенные интервалы
+    # Футер с условиями - исходные интервалы
     c.setFont(font_name, 11)
     c.drawString(10*mm, y_pos, 'Оборудование имеет сертификат соответствия ТС ЕАЭС 042-2017')
-    y_pos -= 7*mm  # Увеличено с 5mm до 7mm
+    y_pos -= 5*mm
     c.drawString(10*mm, y_pos, 'Срок действия коммерческого предложения 15 дней')
-    y_pos -= 7*mm  # Увеличено с 5mm до 7mm
+    y_pos -= 5*mm
     c.drawString(10*mm, y_pos, 'Срок изготовления оборудования 30 дней')
-    y_pos -= 15*mm  # Увеличено с 12mm до 15mm
+    y_pos -= 12*mm
     
     # Подпись
     c.setFont(font_name, 11)
