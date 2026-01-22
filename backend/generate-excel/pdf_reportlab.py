@@ -266,7 +266,7 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
             # Шрифты
             ('FONT', (0, 0), (-1, -1), font_name, 10),
             ('FONT', (0, 0), (-1, 0), font_name, 8),  # Заголовки
-            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#c8a5e0')),
+            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#e8d9f0')),
             ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
             ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
             ('ALIGN', (1, 1), (1, -1), 'LEFT'),
