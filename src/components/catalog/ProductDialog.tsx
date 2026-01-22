@@ -67,7 +67,7 @@ export function ProductDialog({
 
   return (
     <Dialog open={isProductDialogOpen} onOpenChange={setIsProductDialogOpen}>
-      <DialogContent className="max-w-6xl max-h-[90vh] sm:max-h-[85vh] overflow-y-auto p-3 sm:p-6">
+      <DialogContent className="max-w-6xl max-h-[90vh] sm:max-h-[85vh] p-3 sm:p-6 overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="sr-only">Информация о товаре</DialogTitle>
         </DialogHeader>
