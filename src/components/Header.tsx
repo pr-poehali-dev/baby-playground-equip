@@ -241,12 +241,12 @@ export function Header({
                 <Icon name="Phone" size={20} className="text-primary" />
                 +7 918 115-15-51
               </a>
-              <Button onClick={() => setIsContactDialogOpen(true)} size="sm">
-                Заказать звонок
-              </Button>
             </div>
           </div>
           <div className="flex items-center gap-3">
+            <Button onClick={() => setIsContactDialogOpen(true)} size="sm">
+              Заказать звонок
+            </Button>
             <div className="flex items-center gap-3">
               <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <SheetTrigger asChild>
