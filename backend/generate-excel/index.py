@@ -511,7 +511,7 @@ def handler(event, context):
             cell.font = Font(name='Calibri', size=11)
             cell.border = thin_border
             
-            cell = ws.cell(row=current_row, column=7, value=-discount_value)
+            cell = ws.cell(row=current_row, column=7, value=abs(discount_value))
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.number_format = '#,##0.00\ ""'
             cell.font = Font(name='Calibri', size=11, color='FF0000')
