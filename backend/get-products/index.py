@@ -27,7 +27,7 @@ def handler(event: dict, context) -> dict:
         conn = psycopg2.connect(dsn)
         cursor = conn.cursor()
         
-        schema = os.environ.get('MAIN_DB_SCHEMA', 'public')
+        schema = os.environ.get('MAIN_DB_SCHEMA', 't_p92226548_baby_playground_equi')
         
         if category:
             # Escape single quotes for Simple Query Protocol
