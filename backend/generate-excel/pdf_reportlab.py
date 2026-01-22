@@ -17,7 +17,7 @@ from PIL import Image as PILImage
 
 
 def generate_pdf_reportlab(products, address, installation_percent, installation_cost, delivery_cost, 
-                           hide_installation, hide_delivery, kp_number):
+                           hide_installation, hide_delivery, kp_number, discount_percent=0, discount_amount=0):
     """Генерация PDF с использованием ReportLab (кириллица через DejaVu)"""
     print(f'PDF generation started for {len(products)} products')
     buffer = io.BytesIO()
@@ -216,6 +216,25 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
     table_data.append([
         '', '', '', '', '', 'Итого', f'{total_sum:,.2f}'.replace(',', ' ')
     ])
+    
+    # Скидка (если указана)
+    discount_value = 0
+    if discount_percent > 0:
+        discount_value = total_sum * (discount_percent / 100)
+    elif discount_amount > 0:
+        discount_value = discount_amount
+    
+    if discount_value > 0:
+        discount_label = f'Скидка ({discount_percent}%)' if discount_percent > 0 else 'Скидка'
+        table_data.append([
+            '', '', '', '', '', discount_label, f'-{discount_value:,.2f}'.replace(',', ' ')
+        ])
+        
+        # Итого к оплате
+        total_with_discount = total_sum - discount_value
+        table_data.append([
+            '', '', '', '', '', 'К оплате:', f'{total_with_discount:,.2f}'.replace(',', ' ')
+        ])
     
     # Создаем таблицу с правильными пропорциями (как в XLSX)
     # Колонки: №(4), Наименование(27), Рисунок(20), Кол-во(7), Ед.изм(7), Цена(13), Сумма(14)

@@ -76,6 +76,8 @@ def handler(event, context):
         hide_installation = body.get('hideInstallation', False)
         hide_delivery = body.get('hideDelivery', False)
         file_format = body.get('format', 'xlsx')
+        discount_percent = body.get('discountPercent', 0)
+        discount_amount = body.get('discountAmount', 0)
         
         # Получаем номер КП
         kp_number = get_next_kp_number()
@@ -86,7 +88,8 @@ def handler(event, context):
             
             pdf_content = generate_pdf_reportlab(
                 products, address, installation_percent, installation_cost,
-                delivery_cost, hide_installation, hide_delivery, kp_number
+                delivery_cost, hide_installation, hide_delivery, kp_number,
+                discount_percent, discount_amount
             )
             
             return {
@@ -487,6 +490,48 @@ def handler(event, context):
         cell.alignment = Alignment(horizontal='center', vertical='center')
         cell.number_format = '#,##0.00\ ""'
         cell.font = Font(name='Calibri', bold=True, size=11)
+        cell.border = thin_border
+        current_row += 1
+        
+        # Скидка (если указана)
+        discount_value = 0
+        if discount_percent > 0:
+            discount_value = total_sum * (discount_percent / 100)
+        elif discount_amount > 0:
+            discount_value = discount_amount
+        
+        if discount_value > 0:
+            for col in range(1, 6):
+                cell = ws.cell(row=current_row, column=col, value='')
+            
+            discount_label = f'Скидка ({discount_percent}%):' if discount_percent > 0 else 'Скидка:'
+            cell = ws.cell(row=current_row, column=6, value=discount_label)
+            cell.alignment = Alignment(horizontal='center', vertical='center')
+            cell.font = Font(name='Calibri', size=11)
+            cell.border = thin_border
+            
+            cell = ws.cell(row=current_row, column=7, value=-discount_value)
+            cell.alignment = Alignment(horizontal='center', vertical='center')
+            cell.number_format = '#,##0.00\ ""'
+            cell.font = Font(name='Calibri', size=11, color='FF0000')
+            cell.border = thin_border
+            current_row += 1
+            
+            # Итого с учетом скидки
+            total_with_discount = total_sum - discount_value
+            
+            for col in range(1, 6):
+                cell = ws.cell(row=current_row, column=col, value='')
+            
+            cell = ws.cell(row=current_row, column=6, value='К оплате:')
+            cell.alignment = Alignment(horizontal='center', vertical='center')
+            cell.font = Font(name='Calibri', bold=True, size=11)
+            cell.border = thin_border
+            
+            cell = ws.cell(row=current_row, column=7, value=total_with_discount)
+            cell.alignment = Alignment(horizontal='center', vertical='center')
+            cell.number_format = '#,##0.00\ ""'
+            cell.font = Font(name='Calibri', bold=True, size=11)
         cell.border = thin_border
         
         current_row += 1

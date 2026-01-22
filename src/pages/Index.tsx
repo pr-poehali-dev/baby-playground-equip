@@ -130,7 +130,9 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
     hideInstallation?: boolean; 
     hideDelivery?: boolean;
     format?: 'xlsx' | 'pdf';
-    sortedCart?: CartItem[]
+    sortedCart?: CartItem[];
+    discountPercent?: number;
+    discountAmount?: number
   }) => {
     try {
       const finalInstallationPercent = options?.installationPercent ?? installationPercent;
@@ -166,7 +168,9 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
           hideDelivery: options?.hideDelivery || false,
           imageColumnWidth,
           imageRowHeight,
-          format: options?.format || 'xlsx'
+          format: options?.format || 'xlsx',
+          discountPercent: options?.discountPercent || 0,
+          discountAmount: options?.discountAmount || 0
         }),
       });
 
