@@ -222,7 +222,8 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
     if discount_percent > 0:
         discount_value = total_sum * (discount_percent / 100)
     elif discount_amount > 0:
-        discount_value = discount_amount
+        # discount_amount теперь это КОНЕЧНАЯ сумма заказа, а не скидка
+        discount_value = total_sum - discount_amount
     
     if discount_value > 0:
         discount_label = f'Скидка ({discount_percent}%)' if discount_percent > 0 else 'Скидка'

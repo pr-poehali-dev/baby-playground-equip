@@ -705,7 +705,7 @@ export function Header({
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-muted-foreground mb-1 block">Сумма (₽)</label>
+                  <label className="text-xs text-muted-foreground mb-1 block">Итоговая сумма (₽)</label>
                   <Input
                     type="number"
                     value={discountAmount || ''}
