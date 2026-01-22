@@ -67,12 +67,12 @@ export function ProductDialog({
 
   return (
     <Dialog open={isProductDialogOpen} onOpenChange={setIsProductDialogOpen}>
-      <DialogContent className="max-w-4xl max-h-[90vh] sm:max-h-[85vh] overflow-y-auto p-3 sm:p-6">
+      <DialogContent className="max-w-6xl max-h-[90vh] sm:max-h-[85vh] overflow-y-auto p-3 sm:p-6">
         <DialogHeader>
           <DialogTitle className="sr-only">Информация о товаре</DialogTitle>
         </DialogHeader>
         {selectedProduct && (
-          <div className="grid md:grid-cols-[1.2fr,0.8fr] gap-2 md:gap-6">
+          <div className="grid md:grid-cols-[1.5fr,1fr] gap-2 md:gap-6">
             <div>
               <div className="relative aspect-square bg-white rounded-lg flex items-center justify-center overflow-hidden border md:border border-0 p-0 mb-2">
                 {productImages.length > 0 ? (
@@ -195,6 +195,14 @@ export function ProductDialog({
                   <p className="text-xs sm:text-sm text-muted-foreground">{selectedProduct.description}</p>
                 )}
               </div>
+
+              {selectedProduct.article === '0110' && (
+                <div className="border-t pt-3 pb-2">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Если появились вопросы, вы можете получить консультацию руководителя проекта
+                  </p>
+                </div>
+              )}
 
               <div className="border-t sm:py-3 mx-0 my-0 py-0 hidden md:block">
                 <p className="text-muted-foreground text-sm py-[5px] my-[17px]">
