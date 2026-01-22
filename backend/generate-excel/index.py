@@ -504,7 +504,7 @@ def handler(event, context):
             for col in range(1, 6):
                 cell = ws.cell(row=current_row, column=col, value='')
             
-            discount_label = f'Скидка ({discount_percent}%):' if discount_percent > 0 else 'Скидка:'
+            discount_label = f'Скидка {discount_percent}%' if discount_percent > 0 else 'Скидка'
             cell = ws.cell(row=current_row, column=6, value=discount_label)
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.font = Font(name='Calibri', size=11)
