@@ -182,7 +182,7 @@ export function ProductDialog({
                 {selectedProduct.dimensions && (
                   <div className="grid grid-cols-3 gap-1.5 sm:gap-4 mb-1.5 sm:mb-4">
                     {selectedProduct.dimensions.split('х').map((dim, idx) => (
-                      <div key={idx} className="bg-muted/30 p-1.5 sm:p-3 rounded-lg text-center">
+                      <div key={idx} className="bg-muted/30 p-1.5 sm:p-3 rounded-lg text-center py-3">
                         <p className="text-[9px] sm:text-xs text-muted-foreground mb-0.5 sm:mb-1">
                           {idx === 0 ? 'Длина' : idx === 1 ? 'Ширина' : 'Высота'}
                         </p>
@@ -204,7 +204,7 @@ export function ProductDialog({
                 </div>
               )}
 
-              <div className="border-t sm:py-3 mx-0 hidden md:block my-0 py-0">
+              <div className="border-t sm:py-3 mx-0 hidden md:block py-0 my-0">
                 <p className="text-muted-foreground text-sm py-[5px] my-[17px]">
                   Если появились вопросы, вы можете получить консультацию руководителя проекта:
                 </p>
