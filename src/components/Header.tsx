@@ -188,7 +188,7 @@ export function Header({
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <a href="#hero" className="cursor-pointer">
+            <a href="#hero" className="cursor-pointer" onClick={() => handleResetFilters?.()}>
               <img 
                 src="https://cdn.poehali.dev/files/photo_643632026-01-05_09-32-44.png" 
                 alt="Urban Play"
