@@ -231,7 +231,7 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
         handleResetFilters={handlers.handleResetFilters}
       />
       
-      <div className={`flex-1 ${catalogState.selectedCategory ? 'overflow-hidden' : 'overflow-y-auto'}`}>
+      <div className="flex-1 overflow-y-auto">
       {!catalogState.selectedCategory && (
         <>
           <HeroSection onOpenCatalog={() => catalogState.setIsSideMenuOpen(true)} />
