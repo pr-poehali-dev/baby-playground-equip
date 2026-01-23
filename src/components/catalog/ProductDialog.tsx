@@ -140,7 +140,7 @@ export function ProductDialog({
 
             <div className="flex flex-col justify-start space-y-2 md:space-y-4 px-0 mx-0 my-0 overflow-y-auto flex-1">
               <div>
-                <p className="sm:text-sm sm:mb-2 text-[#5a098c] my-0 font-medium text-base">{selectedProduct.name.split('\n')[0]}</p>
+                <p className="sm:text-sm sm:mb-2 text-[#5a098c] my-0 font-medium text-lg">{selectedProduct.name.split('\n')[0]}</p>
                 <h2 className="font-heading sm:mb-4 font-semibold sm:text-3xl my-0 text-3xl">{selectedProduct.name.split('\n')[1] || selectedProduct.name}</h2>
                 <p className="font-bold text-primary sm:mb-4 text-3xl sm:text-3xl my-0 py-1 mt-3 mb-3">{formatPrice(selectedProduct.price)} ₽</p>
                 
@@ -196,7 +196,7 @@ export function ProductDialog({
               </div>
 
               <div className="border-t sm:py-3 mx-0 hidden md:block py-0 my-0">
-                <p className="text-muted-foreground text-sm py-[5px] my-[17px]">
+                <p className="text-muted-foreground text-sm py-[5px] my-[30px]">
                   Если появились вопросы, вы можете получить консультацию руководителя проекта:
                 </p>
                 <Button 
