@@ -115,7 +115,7 @@ export function CategoryGrid({
           {categories.find(c => c.id === selectedCategory)?.name}
         </h2>
         
-        <div className="sticky top-[84px] bg-white z-40 -mx-4 px-4 my-0 py-5">
+        <div className="sticky top-0 bg-white z-40 -mx-4 px-4 my-0 py-5">
           {/* Поиск и сброс - мобильная версия */}
           <div className="flex sm:hidden items-center gap-2 mb-3">
             <div className="relative flex-1">
