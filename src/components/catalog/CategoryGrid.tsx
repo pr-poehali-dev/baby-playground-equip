@@ -216,7 +216,7 @@ export function CategoryGrid({
           </div>
         </div>
 
-        <div ref={productsRef} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pt-6 pb-2">
+        <div ref={productsRef} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pt-10 pb-2">
           {filteredProducts.map((product) => {
             const isFavorite = favorites.some(f => f.id === product.id);
             const isSelected = selectedProduct?.id === product.id;
