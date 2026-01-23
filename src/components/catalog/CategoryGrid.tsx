@@ -110,7 +110,7 @@ export function CategoryGrid({
   };
 
   return (
-    <div id="products" className="container mx-auto px-4 pt-[84px] h-full flex flex-col">
+    <div id="products" className="container mx-auto px-4 pt-0 h-full flex flex-col">
       <div ref={filtersRef}>
         <div className="sticky top-0 bg-gray-50 z-40 -mx-4 px-4 pb-3 pt-4 shadow-md border-b border-gray-200">
           {/* Поиск и сброс - мобильная версия */}
