@@ -176,7 +176,7 @@ export function ProductDialog({
                 </div>
               </div>
 
-              <div className="border-t sm:py-[5px] py-0 my-[7px]">
+              <div className="border-t sm:py-[5px] py-0 my-2">
                 <h3 className="font-heading sm:mb-2 font-semibold sm:text-base my-2.5 text-lg">Техническая информация</h3>
                 {selectedProduct.dimensions && (
                   <div className="grid grid-cols-3 gap-1.5 sm:gap-4 mb-1.5 sm:mb-4">
@@ -197,9 +197,7 @@ export function ProductDialog({
 
               {selectedProduct.article === '0110' && (
                 <div className="border-t pt-2">
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Качели предназначены для детей от 3-х лет. Стойки и перекладина качелей выполнены из круглой трубы 57х3.5 мм. Узлы качения выполнены с применением шариковых подшипников. В качестве гибкой подвески используется цепь с диаметром прутка 6 мм. Сиденье качелей со спинкой изготовлено на металлическом каркасе и с применением влагостойкой фанеры ФСФ толщиной 18м.
-                  </p>
+                  <p className="text-sm text-muted-foreground leading-relaxed my-0">Сделать заказ или получить дополнительную информацию вы можете по телефону  +7 918 115 15 51</p>
                 </div>
               )}
 
