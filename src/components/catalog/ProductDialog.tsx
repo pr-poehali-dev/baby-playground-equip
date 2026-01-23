@@ -195,14 +195,6 @@ export function ProductDialog({
                 )}
               </div>
 
-              {selectedProduct.article === '0110' && (
-                <div className="border-t pt-3 pb-2">
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Качели предназначены для детей от 3-х лет. Стойки и перекладина качелей выполнены из круглой трубы 57х3.5 мм. Узлы качения выполнены с применением шариковых подшипников. В качестве гибкой подвески используется цепь с диаметром прутка 6 мм. Сиденье качелей со спинкой изготовлено на металлическом каркасе и с применением влагостойкой фанеры ФСФ толщиной 18м.
-                  </p>
-                </div>
-              )}
-
               <div className="border-t sm:py-3 mx-0 hidden md:block py-0 my-0">
                 <p className="text-muted-foreground text-sm py-[5px] my-[17px]">
                   Если появились вопросы, вы можете получить консультацию руководителя проекта:
