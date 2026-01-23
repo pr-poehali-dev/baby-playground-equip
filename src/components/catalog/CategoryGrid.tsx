@@ -145,9 +145,12 @@ export function CategoryGrid({
                 onValueChange={(value) => {
                   setSelectedSeries(value === 'all-series' ? null : value);
                   setTimeout(() => {
-                    if (filtersRef.current) {
-                      const filterTop = filtersRef.current.getBoundingClientRect().top + window.pageYOffset;
-                      window.scrollTo({ top: filterTop, behavior: 'smooth' });
+                    if (productsRef.current) {
+                      const scrollContainer = document.querySelector('.flex-1.overflow-y-auto');
+                      if (scrollContainer) {
+                        const elementTop = productsRef.current.offsetTop;
+                        scrollContainer.scrollTo({ top: elementTop - 80, behavior: 'smooth' });
+                      }
                     }
                   }, 100);
                 }}
@@ -171,9 +174,12 @@ export function CategoryGrid({
                 onValueChange={(value) => {
                   setSelectedSubSubcategory(value === 'all' ? null : value);
                   setTimeout(() => {
-                    if (filtersRef.current) {
-                      const filterTop = filtersRef.current.getBoundingClientRect().top + window.pageYOffset;
-                      window.scrollTo({ top: filterTop, behavior: 'smooth' });
+                    if (productsRef.current) {
+                      const scrollContainer = document.querySelector('.flex-1.overflow-y-auto');
+                      if (scrollContainer) {
+                        const elementTop = productsRef.current.offsetTop;
+                        scrollContainer.scrollTo({ top: elementTop - 80, behavior: 'smooth' });
+                      }
                     }
                   }, 100);
                 }}
@@ -201,9 +207,12 @@ export function CategoryGrid({
                     setSelectedSubSubcategory(`${selectedSubSubLevel1} > ${value}`);
                   }
                   setTimeout(() => {
-                    if (filtersRef.current) {
-                      const filterTop = filtersRef.current.getBoundingClientRect().top + window.pageYOffset;
-                      window.scrollTo({ top: filterTop, behavior: 'smooth' });
+                    if (productsRef.current) {
+                      const scrollContainer = document.querySelector('.flex-1.overflow-y-auto');
+                      if (scrollContainer) {
+                        const elementTop = productsRef.current.offsetTop;
+                        scrollContainer.scrollTo({ top: elementTop - 80, behavior: 'smooth' });
+                      }
                     }
                   }, 100);
                 }}
