@@ -115,6 +115,28 @@ export function CategoryGrid({
         <div className="sticky top-0 bg-white z-40 -mx-4 px-4 pb-3 pt-4">
           {/* Поиск и сброс - мобильная версия */}
           <div className="flex sm:hidden items-center gap-2 mb-3">
+            <Select
+              value={selectedCategory || 'all-categories'}
+              onValueChange={(value) => {
+                if (value !== 'all-categories') {
+                  const category = categories.find(c => c.id === value);
+                  if (category) {
+                    handleTreeCategorySelect(value, category);
+                  }
+                }
+              }}
+            >
+              <SelectTrigger className={`w-[35%] h-9 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedCategory ? 'text-[#1d2025]' : ''}`}>
+                <SelectValue placeholder="Категории" />
+              </SelectTrigger>
+              <SelectContent>
+                {categories.map((category) => (
+                  <SelectItem key={category.id} value={category.id}>
+                    {category.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <div className="relative flex-1">
               <Icon name="Search" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
               <Input 
@@ -147,7 +169,7 @@ export function CategoryGrid({
                 }
               }}
             >
-              <SelectTrigger className={`w-[30%] sm:w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedCategory ? 'text-[#1d2025]' : ''}`}>
+              <SelectTrigger className={`hidden sm:flex w-[30%] sm:w-52 h-9 hover:border-secondary hover:text-secondary hover:bg-white focus:ring-0 focus:ring-offset-0 ${selectedCategory ? 'text-[#1d2025]' : ''}`}>
                 <SelectValue placeholder="Категории" />
               </SelectTrigger>
               <SelectContent>
