@@ -183,10 +183,15 @@ export function AdminPanel() {
       }
 
       setUploadStatus('success');
-      setMessage(`Загружено изображений: ${uploaded}${errors > 0 ? `, ошибок: ${errors}` : ''}`);
+      setMessage(`Загружено изображений: ${uploaded}${errors > 0 ? `, ошибок: ${errors}` : ''}. Обновляем каталог...`);
       setImageFiles([]);
       const fileInput = document.getElementById('image-files-input') as HTMLInputElement;
       if (fileInput) fileInput.value = '';
+      
+      // Обновляем страницу через 2 секунды чтобы пользователь успел прочитать сообщение
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.error('Upload images error:', error);
       setUploadStatus('error');
