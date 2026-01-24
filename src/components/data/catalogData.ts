@@ -48,7 +48,7 @@ export const categories = [
             image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/7ba6c422-2685-4c50-9c5c-cad28b534504.png',
             hasChildren: true,
             children: [
-              { name: 'Классик', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/dc60f73b-a481-4ac7-9ce2-f91f1b035537.png' },
+              { name: 'Классик', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/809d9978-1cc9-4164-b1bf-00682ebb7ac8.png' },
               { name: 'Джунгли', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/6bc179a5-ec3f-4cc4-a8a5-9478913fad63.png' },
               { name: 'Замок', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/6de7cba4-b5ec-44f4-8f52-bc4656fc0189.png' }
             ]
