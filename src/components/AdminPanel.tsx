@@ -117,37 +117,6 @@ export function AdminPanel() {
     }
   };
 
-  const compressImage = (file: File, maxWidth: number = 1200, quality: number = 0.8): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const img = new Image();
-        img.onload = () => {
-          const canvas = document.createElement('canvas');
-          let width = img.width;
-          let height = img.height;
-
-          if (width > maxWidth) {
-            height = (height * maxWidth) / width;
-            width = maxWidth;
-          }
-
-          canvas.width = width;
-          canvas.height = height;
-          const ctx = canvas.getContext('2d');
-          ctx?.drawImage(img, 0, 0, width, height);
-
-          const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
-          resolve(compressedBase64.split(',')[1]);
-        };
-        img.onerror = reject;
-        img.src = e.target?.result as string;
-      };
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  };
-
   const handleUploadImages = async () => {
     if (imageFiles.length === 0) {
       setMessage('Выберите изображения для загрузки');
@@ -166,7 +135,16 @@ export function AdminPanel() {
       for (const file of imageFiles) {
         try {
           const article = file.name.split('.')[0];
-          const base64Data = await compressImage(file);
+          
+          const reader = new FileReader();
+          const base64Data = await new Promise<string>((resolve, reject) => {
+            reader.onload = () => {
+              const base64 = reader.result as string;
+              resolve(base64.split(',')[1]);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+          });
 
           const response = await fetch('https://functions.poehali.dev/cffc3d7a-5348-4b4d-899c-7d41c585573d', {
             method: 'POST',
