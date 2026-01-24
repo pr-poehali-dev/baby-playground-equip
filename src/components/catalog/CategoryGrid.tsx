@@ -144,14 +144,14 @@ export function CategoryGrid({
                 placeholder="Поиск"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-9"
+                className="pl-10 h-9 text-sm"
               />
             </div>
             <Button
               variant="outline"
               size="sm"
               onClick={handleReset}
-              className="hover:border-primary hover:text-primary hover:bg-transparent"
+              className="hover:border-primary hover:text-primary hover:bg-transparent text-sm"
             >
               Сбросить
             </Button>
