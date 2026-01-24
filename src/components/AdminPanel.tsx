@@ -434,24 +434,83 @@ export function AdminPanel() {
               />
             </div>
 
-            <Button
-              onClick={handleDeleteByArticles}
-              disabled={isDeleting || !articlesToDelete.trim()}
-              variant="destructive"
-              className="w-full"
-            >
-              {isDeleting ? (
-                <>
-                  <Icon name="Loader2" size={16} className="mr-2 animate-spin" />
-                  Удаление...
-                </>
-              ) : (
-                <>
-                  <Icon name="Trash2" size={16} className="mr-2" />
-                  Удалить товары
-                </>
-              )}
-            </Button>
+            <div className="flex gap-2">
+              <Button
+                onClick={handleDeleteByArticles}
+                disabled={isDeleting || !articlesToDelete.trim()}
+                variant="destructive"
+                className="flex-1"
+              >
+                {isDeleting ? (
+                  <>
+                    <Icon name="Loader2" size={16} className="mr-2 animate-spin" />
+                    Удаление...
+                  </>
+                ) : (
+                  <>
+                    <Icon name="Trash2" size={16} className="mr-2" />
+                    Удалить выбранные
+                  </>
+                )}
+              </Button>
+              
+              <Button
+                onClick={async () => {
+                  if (!confirm('⚠️ ВНИМАНИЕ! Это удалит ВСЕ товары из базы данных! Это необратимо! Продолжить?')) {
+                    return;
+                  }
+                  
+                  setIsDeleting(true);
+                  setUploadStatus('idle');
+                  setMessage('');
+                  
+                  try {
+                    const response = await fetch('https://functions.poehali.dev/86a5f270-0e5f-4fc8-8762-1839512f352a', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({
+                        articles: ['*']
+                      }),
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                      setUploadStatus('success');
+                      setMessage(`Удалено всех товаров: ${result.deleted}. Обновляем страницу...`);
+                      setTimeout(() => {
+                        window.location.reload();
+                      }, 2000);
+                    } else {
+                      throw new Error(result.error || 'Ошибка удаления');
+                    }
+                  } catch (error) {
+                    console.error('Delete all error:', error);
+                    setUploadStatus('error');
+                    setMessage(error instanceof Error ? error.message : 'Ошибка при удалении');
+                  } finally {
+                    setIsDeleting(false);
+                  }
+                }}
+                disabled={isDeleting}
+                variant="destructive"
+                className="flex-1"
+              >
+                {isDeleting ? (
+                  <>
+                    <Icon name="Loader2" size={16} className="mr-2 animate-spin" />
+                    Удаление...
+                  </>
+                ) : (
+                  <>
+                    <Icon name="Trash2" size={16} className="mr-2" />
+                    Удалить ВСЕ
+                  </>
+                )}
+              </Button>
+            </div>
           </div>
 
           {message && (
