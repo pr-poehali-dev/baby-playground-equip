@@ -272,7 +272,7 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
         style_list = [
             # Шрифты
             ('FONT', (0, 0), (-1, -1), font_name, 10),
-            ('FONT', (0, 0), (-1, 0), font_name, 8),  # Заголовки
+            ('FONT', (0, 0), (-1, 0), font_name_bold, 8),  # Заголовки - жирный шрифт
             ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#e8d9f0')),
             ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
             ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
@@ -304,6 +304,7 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
                     ('BOX', (5, row_idx), (5, row_idx), 0.5, colors.black),
                     ('BOX', (6, row_idx), (6, row_idx), 0.5, colors.black),
                     ('ALIGN', (5, row_idx), (5, row_idx), 'RIGHT'),
+                    ('FONT', (5, row_idx), (6, row_idx), font_name_bold, 10),  # Жирный шрифт для текста и цифр
                 ])
             
             # Если есть скидка (3 строки: Итого, Скидка, К оплате)
