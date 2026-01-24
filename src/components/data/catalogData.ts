@@ -45,7 +45,7 @@ export const categories = [
         children: [
           {
             name: 'Комплексы 3-7 лет',
-            image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/7ba6c422-2685-4c50-9c5c-cad28b534504.png',
+            image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/39628bd3-88b4-466d-b88e-79736f7f6893.png',
             hasChildren: true,
             children: [
               { name: 'Классик', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/809d9978-1cc9-4164-b1bf-00682ebb7ac8.png' },
