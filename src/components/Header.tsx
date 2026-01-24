@@ -733,7 +733,6 @@ export function Header({
                     step="100"
                     min="0"
                   />
-                  <p className="text-[10px] text-muted-foreground mt-1">Введите конечную сумму заказа</p>
                 </div>
               </div>
             </div>
