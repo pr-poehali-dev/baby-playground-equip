@@ -185,7 +185,7 @@ def handler(event, context):
         # Сайт (кликабельная ссылка) - фиолетовый цвет
         ws.merge_cells(f'C{current_row}:G{current_row}')
         cell = ws.cell(row=current_row, column=3)
-        cell.value = '=HYPERLINK("https://www.urban-play.ru", "www.urban-play.ru")'
+        cell.value = '=HYPERLINK("https://urban-play.ru", "urban-play.ru")'
         cell.font = Font(name='Calibri', size=11, color='59068c', underline='single')
         cell.alignment = Alignment(horizontal='right', vertical='center', wrap_text=True)
         ws.row_dimensions[current_row].height = 15
