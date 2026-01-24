@@ -103,15 +103,39 @@ export function useProducts() {
                     // "Игровой комплекс 3-7 лет" → "Комплексы 3-7 лет"
                     normalized = normalized.replace('Игровой комплекс', 'Комплексы');
                   }
+                  
+                  // Маппинг единственного числа в множественное
+                  const singularToPlural: Record<string, string> = {
+                    'балансир': 'Балансиры',
+                    'горка': 'Горки',
+                    'качели': 'Качели',
+                    'карусель': 'Карусели',
+                    'качалка': 'Качалки',
+                    'домик': 'Домики',
+                    'песочница': 'Песочницы',
+                    'лаз': 'Лазы'
+                  };
+                  
+                  const lowerNormalized = normalized.toLowerCase();
+                  if (singularToPlural[lowerNormalized]) {
+                    return singularToPlural[lowerNormalized];
+                  }
+                  
                   // Нормализуем регистр названий (классик → Классик)
-                  if (normalized.toLowerCase() === 'классик') {
+                  if (lowerNormalized === 'классик') {
                     return 'Классик';
                   }
-                  if (normalized.toLowerCase() === 'джунгли') {
+                  if (lowerNormalized === 'джунгли') {
                     return 'Джунгли';
                   }
-                  if (normalized.toLowerCase() === 'замок') {
+                  if (lowerNormalized === 'замок') {
                     return 'Замок';
+                  }
+                  if (lowerNormalized === 'морская') {
+                    return 'Морская';
+                  }
+                  if (lowerNormalized === 'лабиринт') {
+                    return 'Лабиринт';
                   }
                   return normalized;
                 });
