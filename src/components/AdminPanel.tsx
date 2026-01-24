@@ -117,6 +117,37 @@ export function AdminPanel() {
     }
   };
 
+  const compressImage = (file: File, maxWidth: number = 1200, quality: number = 0.8): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+
+          if (width > maxWidth) {
+            height = (height * maxWidth) / width;
+            width = maxWidth;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx?.drawImage(img, 0, 0, width, height);
+
+          const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+          resolve(compressedBase64.split(',')[1]);
+        };
+        img.onerror = reject;
+        img.src = e.target?.result as string;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
   const handleUploadImages = async () => {
     if (imageFiles.length === 0) {
       setMessage('Выберите изображения для загрузки');
@@ -133,43 +164,39 @@ export function AdminPanel() {
       let errors = 0;
 
       for (const file of imageFiles) {
-        // Извлекаем артикул из имени файла (например: 0230.png -> 0230)
-        const article = file.name.split('.')[0];
-        
-        const reader = new FileReader();
-        await new Promise((resolve, reject) => {
-          reader.onload = async () => {
-            try {
-              const base64 = reader.result as string;
-              const base64Data = base64.split(',')[1];
+        try {
+          const article = file.name.split('.')[0];
+          const base64Data = await compressImage(file);
 
-              const response = await fetch('https://functions.poehali.dev/cffc3d7a-5348-4b4d-899c-7d41c585573d', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  article: article,
-                  filename: file.name,
-                  content: base64Data,
-                }),
-              });
+          const response = await fetch('https://functions.poehali.dev/cffc3d7a-5348-4b4d-899c-7d41c585573d', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              article: article,
+              filename: file.name,
+              content: base64Data,
+            }),
+          });
 
-              const result = await response.json();
-              if (result.success) {
-                uploaded++;
-              } else {
-                errors++;
-              }
-              resolve(result);
-            } catch (error) {
-              errors++;
-              reject(error);
+          if (!response.ok) {
+            if (response.status === 413) {
+              throw new Error(`Файл ${file.name} слишком большой`);
             }
-          };
-          reader.onerror = reject;
-          reader.readAsDataURL(file);
-        });
+            throw new Error(`HTTP ${response.status}`);
+          }
+
+          const result = await response.json();
+          if (result.success) {
+            uploaded++;
+          } else {
+            errors++;
+          }
+        } catch (error) {
+          console.error(`Error uploading ${file.name}:`, error);
+          errors++;
+        }
       }
 
       setUploadStatus('success');
