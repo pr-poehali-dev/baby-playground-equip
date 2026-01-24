@@ -298,6 +298,13 @@ export function CategoryGrid({
         </div>
 
         <div ref={productsRef} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pt-4 pb-96 sm:pb-2">
+          {(() => {
+            console.log(`🎯 Отрисовка: ${filteredProducts.length} товаров, категория: "${selectedCategory}", серия: "${selectedSeries}", подкатегория: "${selectedSubSubcategory}"`);
+            if (selectedSubSubcategory?.includes('Горки')) {
+              console.log('🛝 Товары Горки для отрисовки:', filteredProducts.filter(p => p.name.includes('Горк')).map(p => p.name));
+            }
+            return null;
+          })()}
           {filteredProducts.map((product) => {
             const isFavorite = favorites.some(f => f.id === product.id);
             const isSelected = selectedProduct?.id === product.id;
