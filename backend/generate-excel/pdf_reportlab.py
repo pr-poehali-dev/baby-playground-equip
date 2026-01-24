@@ -217,13 +217,13 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
         '', '', '', '', '', 'Итого:', f'{total_sum:,.2f}'.replace(',', ' ')
     ])
     
-    # Скидка (если указана)
+    # Скидка (если указана) - применяется только к товарам, без монтажа и доставки
     discount_value = 0
     if discount_percent > 0:
-        discount_value = total_sum * (discount_percent / 100)
+        discount_value = equipment_total * (discount_percent / 100)
     elif discount_amount > 0:
-        # discount_amount теперь это КОНЕЧНАЯ сумма заказа, а не скидка
-        discount_value = total_sum - discount_amount
+        # discount_amount теперь это КОНЕЧНАЯ сумма товаров (без монтажа и доставки), а не скидка
+        discount_value = equipment_total - discount_amount
     
     if discount_value != 0:
         discount_label = f'Скидка ({discount_percent}%)' if discount_percent > 0 else 'Скидка'

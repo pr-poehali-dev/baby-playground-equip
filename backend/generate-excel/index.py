@@ -493,13 +493,13 @@ def handler(event, context):
         cell.border = thin_border
         current_row += 1
         
-        # Скидка (если указана)
+        # Скидка (если указана) - применяется только к товарам, без монтажа и доставки
         discount_value = 0
         if discount_percent > 0:
-            discount_value = total_sum * (discount_percent / 100)
+            discount_value = equipment_total * (discount_percent / 100)
         elif discount_amount > 0:
-            # discount_amount теперь это КОНЕЧНАЯ сумма заказа, а не скидка
-            discount_value = total_sum - discount_amount
+            # discount_amount теперь это КОНЕЧНАЯ сумма товаров (без монтажа и доставки), а не скидка
+            discount_value = equipment_total - discount_amount
         
         if discount_value != 0:
             for col in range(1, 6):
