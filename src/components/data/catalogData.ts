@@ -125,7 +125,7 @@ export const categories = [
           { name: 'Полоса препятствий ГТО', image: '🏅' },
           {
             name: 'Спортивные комплексы',
-            image: '⛹️',
+            image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/deb57eb0-f487-40cb-8baa-dd409badc4b7.png',
             hasChildren: true,
             children: [
               { name: 'Комплексы 3-7 лет', image: '🧒' },
