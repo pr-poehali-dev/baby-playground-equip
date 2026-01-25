@@ -55,7 +55,7 @@ export const categories = [
           },
           {
             name: 'Комплексы 5-12 лет',
-            image: 'https://cdn.poehali.dev/files/ененпре.png',
+            image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/4cd730e4-fd3b-4b60-b4c4-0be4b80e5671.png',
             hasChildren: true,
             children: [
               { name: 'Классик', image: '🏰' },
