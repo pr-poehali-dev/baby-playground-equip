@@ -130,7 +130,7 @@ export const categories = [
             children: [
               { name: 'Комплексы 3-7 лет', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/1f72c46c-f0de-4e18-bbe3-cc6faa2d11e2.png' },
               { name: 'Комплексы 5-12 лет', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/09db19b0-395a-48fb-a8f3-b20dfb54b6cc.png' },
-              { name: 'Комплексы на трубе', image: '🏗️' }
+              { name: 'Комплексы на трубе', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/5d81654c-59a6-41fa-8bae-9fec5ea21b0e.png' }
             ]
           },
           { name: 'Скамьи гимнастические', image: '🪑' },
