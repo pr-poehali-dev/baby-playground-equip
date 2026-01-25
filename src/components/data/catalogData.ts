@@ -87,7 +87,7 @@ export const categories = [
           { name: 'Техника', image: 'https://cdn.poehali.dev/files/%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B0.png' },
           { name: 'Лазы', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/8942d22c-3781-4db3-9d74-c3fde653b50e.png' },
           { name: 'Игровые элементы', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/6b219d44-4f58-4412-91d2-f3ed6a0256be.png' },
-          { name: 'Теневые навесы', image: '⛱️' },
+          { name: 'Теневые навесы', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/59f9f2a3-4770-4085-b20a-74c3d887dfc9.png' },
           { name: 'Столики и скамейки', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/3b03c9f0-0fe1-4bfe-ad38-fa775834a0e5.png' }
         ]
       },
