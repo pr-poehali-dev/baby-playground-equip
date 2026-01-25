@@ -120,7 +120,7 @@ export const categories = [
         image: 'https://cdn.poehali.dev/files/%D1%81%D0%BF%D0%BE%D1%80%D1%82%20Classic.png',
         hasChildren: true,
         children: [
-          { name: 'Workout', image: '💪' },
+          { name: 'Workout', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/7b34f04e-d5d6-4851-b8a2-6c6f20c1d8eb.png' },
           { name: 'Ворота, стойки, щиты', image: '🥅' },
           { name: 'Полоса препятствий ГТО', image: '🏅' },
           {
