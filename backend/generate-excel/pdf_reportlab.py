@@ -222,10 +222,10 @@ def generate_pdf_reportlab(products, address, installation_percent, installation
     if discount_percent > 0:
         discount_value = equipment_total * (discount_percent / 100)
     elif discount_amount > 0:
-        # discount_amount теперь это КОНЕЧНАЯ сумма товаров (без монтажа и доставки), а не скидка
-        discount_value = equipment_total - discount_amount
+        # discount_amount это сумма скидки
+        discount_value = discount_amount
     
-    if discount_value != 0:
+    if discount_value > 0:
         discount_label = f'Скидка {discount_percent}%' if discount_percent > 0 else 'Скидка'
         table_data.append([
             '', '', '', '', '', discount_label + ':', f'{abs(discount_value):,.2f}'.replace(',', ' ')
