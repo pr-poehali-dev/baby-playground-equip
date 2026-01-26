@@ -39,6 +39,14 @@ export function AdminPanel() {
       return;
     }
 
+    // Проверяем размер файла (максимум 3 МБ для облачных функций)
+    const maxSize = 3 * 1024 * 1024; // 3 МБ
+    if (file.size > maxSize) {
+      setMessage(`Файл слишком большой (${(file.size / 1024 / 1024).toFixed(2)} МБ). Максимальный размер: 3 МБ. Попробуйте удалить изображения из Excel или сжать файл.`);
+      setUploadStatus('error');
+      return;
+    }
+
     setIsUploading(true);
     setUploadStatus('idle');
     setMessage('');
