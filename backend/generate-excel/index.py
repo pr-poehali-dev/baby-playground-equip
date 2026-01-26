@@ -498,10 +498,10 @@ def handler(event, context):
         if discount_percent > 0:
             discount_value = equipment_total * (discount_percent / 100)
         elif discount_amount > 0:
-            # discount_amount теперь это КОНЕЧНАЯ сумма товаров (без монтажа и доставки), а не скидка
-            discount_value = equipment_total - discount_amount
+            # discount_amount это сумма скидки
+            discount_value = discount_amount
         
-        if discount_value != 0:
+        if discount_value > 0:
             for col in range(1, 6):
                 cell = ws.cell(row=current_row, column=col, value='')
             
