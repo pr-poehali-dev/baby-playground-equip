@@ -735,8 +735,10 @@ export function Header({
                     type="number"
                     value={discountAmount || ''}
                     onChange={(e) => {
-                      const amount = Number(e.target.value) || 0;
-                      setDiscountAmount(amount);
+                      const targetAmount = Number(e.target.value) || 0;
+                      const currentTotal = calculateTotal();
+                      const calculatedDiscount = currentTotal - targetAmount;
+                      setDiscountAmount(calculatedDiscount > 0 ? calculatedDiscount : 0);
                       setDiscountPercent(0);
                     }}
                     placeholder="0"
