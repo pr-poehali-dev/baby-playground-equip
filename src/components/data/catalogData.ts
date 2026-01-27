@@ -171,19 +171,26 @@ export const categories = [
     order: 3,
     subcategories: [
       { 
-        name: 'Скамейки', 
-        image: '🪑',
+        name: 'Серия "Classic"', 
+        image: 'https://cdn.poehali.dev/files/%D0%BF%D0%B0%D1%80%D0%BA.png',
         hasChildren: true,
         children: [
-          { name: 'Скамья уличная 1.5 м', image: '🪑' },
-          { name: 'Скамья уличная 2.0 м', image: '🪑' },
-          { name: 'Скамья парковая', image: '🪑' }
+          { 
+            name: 'Скамейки', 
+            image: '🪑',
+            hasChildren: true,
+            children: [
+              { name: 'Скамья уличная 1.5 м', image: '🪑' },
+              { name: 'Скамья уличная 2.0 м', image: '🪑' },
+              { name: 'Скамья парковая', image: '🪑' }
+            ]
+          },
+          { name: 'Урны', image: '🗑️' },
+          { name: 'Беседки', image: '🏡' },
+          { name: 'Навесы', image: '⛱️' },
+          { name: 'МАФ', image: '🎨' }
         ]
-      },
-      { name: 'Урны', image: '🗑️' },
-      { name: 'Беседки', image: '🏡' },
-      { name: 'Навесы', image: '⛱️' },
-      { name: 'МАФ', image: '🎨' }
+      }
     ]
   },
   {
