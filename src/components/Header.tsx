@@ -214,11 +214,11 @@ export function Header({
           </div>
           <div className="hidden md:flex items-center gap-6 flex-1 justify-between ml-6">
             <nav className="flex gap-6">
-              <a href="#about" onClick={(e) => { e.preventDefault(); handleResetFilters?.(); setTimeout(() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-foreground hover:text-primary transition-colors text-base font-medium">О компании</a>
-              <a href="#catalog" onClick={(e) => { e.preventDefault(); handleResetFilters?.(); setTimeout(() => document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-foreground hover:text-primary transition-colors text-base font-medium">Каталог</a>
-              <a href="#services" onClick={(e) => { e.preventDefault(); handleResetFilters?.(); setTimeout(() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-foreground hover:text-primary transition-colors text-base font-medium">Услуги</a>
-              <a href="#certificates" onClick={(e) => { e.preventDefault(); handleResetFilters?.(); setTimeout(() => document.getElementById('certificates')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-foreground hover:text-primary transition-colors text-base font-medium">Сертификаты</a>
-              <a href="#contacts" onClick={(e) => { e.preventDefault(); handleResetFilters?.(); setTimeout(() => document.getElementById('contacts')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-foreground hover:text-primary transition-colors text-base font-medium">Контакты</a>
+              <a href="#about" onClick={(e) => { e.preventDefault(); handleResetFilters?.(); setTimeout(() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100); }} className="text-foreground hover:text-primary transition-colors text-base font-medium">О компании</a>
+              <a href="#catalog" onClick={(e) => { e.preventDefault(); handleResetFilters?.(); setTimeout(() => document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100); }} className="text-foreground hover:text-primary transition-colors text-base font-medium">Каталог</a>
+              <a href="#services" onClick={(e) => { e.preventDefault(); handleResetFilters?.(); setTimeout(() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100); }} className="text-foreground hover:text-primary transition-colors text-base font-medium">Услуги</a>
+              <a href="#certificates" onClick={(e) => { e.preventDefault(); handleResetFilters?.(); setTimeout(() => document.getElementById('certificates')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100); }} className="text-foreground hover:text-primary transition-colors text-base font-medium">Сертификаты</a>
+              <a href="#contacts" onClick={(e) => { e.preventDefault(); handleResetFilters?.(); setTimeout(() => document.getElementById('contacts')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100); }} className="text-foreground hover:text-primary transition-colors text-base font-medium">Контакты</a>
             </nav>
             <div className="hidden lg:flex items-center gap-3">
               {/* Поиск */}
@@ -286,7 +286,7 @@ export function Header({
                         e.preventDefault();
                         setIsMobileMenuOpen(false);
                         handleResetFilters?.();
-                        setTimeout(() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }), 100);
+                        setTimeout(() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
                       }}
                     >
                       О компании
@@ -298,7 +298,7 @@ export function Header({
                         e.preventDefault();
                         setIsMobileMenuOpen(false);
                         handleResetFilters?.();
-                        setTimeout(() => document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' }), 100);
+                        setTimeout(() => document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
                       }}
                     >
                       Каталог
@@ -310,7 +310,7 @@ export function Header({
                         e.preventDefault();
                         setIsMobileMenuOpen(false);
                         handleResetFilters?.();
-                        setTimeout(() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }), 100);
+                        setTimeout(() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
                       }}
                     >
                       Услуги
@@ -322,7 +322,7 @@ export function Header({
                         e.preventDefault();
                         setIsMobileMenuOpen(false);
                         handleResetFilters?.();
-                        setTimeout(() => document.getElementById('certificates')?.scrollIntoView({ behavior: 'smooth' }), 100);
+                        setTimeout(() => document.getElementById('certificates')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
                       }}
                     >
                       Сертификаты
@@ -334,7 +334,7 @@ export function Header({
                         e.preventDefault();
                         setIsMobileMenuOpen(false);
                         handleResetFilters?.();
-                        setTimeout(() => document.getElementById('contacts')?.scrollIntoView({ behavior: 'smooth' }), 100);
+                        setTimeout(() => document.getElementById('contacts')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
                       }}
                     >
                       Контакты
