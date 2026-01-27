@@ -132,17 +132,6 @@ export const categories = [
               { name: 'Комплексы на трубе', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/5d81654c-59a6-41fa-8bae-9fec5ea21b0e.png' }
             ]
           },
-          {
-            name: 'Тренажеры уличные',
-            image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/4957bc0e-86d4-411b-a2b0-7902e369a099.png',
-            hasChildren: true,
-            children: [
-              { name: 'Одиночные', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/5930076c-f808-41e9-a4fd-a8c3dc99013d.png' },
-              { name: 'Комбинированные', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/e7112899-4651-4133-aa76-cb3fe01fd39c.png' },
-              { name: 'Силовые', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/ca42d04c-7a6a-416a-a618-5579ceec6025.png' },
-              { name: 'Детские', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/a342f17c-3286-4131-8274-a08a2230e2d9.png' }
-            ]
-          },
           { name: 'Ворота, стойки, щиты', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/2c77178f-ec33-4666-942e-95b4316cecc5.png' },
           { name: 'Полоса препятствий ГТО', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/8a806904-d50c-4881-89b8-396a9dc8afa6.png' },
           { name: 'Трибуны сборно-разборные', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/123ffcd2-db4a-4760-b575-a59521c299fd.jpg' }
