@@ -180,7 +180,7 @@ export const categories = [
           { name: 'Скамья парковая', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/42de545c-6b87-4cba-ab4a-3cc9762fe337.png' }
         ]
       },
-      { name: 'Урны', image: '🗑️' },
+      { name: 'Урны', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/1852bbcf-e8b0-40ef-9ffe-cd0c1e56668b.png' },
       { name: 'Беседки', image: '🏡' },
       { name: 'Навесы', image: '⛱️' },
       { name: 'МАФ', image: '🎨' }
