@@ -38,11 +38,6 @@ const App = () => {
     if (savedCart) {
       setCart(JSON.parse(savedCart));
     }
-
-    // Минимальная прокрутка для скрытия адресной строки на мобильных
-    if (window.innerWidth <= 768) {
-      setTimeout(() => window.scrollTo(0, 1), 100);
-    }
   }, []);
 
   const addToFavorites = (product: Product) => {

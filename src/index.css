@@ -106,15 +106,20 @@
     overflow-x: hidden;
     height: 100%;
     width: 100%;
+    position: fixed;
+    overflow: hidden;
   }
 
   body {
     @apply bg-background text-foreground;
     font-family: "Open Sans", sans-serif;
     overflow-x: hidden;
+    overflow-y: auto;
     width: 100%;
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
+    height: 100vh;
+    height: 100dvh;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
   }
 
   h1,
