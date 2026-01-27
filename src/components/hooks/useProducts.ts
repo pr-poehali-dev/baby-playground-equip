@@ -62,18 +62,24 @@ export function useProducts() {
               // parts[3+] - глубокая вложенность (3-7 лет > Замок)
               
               if (parts.length >= 2) {
-                // Определяем серию из parts[1]
-                const seriesName = parts[1].toLowerCase();
-                if (seriesName === 'classic') {
-                  subcategory = 'Серия "Classic"';
-                } else if (seriesName === 'eco') {
-                  subcategory = 'Серия "Eco"';
-                } else if (parts[1] === 'Classic Sport') {
-                  subcategory = 'Серия "Classic Sport"';
-                } else if (parts[1] === 'Eco Sport') {
-                  subcategory = 'Серия "Eco Sport"';
+                // Для категории "Парк" структура другая: Парк > Скамейки > Скамья уличная 1.5 м
+                // Здесь нет серий, parts[1] - это уже подкатегория
+                if (parts[0] === 'Парк') {
+                  subcategory = parts[1]; // "Скамейки", "Урны" и т.д.
                 } else {
-                  subcategory = 'Серия "Classic"'; // По умолчанию Classic
+                  // Определяем серию из parts[1] для Игра/Спорт
+                  const seriesName = parts[1].toLowerCase();
+                  if (seriesName === 'classic') {
+                    subcategory = 'Серия "Classic"';
+                  } else if (seriesName === 'eco') {
+                    subcategory = 'Серия "Eco"';
+                  } else if (parts[1] === 'Classic Sport') {
+                    subcategory = 'Серия "Classic Sport"';
+                  } else if (parts[1] === 'Eco Sport') {
+                    subcategory = 'Серия "Eco Sport"';
+                  } else {
+                    subcategory = 'Серия "Classic"'; // По умолчанию Classic
+                  }
                 }
               }
               
@@ -85,9 +91,13 @@ export function useProducts() {
                   subsubcategory = parts[1];
                 }
               } else if (parts.length >= 3) {
-                // Сложный случай: Категория > Серия > Подкатегория > Подподкатегория > ...
-                // Объединяем всё после серии (начиная с parts[2])
-                let subParts = parts.slice(2);
+                // Специальная обработка для "Парк": Парк > Скамейки > Скамья уличная 1.5 м
+                if (parts[0] === 'Парк') {
+                  subsubcategory = parts[2]; // "Скамья уличная 1.5 м"
+                } else {
+                  // Сложный случай: Категория > Серия > Подкатегория > Подподкатегория > ...
+                  // Объединяем всё после серии (начиная с parts[2])
+                  let subParts = parts.slice(2);
                 
                 // Убираем "Игровые комплексы" если он первый (он уже в структуре диалога)
                 if (subParts[0] === 'Игровые комплексы') {
@@ -157,6 +167,7 @@ export function useProducts() {
                 // Лог для Горок
                 if (p.name.includes('Горк')) {
                   console.log(`🛝 Итоговая subsubcategory для "${p.name}": "${subsubcategory}"`);
+                }
                 }
               }
             } else {
