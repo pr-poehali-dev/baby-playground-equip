@@ -146,7 +146,7 @@ export const categories = [
           { name: 'Ворота, стойки, щиты', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/2c77178f-ec33-4666-942e-95b4316cecc5.png' },
           { name: 'Полоса препятствий ГТО', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/8a806904-d50c-4881-89b8-396a9dc8afa6.png' },
           { name: 'Оборудование для скейт-парков', image: '🛹' },
-          { name: 'Трибуны сборно-разборные', image: '🏟️' }
+          { name: 'Трибуны сборно-разборные', image: 'https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/123ffcd2-db4a-4760-b575-a59521c299fd.jpg' }
         ]
       },
       { 
