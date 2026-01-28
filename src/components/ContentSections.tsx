@@ -94,29 +94,29 @@ export function ContentSections() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6">
             <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardContent className="p-4 md:py-4 md:px-6 py-[15px]">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <CardContent className="p-4 md:py-4 md:px-6 my-0 py-[5px]">
+                <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mx-auto md:mb-4 rounded-[0.25rem] my-0">
                   <Icon name="Phone" size={24} className="text-primary" />
                 </div>
-                <h3 className="text-base md:text-base font-bold mb-2 md:mb-2">Телефон</h3>
+                <h3 className="text-base md:text-base font-bold md:mb-2 my-0">Телефон</h3>
                 <a href="tel:+79181151551" className="md:text-base text-primary hover:underline break-words block text-lg">+7 (918) 115-15-51</a>
               </CardContent>
             </Card>
             <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardContent className="p-4 md:py-4 md:px-6">
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <CardContent className="p-4 md:py-4 md:px-6 py-[5px]">
+                <div className="w-12 h-12 bg-secondary/10 flex items-center justify-center mx-auto md:mb-4 rounded-[0.25rem] my-0">
                   <Icon name="Mail" size={24} className="text-secondary" />
                 </div>
-                <h3 className="text-base md:text-base font-bold mb-2 md:mb-2">Email</h3>
+                <h3 className="text-base md:text-base font-bold md:mb-2 my-0">Email</h3>
                 <a href="mailto:info@urban-play.ru" className="md:text-base text-secondary hover:underline break-words block text-lg">info@urban-play.ru</a>
               </CardContent>
             </Card>
             <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardContent className="p-4 md:py-4 md:px-6 py-[15px]">
-                <div className="w-12 h-12 bg-[#0284c7]/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <CardContent className="p-4 md:py-4 md:px-6 py-[5px]">
+                <div className="w-12 h-12 bg-[#0284c7]/10 flex items-center justify-center mx-auto md:mb-4 my-0 py-0 rounded-[0.25rem]">
                   <Icon name="MapPin" size={24} className="text-[#0284c7]" />
                 </div>
-                <h3 className="text-base md:text-base font-bold mb-2 md:mb-2">Адрес</h3>
+                <h3 className="text-base md:text-base font-bold md:mb-2 my-0">Адрес</h3>
                 <a 
                   href="https://yandex.ru/maps/?pt=38.973389,45.053547&z=16&l=map&text=г.%20Краснодар%2C%20ул.%20Кореновская%2C%20д.%2057" 
                   target="_blank" 
