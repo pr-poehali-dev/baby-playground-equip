@@ -121,9 +121,13 @@ export function Header({
       setTimeout(() => {
         const sheetContent = document.querySelector('[data-cart-sheet]');
         if (sheetContent) {
-          sheetContent.scrollTop = 0;
+          sheetContent.scrollTo({ top: 0, behavior: 'instant' });
         }
-      }, 100);
+        const sheetOverlay = document.querySelector('[data-radix-scroll-area-viewport]');
+        if (sheetOverlay) {
+          sheetOverlay.scrollTo({ top: 0, behavior: 'instant' });
+        }
+      }, 150);
     }
   }, [isCartOpen]);
 
