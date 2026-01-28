@@ -325,7 +325,7 @@ export function CategoryGrid({
                       src={product.image} 
                       alt={product.name} 
                       loading="lazy"
-                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 px-0 py-[7px]" 
+                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 px-0 py-[15px]" 
                     />
                   ) : (
                     <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{product.image}</span>
