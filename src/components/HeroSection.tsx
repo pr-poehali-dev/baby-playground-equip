@@ -22,7 +22,7 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
           <h2 className="md:text-4xl lg:text-6xl font-heading md:mb-6 text-white font-semibold text-2xl my-[75px]">
             Создаём пространство для игры и спорта
           </h2>
-          <p className="md:text-xl text-white/90 mb-6 md:mb-8 text-sm">
+          <p className="md:text-xl text-white/90 md:mb-8 text-sm my-[25px]">
             Производим качественное детское игровое, спортивное и парковое оборудование. 
             Безопасность, долговечность и яркий дизайн — наши главные приоритеты.
           </p>
