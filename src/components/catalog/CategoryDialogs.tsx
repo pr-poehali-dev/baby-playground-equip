@@ -133,7 +133,7 @@ export function CategoryDialogs({
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 sm:px-4 sm:pb-4 px-0 py-0 overflow-y-auto">
             {currentSubcategory?.children?.map((subSub) => (
               <div key={subSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200" onClick={() => handleSubSubcategoryClick(subSub)}>
-                <div className="aspect-square overflow-hidden flex items-center justify-center p-6 sm:p-4">
+                <div className="aspect-square overflow-hidden flex items-center justify-center p-4 sm:p-2">
                   {subSub.image.startsWith('http') ? (
                     <img src={subSub.image} alt={subSub.name} loading="lazy" className="w-full h-full object-contain" />
                   ) : (
