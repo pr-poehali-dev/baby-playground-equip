@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
+import { optimizeImage } from '@/utils/imageOptimizer';
 
 interface Product {
   id: number;
@@ -322,7 +323,7 @@ export function CategoryGrid({
                 >
                   {product.image.startsWith('http') ? (
                     <img 
-                      src={product.image} 
+                      src={optimizeImage(product.image, 400, 85)} 
                       alt={product.name} 
                       loading="lazy"
                       decoding="async"

@@ -4,6 +4,7 @@ import Icon from '@/components/ui/icon';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { ProductDialog } from '@/components/catalog/ProductDialog';
+import { optimizeImage } from '@/utils/imageOptimizer';
 
 const formatPrice = (price: string | number): string => {
   const numPrice = typeof price === 'string' ? parseInt(price.replace(/\s/g, '')) : price;
@@ -111,7 +112,7 @@ export default function FavoritesPage({ favorites, removeFromFavorites, addToCar
                 <div className="aspect-[4/3] relative overflow-hidden bg-white flex items-center justify-center">
                   {product.image.startsWith('http') ? (
                     <img 
-                      src={product.image} 
+                      src={optimizeImage(product.image, 400, 85)} 
                       alt={product.name}
                       loading="lazy"
                       decoding="async"

@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
 import { useEffect, useRef } from 'react';
+import { optimizeImage } from '@/utils/imageOptimizer';
 
 interface Product {
   id: number;
@@ -115,7 +116,7 @@ export function ProductDialog({
                 {productImages.length > 0 ? (
                   <>
                     <img 
-                      src={productImages[currentImageIndex]} 
+                      src={optimizeImage(productImages[currentImageIndex], 1200, 90)} 
                       alt={selectedProduct.name}
                       loading="eager"
                       decoding="async"
@@ -155,7 +156,7 @@ export function ProductDialog({
                     )}
                   </>
                 ) : selectedProduct.image.startsWith('http') ? (
-                  <img src={selectedProduct.image} alt={selectedProduct.name} loading="eager" decoding="async" className="w-full h-full p-4 px-0 my-0 py-0 object-contain" style={{ contentVisibility: 'auto' }} />
+                  <img src={optimizeImage(selectedProduct.image, 1200, 90)} alt={selectedProduct.name} loading="eager" decoding="async" className="w-full h-full p-4 px-0 my-0 py-0 object-contain" style={{ contentVisibility: 'auto' }} />
                 ) : (
                   <span className="text-8xl">{selectedProduct.image}</span>
                 )}
@@ -171,7 +172,7 @@ export function ProductDialog({
                       }`}
                       onClick={() => setCurrentImageIndex(idx)}
                     >
-                      <img src={img} alt={`${selectedProduct.name} ${idx + 1}`} loading="lazy" decoding="async" className="w-full h-full object-contain p-1" style={{ contentVisibility: 'auto' }} />
+                      <img src={optimizeImage(img, 200, 80)} alt={`${selectedProduct.name} ${idx + 1}`} loading="lazy" decoding="async" className="w-full h-full object-contain p-1" style={{ contentVisibility: 'auto' }} />
                     </button>
                   ))}
                 </div>
