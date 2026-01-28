@@ -11,8 +11,8 @@ export function ContentSections() {
     <div className="order-4">
       <section id="about" className="pt-4 pb-8 bg-muted/30">
         <div className="container mx-auto px-0">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="animate-fade-in">
+          <div className="grid md:grid-cols-2 gap-12 items-center px-3">
+            <div className="animate-fade-in px-3">
               <h2 className="text-4xl font-heading mb-6 font-semibold text-center md:text-left">О компании</h2>
               <p className="text-lg text-muted-foreground mb-4">Мы специализируемся на производстве детского игрового и спортивного оборудования на протяжении 5 лет. За это время мы оснастили более 500 детских площадок по всей России.</p>
               <p className="text-lg text-muted-foreground mb-6">
@@ -65,7 +65,7 @@ export function ContentSections() {
       </section>
 
       <section id="certificates" className="pt-4 pb-8 bg-white">
-        <div className="container mx-auto px-0 py-0">
+        <div className="container mx-auto py-0 px-3">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-heading mb-4 font-semibold">Сертификаты</h2>
             <p className="text-lg text-muted-foreground">Вся продукция сертифицирована и соответствует стандартам качества</p>
@@ -86,7 +86,7 @@ export function ContentSections() {
         </div>
       </section>
 
-      <section id="contacts" className="bg-muted/30 py-[30px]">
+      <section id="contacts" className="bg-muted/30 px-3 py-[50px]">
         <div className="container mx-auto px-0">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-heading font-semibold my-[7px]">Контакты</h2>
