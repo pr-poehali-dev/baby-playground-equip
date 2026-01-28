@@ -135,12 +135,12 @@ export function CategoryDialogs({
               <div key={subSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200 min-h-[220px] sm:min-h-[240px]" onClick={() => handleSubSubcategoryClick(subSub)}>
                 <div className="aspect-square overflow-hidden flex items-center justify-center p-8 sm:p-6">
                   {subSub.image.startsWith('http') ? (
-                    <img src={subSub.image} alt={subSub.name} loading="lazy" className="w-full h-full object-contain" />
+                    <img src={subSub.image} alt={subSub.name} loading="lazy" className="w-full h-full object-contain px-0 mx-0 py-0 my-0" />
                   ) : (
                     <span className="text-9xl sm:text-8xl">{subSub.image}</span>
                   )}
                 </div>
-                <div className="absolute bottom-3 left-0 right-0 py-2 px-3 sm:px-4">
+                <div className="absolute bottom-3 left-0 right-0 px-3 sm:px-4 py-0 my-[62px]">
                   <h4 className="font-semibold text-center sm:text-base break-words leading-tight text-[#1d2025] text-sm">{subSub.name}</h4>
                 </div>
               </div>
