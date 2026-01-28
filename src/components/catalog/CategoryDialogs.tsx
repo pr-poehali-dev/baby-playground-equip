@@ -156,21 +156,21 @@ export function CategoryDialogs({
               {currentSubSubcategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-2 gap-3 px-3 pb-3 sm:grid-cols-3 sm:gap-4 sm:px-4 sm:pb-4 overflow-y-auto">
+          <div className="grid grid-cols-2 gap-4 pb-4 sm:grid-cols-3 sm:gap-6 sm:px-6 sm:pb-6 overflow-y-auto px-0">
             {currentSubSubcategory?.children?.map((subSubSub) => (
-              <div key={subSubSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200" onClick={() => {
+              <div key={subSubSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200 min-h-[220px] sm:min-h-[240px]" onClick={() => {
                 handleSubSubSubcategoryClick(subSubSub.name);
                 setIsSubSubSubcategoryDialogOpen(false);
               }}>
-                <div className="aspect-square overflow-hidden flex items-center justify-center p-6 sm:p-4">
+                <div className="aspect-square overflow-hidden flex items-center justify-center p-8 sm:p-6">
                   {subSubSub.image.startsWith('http') ? (
-                    <img src={subSubSub.image} alt={subSubSub.name} loading="lazy" className="w-full h-full object-contain" />
+                    <img src={subSubSub.image} alt={subSubSub.name} loading="lazy" className="w-full h-full object-contain px-0 mx-0 py-0 my-0" />
                   ) : (
-                    <span className="text-8xl sm:text-7xl">{subSubSub.image}</span>
+                    <span className="text-9xl sm:text-8xl">{subSubSub.image}</span>
                   )}
                 </div>
-                <div className="absolute bottom-2 left-0 right-0 py-1 px-2 sm:px-4">
-                  <h4 className="font-semibold text-center text-sm sm:text-sm break-words leading-tight text-[#1d2025]">{subSubSub.name}</h4>
+                <div className="absolute bottom-3 left-0 right-0 px-3 sm:px-4 py-0 my-[62px]">
+                  <h4 className="font-semibold text-center sm:text-base break-words leading-tight text-[#1d2025] text-sm px-0">{subSubSub.name}</h4>
                 </div>
               </div>
             ))}
