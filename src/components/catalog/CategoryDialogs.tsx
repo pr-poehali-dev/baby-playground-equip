@@ -91,14 +91,6 @@ export function CategoryDialogs({
     <>
       <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
         <DialogContent className="sm:max-w-4xl max-h-[85vh] sm:max-h-[85vh] h-auto sm:h-auto overflow-hidden m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full flex flex-col">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-2 top-2 sm:right-4 sm:top-4 z-20 h-8 w-8 sm:h-10 sm:w-10 rounded-full hover:bg-gray-100"
-            onClick={() => setIsCategoryDialogOpen(false)}
-          >
-            <Icon name="X" size={20} className="sm:w-6 sm:h-6" />
-          </Button>
           <DialogHeader className="sticky top-0 bg-white z-10 pb-2 sm:pb-4">
             <DialogTitle className="text-2xl sm:text-4xl font-heading font-semibold text-center mb-2 sm:mb-6">
               {currentCategory?.name}
@@ -133,14 +125,6 @@ export function CategoryDialogs({
 
       <Dialog open={isSubSubcategoryDialogOpen} onOpenChange={setIsSubSubcategoryDialogOpen}>
         <DialogContent className="sm:max-w-4xl max-h-[85vh] sm:max-h-[85vh] h-auto sm:h-auto overflow-hidden m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full flex flex-col">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-2 top-2 sm:right-4 sm:top-4 z-20 h-8 w-8 sm:h-10 sm:w-10 rounded-full hover:bg-gray-100"
-            onClick={() => setIsSubSubcategoryDialogOpen(false)}
-          >
-            <Icon name="X" size={20} className="sm:w-6 sm:h-6" />
-          </Button>
           <DialogHeader className="sticky top-0 bg-white z-10 pb-2 sm:pb-4">
             <DialogTitle className="text-2xl sm:text-4xl font-heading font-semibold text-center mb-2 sm:mb-4">
               {currentSubcategory?.name}
@@ -167,14 +151,6 @@ export function CategoryDialogs({
 
       <Dialog open={isSubSubSubcategoryDialogOpen} onOpenChange={setIsSubSubSubcategoryDialogOpen}>
         <DialogContent className="sm:max-w-2xl max-h-[85vh] sm:max-h-[85vh] h-auto sm:h-auto overflow-hidden m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full flex flex-col">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-2 top-2 sm:right-4 sm:top-4 z-20 h-8 w-8 sm:h-10 sm:w-10 rounded-full hover:bg-gray-100"
-            onClick={() => setIsSubSubSubcategoryDialogOpen(false)}
-          >
-            <Icon name="X" size={20} className="sm:w-6 sm:h-6" />
-          </Button>
           <DialogHeader className="sticky top-0 bg-white z-10 pb-2 sm:pb-4">
             <DialogTitle className="text-xl sm:text-4xl font-heading font-semibold text-center mb-2 sm:mb-4">
               {currentSubSubcategory?.name}
