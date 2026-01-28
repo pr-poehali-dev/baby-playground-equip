@@ -325,7 +325,9 @@ export function CategoryGrid({
                       src={product.image} 
                       alt={product.name} 
                       loading="lazy"
+                      decoding="async"
                       className="w-full h-full group-hover:scale-110 transition-transform duration-300 px-0 object-contain py-[7px]" 
+                      style={{ contentVisibility: 'auto' }}
                     />
                   ) : (
                     <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{product.image}</span>

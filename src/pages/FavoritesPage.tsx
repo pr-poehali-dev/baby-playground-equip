@@ -113,7 +113,10 @@ export default function FavoritesPage({ favorites, removeFromFavorites, addToCar
                     <img 
                       src={product.image} 
                       alt={product.name}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+                      style={{ contentVisibility: 'auto' }}
                     />
                   ) : (
                     <span className="text-4xl">{product.image}</span>
