@@ -118,16 +118,29 @@ export function Header({
 
   useEffect(() => {
     if (isCartOpen) {
-      setTimeout(() => {
-        const sheetContent = document.querySelector('[data-cart-sheet]');
-        if (sheetContent) {
-          sheetContent.scrollTo({ top: 0, behavior: 'instant' });
-        }
-        const sheetOverlay = document.querySelector('[data-radix-scroll-area-viewport]');
-        if (sheetOverlay) {
-          sheetOverlay.scrollTo({ top: 0, behavior: 'instant' });
-        }
-      }, 150);
+      const scrollToTop = () => {
+        const selectors = [
+          '[data-cart-sheet]',
+          '[data-radix-scroll-area-viewport]',
+          '.overflow-y-auto',
+          '[role="dialog"]'
+        ];
+        
+        selectors.forEach(selector => {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(el => {
+            if (el instanceof HTMLElement) {
+              el.scrollTop = 0;
+            }
+          });
+        });
+        
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      };
+
+      setTimeout(scrollToTop, 50);
+      setTimeout(scrollToTop, 150);
+      setTimeout(scrollToTop, 300);
     }
   }, [isCartOpen]);
 
