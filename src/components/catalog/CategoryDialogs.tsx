@@ -130,7 +130,7 @@ export function CategoryDialogs({
               {currentSubcategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 px-3 pb-3 sm:gap-4 sm:px-4 sm:pb-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 sm:px-4 sm:pb-4 px-0 py-0">
             {currentSubcategory?.children?.map((subSub) => (
               <div key={subSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200" onClick={() => handleSubSubcategoryClick(subSub)}>
                 <div className="aspect-square overflow-hidden flex items-center justify-center p-6 sm:p-4">
