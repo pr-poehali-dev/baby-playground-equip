@@ -6,13 +6,13 @@ interface HeroSectionProps {
 
 export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
   return (
-    <section id="hero" className="relative pt-0 pb-8 md:pb-20 overflow-hidden">
+    <section id="hero" className="relative pt-0 pb-16 md:pb-32 overflow-hidden min-h-[400px] md:min-h-[500px]">
       <div 
         className="absolute inset-0 md:bg-fixed"
         style={{ 
           backgroundImage: 'url(https://cdn.poehali.dev/files/19191919.jpg)',
           backgroundSize: 'cover',
-          backgroundPosition: 'center 85%'
+          backgroundPosition: 'center 100%'
         }}
       >
         <div className="absolute inset-0 bg-black/30 py-0 px-0 mx-0 my-0"></div>
