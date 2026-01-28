@@ -103,7 +103,7 @@ export function CategoryDialogs({
                 className="cursor-pointer group"
                 onClick={() => handleSubcategoryClick(sub)}
               >
-                <div className="relative overflow-hidden rounded-md bg-white shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 aspect-[16/10] border-2 border-gray-200 hover:border-gray-200">
+                <div className="relative overflow-hidden rounded-md bg-white shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 aspect-[16/11] border-2 border-gray-200 hover:border-gray-200">
                   <div className="absolute inset-0">
                     {sub.image.startsWith('http') ? (
                       <img src={sub.image} alt={sub.name} loading="lazy" className="w-full h-full group-hover:scale-110 transition-transform duration-300 object-cover" />
