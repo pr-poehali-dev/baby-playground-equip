@@ -153,7 +153,7 @@ export function ProductDialog({
                     )}
                   </>
                 ) : selectedProduct.image.startsWith('http') ? (
-                  <img src={selectedProduct.image} alt={selectedProduct.name} loading="lazy" className="w-full h-full object-contain p-4" />
+                  <img src={selectedProduct.image} alt={selectedProduct.name} loading="lazy" className="w-full h-full object-contain p-4 px-0" />
                 ) : (
                   <span className="text-8xl">{selectedProduct.image}</span>
                 )}
