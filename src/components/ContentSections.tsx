@@ -86,10 +86,10 @@ export function ContentSections() {
         </div>
       </section>
 
-      <section id="contacts" className="bg-muted/30 py-10">
+      <section id="contacts" className="bg-muted/30 py-[30px]">
         <div className="container mx-auto px-0">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-heading mb-4 font-semibold">Контакты</h2>
+            <h2 className="text-4xl font-heading font-semibold my-[7px]">Контакты</h2>
             <p className="text-lg text-muted-foreground">Свяжитесь с нами любым удобным способом</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6">
