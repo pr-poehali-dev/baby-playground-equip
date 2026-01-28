@@ -132,8 +132,8 @@ export function CategoryDialogs({
           </DialogHeader>
           <div className="grid grid-cols-2 gap-4 pb-4 sm:grid-cols-3 sm:gap-6 sm:px-6 sm:pb-6 overflow-y-auto px-0">
             {currentSubcategory?.children?.map((subSub) => (
-              <div key={subSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200 min-h-[220px] sm:min-h-[240px]" onClick={() => handleSubSubcategoryClick(subSub)}>
-                <div className="aspect-square overflow-hidden flex items-center justify-center p-8 sm:p-6">
+              <div key={subSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200 min-h-[190px] sm:min-h-[240px]" onClick={() => handleSubSubcategoryClick(subSub)}>
+                <div className="aspect-square overflow-hidden flex items-center justify-center p-4 sm:p-6">
                   {subSub.image.startsWith('http') ? (
                     <img src={subSub.image} alt={subSub.name} loading="lazy" className="w-full h-full object-contain px-0 mx-0 py-0 my-0" />
                   ) : (
@@ -158,11 +158,11 @@ export function CategoryDialogs({
           </DialogHeader>
           <div className="grid grid-cols-2 gap-4 pb-4 sm:grid-cols-3 sm:gap-6 sm:px-6 sm:pb-6 overflow-y-auto px-0">
             {currentSubSubcategory?.children?.map((subSubSub) => (
-              <div key={subSubSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200 min-h-[220px] sm:min-h-[240px]" onClick={() => {
+              <div key={subSubSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200 min-h-[190px] sm:min-h-[240px]" onClick={() => {
                 handleSubSubSubcategoryClick(subSubSub.name);
                 setIsSubSubSubcategoryDialogOpen(false);
               }}>
-                <div className="aspect-square overflow-hidden flex items-center justify-center p-8 sm:p-6">
+                <div className="aspect-square overflow-hidden flex items-center justify-center p-4 sm:p-6">
                   {subSubSub.image.startsWith('http') ? (
                     <img src={subSubSub.image} alt={subSubSub.name} loading="lazy" className="w-full h-full object-contain px-0 mx-0 py-0 my-0" />
                   ) : (
