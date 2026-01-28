@@ -86,7 +86,7 @@ export function ContentSections() {
         </div>
       </section>
 
-      <section id="contacts" className="bg-muted/30 px-3 py-[7px]">
+      <section id="contacts" className="bg-muted/30 px-3 py-0">
         <div className="container mx-auto px-0 py-[21px] my-[21px]">
           <div className="text-center mb-12">
             <h2 className="font-heading font-semibold my-0 py-0 text-3xl">Контакты</h2>
