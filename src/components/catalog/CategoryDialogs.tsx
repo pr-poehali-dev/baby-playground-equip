@@ -90,13 +90,13 @@ export function CategoryDialogs({
   return (
     <>
       <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
-        <DialogContent className="sm:max-w-4xl max-h-[85vh] sm:max-h-[85vh] overflow-hidden m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full flex flex-col">
-          <DialogHeader className="sticky top-0 bg-white z-10 pb-2 sm:pb-2">
+        <DialogContent className="sm:max-w-4xl h-[85vh] sm:h-[85vh] overflow-hidden m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full flex flex-col">
+          <DialogHeader className="sticky top-0 bg-white z-10 pb-2 sm:pb-2 flex-shrink-0">
             <DialogTitle className="text-2xl sm:text-4xl font-heading font-semibold text-center mb-2 sm:mb-2">
               {currentCategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 sm:px-6 sm:pb-6 px-0 py-0 overflow-y-auto">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 sm:px-6 sm:pb-6 px-0 py-0 overflow-y-auto flex-1 content-start">
             {currentCategory?.subcategories.map((sub) => (
               <div
                 key={sub.name}
@@ -124,13 +124,13 @@ export function CategoryDialogs({
       </Dialog>
 
       <Dialog open={isSubSubcategoryDialogOpen} onOpenChange={setIsSubSubcategoryDialogOpen}>
-        <DialogContent className="sm:max-w-4xl max-h-[85vh] sm:max-h-[85vh] overflow-hidden m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full flex flex-col">
-          <DialogHeader className="sticky top-0 bg-white z-10 pb-2 sm:pb-4">
+        <DialogContent className="sm:max-w-4xl h-[85vh] sm:h-[85vh] overflow-hidden m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full flex flex-col">
+          <DialogHeader className="sticky top-0 bg-white z-10 pb-2 sm:pb-4 flex-shrink-0">
             <DialogTitle className="text-2xl sm:text-4xl font-heading font-semibold text-center mb-2 sm:mb-4">
               {currentSubcategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-2 gap-4 pb-4 sm:grid-cols-3 sm:gap-6 sm:px-6 sm:pb-6 overflow-y-auto px-0">
+          <div className="grid grid-cols-2 gap-4 pb-4 sm:grid-cols-3 sm:gap-6 sm:px-6 sm:pb-6 overflow-y-auto px-0 flex-1 content-start">
             {currentSubcategory?.children?.map((subSub) => (
               <div key={subSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200 min-h-[190px] sm:min-h-[240px]" onClick={() => handleSubSubcategoryClick(subSub)}>
                 <div className="aspect-square overflow-hidden flex items-center justify-center p-4 sm:p-6">
@@ -150,13 +150,13 @@ export function CategoryDialogs({
       </Dialog>
 
       <Dialog open={isSubSubSubcategoryDialogOpen} onOpenChange={setIsSubSubSubcategoryDialogOpen}>
-        <DialogContent className="sm:max-w-4xl max-h-[85vh] sm:max-h-[85vh] overflow-hidden m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full flex flex-col">
-          <DialogHeader className="sticky top-0 bg-white z-10 pb-2 sm:pb-4">
+        <DialogContent className="sm:max-w-4xl h-[85vh] sm:h-[85vh] overflow-hidden m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full flex flex-col">
+          <DialogHeader className="sticky top-0 bg-white z-10 pb-2 sm:pb-4 flex-shrink-0">
             <DialogTitle className="text-xl sm:text-4xl font-heading font-semibold text-center mb-2 sm:mb-4">
               {currentSubSubcategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-2 gap-4 pb-4 sm:grid-cols-3 sm:gap-6 sm:px-6 sm:pb-6 overflow-y-auto px-0">
+          <div className="grid grid-cols-2 gap-4 pb-4 sm:grid-cols-3 sm:gap-6 sm:px-6 sm:pb-6 overflow-y-auto px-0 flex-1 content-start">
             {currentSubSubcategory?.children?.map((subSubSub) => (
               <div key={subSubSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200 min-h-[190px] sm:min-h-[240px]" onClick={() => {
                 handleSubSubSubcategoryClick(subSubSub.name);
