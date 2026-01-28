@@ -150,13 +150,13 @@ export function CategoryDialogs({
       </Dialog>
 
       <Dialog open={isSubSubSubcategoryDialogOpen} onOpenChange={setIsSubSubSubcategoryDialogOpen}>
-        <DialogContent className="sm:max-w-4xl max-h-[85vh] sm:max-h-[85vh] h-auto sm:h-auto overflow-hidden m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full flex flex-col">
-          <DialogHeader className="sticky top-0 bg-white z-10 pb-2 sm:pb-4">
-            <DialogTitle className="text-xl sm:text-4xl font-heading font-semibold text-center mb-2 sm:mb-4">
+        <DialogContent className="sm:max-w-4xl max-h-[90vh] sm:max-h-[85vh] h-auto sm:h-auto overflow-hidden m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full flex flex-col">
+          <DialogHeader className="sticky top-0 bg-white z-10 pb-1 sm:pb-4">
+            <DialogTitle className="text-xl sm:text-4xl font-heading font-semibold text-center mb-1 sm:mb-4">
               {currentSubSubcategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-2 gap-4 pb-4 sm:grid-cols-3 sm:gap-6 sm:px-6 sm:pb-6 overflow-y-auto px-0">
+          <div className="grid grid-cols-2 gap-4 pb-4 sm:grid-cols-3 sm:gap-6 sm:px-6 sm:pb-6 overflow-y-auto px-0 pt-2">
             {currentSubSubcategory?.children?.map((subSubSub) => (
               <div key={subSubSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200 min-h-[190px] sm:min-h-[240px]" onClick={() => {
                 handleSubSubSubcategoryClick(subSubSub.name);
