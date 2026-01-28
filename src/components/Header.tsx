@@ -118,13 +118,12 @@ export function Header({
 
   useEffect(() => {
     if (isCartOpen) {
-      // Скроллим корзину в начало при открытии
       setTimeout(() => {
         const sheetContent = document.querySelector('[data-cart-sheet]');
         if (sheetContent) {
           sheetContent.scrollTop = 0;
         }
-      }, 0);
+      }, 100);
     }
   }, [isCartOpen]);
 
