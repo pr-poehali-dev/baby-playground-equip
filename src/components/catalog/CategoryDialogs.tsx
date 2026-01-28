@@ -156,7 +156,7 @@ export function CategoryDialogs({
               {currentSubSubcategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 sm:px-6 sm:pb-6 overflow-y-auto px-0 py-[18px]">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 sm:px-6 sm:pb-6 overflow-y-auto px-0 py-[124px]">
             {currentSubSubcategory?.children?.map((subSubSub) => (
               <div key={subSubSub.name} className="cursor-pointer transition-all hover:shadow-xl overflow-hidden group rounded-md flex flex-col relative border-2 border-gray-200 min-h-[190px] sm:min-h-[240px]" onClick={() => {
                 handleSubSubSubcategoryClick(subSubSub.name);
