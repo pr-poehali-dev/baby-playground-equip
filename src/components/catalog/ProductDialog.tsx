@@ -180,7 +180,7 @@ export function ProductDialog({
               <div>
                 <p className="sm:text-base sm:mb-2 text-[#5a098c] my-0 font-medium text-sm leading-tight">{selectedProduct.name.split('\n')[0]}</p>
                 <h2 className="font-heading sm:mb-4 font-semibold sm:text-3xl my-0 text-xl leading-tight line-clamp-2 sm:line-clamp-none">{selectedProduct.name.split('\n')[1] || selectedProduct.name}</h2>
-                <p className="font-bold text-primary sm:mb-4 text-2xl sm:text-3xl my-0 py-1 mt-2 mb-2">{formatPrice(selectedProduct.price)} ₽</p>
+                <p className="font-bold text-primary sm:mb-4 text-2xl sm:text-3xl my-0 mt-2 mb-2 py-3">{formatPrice(selectedProduct.price)} ₽</p>
                 
                 <div className="flex gap-2 sm:gap-3 justify-start items-center mt-0 mb-2">
                   <Button 
