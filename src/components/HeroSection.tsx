@@ -10,7 +10,7 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
       <div 
         className="absolute inset-0 bg-fixed"
         style={{ 
-          backgroundImage: 'url(https://cdn.poehali.dev/files/19191919.jpg)',
+          backgroundImage: 'url(https://cdn.poehali.dev/projects/ffd62df4-6e6a-420c-99f5-4d24cf68fcf3/bucket/579c2eb8-6491-4a40-98d9-cb4c60202999.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center 20%',
           backgroundAttachment: 'fixed'
