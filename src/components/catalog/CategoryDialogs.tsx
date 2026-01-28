@@ -113,7 +113,6 @@ export function CategoryDialogs({
                       </div>
                     )}
                   </div>
-                  <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.19)' }}></div>
                   <div className="absolute bottom-0 left-0 right-0 py-1 px-2 -mb-px">
                     <h4 className="font-heading text-white text-base sm:text-xl leading-tight font-light text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] py-1">{sub.name}</h4>
                   </div>
