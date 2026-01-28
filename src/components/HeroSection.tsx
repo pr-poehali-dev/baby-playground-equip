@@ -6,7 +6,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
   return (
-    <section id="hero" className="relative pt-0 pb-16 md:pb-36 overflow-hidden">
+    <section id="hero" className="relative pt-0 pb-8 md:pb-20 overflow-hidden">
       <div 
         className="absolute inset-0 bg-cover md:bg-fixed"
         style={{ 
