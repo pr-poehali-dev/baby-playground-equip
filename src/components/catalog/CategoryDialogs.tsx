@@ -140,7 +140,7 @@ export function CategoryDialogs({
                     <span className="text-9xl sm:text-8xl">{subSub.image}</span>
                   )}
                 </div>
-                <div className="absolute bottom-3 left-0 right-0 px-3 sm:px-4 py-0 my-[62px]">
+                <div className="absolute bottom-0 left-0 right-0 px-3 sm:px-4 py-2">
                   <h4 className="font-semibold text-center sm:text-base break-words leading-tight text-[#1d2025] text-sm px-0">{subSub.name}</h4>
                 </div>
               </div>
@@ -169,7 +169,7 @@ export function CategoryDialogs({
                     <span className="text-9xl sm:text-8xl">{subSubSub.image}</span>
                   )}
                 </div>
-                <div className="absolute bottom-3 left-0 right-0 px-3 sm:px-4 py-0 my-[62px]">
+                <div className="absolute bottom-0 left-0 right-0 px-3 sm:px-4 py-2">
                   <h4 className="font-semibold text-center sm:text-base break-words leading-tight text-[#1d2025] text-sm px-0">{subSubSub.name}</h4>
                 </div>
               </div>
