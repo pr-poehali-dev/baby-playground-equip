@@ -100,7 +100,7 @@ export function ProductDialog({
   return (
     <Dialog open={isProductDialogOpen} onOpenChange={setIsProductDialogOpen}>
       <DialogContent 
-        className="max-w-6xl max-h-[95vh] sm:max-h-[85vh] p-3 sm:p-6 overflow-hidden flex flex-col"
+        className="max-w-6xl max-h-[80vh] sm:max-h-[85vh] p-3 sm:p-6 overflow-hidden flex flex-col"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
