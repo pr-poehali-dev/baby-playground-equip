@@ -86,20 +86,20 @@ export function ContentSections() {
         </div>
       </section>
 
-      <section id="contacts" className="bg-muted/30 px-3 py-[50px]">
-        <div className="container mx-auto px-0">
+      <section id="contacts" className="bg-muted/30 px-3 py-[7px]">
+        <div className="container mx-auto px-0 py-0">
           <div className="text-center mb-12">
-            <h2 className="font-heading font-semibold my-[7px] text-2xl">Контакты</h2>
-            <p className="text-lg text-muted-foreground">Свяжитесь с нами любым удобным способом</p>
+            <h2 className="font-heading font-semibold text-2xl my-0 py-0">Контакты</h2>
+            <p className="text-lg text-muted-foreground py-0">Свяжитесь с нами любым удобным способом</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6">
             <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardContent className="p-4 md:py-4 md:px-6">
+              <CardContent className="p-4 md:py-4 md:px-6 py-[15px]">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
                   <Icon name="Phone" size={24} className="text-primary" />
                 </div>
                 <h3 className="text-base md:text-base font-bold mb-2 md:mb-2">Телефон</h3>
-                <a href="tel:+79181151551" className="text-base md:text-base text-primary hover:underline break-words block">+7 (918) 115-15-51</a>
+                <a href="tel:+79181151551" className="md:text-base text-primary hover:underline break-words block text-lg">+7 (918) 115-15-51</a>
               </CardContent>
             </Card>
             <Card className="text-center hover:shadow-lg transition-shadow">
@@ -108,11 +108,11 @@ export function ContentSections() {
                   <Icon name="Mail" size={24} className="text-secondary" />
                 </div>
                 <h3 className="text-base md:text-base font-bold mb-2 md:mb-2">Email</h3>
-                <a href="mailto:info@urban-play.ru" className="text-base md:text-base text-secondary hover:underline break-words block">info@urban-play.ru</a>
+                <a href="mailto:info@urban-play.ru" className="md:text-base text-secondary hover:underline break-words block text-lg">info@urban-play.ru</a>
               </CardContent>
             </Card>
             <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardContent className="p-4 md:py-4 md:px-6">
+              <CardContent className="p-4 md:py-4 md:px-6 py-[15px]">
                 <div className="w-12 h-12 bg-[#0284c7]/10 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
                   <Icon name="MapPin" size={24} className="text-[#0284c7]" />
                 </div>
@@ -121,7 +121,7 @@ export function ContentSections() {
                   href="https://yandex.ru/maps/?pt=38.973389,45.053547&z=16&l=map&text=г.%20Краснодар%2C%20ул.%20Кореновская%2C%20д.%2057" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-base md:text-base text-blue-600 hover:underline break-words block"
+                  className="md:text-base text-blue-600 hover:underline break-words block text-lg"
                 >
                   г. Краснодар, ул. Кореновская, д. 57 оф. 7
                 </a>
@@ -131,8 +131,8 @@ export function ContentSections() {
         </div>
       </section>
 
-      <footer className="py-2" style={{ backgroundColor: '#1a0129', color: '#ffffff' }}>
-        <div className="container mx-auto px-4 text-center">
+      <footer className="py-[5px]" style={{ backgroundColor: '#1a0129', color: '#ffffff' }}>
+        <div className="container mx-auto px-4 text-center my-0 py-0">
           <p>&copy; 2026 Urban Play. Все права защищены.</p>
         </div>
       </footer>
