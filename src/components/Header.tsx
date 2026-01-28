@@ -216,15 +216,15 @@ export function Header({
   };
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50 border-b">
-      <div className="container mx-auto px-4 my-0 py-0">
-        <div className="flex items-center justify-between py-[5px]">
+    <header className="bg-white shadow-sm sticky top-0 z-50 border-b px-0">
+      <div className="container mx-auto my-0 py-0 px-0">
+        <div className="flex items-center justify-between px-0 py-[5px]">
           <div className="flex items-center gap-3">
             <a href="#hero" className="cursor-pointer" onClick={() => handleResetFilters?.()}>
               <img 
                 src="https://cdn.poehali.dev/files/photo_643632026-01-05_09-32-44.png" 
                 alt="Urban Play"
-                className="h-16 w-auto object-contain rounded-0"
+                className="h-16 w-auto object-contain rounded-0 px-0"
               />
             </a>
           </div>
