@@ -103,18 +103,18 @@ export function CategoryDialogs({
                 className="cursor-pointer group"
                 onClick={() => handleSubcategoryClick(sub)}
               >
-                <div className="relative overflow-hidden rounded-md bg-white shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 aspect-[4/3] border-2 border-gray-200 hover:border-gray-200">
+                <div className="relative overflow-hidden rounded-md bg-white shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 aspect-[16/10] border-2 border-gray-200 hover:border-gray-200">
                   <div className="absolute inset-0">
                     {sub.image.startsWith('http') ? (
                       <img src={sub.image} alt={sub.name} loading="lazy" className="w-full h-full group-hover:scale-110 transition-transform duration-300 object-cover" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
-                        <span className="text-7xl group-hover:scale-110 transition-transform duration-300">{sub.image}</span>
+                        <span className="text-8xl group-hover:scale-110 transition-transform duration-300">{sub.image}</span>
                       </div>
                     )}
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 py-1.5 px-2 -mb-px">
-                    <h4 className="font-heading text-white text-base sm:text-xl leading-tight font-light text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] py-[7px]">{sub.name}</h4>
+                  <div className="absolute bottom-0 left-0 right-0 py-1 px-2 -mb-px">
+                    <h4 className="font-heading text-white text-base sm:text-xl leading-tight font-light text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] py-1">{sub.name}</h4>
                   </div>
                 </div>
               </div>
