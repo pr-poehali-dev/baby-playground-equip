@@ -317,7 +317,7 @@ export function Header({
               <a href="#about" onClick={(e) => { e.preventDefault(); handleResetFilters?.(); setTimeout(() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-sm font-medium hover:text-primary transition-colors cursor-pointer">
                 О компании
               </a>
-              <a href="#catalog" onClick={(e) => { e.preventDefault(); setIsSideMenuOpen(true); }} className="text-sm font-medium hover:text-primary transition-colors cursor-pointer">
+              <a href="#catalog" onClick={(e) => { e.preventDefault(); handleResetFilters?.(); setTimeout(() => document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-sm font-medium hover:text-primary transition-colors cursor-pointer">
                 Каталог
               </a>
               <a href="#services" onClick={(e) => { e.preventDefault(); handleResetFilters?.(); setTimeout(() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="text-sm font-medium hover:text-primary transition-colors cursor-pointer">
@@ -331,6 +331,33 @@ export function Header({
               </a>
             </nav>
             <div className="flex items-center gap-3">
+              <div className="relative">
+                <Icon name="Search" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Поиск"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery?.(e.target.value)}
+                  className="pl-9 w-48 h-9"
+                />
+                {searchQuery && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7"
+                    onClick={() => setSearchQuery?.('')}
+                  >
+                    <Icon name="X" size={14} />
+                  </Button>
+                )}
+              </div>
+              <a href="tel:+79181151551" className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors">
+                <Icon name="Phone" size={18} />
+                +7 918 115-15-51
+              </a>
+              <Button onClick={() => setIsContactDialogOpen(true)} className="bg-primary hover:bg-primary/90">
+                Заказать звонок
+              </Button>
               <Link to="/favorites">
                 <Button variant="ghost" size="icon" className="relative">
                   <Icon name="Heart" size={20} />
