@@ -600,7 +600,7 @@ export function Header({
               <SheetContent data-cart-sheet className="w-full sm:max-w-md overflow-y-auto pt-0 flex flex-col">
                 <SheetHeader className="sticky top-0 bg-background z-10 pb-3 pt-6">
                   <SheetTitle className="text-xl">Корзина</SheetTitle>
-                  <div className="relative pt-3">
+                  <div className="relative py-0">
                     <Icon name="Search" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                     <Input
                       type="text"
@@ -699,7 +699,7 @@ export function Header({
                             dragOverIndex === index && draggedIndex !== index ? 'border-primary border-2' : ''
                           }`}
                         >
-                          <CardContent className="p-3 flex items-start gap-3">
+                          <CardContent className="p-3 flex items-start gap-3 py-0 my-1.5">
                             <div 
                               className="cursor-grab active:cursor-grabbing pt-2"
                               draggable
@@ -718,7 +718,7 @@ export function Header({
                             <div className="flex-1 min-w-0 space-y-1">
                               <p className="text-sm text-primary font-medium">{item.name.split('\n')[0]}</p>
                               <h4 className="font-medium text-sm">{item.name.split('\n').slice(1).join(' ')}</h4>
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-2 my-0.5">
                                 <Button
                                   variant="outline"
                                   size="icon"
