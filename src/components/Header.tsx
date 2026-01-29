@@ -268,19 +268,28 @@ export function Header({
   };
 
   const handleKpTargetTotalChange = (value: number) => {
+    if (!value || value === 0) {
+      setKpTargetTotal(0);
+      setKpDiscountAmount(0);
+      setKpDiscountPercent(0);
+      return;
+    }
     setKpTargetTotal(value);
     if (totalCost > 0) {
       const newDiscountAmount = Math.max(0, totalCost - value);
       const newDiscountPercent = totalCost > 0 ? (newDiscountAmount / totalCost) * 100 : 0;
       setKpDiscountAmount(newDiscountAmount);
       setKpDiscountPercent(newDiscountPercent);
-    } else if (value === 0) {
-      setKpDiscountAmount(0);
-      setKpDiscountPercent(0);
     }
   };
 
   const handleKpDiscountPercentChange = (value: number) => {
+    if (!value || value === 0) {
+      setKpDiscountPercent(0);
+      setKpDiscountAmount(0);
+      setKpTargetTotal(0);
+      return;
+    }
     setKpDiscountPercent(value);
     const newDiscountAmount = (totalCost * value) / 100;
     setKpDiscountAmount(newDiscountAmount);
@@ -288,6 +297,12 @@ export function Header({
   };
 
   const handleKpDiscountAmountChange = (value: number) => {
+    if (!value || value === 0) {
+      setKpDiscountAmount(0);
+      setKpDiscountPercent(0);
+      setKpTargetTotal(0);
+      return;
+    }
     setKpDiscountAmount(value);
     if (totalCost > 0) {
       const newDiscountPercent = (value / totalCost) * 100;
@@ -872,7 +887,20 @@ export function Header({
         </DialogContent>
       </Dialog>
 
-      <Dialog open={showKPDialog} onOpenChange={setShowKPDialog}>
+      <Dialog open={showKPDialog} onOpenChange={(open) => {
+        setShowKPDialog(open);
+        if (open) {
+          setKpAddress('');
+          setKpInstallationPercent(0);
+          setKpDeliveryCost(0);
+          setKpDiscountPercent(0);
+          setKpDiscountAmount(0);
+          setKpTargetTotal(0);
+          setHideInstallationInKP(false);
+          setHideDeliveryInKP(false);
+          setKpFormat('xlsx');
+        }
+      }}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>Создание КП</DialogTitle>
