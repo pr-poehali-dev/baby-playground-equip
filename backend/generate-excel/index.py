@@ -259,16 +259,33 @@ def handler(event, context):
         current_row += 1
         
         # Товары
-        equipment_total = 0
+        equipment_total_original = 0  # Сумма товаров без скидки
         
         # Рассчитываем общее количество товаров для равномерного распределения доставки
         total_product_quantity = sum(p['quantity'] for p in products)
+        
+        # Сначала считаем оригинальную сумму товаров для расчета скидки
+        for product in products:
+            base_price = int(product['price'].replace(' ', '')) if isinstance(product['price'], str) else product['price']
+            equipment_total_original += base_price * product['quantity']
+        
+        # Рассчитываем скидку от суммы товаров
+        discount_value = 0
+        if discount_amount > 0:
+            discount_value = discount_amount
+        elif discount_percent > 0:
+            discount_value = equipment_total_original * (discount_percent / 100)
+        
+        # Коэффициент скидки для применения к каждому товару
+        discount_multiplier = 1 - (discount_value / equipment_total_original) if equipment_total_original > 0 else 1
         
         # Доставка на единицу товара (равномерное распределение)
         delivery_per_unit = (delivery_cost / total_product_quantity) if (hide_delivery and delivery_cost > 0 and total_product_quantity > 0) else 0
         
         # Процент монтажа для добавления к цене
         installation_percent_multiplier = (installation_percent / 100) if (hide_installation and installation_percent > 0) else 0
+        
+        equipment_total = 0  # Итоговая сумма товаров со скидкой
         
         for idx, product in enumerate(products, 1):
             ws.row_dimensions[current_row].height = 75.00
@@ -364,11 +381,14 @@ def handler(event, context):
             cell.border = thin_border
             cell.font = Font(name='Calibri', size=11)
             
-            # Цена (с учетом распределения)
+            # Цена (с учетом скидки)
             base_price = int(product['price'].replace(' ', '')) if isinstance(product['price'], str) else product['price']
             
+            # Применяем скидку к цене товара
+            discounted_price = base_price * discount_multiplier
+            
             # Монтаж: добавляем процент к цене товара (10% → +10% к цене)
-            price_with_installation = base_price * (1 + installation_percent_multiplier)
+            price_with_installation = discounted_price * (1 + installation_percent_multiplier)
             
             # Доставка: добавляем равномерно на единицу товара
             final_price = price_with_installation + delivery_per_unit
@@ -473,8 +493,8 @@ def handler(event, context):
             
             current_row += 1
         
-        # Итого = товары + монтаж + доставка
-        total_before_discount = equipment_total
+        # Итого = товары (без скидки) + монтаж + доставка
+        total_before_discount = equipment_total_original
         if installation_cost > 0 and not hide_installation:
             total_before_discount += installation_cost
         if delivery_cost > 0 and not hide_delivery:
@@ -495,13 +515,7 @@ def handler(event, context):
         cell.border = thin_border
         current_row += 1
         
-        # Скидка = Итого - Целевая сумма (если указан discount)
-        discount_value = 0
-        if discount_amount > 0:
-            discount_value = discount_amount
-        elif discount_percent > 0:
-            discount_value = total_before_discount * (discount_percent / 100)
-        
+        # Скидка (уже рассчитана выше)
         if discount_value > 0:
             for col in range(1, 6):
                 cell = ws.cell(row=current_row, column=col, value='')
@@ -518,7 +532,7 @@ def handler(event, context):
             cell.border = thin_border
             current_row += 1
         
-        # К оплате = Итого - Скидка (или целевая сумма)
+        # К оплате = Итого - Скидка (должно равняться целевой сумме)
         total_to_pay = total_before_discount - discount_value
         
         for col in range(1, 6):
