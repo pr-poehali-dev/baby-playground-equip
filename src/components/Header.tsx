@@ -346,9 +346,9 @@ export function Header({
                 />
                 {searchQuery && (
                   <Button
-                    variant="ghost"
+                    variant="outline"
                     size="icon"
-                    className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7"
+                    className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full bg-transparent hover:bg-transparent hover:border-primary hover:text-primary"
                     onClick={() => setSearchQuery?.('')}
                   >
                     <Icon name="X" size={14} />
@@ -559,7 +559,7 @@ export function Header({
                           <Button ref={orderButtonRef} onClick={() => setShowOrderForm(true)} className="flex-1" size="lg">
                             Оформить заказ
                           </Button>
-                          <Button onClick={() => setShowKPDialog(true)} variant="outline" className="bg-transparent border-primary text-primary hover:bg-transparent hover:border-primary hover:text-primary" size="lg">
+                          <Button onClick={() => setShowKPDialog(true)} variant="outline" className="border-primary text-primary hover:bg-transparent hover:text-primary" size="lg">
                             КП
                           </Button>
                         </div>
@@ -775,7 +775,7 @@ export function Header({
                         <Button ref={orderButtonRef} onClick={() => setShowOrderForm(true)} className="flex-1" size="lg">
                           Оформить заказ
                         </Button>
-                        <Button onClick={() => setShowKPDialog(true)} variant="outline" className="bg-transparent border-primary text-primary hover:bg-transparent hover:border-primary hover:text-primary" size="lg">
+                        <Button onClick={() => setShowKPDialog(true)} variant="outline" className="border-primary text-primary hover:bg-transparent hover:text-primary" size="lg">
                           КП
                         </Button>
                       </div>
