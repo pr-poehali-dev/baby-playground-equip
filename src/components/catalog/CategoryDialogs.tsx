@@ -90,13 +90,13 @@ export function CategoryDialogs({
   return (
     <>
       <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
-        <DialogContent className="sm:max-w-4xl h-[85vh] sm:h-[85vh] overflow-hidden m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full flex flex-col">
+        <DialogContent className="sm:max-w-4xl max-h-[85vh] overflow-hidden m-0 sm:m-4 rounded-none sm:rounded-lg max-w-full flex flex-col">
           <DialogHeader className="sticky top-0 bg-white z-10 pb-2 sm:pb-2 flex-shrink-0">
             <DialogTitle className="text-2xl sm:text-4xl font-heading font-semibold text-center mb-2 sm:mb-2">
               {currentCategory?.name}
             </DialogTitle>
           </DialogHeader>
-          <div className={`grid gap-4 pb-4 sm:gap-6 sm:px-6 sm:pb-6 px-0 py-0 overflow-y-auto flex-1 content-start ${
+          <div className={`grid gap-4 pb-0 sm:gap-6 sm:px-6 sm:pb-0 px-0 py-0 overflow-y-auto content-start ${
             currentCategory?.id === 'park' || currentCategory?.id === 'improvement' || currentCategory?.id === 'coating' || currentCategory?.id === 'fencing'
               ? 'grid-cols-2 sm:grid-cols-3'
               : 'grid-cols-1 sm:grid-cols-2'
