@@ -370,14 +370,16 @@ export function Header({
               </Link>
               <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
                 <SheetTrigger asChild>
-                  <Button variant="outline" size="icon" className="h-10 w-10 p-0 gap-0 hover:bg-transparent hover:border-primary hover:text-primary">
-                    <Icon name="ShoppingCart" size={20} />
-                    {cart.length > 0 && (
-                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
-                        {cart.reduce((sum, item) => sum + item.quantity, 0)}
-                      </span>
-                    )}
-                  </Button>
+                  <div>
+                    <Button variant="outline" size="icon" className="relative h-10 w-10 p-0 gap-0 hover:bg-transparent hover:border-primary hover:text-primary">
+                      <Icon name="ShoppingCart" size={20} />
+                      {cart.length > 0 && (
+                        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                          {cart.reduce((sum, item) => sum + item.quantity, 0)}
+                        </span>
+                      )}
+                    </Button>
+                  </div>
                 </SheetTrigger>
                 <SheetContent data-cart-sheet className="w-full sm:max-w-md overflow-y-auto pt-0 flex flex-col">
                   <SheetHeader className="sticky top-0 bg-background z-10 pb-4 pt-6 border-b">
@@ -597,14 +599,16 @@ export function Header({
             </Link>
             <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="h-10 w-10 p-0 gap-0 hover:bg-transparent hover:border-primary hover:text-primary">
-                  <Icon name="ShoppingCart" size={20} />
-                  {cart.length > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
-                      {cart.reduce((sum, item) => sum + item.quantity, 0)}
-                    </span>
-                  )}
-                </Button>
+                <div>
+                  <Button variant="outline" size="icon" className="relative h-10 w-10 p-0 gap-0 hover:bg-transparent hover:border-primary hover:text-primary">
+                    <Icon name="ShoppingCart" size={20} />
+                    {cart.length > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                        {cart.reduce((sum, item) => sum + item.quantity, 0)}
+                      </span>
+                    )}
+                  </Button>
+                </div>
               </SheetTrigger>
               <SheetContent data-cart-sheet className="w-full sm:max-w-md overflow-y-auto pt-0 flex flex-col">
                 <SheetHeader className="sticky top-0 bg-background z-10 pb-4 pt-6 border-b">
