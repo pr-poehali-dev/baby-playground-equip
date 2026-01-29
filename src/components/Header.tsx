@@ -177,10 +177,7 @@ export function Header({
     orderCount += 1;
     localStorage.setItem('orderCount', orderCount.toString());
     
-    const day = String(now.getDate()).padStart(2, '0');
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const year = currentYear;
-    return `${String(orderCount).padStart(4, '0')} ${day}.${month}.${year}`;
+    return `${String(orderCount).padStart(4, '0')}`;
   };
 
   const getCurrentOrderNumber = () => {
@@ -196,10 +193,7 @@ export function Header({
     
     orderCount += 1;
     
-    const day = String(now.getDate()).padStart(2, '0');
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const year = currentYear;
-    return `${String(orderCount).padStart(4, '0')} ${day}.${month}.${year}`;
+    return `${String(orderCount).padStart(4, '0')}`;
   };
 
   const [currentOrderNumber, setCurrentOrderNumber] = useState(() => getCurrentOrderNumber());
