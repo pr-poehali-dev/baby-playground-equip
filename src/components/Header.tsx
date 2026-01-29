@@ -1004,15 +1004,36 @@ export function Header({
               </div>
             </div>
 
-            <div className="bg-muted p-4 rounded-lg">
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium">Итоговая цена КП:</span>
-                <span className="text-lg font-bold text-primary">
-                  {formatPrice(Math.round(
-                    (totalCost - kpDiscountAmount) + 
-                    Math.round(((totalCost - kpDiscountAmount) * kpInstallationPercent) / 100) + 
-                    kpDeliveryCost
-                  ))} ₽
+            <div className="bg-muted p-4 rounded-lg space-y-2">
+              <div className="flex justify-between items-center text-sm">
+                <span>Товары:</span>
+                <span>{formatPrice(totalCost)} ₽</span>
+              </div>
+              <div className="flex justify-between items-center text-sm">
+                <span>Монтаж ({kpInstallationPercent}%):</span>
+                <span>{formatPrice(Math.round((totalCost * kpInstallationPercent) / 100))} ₽</span>
+              </div>
+              <div className="flex justify-between items-center text-sm">
+                <span>Доставка:</span>
+                <span>{formatPrice(kpDeliveryCost)} ₽</span>
+              </div>
+              <div className="flex justify-between items-center text-sm font-bold border-t pt-2">
+                <span>Итого:</span>
+                <span>{formatPrice(Math.round(totalCost + (totalCost * kpInstallationPercent) / 100 + kpDeliveryCost))} ₽</span>
+              </div>
+              {kpDiscountAmount > 0 && (
+                <div className="flex justify-between items-center text-sm text-red-600">
+                  <span>Скидка:</span>
+                  <span>-{formatPrice(Math.round(kpDiscountAmount))} ₽</span>
+                </div>
+              )}
+              <div className="flex justify-between items-center font-bold text-lg border-t pt-2">
+                <span>К оплате:</span>
+                <span className="text-primary">
+                  {kpTargetTotal > 0 
+                    ? formatPrice(Math.round(kpTargetTotal))
+                    : formatPrice(Math.round(totalCost + (totalCost * kpInstallationPercent) / 100 + kpDeliveryCost - kpDiscountAmount))
+                  } ₽
                 </span>
               </div>
             </div>
