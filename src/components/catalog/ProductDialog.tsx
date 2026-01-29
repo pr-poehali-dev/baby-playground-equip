@@ -121,7 +121,7 @@ export function ProductDialog({
                 {productImages.length > 0 ? (
                   <>
                     <img 
-                      src={optimizeImage(productImages[currentImageIndex], 1200, 90)} 
+                      src={optimizeImage(productImages[currentImageIndex], undefined, 95)} 
                       alt={selectedProduct.name}
                       loading="eager"
                       decoding="async"
@@ -161,7 +161,7 @@ export function ProductDialog({
                     )}
                   </>
                 ) : selectedProduct.image.startsWith('http') ? (
-                  <img src={optimizeImage(selectedProduct.image, 1200, 90)} alt={selectedProduct.name} loading="eager" decoding="async" className="w-full h-full p-4 px-0 my-0 py-0 object-contain" style={{ contentVisibility: 'auto' }} />
+                  <img src={optimizeImage(selectedProduct.image, undefined, 95)} alt={selectedProduct.name} loading="eager" decoding="async" className="w-full h-full p-4 px-0 my-0 py-0 object-contain" style={{ contentVisibility: 'auto' }} />
                 ) : (
                   <span className="text-8xl">{selectedProduct.image}</span>
                 )}

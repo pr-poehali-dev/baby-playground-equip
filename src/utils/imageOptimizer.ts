@@ -9,29 +9,11 @@ export function optimizeImage(url: string, width?: number, quality: number = 85)
     return url;
   }
 
-  // Используем imgproxy для оптимизации изображений
-  const encodedUrl = btoa(url).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+  const isMobile = window.innerWidth < 768;
+  const actualWidth = width || (isMobile ? 600 : 1200);
+  const actualQuality = Math.min(quality, 95);
   
-  const params: string[] = [];
-  
-  // Формат WebP для лучшего сжатия
-  params.push('format:webp');
-  
-  // Качество
-  params.push(`quality:${quality}`);
-  
-  // Ширина (если указана)
-  if (width) {
-    params.push(`width:${width}`);
-  }
-  
-  // Автоматическая оптимизация
-  params.push('dpr:1');
-  
-  const paramsString = params.join('/');
-  
-  // Используем публичный прокси для оптимизации
-  return `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=${width || 800}&q=${quality}&output=webp&il`;
+  return `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=${actualWidth}&q=${actualQuality}&output=webp&il&n=-1`;
 }
 
 /**
