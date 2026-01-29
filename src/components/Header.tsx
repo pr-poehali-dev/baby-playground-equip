@@ -380,8 +380,11 @@ export function Header({
                   </Button>
                 </SheetTrigger>
                 <SheetContent data-cart-sheet className="w-full sm:max-w-md overflow-y-auto pt-0 flex flex-col">
-                  <SheetHeader className="sticky top-0 bg-background z-10 pb-4 pt-6 border-b">
+                  <SheetHeader className="sticky top-0 bg-background z-10 pb-4 pt-6 border-b flex flex-row items-center justify-between">
                     <SheetTitle className="text-xl">Корзина</SheetTitle>
+                    <Button variant="ghost" size="icon" onClick={() => setIsCartOpen(false)}>
+                      <Icon name="X" size={20} />
+                    </Button>
                   </SheetHeader>
 
                   {cart.length === 0 ? (
@@ -453,19 +456,24 @@ export function Header({
                         ).map((item, index) => (
                           <Card 
                             key={`${item.id}-${index}`}
-                            draggable
-                            onDragStart={() => handleDragStart(index)}
                             onDragOver={(e) => handleDragOver(e, index)}
                             onDrop={(e) => handleDrop(e, index)}
                             onDragEnd={handleDragEnd}
-                            className={`cursor-move transition-all ${
+                            className={`transition-all ${
                               draggedIndex === index ? 'opacity-50 scale-95' : ''
                             } ${
                               dragOverIndex === index && draggedIndex !== index ? 'border-primary border-2' : ''
                             }`}
                           >
                             <CardContent className="p-3 flex items-start gap-3">
-                              <div className="cursor-grab active:cursor-grabbing pt-2">
+                              <div 
+                                className="cursor-grab active:cursor-grabbing pt-2"
+                                draggable
+                                onDragStart={(e) => {
+                                  e.stopPropagation();
+                                  handleDragStart(index);
+                                }}
+                              >
                                 <Icon name="GripVertical" size={20} className="text-muted-foreground" />
                               </div>
                               <img 
@@ -571,8 +579,11 @@ export function Header({
                 </Button>
               </SheetTrigger>
               <SheetContent data-cart-sheet className="w-full sm:max-w-md overflow-y-auto pt-0 flex flex-col">
-                <SheetHeader className="sticky top-0 bg-background z-10 pb-4 pt-6 border-b">
+                <SheetHeader className="sticky top-0 bg-background z-10 pb-4 pt-6 border-b flex flex-row items-center justify-between">
                   <SheetTitle className="text-xl">Корзина</SheetTitle>
+                  <Button variant="ghost" size="icon" onClick={() => setIsCartOpen(false)}>
+                    <Icon name="X" size={20} />
+                  </Button>
                 </SheetHeader>
 
                 {cart.length === 0 ? (
@@ -644,19 +655,24 @@ export function Header({
                       ).map((item, index) => (
                         <Card 
                           key={`${item.id}-${index}`}
-                          draggable
-                          onDragStart={() => handleDragStart(index)}
                           onDragOver={(e) => handleDragOver(e, index)}
                           onDrop={(e) => handleDrop(e, index)}
                           onDragEnd={handleDragEnd}
-                          className={`cursor-move transition-all ${
+                          className={`transition-all ${
                             draggedIndex === index ? 'opacity-50 scale-95' : ''
                           } ${
                             dragOverIndex === index && draggedIndex !== index ? 'border-primary border-2' : ''
                           }`}
                         >
                           <CardContent className="p-3 flex items-start gap-3">
-                            <div className="cursor-grab active:cursor-grabbing pt-2">
+                            <div 
+                              className="cursor-grab active:cursor-grabbing pt-2"
+                              draggable
+                              onDragStart={(e) => {
+                                e.stopPropagation();
+                                handleDragStart(index);
+                              }}
+                            >
                               <Icon name="GripVertical" size={20} className="text-muted-foreground" />
                             </div>
                             <img 
