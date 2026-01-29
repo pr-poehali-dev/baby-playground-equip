@@ -276,7 +276,9 @@ export function Header({
     }
     setKpTargetTotal(value);
     if (totalCost > 0) {
-      const newDiscountAmount = Math.max(0, totalCost - value);
+      const targetWithoutExtras = value - kpDeliveryCost;
+      const discountedPrice = targetWithoutExtras / (1 + kpInstallationPercent / 100);
+      const newDiscountAmount = Math.max(0, totalCost - discountedPrice);
       const newDiscountPercent = totalCost > 0 ? (newDiscountAmount / totalCost) * 100 : 0;
       setKpDiscountAmount(newDiscountAmount);
       setKpDiscountPercent(newDiscountPercent);
