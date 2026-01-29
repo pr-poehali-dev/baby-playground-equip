@@ -276,10 +276,15 @@ export function Header({
     }
     setKpTargetTotal(value);
     if (totalCost > 0) {
-      const targetWithoutExtras = value - kpDeliveryCost;
-      const discountedPrice = targetWithoutExtras / (1 + kpInstallationPercent / 100);
-      const newDiscountAmount = Math.max(0, totalCost - discountedPrice);
+      // Итого = товары + монтаж + доставка
+      const totalBeforeDiscount = totalCost + 
+        Math.round((totalCost * kpInstallationPercent) / 100) + 
+        kpDeliveryCost;
+      
+      // Скидка = Итого - Целевая сумма
+      const newDiscountAmount = Math.max(0, totalBeforeDiscount - value);
       const newDiscountPercent = totalCost > 0 ? (newDiscountAmount / totalCost) * 100 : 0;
+      
       setKpDiscountAmount(newDiscountAmount);
       setKpDiscountPercent(newDiscountPercent);
     }
@@ -295,7 +300,14 @@ export function Header({
     setKpDiscountPercent(value);
     const newDiscountAmount = (totalCost * value) / 100;
     setKpDiscountAmount(newDiscountAmount);
-    setKpTargetTotal(totalCost - newDiscountAmount);
+    
+    // Итого = товары + монтаж + доставка
+    const totalBeforeDiscount = totalCost + 
+      Math.round((totalCost * kpInstallationPercent) / 100) + 
+      kpDeliveryCost;
+    
+    // Целевая сумма = Итого - Скидка
+    setKpTargetTotal(totalBeforeDiscount - newDiscountAmount);
   };
 
   const handleKpDiscountAmountChange = (value: number) => {
@@ -310,7 +322,14 @@ export function Header({
       const newDiscountPercent = (value / totalCost) * 100;
       setKpDiscountPercent(newDiscountPercent);
     }
-    setKpTargetTotal(totalCost - value);
+    
+    // Итого = товары + монтаж + доставка
+    const totalBeforeDiscount = totalCost + 
+      Math.round((totalCost * kpInstallationPercent) / 100) + 
+      kpDeliveryCost;
+    
+    // Целевая сумма = Итого - Скидка
+    setKpTargetTotal(totalBeforeDiscount - value);
   };
 
   return (
