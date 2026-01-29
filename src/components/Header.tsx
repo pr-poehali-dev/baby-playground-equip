@@ -614,9 +614,25 @@ export function Header({
                         </div>
                         <div className="space-y-3 border-t pt-4">
                           <div className="space-y-2">
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm">Монтаж:</span>
+                              <div className="flex items-center gap-2">
+                                <Input
+                                  type="number"
+                                  value={installationPercent}
+                                  onChange={(e) => setInstallationPercent(Math.max(0, parseInt(e.target.value) || 0))}
+                                  className="w-16 h-8 text-sm text-right"
+                                  min="0"
+                                />
+                                <span className="text-sm">%</span>
+                                <span className="text-sm font-semibold min-w-[100px] text-right">
+                                  {formatPrice(calculateInstallationCost())} ₽
+                                </span>
+                              </div>
+                            </div>
                             <div className="flex justify-between text-lg font-bold">
                               <span>Итого:</span>
-                              <span className="text-primary">{formatPrice(calculateTotal())} ₽</span>
+                              <span className="text-primary">{formatPrice(calculateGrandTotal())} ₽</span>
                             </div>
                           </div>
                           <div className="space-y-2">
