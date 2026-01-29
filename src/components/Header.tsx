@@ -269,11 +269,14 @@ export function Header({
 
   const handleKpTargetTotalChange = (value: number) => {
     setKpTargetTotal(value);
-    if (value > 0 && totalCost > 0) {
-      const newDiscountAmount = totalCost - value;
-      const newDiscountPercent = (newDiscountAmount / totalCost) * 100;
-      setKpDiscountAmount(Math.max(0, newDiscountAmount));
-      setKpDiscountPercent(Math.max(0, newDiscountPercent));
+    if (totalCost > 0) {
+      const newDiscountAmount = Math.max(0, totalCost - value);
+      const newDiscountPercent = totalCost > 0 ? (newDiscountAmount / totalCost) * 100 : 0;
+      setKpDiscountAmount(newDiscountAmount);
+      setKpDiscountPercent(newDiscountPercent);
+    } else if (value === 0) {
+      setKpDiscountAmount(0);
+      setKpDiscountPercent(0);
     }
   };
 
