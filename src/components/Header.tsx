@@ -717,7 +717,7 @@ export function Header({
                             />
                             <div className="flex-1 min-w-0 space-y-1">
                               <p className="text-sm text-primary font-medium">{item.name.split('\n')[0]}</p>
-                              <h4 className="font-medium text-sm">{item.name.split('\n').slice(1).join(' ')}</h4>
+                              <h4 className="font-medium text-sm my-0.5">{item.name.split('\n').slice(1).join(' ')}</h4>
                               <div className="flex items-center gap-2 my-0.5">
                                 <Button
                                   variant="outline"
