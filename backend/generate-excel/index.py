@@ -473,7 +473,13 @@ def handler(event, context):
             
             current_row += 1
         
-        # Итого по товарам
+        # Итого = товары + монтаж + доставка
+        total_before_discount = equipment_total
+        if installation_cost > 0 and not hide_installation:
+            total_before_discount += installation_cost
+        if delivery_cost > 0 and not hide_delivery:
+            total_before_discount += delivery_cost
+        
         for col in range(1, 6):
             cell = ws.cell(row=current_row, column=col, value='')
         
@@ -482,19 +488,19 @@ def handler(event, context):
         cell.font = Font(name='Calibri', bold=True, size=11)
         cell.border = thin_border
         
-        cell = ws.cell(row=current_row, column=7, value=equipment_total)
+        cell = ws.cell(row=current_row, column=7, value=total_before_discount)
         cell.alignment = Alignment(horizontal='center', vertical='center')
         cell.number_format = '#,##0.00\ ""'
         cell.font = Font(name='Calibri', bold=True, size=11)
         cell.border = thin_border
         current_row += 1
         
-        # Скидка (если указана) - применяется только к товарам
+        # Скидка = Итого - Целевая сумма (если указан discount)
         discount_value = 0
-        if discount_percent > 0:
-            discount_value = equipment_total * (discount_percent / 100)
-        elif discount_amount > 0:
+        if discount_amount > 0:
             discount_value = discount_amount
+        elif discount_percent > 0:
+            discount_value = total_before_discount * (discount_percent / 100)
         
         if discount_value > 0:
             for col in range(1, 6):
@@ -512,13 +518,8 @@ def handler(event, context):
             cell.border = thin_border
             current_row += 1
         
-        # Итоговая сумма с учетом скидки, монтажа и доставки
-        equipment_with_discount = equipment_total - discount_value
-        total_with_discount = equipment_with_discount
-        if installation_cost > 0 and not hide_installation:
-            total_with_discount += installation_cost
-        if delivery_cost > 0 and not hide_delivery:
-            total_with_discount += delivery_cost
+        # К оплате = Итого - Скидка (или целевая сумма)
+        total_to_pay = total_before_discount - discount_value
         
         for col in range(1, 6):
             cell = ws.cell(row=current_row, column=col, value='')
@@ -528,7 +529,7 @@ def handler(event, context):
         cell.font = Font(name='Calibri', bold=True, size=11)
         cell.border = thin_border
         
-        cell = ws.cell(row=current_row, column=7, value=total_with_discount)
+        cell = ws.cell(row=current_row, column=7, value=total_to_pay)
         cell.alignment = Alignment(horizontal='center', vertical='center')
         cell.number_format = '#,##0.00\ ""'
         cell.font = Font(name='Calibri', bold=True, size=11)
