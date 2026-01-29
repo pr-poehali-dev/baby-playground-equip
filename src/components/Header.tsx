@@ -409,7 +409,17 @@ export function Header({
                     </div>
                   ) : (
                     <>
-                      <div className="space-y-4 flex-1 overflow-y-auto py-4">
+                      <div className="space-y-2 flex-1 overflow-y-auto py-4">
+                        <div className="relative mb-4">
+                          <Icon name="Search" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                          <Input
+                            type="text"
+                            placeholder="Поиск по товарам..."
+                            value={cartSearchQuery}
+                            onChange={(e) => setCartSearchQuery(e.target.value)}
+                            className="pl-9"
+                          />
+                        </div>
                         {sortedCart.map((item, index) => (
                           <Card 
                             key={`${item.id}-${index}`}
@@ -424,140 +434,82 @@ export function Header({
                               dragOverIndex === index && draggedIndex !== index ? 'border-primary border-2' : ''
                             }`}
                           >
-                            <CardContent className="p-4 flex gap-4">
-                              <div className="flex items-center gap-3 flex-1">
-                                <div className="cursor-grab active:cursor-grabbing">
-                                  <Icon name="GripVertical" size={20} className="text-muted-foreground" />
-                                </div>
-                                <img 
-                                  src={item.image} 
-                                  alt={item.name}
-                                  className="w-20 h-20 object-cover rounded"
-                                />
-                                <div className="flex-1">
-                                  <h4 className="font-medium text-sm">{item.name}</h4>
-                                  <p className="text-sm text-muted-foreground mt-1">
-                                    {formatPrice(item.price)} ₽
-                                  </p>
-                                  <div className="flex items-center gap-2 mt-2">
-                                    <Button
-                                      variant="outline"
-                                      size="icon"
-                                      className="h-8 w-8"
-                                      onClick={() => updateQuantity(item.id, Math.max(0, item.quantity - 1))}
-                                    >
-                                      <Icon name="Minus" size={16} />
-                                    </Button>
-                                    <span className="w-12 text-center font-medium">{item.quantity}</span>
-                                    <Button
-                                      variant="outline"
-                                      size="icon"
-                                      className="h-8 w-8"
-                                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                    >
-                                      <Icon name="Plus" size={16} />
-                                    </Button>
-                                    <Button
-                                      variant="ghost"
-                                      size="icon"
-                                      className="ml-auto h-8 w-8"
-                                      onClick={() => removeFromCart(item.id)}
-                                    >
-                                      <Icon name="Trash2" size={16} />
-                                    </Button>
-                                  </div>
-                                </div>
+                            <CardContent className="p-3 flex items-center gap-3">
+                              <div className="cursor-grab active:cursor-grabbing">
+                                <Icon name="GripVertical" size={20} className="text-muted-foreground" />
                               </div>
-                              <div className="text-right">
-                                <p className="font-bold">{formatPrice(parseInt(item.price.replace(/\s/g, '')) * item.quantity)} ₽</p>
+                              <img 
+                                src={item.image} 
+                                alt={item.name}
+                                className="w-16 h-16 object-cover rounded"
+                              />
+                              <div className="flex-1 min-w-0">
+                                <h4 className="font-medium text-sm line-clamp-2">{item.name}</h4>
                               </div>
+                              <div className="flex items-center gap-2">
+                                <Button
+                                  variant="outline"
+                                  size="icon"
+                                  className="h-8 w-8"
+                                  onClick={() => updateQuantity(item.id, Math.max(0, item.quantity - 1))}
+                                >
+                                  <Icon name="Minus" size={16} />
+                                </Button>
+                                <span className="w-8 text-center font-medium">{item.quantity}</span>
+                                <Button
+                                  variant="outline"
+                                  size="icon"
+                                  className="h-8 w-8"
+                                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                >
+                                  <Icon name="Plus" size={16} />
+                                </Button>
+                              </div>
+                              <div className="text-right min-w-[100px]">
+                                <p className="font-bold text-sm">{formatPrice(parseInt(item.price.replace(/\s/g, '')) * item.quantity)} ₽</p>
+                              </div>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-8 w-8"
+                                onClick={() => removeFromCart(item.id)}
+                              >
+                                <Icon name="Trash2" size={16} />
+                              </Button>
                             </CardContent>
                           </Card>
                         ))}
                       </div>
 
                       <div className="sticky bottom-0 bg-background border-t pt-4 space-y-3">
-                        <div className="space-y-2 pb-3 border-b">
-                          <div className="flex justify-between text-sm">
-                            <span>Сумма товаров:</span>
-                            <span className="font-medium">{formatPrice(totalCost)} ₽</span>
-                          </div>
-
-                          <div className="space-y-2 pt-2">
-                            <div className="flex items-center gap-2">
-                              <Input
-                                type="number"
-                                placeholder="Скидка %"
-                                value={discountPercent || ''}
-                                onChange={(e) => handleDiscountPercentChange(parseFloat(e.target.value) || 0)}
-                                className="text-sm h-9"
-                              />
-                              <Input
-                                type="number"
-                                placeholder="Скидка ₽"
-                                value={discountAmount || ''}
-                                onChange={(e) => handleDiscountAmountChange(parseFloat(e.target.value) || 0)}
-                                className="text-sm h-9"
-                              />
-                            </div>
-                            <Input
-                              type="number"
-                              placeholder="Целевая сумма ₽"
-                              value={targetTotal || ''}
-                              onChange={(e) => handleTargetTotalChange(parseFloat(e.target.value) || 0)}
-                              className="text-sm h-9"
-                            />
-                          </div>
-
-                          {discountAmount > 0 && (
-                            <div className="flex justify-between text-sm text-muted-foreground">
-                              <span>После скидки:</span>
-                              <span>{formatPrice(discountedTotal)} ₽</span>
-                            </div>
-                          )}
-
-                          <div className="flex items-center gap-2">
-                            <Input
-                              type="number"
-                              placeholder="Монтаж %"
-                              value={installationPercent || ''}
-                              onChange={(e) => setInstallationPercent(parseFloat(e.target.value) || 0)}
-                              className="flex-1 text-sm h-9"
-                            />
-                            <span className="text-sm font-medium whitespace-nowrap">
-                              {formatPrice(installationCost)} ₽
-                            </span>
-                          </div>
-
-                          <div className="flex items-center gap-2">
-                            <Input
-                              type="number"
-                              placeholder="Доставка ₽"
-                              value={deliveryCost || ''}
-                              onChange={(e) => setDeliveryCost(parseFloat(e.target.value) || 0)}
-                              className="flex-1 text-sm h-9"
-                            />
-                          </div>
+                        <div className="flex items-center gap-2 pb-3 border-b">
+                          <span className="text-sm">Монтаж:</span>
+                          <Input
+                            type="number"
+                            value={installationPercent || ''}
+                            onChange={(e) => setInstallationPercent(parseFloat(e.target.value) || 0)}
+                            className="w-20 text-sm h-9 text-center"
+                          />
+                          <span className="text-sm">%</span>
+                          <span className="ml-auto text-sm font-medium">
+                            {formatPrice(installationCost)} ₽
+                          </span>
                         </div>
 
-                        <div className="flex justify-between text-lg font-bold pt-2">
+                        <div className="flex justify-between text-lg font-bold">
                           <span>Итого:</span>
-                          <span>{formatPrice(finalTotal)} ₽</span>
+                          <span className="text-primary">{formatPrice(finalTotal)} ₽</span>
                         </div>
 
-                        <div className="flex gap-2 pt-2">
-                          <Button ref={orderButtonRef} onClick={() => setShowOrderForm(true)} className="flex-1" size="lg">
-                            <Icon name="Send" size={18} className="mr-2" />
-                            Оформить заказ
-                          </Button>
-                          <Button onClick={() => setShowKPDialog(true)} variant="secondary" size="lg">
-                            <Icon name="FileText" size={18} className="mr-2" />
-                            КП
-                          </Button>
-                          <Button onClick={() => setIsExcelSettingsOpen(true)} variant="outline" size="icon">
-                            <Icon name="Settings" size={18} />
-                          </Button>
-                        </div>
+                        <Button ref={orderButtonRef} onClick={() => setShowOrderForm(true)} className="w-full" size="lg">
+                          Оформить заказ
+                        </Button>
+                        <Button onClick={() => setShowKPDialog(true)} variant="outline" className="w-full" size="lg">
+                          Сформировать коммерческое предложение
+                        </Button>
+                        <Button onClick={() => clearCart?.()} variant="ghost" className="w-full" size="sm">
+                          Очистить корзину
+                        </Button>
                       </div>
                     </>
                   )}
