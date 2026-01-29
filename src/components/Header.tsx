@@ -331,6 +331,13 @@ export function Header({
               </a>
             </nav>
             <div className="flex items-center gap-3">
+              <a href="tel:+79181151551" className="flex items-center gap-2 text-base font-medium hover:text-primary transition-colors">
+                <Icon name="Phone" size={18} />
+                +7 918 115-15-51
+              </a>
+              <Button onClick={() => setIsContactDialogOpen(true)} className="bg-primary hover:bg-primary/90">
+                Заказать звонок
+              </Button>
               <div className="relative">
                 <Icon name="Search" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                 <Input
@@ -351,13 +358,6 @@ export function Header({
                   </Button>
                 )}
               </div>
-              <a href="tel:+79181151551" className="flex items-center gap-2 text-base font-medium hover:text-primary transition-colors">
-                <Icon name="Phone" size={18} />
-                +7 918 115-15-51
-              </a>
-              <Button onClick={() => setIsContactDialogOpen(true)} className="bg-primary hover:bg-primary/90">
-                Заказать звонок
-              </Button>
               <Link to="/favorites">
                 <Button variant="outline" size="icon" className="relative hover:bg-transparent hover:border-primary hover:text-primary">
                   <Icon name="Heart" size={20} />
