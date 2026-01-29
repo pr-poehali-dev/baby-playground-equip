@@ -125,7 +125,7 @@ export function CategoryDialogs({
                     </div>
                   </>
                 ) : (
-                  <div className="relative overflow-hidden rounded-md bg-white shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 aspect-[16/13] border-2 border-gray-200 hover:border-gray-200">
+                  <div className="relative overflow-hidden rounded-md bg-white shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 aspect-[16/11] border-2 border-gray-200 hover:border-gray-200">
                     <div className="absolute inset-0">
                       {sub.image.startsWith('http') ? (
                         <img src={sub.image} alt={sub.name} loading="lazy" className="w-full h-full group-hover:scale-110 transition-transform duration-300 object-fill" />
@@ -135,8 +135,8 @@ export function CategoryDialogs({
                         </div>
                       )}
                     </div>
-                    <div className="absolute bottom-0 left-0 right-0 py-1 px-2 -mb-px">
-                      <h4 className="font-heading text-white text-base sm:text-xl leading-tight font-light text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] py-1">{sub.name}</h4>
+                    <div className="absolute bottom-0 left-0 right-0 py-0.5 px-2">
+                      <h4 className="font-heading text-white text-base sm:text-xl leading-tight font-light text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] py-0.5">{sub.name}</h4>
                     </div>
                   </div>
                 )}
