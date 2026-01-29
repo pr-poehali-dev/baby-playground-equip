@@ -411,13 +411,16 @@ export function Header({
                             <CardContent className="p-0 max-h-[400px] overflow-y-auto">
                               <div className="divide-y">
                                 {filteredCatalogProducts.map((product) => (
-                                  <div key={product.id} className="p-3 hover:bg-muted/50 cursor-pointer flex items-center gap-3" onClick={() => onAddToCart?.(product)}>
+                                  <div key={product.id} className="p-3 hover:bg-muted/50 cursor-pointer flex items-center gap-3" onClick={() => {
+                                    onAddToCart?.(product);
+                                    setCatalogSearchQuery('');
+                                  }}>
                                     <img src={product.image} alt={product.name} className="w-12 h-12 object-cover rounded" />
                                     <div className="flex-1 min-w-0">
                                       <p className="text-sm font-medium line-clamp-2">{product.name}</p>
                                       <p className="text-sm text-muted-foreground">{product.price} ₽</p>
                                     </div>
-                                    <Button size="sm" variant="secondary">
+                                    <Button size="sm" variant="outline" className="hover:bg-transparent hover:border-primary hover:text-primary">
                                       <Icon name="Plus" size={16} />
                                     </Button>
                                   </div>
@@ -453,13 +456,16 @@ export function Header({
                             <CardContent className="p-0 max-h-[300px] overflow-y-auto">
                               <div className="divide-y">
                                 {filteredCatalogProducts.map((product) => (
-                                  <div key={product.id} className="p-3 hover:bg-muted/50 cursor-pointer flex items-center gap-3" onClick={() => onAddToCart?.(product)}>
+                                  <div key={product.id} className="p-3 hover:bg-muted/50 cursor-pointer flex items-center gap-3" onClick={() => {
+                                    onAddToCart?.(product);
+                                    setCatalogSearchQuery('');
+                                  }}>
                                     <img src={product.image} alt={product.name} className="w-12 h-12 object-cover rounded" />
                                     <div className="flex-1 min-w-0">
                                       <p className="text-sm font-medium line-clamp-2">{product.name}</p>
                                       <p className="text-sm text-muted-foreground">{product.price} ₽</p>
                                     </div>
-                                    <Button size="sm" variant="secondary">
+                                    <Button size="sm" variant="outline" className="hover:bg-transparent hover:border-primary hover:text-primary">
                                       <Icon name="Plus" size={16} />
                                     </Button>
                                   </div>
@@ -632,13 +638,16 @@ export function Header({
                           <CardContent className="p-0 max-h-[400px] overflow-y-auto">
                             <div className="divide-y">
                               {filteredCatalogProducts.map((product) => (
-                                <div key={product.id} className="p-3 hover:bg-muted/50 cursor-pointer flex items-center gap-3" onClick={() => onAddToCart?.(product)}>
+                                <div key={product.id} className="p-3 hover:bg-muted/50 cursor-pointer flex items-center gap-3" onClick={() => {
+                                  onAddToCart?.(product);
+                                  setCatalogSearchQuery('');
+                                }}>
                                   <img src={product.image} alt={product.name} className="w-12 h-12 object-cover rounded" />
                                   <div className="flex-1 min-w-0">
                                     <p className="text-sm font-medium line-clamp-2">{product.name}</p>
                                     <p className="text-sm text-muted-foreground">{product.price} ₽</p>
                                   </div>
-                                  <Button size="sm" variant="secondary">
+                                  <Button size="sm" variant="outline" className="hover:bg-transparent hover:border-primary hover:text-primary">
                                     <Icon name="Plus" size={16} />
                                   </Button>
                                 </div>
@@ -674,13 +683,16 @@ export function Header({
                           <CardContent className="p-0 max-h-[300px] overflow-y-auto">
                             <div className="divide-y">
                               {filteredCatalogProducts.map((product) => (
-                                <div key={product.id} className="p-3 hover:bg-muted/50 cursor-pointer flex items-center gap-3" onClick={() => onAddToCart?.(product)}>
+                                <div key={product.id} className="p-3 hover:bg-muted/50 cursor-pointer flex items-center gap-3" onClick={() => {
+                                  onAddToCart?.(product);
+                                  setCatalogSearchQuery('');
+                                }}>
                                   <img src={product.image} alt={product.name} className="w-12 h-12 object-cover rounded" />
                                   <div className="flex-1 min-w-0">
                                     <p className="text-sm font-medium line-clamp-2">{product.name}</p>
                                     <p className="text-sm text-muted-foreground">{product.price} ₽</p>
                                   </div>
-                                  <Button size="sm" variant="secondary">
+                                  <Button size="sm" variant="outline" className="hover:bg-transparent hover:border-primary hover:text-primary">
                                     <Icon name="Plus" size={16} />
                                   </Button>
                                 </div>
