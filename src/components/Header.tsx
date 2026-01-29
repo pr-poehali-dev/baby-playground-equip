@@ -359,7 +359,7 @@ export function Header({
                 Заказать звонок
               </Button>
               <Link to="/favorites">
-                <Button variant="ghost" size="icon" className="relative">
+                <Button variant="ghost" size="icon" className="relative hover:bg-transparent hover:border hover:border-primary hover:text-primary">
                   <Icon name="Heart" size={20} />
                   {favoritesCount > 0 && (
                     <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
@@ -370,7 +370,7 @@ export function Header({
               </Link>
               <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
                 <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="relative">
+                  <Button variant="ghost" size="icon" className="relative hover:bg-transparent hover:border hover:border-primary hover:text-primary">
                     <Icon name="ShoppingCart" size={20} />
                     {cart.length > 0 && (
                       <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
@@ -586,7 +586,7 @@ export function Header({
           </div>
           <div className="flex md:hidden items-center gap-2">
             <Link to="/favorites">
-              <Button variant="ghost" size="icon" className="relative">
+              <Button variant="ghost" size="icon" className="relative hover:bg-transparent hover:border hover:border-primary hover:text-primary">
                 <Icon name="Heart" size={20} />
                 {favoritesCount > 0 && (
                   <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
@@ -597,7 +597,7 @@ export function Header({
             </Link>
             <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="relative">
+                <Button variant="ghost" size="icon" className="relative hover:bg-transparent hover:border hover:border-primary hover:text-primary">
                   <Icon name="ShoppingCart" size={20} />
                   {cart.length > 0 && (
                     <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
