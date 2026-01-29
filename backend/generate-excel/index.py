@@ -276,19 +276,16 @@ def handler(event, context):
         elif discount_percent > 0:
             discount_value = equipment_total_original * (discount_percent / 100)
         
-        # Коэффициент скидки для применения к каждому товару
-        discount_multiplier = 1 - (discount_value / equipment_total_original) if equipment_total_original > 0 else 1
-        
         # Монтаж считается от суммы товаров ДО скидки
         calculated_installation_cost = equipment_total_original * (installation_percent / 100) if installation_percent > 0 else 0
         
-        # Доставка на единицу товара (равномерное распределение)
+        # Доставка на единицу товара (равномерное распределение, если скрыта)
         delivery_per_unit = (delivery_cost / total_product_quantity) if (hide_delivery and delivery_cost > 0 and total_product_quantity > 0) else 0
         
         # Процент монтажа для добавления к цене (если скрыт)
         installation_per_unit = (calculated_installation_cost / total_product_quantity) if (hide_installation and calculated_installation_cost > 0 and total_product_quantity > 0) else 0
         
-        equipment_total = 0  # Итоговая сумма товаров со скидкой
+        equipment_total = 0  # Сумма товаров (полная, БЕЗ скидки)
         
         for idx, product in enumerate(products, 1):
             ws.row_dimensions[current_row].height = 75.00
@@ -384,14 +381,11 @@ def handler(event, context):
             cell.border = thin_border
             cell.font = Font(name='Calibri', size=11)
             
-            # Цена (с учетом скидки)
+            # Цена ПОЛНАЯ (БЕЗ скидки)
             base_price = int(product['price'].replace(' ', '')) if isinstance(product['price'], str) else product['price']
             
-            # Применяем скидку к цене товара
-            discounted_price = base_price * discount_multiplier
-            
             # Если монтаж скрыт - добавляем его равномерно на каждый товар
-            price_with_installation = discounted_price + (installation_per_unit / quantity if quantity > 0 else 0)
+            price_with_installation = base_price + (installation_per_unit / quantity if quantity > 0 else 0)
             
             # Если доставка скрыта - добавляем равномерно на единицу товара
             final_price = price_with_installation + delivery_per_unit
@@ -402,7 +396,7 @@ def handler(event, context):
             cell.border = thin_border
             cell.font = Font(name='Calibri', size=11)
             
-            # Сумма
+            # Сумма (ПОЛНАЯ, без скидки)
             final_sum = final_price * quantity
             equipment_total += final_sum
             cell = ws.cell(row=current_row, column=7, value=final_sum)
