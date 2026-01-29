@@ -247,8 +247,8 @@ export default function Index({ favorites, toggleFavorite, cart, addToCart, remo
           <p className="text-center text-muted-foreground mb-6 max-w-2xl mx-auto">
             Выберите категорию продукции для просмотра полного ассортимента
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
-            {categories.map((category) => (
+          <div className="grid grid-cols-2 gap-4 md:gap-8">
+            {categories.filter(cat => !['improvement', 'fencing'].includes(cat.id)).map((category) => (
               <div
                 key={category.id}
                 onClick={() => handlers.handleCategoryClick(category)}
