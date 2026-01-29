@@ -373,7 +373,7 @@ export function Header({
                   <Button variant="outline" size="icon" className="relative h-10 w-10 hover:bg-transparent hover:border-primary hover:text-primary">
                     <Icon name="ShoppingCart" size={20} />
                     {cart.length > 0 && (
-                      <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
                         {cart.reduce((sum, item) => sum + item.quantity, 0)}
                       </span>
                     )}
@@ -600,7 +600,7 @@ export function Header({
                 <Button variant="outline" size="icon" className="relative h-10 w-10 hover:bg-transparent hover:border-primary hover:text-primary">
                   <Icon name="ShoppingCart" size={20} />
                   {cart.length > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
                       {cart.reduce((sum, item) => sum + item.quantity, 0)}
                     </span>
                   )}
