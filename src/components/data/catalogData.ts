@@ -229,6 +229,10 @@ export const categories = [
     image: 'https://cdn.poehali.dev/files/%D0%BE%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5.png',
     bgImage: 'https://cdn.poehali.dev/files/%D0%BE%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5.png',
     order: 6,
-    subcategories: []
+    subcategories: [
+      { name: 'Спортивная площадка', image: '⚽' },
+      { name: 'Детская площадка', image: '🎪' },
+      { name: 'Придомовая территория', image: '🏘️' }
+    ]
   }
 ];
