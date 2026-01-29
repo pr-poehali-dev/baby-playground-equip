@@ -323,7 +323,7 @@ export function CategoryGrid({
                 >
                   {product.image.startsWith('http') ? (
                     <img 
-                      src={optimizeImage(product.image, 300, 90)} 
+                      src={product.image} 
                       alt={product.name} 
                       loading="lazy"
                       decoding="async"
