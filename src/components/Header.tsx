@@ -352,7 +352,7 @@ export function Header({
                     )}
                   </Button>
                 </SheetTrigger>
-                <SheetContent data-cart-sheet className="w-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl overflow-y-auto pt-0 flex flex-col">
+                <SheetContent data-cart-sheet className="w-full sm:max-w-md overflow-y-auto pt-0 flex flex-col">
                   <SheetHeader className="sticky top-0 bg-background z-10 pb-4 pt-6 border-b">
                     <SheetTitle className="text-xl">Корзина</SheetTitle>
                   </SheetHeader>
@@ -539,7 +539,7 @@ export function Header({
                   )}
                 </Button>
               </SheetTrigger>
-              <SheetContent data-cart-sheet className="w-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl overflow-y-auto pt-0 flex flex-col">
+              <SheetContent data-cart-sheet className="w-full sm:max-w-md overflow-y-auto pt-0 flex flex-col">
                 <SheetHeader className="sticky top-0 bg-background z-10 pb-4 pt-6 border-b">
                   <SheetTitle className="text-xl">Корзина</SheetTitle>
                 </SheetHeader>
