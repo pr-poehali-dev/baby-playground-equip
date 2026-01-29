@@ -61,6 +61,8 @@ export function ProductDialog({
   const isFavorite = selectedProduct ? favorites.some(f => f.id === selectedProduct.id) : false;
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
+  const touchStartY = useRef<number>(0);
+  const touchEndY = useRef<number>(0);
 
   const handleBackToCatalog = () => {
     setIsProductDialogOpen(false);
@@ -79,20 +81,23 @@ export function ProductDialog({
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     touchEndX.current = e.touches[0].clientX;
+    touchEndY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = () => {
-    const diff = touchStartX.current - touchEndX.current;
+    const diffX = touchStartX.current - touchEndX.current;
+    const diffY = Math.abs(touchStartY.current - touchEndY.current);
     const minSwipeDistance = 50;
 
-    if (Math.abs(diff) > minSwipeDistance) {
-      if (diff > 0 && hasNextProduct && onNextProduct) {
+    if (Math.abs(diffX) > minSwipeDistance && diffY < 50) {
+      if (diffX > 0 && hasNextProduct && onNextProduct) {
         onNextProduct();
-      } else if (diff < 0 && hasPreviousProduct && onPreviousProduct) {
+      } else if (diffX < 0 && hasPreviousProduct && onPreviousProduct) {
         onPreviousProduct();
       }
     }
