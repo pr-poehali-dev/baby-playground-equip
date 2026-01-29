@@ -211,9 +211,7 @@ export function CatalogSection({
     }
   };
 
-  const handleBackToCatalog = () => {
-    setSelectedProduct(null);
-  };
+
 
   const handleNextProduct = () => {
     if (!selectedProduct) return;
@@ -310,7 +308,7 @@ export function CatalogSection({
         setIsContactDialogOpen={setIsContactDialogOpen}
         favorites={favorites}
         toggleFavorite={toggleFavorite}
-        onBackToCatalog={handleBackToCatalog}
+        onBackToCatalog={() => {}}
         onNextProduct={handleNextProduct}
         onPreviousProduct={handlePreviousProduct}
         hasNextProduct={hasNextProduct}
