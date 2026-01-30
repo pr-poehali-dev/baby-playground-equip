@@ -831,7 +831,7 @@ export function Header({
             </Sheet>
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="outline" size="icon" className="border-2 hover:bg-transparent hover:border-[#3eaa03] hover:text-[#3eaa03]">
                   <Icon name="Menu" size={24} />
                 </Button>
               </SheetTrigger>
