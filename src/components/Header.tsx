@@ -973,27 +973,41 @@ export function Header({
             </div>
 
             <div>
-              <label className="text-sm font-medium mb-2 block">Монтаж (%)</label>
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-sm font-medium">Монтаж (%)</label>
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="hideInstallation"
+                    checked={hideInstallationInKP}
+                    onCheckedChange={(checked) => setHideInstallationInKP(checked as boolean)}
+                  />
+                  <label htmlFor="hideInstallation" className="text-sm cursor-pointer">
+                    Скрыть монтаж в КП
+                  </label>
+                </div>
+              </div>
               <Input
                 type="number"
                 placeholder="0"
                 value={kpInstallationPercent || ''}
                 onChange={(e) => setKpInstallationPercent(parseFloat(e.target.value) || 0)}
               />
-              <div className="flex items-center space-x-2 mt-2">
-                <Checkbox
-                  id="hideInstallation"
-                  checked={hideInstallationInKP}
-                  onCheckedChange={(checked) => setHideInstallationInKP(checked as boolean)}
-                />
-                <label htmlFor="hideInstallation" className="text-sm cursor-pointer">
-                  Скрыть монтаж в КП
-                </label>
-              </div>
             </div>
 
             <div>
-              <label className="text-sm font-medium mb-2 block">Доставка (₽)</label>
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-sm font-medium">Доставка (₽)</label>
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="hideDelivery"
+                    checked={hideDeliveryInKP}
+                    onCheckedChange={(checked) => setHideDeliveryInKP(checked as boolean)}
+                  />
+                  <label htmlFor="hideDelivery" className="text-sm cursor-pointer">
+                    Скрыть доставку в КП
+                  </label>
+                </div>
+              </div>
               <Input
                 type="number"
                 placeholder="0"
@@ -1001,16 +1015,6 @@ export function Header({
                 value={kpDeliveryCost || ''}
                 onChange={(e) => setKpDeliveryCost(parseFloat(e.target.value) || 0)}
               />
-              <div className="flex items-center space-x-2 mt-2">
-                <Checkbox
-                  id="hideDelivery"
-                  checked={hideDeliveryInKP}
-                  onCheckedChange={(checked) => setHideDeliveryInKP(checked as boolean)}
-                />
-                <label htmlFor="hideDelivery" className="text-sm cursor-pointer">
-                  Скрыть доставку в КП
-                </label>
-              </div>
             </div>
 
             <div className="bg-muted p-4 rounded-lg space-y-2">
