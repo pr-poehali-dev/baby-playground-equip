@@ -1073,10 +1073,7 @@ export function Header({
               </div>
             </div>
           </div>
-          <div className="bg-background border-t pt-4 flex gap-2">
-            <Button variant="outline" onClick={() => setShowKPDialog(false)} className="flex-1 hover:bg-transparent hover:border-primary hover:text-primary">
-              Отмена
-            </Button>
+          <div className="bg-background border-t pt-4">
             <Button onClick={() => {
               generateKP({
                 address: kpAddress,
@@ -1090,7 +1087,7 @@ export function Header({
                 discountAmount: kpDiscountAmount
               });
               setShowKPDialog(false);
-            }} className="flex-1">
+            }} className="w-full">
               <Icon name="Download" size={16} className="mr-2" />
               Скачать
             </Button>
