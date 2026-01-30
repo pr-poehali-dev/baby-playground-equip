@@ -757,6 +757,24 @@ export function Header({
                           onDragOver={(e) => handleDragOver(e, index)}
                           onDrop={(e) => handleDrop(e, index)}
                           onDragEnd={handleDragEnd}
+                          onTouchMove={(e) => {
+                            const touch = e.touches[0];
+                            const element = document.elementFromPoint(touch.clientX, touch.clientY);
+                            const card = element?.closest('[data-cart-index]');
+                            if (card) {
+                              const targetIndex = parseInt(card.getAttribute('data-cart-index') || '0');
+                              setDragOverIndex(targetIndex);
+                            }
+                          }}
+                          onTouchEnd={(e) => {
+                            if (draggedIndex !== null && dragOverIndex !== null) {
+                              const dropEvent = {
+                                preventDefault: () => {}
+                              } as React.DragEvent;
+                              handleDrop(dropEvent, dragOverIndex);
+                            }
+                          }}
+                          data-cart-index={index}
                           className={`transition-all ${
                             draggedIndex === index ? 'opacity-50 scale-95' : ''
                           } ${
@@ -765,9 +783,13 @@ export function Header({
                         >
                           <CardContent className="p-3 flex items-start gap-3 my-0 py-0.5">
                             <div 
-                              className="cursor-grab active:cursor-grabbing pt-2"
+                              className="cursor-grab active:cursor-grabbing pt-2 touch-none"
                               draggable
                               onDragStart={(e) => {
+                                e.stopPropagation();
+                                handleDragStart(index);
+                              }}
+                              onTouchStart={(e) => {
                                 e.stopPropagation();
                                 handleDragStart(index);
                               }}
