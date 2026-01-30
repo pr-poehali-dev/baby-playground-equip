@@ -20,11 +20,11 @@ export function HeroSection({ onOpenCatalog }: HeroSectionProps) {
       </div>
 
       <div className="w-full relative z-10 md:my-[93px] mx-0 py-2.5 my-0">
-        <div className="max-w-3xl animate-fade-in px-2 mx-0 md:ml-[50px]">
+        <div className="max-w-3xl animate-fade-in px-2 mx-0 md:ml-[50px] my-0">
           <h2 className="md:text-4xl lg:text-6xl font-heading md:mb-6 text-white font-semibold py-0 my-[18px] px-0 mx-0 text-3xl">
             Создаём пространство для игры и спорта
           </h2>
-          <p className="md:text-xl text-white/90 md:mb-8 py-0 font-normal my-0 mx-0 px-0.5 md:px-0 text-left text-sm">
+          <p className="md:text-xl text-white/90 md:mb-8 py-0 font-normal mx-0 px-0.5 md:px-0 text-left text-sm my-0">
             Производим качественное детское игровое, спортивное и парковое оборудование. 
             Безопасность, долговечность и яркий дизайн — наши главные приоритеты.
           </p>
